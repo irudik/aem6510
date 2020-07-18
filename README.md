@@ -126,14 +126,14 @@ Some sections of the course have readings (available on Canvas if not in the boo
   - Greenstone, M. and Gayer, T., 2009. Quasi-experimental and experimental approaches to environmental economics. Journal of Environmental Economics and Management, 57(1), pp.21-44.
   - Deschenes, O. and Meng, K.C., 2018. Quasi-experimental methods in environmental economics: Opportunities and challenges. In Handbook of Environmental Economics (Vol. 4, pp. 285-332). 
 
-### [Oct 22: Environmental health and difference-in-differences](https://ivanrudik.com)
+### [Oct 22: Environmental health, difference-in-differences, and event studies](https://ivanrudik.com)
 
 **Reading**: 
   - [Hollingsworth A. and Rudik, I., 2021. The effect of leaded gasoline on elderly mortality: Evidence from regulatory exemptions. American Economic Journal: Economic Policy.](https://osf.io/preprints/socarxiv/rdy6g/)
   - Graff Zivin, J. and Neidell, M., 2013. Environment, health, and human capital. Journal of Economic Literature, 51(3), pp.689-730.
   - Currie, J., Zivin, J.G., Mullins, J. and Neidell, M., 2014. What do we know about short-and long-term effects of early-life exposure to pollution? Annual Review Resourse Economics, 6(1), pp.217-247.
   
-### [Oct 27: Environmental health and difference-in-differences](https://ivanrudik.com)
+### [Oct 27: Environmental health, difference-in-differences, and event studies](https://ivanrudik.com)
 
 **Reading**: 
   - [Hollingsworth A. and Rudik, I., 2021. The effect of leaded gasoline on elderly mortality: Evidence from regulatory exemptions. American Economic Journal: Economic Policy.](https://osf.io/preprints/socarxiv/rdy6g/)
