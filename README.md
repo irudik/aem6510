@@ -166,15 +166,19 @@ Some sections of the course have readings (available on Canvas if not in the boo
 
 **Reading**: Deschênes, O. and Greenstone, M., 2007. The economic impacts of climate change: evidence from agricultural output and random fluctuations in weather. American Economic Review, 97(1), pp.354-385.
 
-### [Nov 17: Remote sensing and simple features](https://ivanrudik.com)
+### [Nov 17: Deforestation, remote sensing, and simple features](https://ivanrudik.com)
 
-**Reading**: [Geocomputation with R](https://geocompr.robinlovelace.net/)
+**Reading**: 
+  - [Geocomputation with R](https://geocompr.robinlovelace.net/)
+  - Burgess, R., Hansen, M., Olken, B.A., Potapov, P. and Sieber, S., 2012. The political economy of deforestation in the tropics. The Quarterly Journal of Economics, 127(4), pp.1707-1754.
 
-### [Nov 19: Remote sensing and simple features](https://ivanrudik.com)
+### [Nov 19: Deforestation, remote sensing, and simple features](https://ivanrudik.com)
 
-**Reading**: [Geocomputation with R](https://geocompr.robinlovelace.net/)
-
-### [Nov 24: Perverse incentives](https://ivanrudik.com)
+**Reading**: 
+  - [Geocomputation with R](https://geocompr.robinlovelace.net/)
+  - Burgess, R., Costa, F. and Olken, B.A., 2019. The Brazilian Amazon’s Double Reversal of Fortune.
+  
+### [Nov 24: Perverse incentives, remote sensing, and simple features](https://ivanrudik.com)
 
 **Reading**: Zou, E., 2018. Unwatched pollution: The effect of intermittent monitoring on air quality.
 
