@@ -4,19 +4,14 @@
     <title>Lecture 1</title>
     <meta charset="utf-8" />
     <meta name="author" content="Ivan Rudik" />
-    <link href="1-micro-math_files/remark-css-0.0.1/default.css" rel="stylesheet" />
-    <link href="1-micro-math_files/remark-css-0.0.1/metropolis.css" rel="stylesheet" />
-    <link href="1-micro-math_files/remark-css-0.0.1/metropolis-fonts.css" rel="stylesheet" />
-    <link href="1-micro-math_files/tile-view-0.0.18.9000/tile-view.css" rel="stylesheet" />
-    <script src="1-micro-math_files/tile-view-0.0.18.9000/tile-view.js"></script>
-    <link href="1-micro-math_files/panelset-0.0.18.9000/panelset.css" rel="stylesheet" />
-    <script src="1-micro-math_files/panelset-0.0.18.9000/panelset.js"></script>
-    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"f68283058fd643c49060a860ea371d19","expires":14}</script>
-    <script src="1-micro-math_files/himalaya-1.1.0/himalaya.js"></script>
-    <script src="1-micro-math_files/js-cookie-3.0.0/js.cookie.js"></script>
-    <link href="1-micro-math_files/editable-0.0.18.9000/editable.css" rel="stylesheet" />
-    <script src="1-micro-math_files/editable-0.0.18.9000/editable.js"></script>
-    <script src="1-micro-math_files/xaringanExtra-webcam-0.0.1/webcam.js"></script>
+    <link href="1-micro-math_files/remark-css/default.css" rel="stylesheet" />
+    <link href="1-micro-math_files/remark-css/metropolis.css" rel="stylesheet" />
+    <link href="1-micro-math_files/remark-css/metropolis-fonts.css" rel="stylesheet" />
+    <link href="1-micro-math_files/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="1-micro-math_files/tile-view/tile-view.js"></script>
+    <link href="1-micro-math_files/panelset/panelset.css" rel="stylesheet" />
+    <script src="1-micro-math_files/panelset/panelset.js"></script>
+    <script src="1-micro-math_files/xaringanExtra-webcam/webcam.js"></script>
     <script id="xaringanExtra-webcam-options" type="application/json">{"width":"200","height":"200","margin":"1em"}</script>
     <link rel="stylesheet" href="my-css.css" type="text/css" />
   </head>
@@ -33,8 +28,52 @@ class: center, middle, inverse, title-slide
 
 exclude: true
 
+```r
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(
+  tidyverse, tidylog, xaringanExtra, Ryacas, rlang
+)
+options(htmltools.dir.version = FALSE)
+knitr::opts_hooks$set(fig.callout = function(options) {
+  if (options$fig.callout) {
+    options$echo &lt;- FALSE
+  }
+knitr::opts_chunk$set(echo = TRUE, fig.align="center")
+  options
+})
+```
 
+<style>.panelset {
+  --panel-tab-color-active: red;
+}</style>
 
+&lt;style type="text/css"&gt;
+/* custom.css */
+.left-code {
+  color: #777;
+  width: 38%;
+  height: 92%;
+  float: left;
+}
+.right-plot {
+  width: 60%;
+  float: right;
+  padding-left: 1%;
+}
+.plot-callout {
+  height: 225px;
+  width: 450px;
+  bottom: 5%;
+  right: 5%;
+  position: absolute;
+  padding: 0px;
+  z-index: 100;
+}
+.plot-callout img {
+  width: 100%;
+  border: 4px solid #23373B;
+}
+&lt;/style&gt;
 
 ---
 
@@ -205,6 +244,274 @@ More details later
 ---
 
 # Part 1: Math and micro review
+
+Before getting into the core material we need to review the mathematical foundations underpinning the economics
+
+--
+
+What is central to economic decisionmaking is .hi-blue[constrained optimization]
+  - We want to max utility subject to a budget
+  - We want to max profits subject to a constraining regulation
+  - We want to max social welfare subject to an environmental target
+  - We want to minimize costs subject to meeting electricity demand
+  - Etc
+  
+
+---
+
+# Unconstrained optimization
+
+.hi-blue[Unconstrained optimization] is just Calculus 101
+
+--
+
+Suppose we want to maximize utility from eating fruit:
+$$ \max_{x_1,...,x_N \in \mathbf{A}} U(\mathbf{x}) $$ 
+where `\(U(\mathbf{x}):\mathbb{R}^N \rightarrow\mathbb{R}\)`
+
+--
+
+.b[Theorem]: Let `\(U\)` be once continuously-differentiable ( `\(\mathbb{C}^1\)` ) so that first partial derivatives exist and are continuous. If `\(x^*\)` is a local maximum of `\(U\)` on `\(A\)` then
+`$${\partial U(\mathbf{x}^*) \over \partial x_i} = 0 \text{ for } i = 1,...,N$$`
+
+---
+
+# Unconstrained optimization
+
+What does this theorem tell us?
+
+--
+
+That the first-order conditions give us the .hi-blue[necessary conditions] for the utility-maximizing amount of each type of fruit to eat
+
+--
+
+These conditions .b[must] be satisfied for any bundle that maximizes utility
+
+--
+
+In a logical statement, .ex[if X then Y], Y is the necessary condition: Y .b[must] be true for X to be true
+
+X is the .hi-blue[sufficient condition]
+
+---
+
+# Unconstrained optimization
+
+&lt;style type="text/css"&gt;
+.panelset {
+  --panel-tab-color: currentColor;
+  --panel-tab-color-active: currentColor;
+  --panel-tab-color-hover: currentColor;
+  --panel-tabs-border-bottom: #ddd;
+  --panel-tab-inactive-opacity: 0.25;
+  --panel-tab-font-family: Roboto;
+}
+&lt;/style&gt;
+
+<style>.panelset {
+  --panel-tab-color-active: red;
+}</style>
+
+
+.pull-left[
+`$${\partial U(\mathbf{x}^*) \over \partial x_i} = 0 \text{ for } i = 1,...,N$$`
+
+Our necessary conditions tell us that the marginal utility of each fruit equals zero at the optimal choice
+
+If `\(x^*\)` is a maximum of `\(U\)` on `\(A\)`, then the tangent line/plane of `\(U\)` at `\((U(x^*), x^*)\)` must be horizontal
+]
+.pull-right[
+
+![Tangent line at the optimum has 0 slope](1-micro-math_files/figure-html/plot_foc-1.png)
+
+]
+
+
+
+
+---
+
+# Unconstrained optimization
+
+Do necessary conditions guarantee that we have found the utility-maximizing bundle of fruit?
+
+--
+
+.hi-red[NO!]
+
+--
+
+They are necessary but not sufficient: you can come up with counter-examples where a function's derivative equals zero but it is not maximized ( e.g. `\(x^3\)` )
+
+--
+
+We need additional conditions to impose sufficiency
+
+---
+
+# Unconstrained optimization
+
+These are the second-order sufficient conditions
+
+--
+
+.b[Theorem]: Let `\(U\)` be twice continuously differentiable. Suppose that `\(x^*\)` is a critical point of `\(U\)` on `\(A\)` and its Hessian matrix is negative (semi-)definite at `\(x^*\)` ( `\(D^2 U(x^*)\)` is negative (semi-)definite ). Then `\(x^*\)` is a strict (weak) local maximum.
+
+--
+
+Negative semi-definite is basically just saying that a multivariate function is weakly concave
+
+---
+
+# Unconstrained optimization
+
+&lt;style type="text/css"&gt;
+.panelset {
+  --panel-tab-color: currentColor;
+  --panel-tab-color-active: currentColor;
+  --panel-tab-color-hover: currentColor;
+  --panel-tabs-border-bottom: #ddd;
+  --panel-tab-inactive-opacity: 0.25;
+  --panel-tab-font-family: Roboto;
+}
+&lt;/style&gt;
+
+<style>.panelset {
+  --panel-tab-color-active: red;
+}</style>
+
+.panelset[
+
+.panel[.panel-name[Words Details]
+
+We need second-order conditions to guarantee we have found a maximum
+
+
+We need marginal utility to be .b[decreasing] (i.e. utility be concave) at `\(x^*\)`
+
+
+This guarantees `\(x^*\)` maximizes `\(U\)` if `\(x^*\)` satisfies the first-order necessary conditions
+
+]
+
+.panel[.panel-name[Math Details]
+
+Approximate `\(U\)` around `\(x^*\)` with a second-order Taylor expansions:
+`$$U(x^*+h) = U(x^*) + DU(x^*)h + {1 \over 2} h^TD^2U(x^*)h + O(h^2)$$`
+`\(DU(x^*) = 0\)` by definition of `\(x^*\)` so that
+`$$U(x^*+h)-U(x^*) = {1\over2} h^T D^2U(x^*)h$$`
+`\(U\)` is always decreasing away from `\(x^*\)` if `\({1\over2}h^T D^2U(x^*)h &lt; 0\)`
+
+]
+
+]
+
+
+---
+
+# Constrained optimization
+
+Before we were able to eat as much fruit as we wanted
+
+--
+
+What if our actions are now constrained?
+
+--
+
+$$ \max_{x_1,...,x_N \in \mathbf{A}} U(\mathbf{x}), A = \{ \mathbf{x} \in \mathbb{R}^n: h_1(\mathbf{x}) = a_1, \dots, h_m(\mathbf{x}) = a_m \}$$
+
+where `\(m &lt; n\)`
+
+---
+
+# Constrained optimization
+
+
+
+.pull-left[
+
+A simple and familiar example is utility maximization:
+$$ \max_{x_1,x_2} U(x_1,x_2) \text{ subject to } h(x_1, x_2) = a $$
+
+We want to be on the .hi-blue[highest indifference curve] subject to our .hi-red[budget constraint]
+
+]
+
+.pull-right[
+
+![Tangent line at the optimum has 0 slope](1-micro-math_files/figure-html/budget_constraint-1.png)
+
+]
+
+---
+
+# Constrained optimization
+
+Because of our budget constraint, marginal utility may not equal zero at the utility-maximizing bundle!
+
+--
+
+No proof, but for some `\(\lambda\)` we can characterize this bundle by
+`$$DU(x^*_1, x^*_2) - \lambda Dh(x_1^*, x_2^*) = (0,0)$$`
+and
+`$$h(x_1^*,x_2^*) = a$$`
+We now have 3 equations, and 3 unknowns `\((x^*_1,x^*_2,\lambda^*)\)`, we just transformed our constrained problem into an unconstrained problem
+
+---
+
+# Constrained optimization
+
+How does this magic happen?
+
+--
+
+.hi-blue[Intuition:] We can reframe a constrained optimization problem in an alternative fashion where we allow the agent to pick whatever `\((x_1,x_2)\)` they want, .b[but], they must pay a fine `\(\lambda\)` per unit violation of the restriction
+
+--
+
+This gives us an alternative, unconstrained problem, known as a *Lagrangian*:
+`$$\mathcal{L}(x_1,x_2,\lambda) = \max_{x_1,x_2,\lambda} U(x_1,x_2) - \lambda[h(x_1,x_2) - a]$$`
+
+
+---
+
+# Constrained optimization
+
+`$$\max_{x_1,x_2,\lambda} U(x_1,x_2) - \lambda[h(x_1,x_2) - a]$$`
+
+with first-order conditions:
+$$ {\partial \mathcal{L} \over \partial x_i} = {\partial U \over \partial x_i} - \lambda {\partial h \over \partial x_i} = 0 \text{ for } i = 1,2$$
+and
+`$$h(x_1,x_2) = a$$`
+
+---
+
+# Constrained optimization
+
+We have one remaining issue: some arbitrary `\(\lambda\)` won't guarantee that the solution of our Lagrangian will match the actual constrainted problem
+
+--
+
+We need to find a way to pick the correct `\(\lambda^*\)` that incentivizes the agent to exactly satisfy the constraint `\(h(x_1,x_2) = a\)`
+
+--
+
+In other words, we need a third condition to pin down `\(\lambda^*\)`, this is the feasibility condition:
+`$${\partial \mathcal{L} \over \partial \lambda} = h(x_1,x_2) - a = 0$$`
+This is just the constraint!
+
+---
+
+# Constrained optimization
+
+We can translate a constrained optimization problem into an unconstrained one (the Lagrangian) by:
+
+1. Adding a new variable `\(\lambda\)`, which is called the *Lagrange Multiplier* or the *shadow value* of the constraint
+2. Adding another first-order condition (feasibility condition) and modifying the original first-order conditions to reflect the constraint
+
+The intuition for `\(\lambda\)` is that it is the marginal value of loosening (or tightening) the constraint
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

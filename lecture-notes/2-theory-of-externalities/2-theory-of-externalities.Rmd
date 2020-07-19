@@ -1,0 +1,712 @@
+---
+title: "Lecture 2"
+subtitle: "Theory of externalities"
+author: Ivan Rudik
+date: AEM 6510
+output:
+  xaringan::moon_reader:
+    css: ['default', 'metropolis', 'metropolis-fonts', 'my-css.css']
+    # self_contained: true
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: '16:9'
+
+
+---
+exclude: true
+```{r setup}
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(
+  tidyverse, tidylog, xaringanExtra, Ryacas, rlang
+)
+options(htmltools.dir.version = FALSE)
+knitr::opts_hooks$set(fig.callout = function(options) {
+  if (options$fig.callout) {
+    options$echo <- FALSE
+  }
+knitr::opts_chunk$set(echo = TRUE, fig.align="center")
+  options
+})
+```
+```{r xaringanExtra, echo = FALSE}
+xaringanExtra::use_xaringan_extra(c("tile_view", "panelset", "webcam"))
+
+```
+```{r echo=FALSE}
+xaringanExtra::style_panelset(panel_tab_color_active = "red")
+```
+
+```{css, echo=FALSE}
+/* custom.css */
+.left-code {
+  color: #777;
+  width: 38%;
+  height: 92%;
+  float: left;
+}
+.right-plot {
+  width: 60%;
+  float: right;
+  padding-left: 1%;
+}
+.plot-callout {
+  height: 225px;
+  width: 450px;
+  bottom: 5%;
+  right: 5%;
+  position: absolute;
+  padding: 0px;
+  z-index: 100;
+}
+.plot-callout img {
+  width: 100%;
+  border: 4px solid #23373B;
+}
+```
+
+---
+
+# The welfare-theoretic basis
+
+.pull-left[
+Before diving into environmental econ we need some definitions 
+
+The normative criterion we use to judge the desirability of economic outcomes is called .hi-blue[Pareto optimality]
+
+]
+
+.pull-right[
+
+![Vifredo Pareto](2-theory-of-externalities_files/figures/pareto.jpg)
+
+]
+
+---
+
+# The welfare-theoretic basis
+
+> An economic outcome is said to be .hi-blue[Pareto optimal] if a reallocation of resources cannot make at least one person better off without making another person worse off
+
+--
+
+Is there a way to make everyone weakly better off? If not, then we have a Pareto optimal allocation of resources
+
+--
+
+This does not make any judgments on whose well-being matters more, sidesteps equity and fairness and focuses on efficiency
+
+--
+
+Big draw back of Pareto optimality is that some seemingly undesirable outcomes can be Pareto optimal
+
+---
+
+# The welfare-theoretic basis
+
+Pareto optimal is central to the first and second welfare theorems of economics:
+
+.b[First Welfare Theorem:] If markets are perfectly competitive and complete, then a decentralized price system will deliver a Pareto optimal allocation
+
+.b[Second Welfare Theorem:] If markets are perfectly competitive and complete, then any Pareto optimal allocation can be supported by a decentralized price system and lump sum taxes and transfers
+
+---
+
+# The welfare-theoretic basis
+
+The welfare theorems' appeal is pretty clear: if the conditions are met we can have the largest economic pie (efficiency) simply by letting the free market function
+
+--
+
+If we perceive there are inequities in outcomes under the free market, we can simply (lump sum) transfer income to adjust the distribution and still have efficiency
+
+--
+
+Unfortunately the conditions required by the welfare theorems are not usually met, especially in environmental economics
+
+---
+
+# Externalities
+
+Most environmental goods have no market
+
+--
+
+There is no market for noise, air pollution, water pollution, biodiversity, etc
+
+--
+
+Why?
+
+--
+
+Generally because property rights are not well-defined: does a factory have the right to pollute or do you have the right to clean air?
+
+--
+
+There are not complete markets!
+
+---
+
+# Externalities
+
+A key concept in environmental economics is externalities
+
+> An .hi-blue[externality] exists when agent A's utility or production function depends directly on real variables chosen by another agent B, without an offer of compensation or other attention given to the effect on A's well-being.
+
+A critical aspect of this is that it must be a real variable:
+
+Pollution, noise, etc
+
+Not changes in wages or prices of regular market goods
+
+---
+
+# Public goods
+
+Another concept closely related to externalities is public goods
+
+> A .hi-blue[public good] is a good that is non-rival and non-excludable. The good can be simultaenously enjoyed by several people (non-rivalry), and none of these people can be prevented from enjoying the good (non-excludability).
+
+Non-excludability causes problems for the welfare theorems: how are decentralized price systems suppose to work if anyone can enjoy the good whenever they want without having to pay?
+
+This is the .hi-blue[free rider problem]
+
+---
+
+# Our beginning model
+
+Lets start building our model of the economy
+
+--
+
+Suppose there is:
+
+- Two people
+- A dirty good
+- A clean good
+- Labor as the only factor (input) of production
+
+
+---
+
+# Our beginning model
+
+Define each person $i$'s utility as $U_I(x_i,z_i,E)$ for $i=1,2$
+
+$x_i$ is consumption of the dirty good,  
+$z_i$ is consumption of the clean good,  
+and $E$ is the level of pollution emissions
+
+---
+
+# Our beginning model
+
+Production of $x$ causes the emissions $E$
+
+We can define production of x as: $x = f(l_x,E)$ where $f_l > 0$ and $f_E > 0$
+
+Emissions are defined as an *input*, so if you want less emissions you will produce less because $f_E > 0$
+
+.footnote[We could equivalently define emissions as a joint product but the input setup is cleaner.]
+
+---
+
+# Our beginning model
+
+Production of the clean good $z$ only uses labor: $z = g(l_z)$
+
+--
+
+Labor can be measured in terms of hours and there is only so many hours that can be worked $l$ such that $l_x + l_z = l$
+
+--
+
+This is all we need for the model, now we just need to set it up
+
+---
+
+# Pareto optimality
+
+First lets derive the conditions for a Pareto optimal allocation of resources
+
+--
+
+How do we do this?
+
+--
+
+By just following the definition of Pareto optimality: we find the allocations of consumption, labor, and pollution, that maximizes one person's utility while making the other person no worse off than some benchmark 
+
+While also satisfying technology and endowment constraints
+
+---
+
+# Pareto optimality
+
+The problem is given by:
+\begin{align}
+  \max_{x_1,x_2,z_1,z_2,l_x,l_z,E} U_1(x_1,z_1,E) &+ \lambda_u[U_2(x_2,z_2,E) - \bar{u}_2] \\ 
+    &+ \lambda_x[f(l_x,E) - x_1 - x_2] \\
+    &+ \lambda_z[g(l_x) - z_1-x_2] \\
+    &+ \lambda_l[l - l_x - l_z]
+\end{align}
+We are maximizing person 1's utility subject to keeping person 2s utility constant, and the relevant tech and labor constraints
+
+--
+
+Now let's look at the FOCs
+
+---
+
+# Pareto optimality
+```{r echo=FALSE}
+xaringanExtra::style_panelset(panel_tab_color_active = "red")
+```
+.panelset[
+
+.panel[.panel-name[Problem]
+
+$$\max_{x_1,x_2,z_1,z_2,l_x,l_z,E} U_1(x_1,z_1,E) \\+ \lambda_u[U_2(x_2,z_2,E) - \bar{u}_2] \\+ \lambda_x[f(l_x,E) - x_1 - x_2] \\+ \lambda_z[g(l_x) - z_1-x_2] \\+ \lambda_l[l - l_x - l_z]$$
+  
+]
+  
+.panel[.panel-name[Consumption FOCs]
+  
+$${\partial U_1 \over \partial x_1} 
+= \lambda_x, 
+\qquad 
+{\partial U_1 \over \partial z_1} 
+= \lambda_z$$
+  
+and
+  
+$$\lambda_u{\partial U_2 \over \partial x_2} 
+= \lambda_x, 
+\qquad 
+\lambda_u{\partial U_2 \over \partial z_2} 
+= \lambda_z$$
+  
+]
+  
+.panel[.panel-name[Labor Supply FOCs]
+
+  
+$$\lambda_x{\partial f \over \partial l_x} 
+= \lambda_l, \qquad \lambda_x{\partial g \over \partial l_z} 
+= \lambda_l$$
+  
+The marginal product of labor equals the shadow price of labor
+  
+]
+  
+.panel[.panel-name[Emissions FOC]
+
+  
+$${\partial U_1 \over \partial E} + \lambda_u{\partial U_2 \over \partial E} 
+= \lambda_x {\partial f \over \partial E}$$
+The marginal utility cost of emissions equals the marginal product of emissions
+  
+]
+
+]
+
+---
+
+# Pareto optimality
+```{r echo=FALSE}
+xaringanExtra::style_panelset(panel_tab_color_active = "red")
+```
+.panelset[
+  
+.panel[.panel-name[Consumption Efficiency]
+  
+The consumption FOCs give us efficiency in consumption: 
+$${\partial U_1 \over \partial x_1}\Bigg/{\partial U_1 \over \partial z_1} 
+= \lambda_x/\lambda_z 
+= {\partial U_2 \over \partial x_2}\Bigg/{\partial U_2 \over \partial z_2}$$
+Efficiency in consumption requires that the marginal rate of substitution (MRS) between goods between individuals is equal (i.e. the slopes of their indifference curves are equal)
+  
+]
+  
+.panel[.panel-name[Exchange Efficiency]
+
+The consumption and labor supply FOCs give us
+  
+$${\partial U_i \over \partial x_i}\Bigg/{\partial U_i \over \partial z_i} 
+= \lambda_x/\lambda_z 
+= {\partial g \over \partial l_z}\Bigg/{\partial f \over \partial l_x}$$
+MRSs must equal the marginal rate of technical substitution (MRTS)
+  
+The slope of the indifference curves must equal the slope of the production possibility frontier
+  
+]
+  
+  
+.panel[.panel-name[Emissions Efficiency]
+
+Substitute in the consumption FOCs to obtain a new expression for emissions efficiency:
+$$-{\partial U_1 \over \partial E}\bigg/{\partial U_1 \over \partial x_1} - {\partial U_2 \over \partial E}\bigg/{\partial U_2 \over \partial x_2} = {\partial f \over \partial E}$$
+The marginal product of emissions must equal the *sum* of the marginal rates of substitution of between $x$ and $E$ across both individuals
+
+  
+]
+
+]
+
+---
+
+# Efficiency intuition
+
+```{r echo=FALSE}
+xaringanExtra::style_panelset(panel_tab_color_active = "red")
+```
+.panelset[
+
+.panel[.panel-name[General Intuition]
+    
+We can understand (prove) why these conditions need to be met by considering cases when they are not met
+  
+For any case where the three efficiency conditions are not met, we can show there exists a possible .hi-blue[Pareto improvement] $\rightarrow$ the conditions must be met for Pareto optimality
+  
+> A Pareto improvement is a reallocation of resources that makes at least one person better off without making anyone else worse off
+    
+]
+  
+.panel[.panel-name[Consumption Efficiency]
+  
+Suppose 1's MRS is 2, and 2's MRS is 4, the MRSs tell us that:
+  
+- 1 is willing to give up 2 units of $x$ for 1 more unit of $z$
+- 2 is willing to give up 4 units of $x$ for 1 more unit of $z$
+  
+If 2 gives 1 3 units of $x$ in exchange for $1$ unit of z, .b[both are better off]
+
+2 was willing to give up 4 units, 1 was willing to accept 2 units
+  
+]
+  
+.panel[.panel-name[Exchange Efficiency]
+
+Suppose MRS is 1 and MRTS is 3, the MRS and MRTS tell us that:
+
+- The consumer is willing to give up 1 unit of $x$ for 1 unit of $z$
+- If we move labor from producing $x$ to $z$ we can get 3 units of $z$ for 1 unit of $x$
+
+If we move 1 unit of labor from $x$ to $z$, we give up 1 unit of $x$, but get 3 units of $z \rightarrow$ the consumer gets 2 more units of $z$ than they needed to be better off
+  
+]
+  
+  
+.panel[.panel-name[Emissions Efficiency]
+
+Suppose $\text{MRS}_1$ + $\text{MRS}_2 = 3$ and $\text{MP}_E = 4$, these conditions tell us that:
+   
+- The total  cost to both consumers of 1 more unit of $E$ in terms of units of $x$ is 3
+- 1 more unit of $E$ gets us 4 more units of $x$
+   
+If we increase $E$ by 1 unit, the benefits (4) outweigh the costs (3), we can make the consumers better off
+  
+]
+
+]
+
+---
+
+# Competitive markets
+
+We now know the necessary conditions for a Pareto allocation, which serves as a useful baseline
+
+--
+
+Now we can ask whether free markets can achieve the Pareto optimal outcome
+
+--
+
+In the free market:
+
+- Consumers take the price of goods as given
+- Firms take the price of inputs as given
+
+---
+
+# Competitive markets
+
+Let $p_x$ and $p_z$ be the prices of $x$ and $z$
+
+Let $w$ be the wage paid to labor
+
+Let $y_i$ be income for person $i$
+
+Each person maximizes their utility
+
+Each firm maximizes profit
+
+---
+
+# Competitive markets
+
+The utility maximization problem is:
+$$\max_{x_i,z_i} U_i(x_i,z_i,E) + \lambda_i[y_i - p_x x_i - p_z z_i]$$
+with first-order conditions:
+$${\partial U_i \over \partial x_i} = \lambda_i p_x, \qquad {\partial U_i \over \partial z_i} = \lambda_i p_z$$
+
+---
+
+# Competitive markets
+
+THe profit maximization problems for firms producing $z$ and $x$ are:
+$$\max_{l_z} p_z g(l_z) - w l_z, \qquad  \max_{l_x, E} p_xf(l_x, E) - w l_z$$
+
+--
+
+This gives us the FOC for labor inputs:
+$$p_x {\partial f \over \partial l_x} = w \qquad p_z {\partial g \over \partial l_z} = w$$
+and the FOC for emissions:
+$$p_x {\partial f \over \partial E} = 0$$
+
+---
+
+# Competitive markets: efficiency
+```{r echo=FALSE}
+xaringanExtra::style_panelset(panel_tab_color_active = "red")
+```
+.panelset[
+
+.panel[.panel-name[Consumption]
+
+The consumption first-order conditions:
+$${\partial U_i \over \partial x_i} = \lambda_i p_x, \qquad {\partial U_i \over \partial z_i} = \lambda_i p_z$$
+give us the condition for efficiency in consumption:
+$${\partial U_1 \over \partial x_1} \bigg/ {\partial U_1 \over \partial z_1} 
+=  p_x/p_z
+= {\partial U_2 \over \partial x_2} \bigg/ {\partial U_2 \over \partial z_2}$$
+
+]
+
+.panel[.panel-name[Exchange]
+The consumption and labor use FOCs give us that the exchange efficiency condition is met:
+$${\partial U_i \over \partial x_i} \bigg/ {\partial U_i \over \partial z_i} 
+=  p_x/p_z
+= {\partial g \over \partial l_z} \bigg/ {\partial f \over \partial l_x}$$
+]
+
+
+
+.panel[.panel-name[Emissions]
+
+The efficiency condition for emissions:
+$${\partial U_1 \over \partial E}\bigg/{\partial U_1 \over \partial x_1} - {\partial U_2 \over \partial E}\bigg/{\partial U_2 \over \partial x_2} = {\partial f \over \partial E}$$
+.hi-red[is not met!]
+
+The free market provides no incentive for the firm to treat $E$ as scarce or to account for its impact on consumers: the firm faces a price on pollution of 0
+
+]
+
+]
+
+---
+
+# Market intervention
+
+Much of environmental economics is about designing policy to correct market failures
+
+--
+
+The intellectual starting point comes from Pigou: that externalities can be corrected by imposing a fee on emissions
+
+--
+
+Suppose a firm now has to pay a fee $\tau^*$ per unit of emissions, can we achieve the optimal outcome?
+
+---
+
+# Emissions taxation
+
+The firm's problem is now:
+$$\max_{l_x, E} p_xf(l_x, E) - w l_z - \tau^* E$$
+with first-order conditions:
+$$p_x {\partial f \over \partial l_x} = w, \qquad p_x {\partial f \over \partial E} = \tau^*$$
+
+--
+
+.hi-red[Is there a fee that can satisfy the emissions efficiency condition achieve the Pareto optimal outcome?]
+
+
+---
+
+# Emissions taxation
+```{r echo=FALSE}
+xaringanExtra::style_panelset(panel_tab_color_active = "red")
+```
+
+.panelset[
+
+.panel[.panel-name[Conditions]
+
+Recall the firm's FOC is:
+$$p_x {\partial f \over \partial E} = \tau^*$$
+and the emissions efficiency condition is:
+$$-{\partial U_1 \over \partial E}\bigg/{\partial U_1 \over \partial x_1} - {\partial U_2 \over \partial E}\bigg/{\partial U_2 \over \partial x_2} = {\partial f \over \partial E}$$
+
+]
+
+.panel[.panel-name[Solution]
+
+Notice that if you multiply the right hand side of the emissions efficiency condition by $p_x$, it is equal to the left hand side of the firm FOC
+
+The Pareto optimal tax is thus:
+$$\tau^* = -p_x\left[{\partial U_1 \over \partial E}\bigg/{\partial U_1 \over \partial x_1} - {\partial U_2 \over \partial E}\bigg/{\partial U_2 \over \partial x_2}\right]$$
+This tax can thus make the firm's profit-maximizing condition consistent with Pareto optimality
+
+]
+
+]
+
+---
+
+# Emissions taxation
+
+$$\tau^* = -p_x\left[{\partial U_1 \over \partial E}\bigg/{\partial U_1 \over \partial x_1} - {\partial U_2 \over \partial E}\bigg/{\partial U_2 \over \partial x_2}\right]$$
+
+There are two parts to the intuition for the tax:
+
+--
+
+1. $-\left[{\partial U_1 \over \partial E}\bigg/{\partial U_1 \over \partial x_1} - {\partial U_2 \over \partial E}\bigg/{\partial U_2 \over \partial x_2}\right]$ tells us how much total $x$ we need in order to compensate both consumers for an additional unit of $E$ and keep their utility constant
+2. $p_x$ tells us the dollar value of this much $x$  
+
+--
+
+.hi-blue[The tax is the marginal utility cost of emissions in dollar terms]
+
+---
+
+# Emissions taxation
+
+$$\tau^* = -p_x\left[{\partial U_1 \over \partial E}\bigg/{\partial U_1 \over \partial x_1} - {\partial U_2 \over \partial E}\bigg/{\partial U_2 \over \partial x_2}\right]$$
+
+The tax depends on marginal utility of consumption, this implies two things:
+
+--
+
+1. The tax depends on the distribution of income
+2. The tax depends on the distribution of endowments in general (e.g. income, labor)
+
+--
+
+Changes in income or factor endowments will therefore change the level of the Pareto optimal tax!
+
+---
+
+# Graphical emissions taxation
+
+.pull-left[
+```{r emissions_taxation, echo = FALSE, fig.show = 'hide', warning = F}
+vmp <- function(x) 30 - x
+muc1 <- function(x) 5 + 0.5 * x
+muc2 <- function(x) 15 + 0.5 * x
+muc_sum <- function(x) 20 + x
+ggplot() +
+  annotate("segment", x = 0, xend = 5, y = 25, yend = 25, 
+           linetype = "dashed", size = 1.5, color = "grey50") +
+  annotate("segment", x = 5, xend = 5, y = 0, yend = 25, 
+           linetype = "dashed", size = 1.5, color = "grey50") +
+  annotate("text", x = 28, y = 15, label = "MUC1", size = 8) +
+  annotate("text", x = 28, y = 33, label = "MUC2", size = 8) +
+  annotate("text", x = 18, y = 45, label = "Sum of MUC", size = 8) +
+  annotate("text", x = 28, y = 7, label = "VMP", size = 8) +
+  stat_function(fun = muc1, color = "#638ccc", size = 1.5) +
+  stat_function(fun = muc2, color = "#638ccc", size = 1.5) +
+  stat_function(fun = muc_sum, color = "#638ccc", size = 1.5) +
+  stat_function(fun = vmp, color = "#ca5670", size = 1.5) +
+  theme_minimal() +
+  theme(
+    legend.position = "none",
+    title = element_text(size = 24),
+    axis.text.x = element_text(size = 24, color = "#eeeeee"), axis.text.y = element_text(size = 24, color = "#eeeeee"),
+    axis.title.x = element_text(size = 24), axis.title.y = element_text(size = 24),
+    panel.grid.minor.x = element_blank(), panel.grid.major.y = element_blank(),
+    panel.grid.minor.y = element_blank(), panel.grid.major.x = element_blank(),
+    panel.background = element_rect(fill = "#eeeeee",colour = NA),
+    plot.background = element_rect(fill = "#eeeeee",colour = NA),
+    axis.line = element_line(colour = "black")
+  ) +
+  lims(x = c(0, 30), y = c(0, 50)) +
+  labs(x = "Emissions",
+       y = "Dollars",
+       title = "Marginal Utility Cost Equals\nValue of Marginal Product")
+  
+```
+
+![Optimal taxation equates sum of MUCs to VMP](`r knitr::fig_chunk("emissions_taxation", "png")`)
+]
+
+.pull-right[
+
+$-p_x\left[{\partial U_i \over \partial E}\bigg/{\partial U_i \over \partial x_i}\right]$ is the individual marginal utility cost of emissions
+
+$p_x {\partial f \over \partial E}$ is the value of marginal product of emissions
+
+At a Pareto optimum the sum of MUCs must be equal to the VMP
+
+MC of emissions must equal MB
+
+]
+
+
+---
+
+# Graphical emissions taxation: abatement
+
+.pull-left[
+```{r emissions_taxation_2, echo = FALSE, fig.show = 'hide', warning = F}
+vmp <- function(x) x
+muc1 <- function(x) 10 - 0.5 * x
+muc2 <- function(x) 5 - 0.5 * x
+muc_sum <- function(x) 60/4 - 1/4*x
+ggplot() +
+  annotate("segment", x = 0, xend = 12, y = 12, yend = 12, 
+           linetype = "dashed", size = 1.5, color = "grey50") +
+  annotate("segment", x = 12, xend = 12, y = 0, yend = 12, 
+           linetype = "dashed", size = 1.5, color = "grey50") +
+  annotate("text", x = 5.5, y = 0.5, label = "MUB1", size = 8) +
+  annotate("text", x = 23, y = 0.5, label = "MUB2", size = 8) +
+  annotate("text", x = 25, y = 11, label = "Sum of MUB", size = 8) +
+  annotate("text", x = 17, y = 15, label = "MC", size = 8) +
+  stat_function(fun = muc1, color = "#638ccc", size = 1.5) +
+  stat_function(fun = muc2, color = "#638ccc", size = 1.5) +
+  stat_function(fun = muc_sum, color = "#638ccc", size = 1.5) +
+  stat_function(fun = vmp, color = "#ca5670", size = 1.5) +
+  theme_minimal() +
+  theme(
+    legend.position = "none",
+    title = element_text(size = 24),
+    axis.text.x = element_text(size = 24, color = "#eeeeee"), axis.text.y = element_text(size = 24, color = "#eeeeee"),
+    axis.title.x = element_text(size = 24), axis.title.y = element_text(size = 24),
+    panel.grid.minor.x = element_blank(), panel.grid.major.y = element_blank(),
+    panel.grid.minor.y = element_blank(), panel.grid.major.x = element_blank(),
+    panel.background = element_rect(fill = "#eeeeee",colour = NA),
+    plot.background = element_rect(fill = "#eeeeee",colour = NA),
+    axis.line = element_line(colour = "black")
+  ) +
+  lims(x = c(0, 30), y = c(0, 15)) +
+  labs(x = "Abatement",
+       y = "Dollars",
+       title = "Marginal Utility Benefit Equals\nMarginal Cost")
+  
+```
+
+![Optimal taxation equates sum of MUCs to VMP](`r knitr::fig_chunk("emissions_taxation_2", "png")`)
+]
+
+.pull-right[
+
+Let abatement $A^*$ be how much we reduce emissions below baseline: $A^* = \bar{E} - E^*$
+
+$-p_x\left[{\partial U_i \over \partial E}\bigg/{\partial U_i \over \partial x_i}\right]$ is the individual marginal utility cost of benefit
+
+$p_x {\partial f \over \partial E}$ is the marginal cost of abatement
+
+]
