@@ -64,126 +64,130 @@ Some sections of the course have readings (available on Canvas if not in the boo
 ## Course outline and readings
 
 
-### [Aug 27: Micro and math recap, theory of externalities](https://ivanrudik.com)
+### [Sep 3: Micro and math recap, theory of externalities](https://ivanrudik.com)
 
 **Reading**: PR Chapter 1
 
-### [Sep 1: Environmental problems and policy issues](https://ivanrudik.com)
+### [Sep 8: Environmental problems and policy issues](https://ivanrudik.com)
 
 **Reading**: PR Chapter 2
 
-### [Sep 3: Introduction to the theory of environmental policy](https://ivanrudik.com)
+### [Sep 10: Introduction to the theory of environmental policy](https://ivanrudik.com)
 
 **Reading**: PR Chapter 3
 
-### [Sep 8: Introduction to the theory of environmental policy](https://ivanrudik.com)
+### [Sep 15: Introduction to the theory of environmental policy](https://ivanrudik.com)
 
 **Reading**: PR Chapter 3
 
-### [Sep 10: Imperfect information](https://ivanrudik.com)
+### [Sep 17: Imperfect information](https://ivanrudik.com)
 
 **Reading**: PR Chapter 4
 
-### [Sep 15: Competitive output markets](https://ivanrudik.com)
+### [Sep 22: Competitive output markets](https://ivanrudik.com)
 
 **Reading**: PR Chapter 5
 
-### [Sep 17: Non-competitive output markets](https://ivanrudik.com)
+### [Sep 24: Non-competitive output markets](https://ivanrudik.com)
 
 **Reading**: PR Chapter 6
 
-### [Sep 22: Pre-existing distortions](https://ivanrudik.com)
+### [Sep 29: Pre-existing distortions](https://ivanrudik.com)
 
 **Reading**: PR Chapter 7
 
-### [Sep 24: Cap and Trade Institutional Topics](https://ivanrudik.com)
+### [Oct 1: Cap and Trade Institutional Topics](https://ivanrudik.com)
 
 **Reading**: PR Chapter 8
 
-### [Sep 29: Theory of Applied Welfare Economics](https://ivanrudik.com)
+### [Oct 6: Theory of Applied Welfare Economics](https://ivanrudik.com)
 
 **Reading**: PR Chapter 14
 
-### [Oct 1: Theory of Applied Welfare Economics](https://ivanrudik.com)
+### [Oct 13: Theory of Applied Welfare Economics](https://ivanrudik.com)
 
 **Reading**: PR Chapter 14
 
-### [Oct 6: Revealed Preference Models](https://ivanrudik.com)
+### [Oct 15: Revealed Preference Models](https://ivanrudik.com)
 
 **Reading**: PR Chapter 15
 
-### Oct 8: Theory Prelim
+### Oct 20: Theory Prelim
 
-### [Oct 15: R and the tidyverse, causal inference design](https://ivanrudik.com)
-
-**Reading**: 
-  - Greenstone, M. and Gayer, T., 2009. Quasi-experimental and experimental approaches to environmental economics. Journal of Environmental Economics and Management, 57(1), pp.21-44.
-  - Deschenes, O. and Meng, K.C., 2018. Quasi-experimental methods in environmental economics: Opportunities and challenges. In Handbook of Environmental Economics (Vol. 4, pp. 285-332). 
-
-### [Oct 20: R and the tidyverse, causal inference design](https://ivanrudik.com)
+### [Oct 22: R and the tidyverse, causal inference design](https://ivanrudik.com)
 
 **Reading**: 
   - Greenstone, M. and Gayer, T., 2009. Quasi-experimental and experimental approaches to environmental economics. Journal of Environmental Economics and Management, 57(1), pp.21-44.
   - Deschenes, O. and Meng, K.C., 2018. Quasi-experimental methods in environmental economics: Opportunities and challenges. In Handbook of Environmental Economics (Vol. 4, pp. 285-332). 
 
-### [Oct 22: Environmental health, difference-in-differences, and event studies](https://ivanrudik.com)
+### [Oct 27: R and the tidyverse, causal inference design](https://ivanrudik.com)
+
+**Reading**: 
+  - Greenstone, M. and Gayer, T., 2009. Quasi-experimental and experimental approaches to environmental economics. Journal of Environmental Economics and Management, 57(1), pp.21-44.
+  - Deschenes, O. and Meng, K.C., 2018. Quasi-experimental methods in environmental economics: Opportunities and challenges. In Handbook of Environmental Economics (Vol. 4, pp. 285-332). 
+
+### [Oct 29: Environmental health, difference-in-differences, and event studies](https://ivanrudik.com)
 
 **Reading**: 
   - [Hollingsworth A. and Rudik, I., 2021. The effect of leaded gasoline on elderly mortality: Evidence from regulatory exemptions. American Economic Journal: Economic Policy.](https://osf.io/preprints/socarxiv/rdy6g/)
   - Graff Zivin, J. and Neidell, M., 2013. Environment, health, and human capital. Journal of Economic Literature, 51(3), pp.689-730.
   - Currie, J., Zivin, J.G., Mullins, J. and Neidell, M., 2014. What do we know about short-and long-term effects of early-life exposure to pollution? Annual Review Resourse Economics, 6(1), pp.217-247.
   
-### [Oct 27: Environmental health, difference-in-differences, and event studies](https://ivanrudik.com)
+### [Nov 3: Environmental health, difference-in-differences, and event studies](https://ivanrudik.com)
 
 **Reading**: 
   - [Hollingsworth A. and Rudik, I., 2021. The effect of leaded gasoline on elderly mortality: Evidence from regulatory exemptions. American Economic Journal: Economic Policy.](https://osf.io/preprints/socarxiv/rdy6g/)
   - Graff Zivin, J. and Neidell, M., 2013. Environment, health, and human capital. Journal of Economic Literature, 51(3), pp.689-730.
   - Currie, J., Zivin, J.G., Mullins, J. and Neidell, M., 2014. What do we know about short-and long-term effects of early-life exposure to pollution? Annual Review Resourse Economics, 6(1), pp.217-247.
 
-### [Oct 29: Hedonics and regression discontinuity](https://ivanrudik.com)
+### [Nov 5: Hedonics and regression discontinuity](https://ivanrudik.com)
 
 **Reading**:
   - PR Chapter 18
   - Chay, K. Y. and Greenstone, M. (2005). Does air quality matter? Evidence from the housing market. Journal of Political Economy, 113(2):pp. 376–424
 
-### [Nov 3: Hedonics and regression discontinuity](https://ivanrudik.com)
+### [Nov 10: Hedonics and regression discontinuity](https://ivanrudik.com)
 
 **Reading**:
   - PR Chapter 18
   - Chay, K. Y. and Greenstone, M. (2005). Does air quality matter? Evidence from the housing market. Journal of Political Economy, 113(2):pp. 376–424
 
-### [Nov 5: Climate change](https://ivanrudik.com)
+### [Nov 12: Climate change](https://ivanrudik.com)
 
 **Reading**: 
   - Hsiang, S. and Robert Kopp. 2018. An economist's guide to climate change science, Journal of Economic Perspectives, Vol. 32, No. 4, pp. 3-32.
   - Hsiang, S., 2016. Climate econometrics. Annual Review of Resource Economics, 8, pp.43-75.
   
-### [Nov 10: Climate change and cross-sectional regressions](https://ivanrudik.com)
+### [Nov 17: Climate change and cross-sectional regressions](https://ivanrudik.com)
 
 **Reading**: Mendelsohn, R., Nordhaus, W.D. and Shaw, D., 1994. The impact of global warming on agriculture: a Ricardian analysis. The American economic review, pp.753-771.
 
-### [Nov 12: Climate change and two way fixed effects](https://ivanrudik.com)
+### [Nov 19: Climate change and two way fixed effects](https://ivanrudik.com)
 
 **Reading**: Deschênes, O. and Greenstone, M., 2007. The economic impacts of climate change: evidence from agricultural output and random fluctuations in weather. American Economic Review, 97(1), pp.354-385.
 
-### [Nov 17: Deforestation, remote sensing, and simple features](https://ivanrudik.com)
+### [Nov 24: Deforestation, remote sensing, and simple features](https://ivanrudik.com)
 
 **Reading**: 
   - [Geocomputation with R](https://geocompr.robinlovelace.net/)
   - Burgess, R., Hansen, M., Olken, B.A., Potapov, P. and Sieber, S., 2012. The political economy of deforestation in the tropics. The Quarterly Journal of Economics, 127(4), pp.1707-1754.
 
-### [Nov 19: Deforestation, remote sensing, and simple features](https://ivanrudik.com)
+### [Dec 1: Deforestation, remote sensing, and simple features](https://ivanrudik.com)
 
 **Reading**: 
   - [Geocomputation with R](https://geocompr.robinlovelace.net/)
   - Burgess, R., Costa, F. and Olken, B.A., 2019. The Brazilian Amazon’s Double Reversal of Fortune.
   
-### [Nov 24: Perverse incentives, remote sensing, and simple features](https://ivanrudik.com)
+### [Dec 3: Perverse incentives, clean air act, remote sensin](https://ivanrudik.com)
 
 **Reading**: Zou, E., 2018. Unwatched pollution: The effect of intermittent monitoring on air quality.
 
-### Dec 1: Literature review presentations
+### [Dec 8: Perverse incentives, clean air act, remote sensing](https://ivanrudik.com)
 
-### Dec 3: Literature review presentations
+**Reading**: Zou, E., 2018. Unwatched pollution: The effect of intermittent monitoring on air quality.
 
-### Dec 8: Literature review presentations
+### Dec 10: Literature review presentations
+
+### Dec 15: Literature review presentations
+
+### Dec 17: Literature review presentations
