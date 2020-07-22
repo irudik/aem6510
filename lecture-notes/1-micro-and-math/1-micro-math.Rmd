@@ -549,3 +549,4 @@ We can translate a constrained optimization problem into an unconstrained one (t
 2. Adding another first-order condition (feasibility condition) and modifying the original first-order conditions to reflect the constraint
 
 The intuition for $\lambda$ is that it is the marginal value of loosening (or tightening) the constraint
+

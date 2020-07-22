@@ -114,13 +114,21 @@ Some sections of the course have readings (available on Canvas if not in the boo
 
 ### Oct 20: Theory Prelim
 
+<<<<<<< HEAD
 ### [Oct 22: R and the tidyverse, causal inference](https://ivanrudik.com)
+=======
+### [Oct 22: R and the tidyverse, causal inference design](https://ivanrudik.com)
+>>>>>>> Update schedule
 
 **Reading**: 
   - Greenstone, M. and Gayer, T., 2009. Quasi-experimental and experimental approaches to environmental economics. Journal of Environmental Economics and Management, 57(1), pp.21-44.
   - Deschenes, O. and Meng, K.C., 2018. Quasi-experimental methods in environmental economics: Opportunities and challenges. In Handbook of Environmental Economics (Vol. 4, pp. 285-332). 
 
+<<<<<<< HEAD
 ### [Oct 27: R and the tidyverse, causal inference, randomized control trials](https://ivanrudik.com)
+=======
+### [Oct 27: R and the tidyverse, causal inference design](https://ivanrudik.com)
+>>>>>>> Update schedule
 
 **Reading**: 
   - Greenstone, M. and Gayer, T., 2009. Quasi-experimental and experimental approaches to environmental economics. Journal of Environmental Economics and Management, 57(1), pp.21-44.
