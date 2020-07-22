@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Lecture 4</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Ivan Rudik" />
+    <link href="4-theory-of-environmental-policy_files/remark-css/default.css" rel="stylesheet" />
+    <link href="4-theory-of-environmental-policy_files/remark-css/metropolis.css" rel="stylesheet" />
+    <link href="4-theory-of-environmental-policy_files/remark-css/metropolis-fonts.css" rel="stylesheet" />
+    <link href="4-theory-of-environmental-policy_files/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="4-theory-of-environmental-policy_files/tile-view/tile-view.js"></script>
+    <link href="4-theory-of-environmental-policy_files/panelset/panelset.css" rel="stylesheet" />
+    <script src="4-theory-of-environmental-policy_files/panelset/panelset.js"></script>
+    <script src="4-theory-of-environmental-policy_files/xaringanExtra-webcam/webcam.js"></script>
+    <script id="xaringanExtra-webcam-options" type="application/json">{"width":"200","height":"200","margin":"1em"}</script>
+    <link rel="stylesheet" href="my-css.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Lecture 4
+## Theory of environmental policy
+### Ivan Rudik
+### AEM 6510
+
+---
+
+exclude: true
+
+```r
+if (!require("pacman")) install.packages("pacman")
+```
+
+```
+## Loading required package: pacman
+```
+
+```r
+pacman::p_load(
+  tidyverse, tidylog, xaringanExtra, Ryacas, rlang
+)
+options(htmltools.dir.version = FALSE)
+knitr::opts_hooks$set(fig.callout = function(options) {
+  if (options$fig.callout) {
+    options$echo &lt;- FALSE
+  }
+knitr::opts_chunk$set(echo = TRUE, fig.align="center")
+  options
+})
+```
+
+<style>.panelset {
+  --panel-tab-color-active: red;
+}</style>
+
+&lt;!-- --- --&gt;
+
+&lt;!-- # Roadmap --&gt;
+
+&lt;!-- Develop a simple model of --&gt;
+&lt;!--   - Pollution damages --&gt;
+&lt;!--   - Abatement costs --&gt;
+&lt;!--   - Characteristics of efficient pollution allocations --&gt;
+
+&lt;!-- This will guide us in --&gt;
+&lt;!--   - Describing the set of policy instruments and their properties --&gt;
+&lt;!--   - Information needs for using each kind of policy --&gt;
+
+&lt;!-- --- --&gt;
+
+&lt;!-- # A model of damages and costs --&gt;
+
+&lt;!-- Here's our set up: --&gt;
+
+&lt;!-- We have a number of households in a given area --&gt;
+
+&lt;!-- There are `\(J\)` electricity-generating firms --&gt;
+
+&lt;!-- The firms use coal and emit sulfur dioxide ( `\(SO_2\)` ) that negatively affects the households --&gt;
+
+&lt;!-- The firms take output prices as given, and sell electricity in the national market, households buy electricity on the national market --&gt;
+
+&lt;!-- --- --&gt;
+
+&lt;!-- # A model of damages and costs --&gt;
+
+&lt;!-- Each firm emits `\(e_j\)` units of pollution and total emissions are `\(E = \sum_{j=1}^J e_j\)` --&gt;
+
+&lt;!-- The model is .hi-blue[non-spatial:] --&gt;
+&lt;!--   - All firms emissions count the same toward aggregate emissions `\(E\)` --&gt;
+&lt;!--   - All households experience the same level of pollution `\(E\)` --&gt;
+
+&lt;!-- --- --&gt;
+
+&lt;!-- # The damage function --&gt;
+
+&lt;!-- Assume households have utility: --&gt;
+&lt;!-- `$$U_i(y_i, E) = y_i - D_i(E)$$` --&gt;
+&lt;!-- where `\(y_i\)` is income spent on market goods and `\(D_i(E)\)` is the household-specific disutility caused by aggregate pollution --&gt;
+
+&lt;!-- -- --&gt;
+
+&lt;!-- Since utility is quasi-linear in income and the marginal utility of income is 1, we can interpret `\(D_i(E)\)` as the *dollar value of lost utility for household `\(i\)` from aggregate emissions* --&gt;
+
+&lt;!-- --- --&gt;
+
+&lt;!-- # The damage function --&gt;
+
+&lt;!-- We call `\(D_i(E)\)` the .hi-blue[damage function] --&gt;
+
+&lt;!-- -- --&gt;
+
+&lt;!-- Assume that the damage function is increasing and convex:  --&gt;
+&lt;!-- `$$D_i'(E) &gt; 0, \,\, D_i''(E) &gt; 0$$` --&gt;
+
+&lt;!-- -- --&gt;
+
+&lt;!-- Aggregate damages are then  --&gt;
+&lt;!-- `$$D(E) = \sum_{i=1}^N D_i(E)$$` --&gt;
+&lt;!-- where `\(I\)` is the number of households --&gt;
+
+&lt;!-- --- --&gt;
+
+&lt;!-- # Abatement costs --&gt;
+
+&lt;!-- Generating electricity has costs --&gt;
+
+&lt;!-- -- --&gt;
+
+&lt;!-- There are also costs with reducing emissions of `\(SO_2\)` --&gt;
+
+&lt;!-- -- --&gt;
+
+&lt;!-- For now we assume that these costs are separable so we can focus solely on costs of abating pollution --&gt;
+
+&lt;!-- -- --&gt;
+
+&lt;!-- Define the .hi-blue[abatement cost function] for firm `\(j\)` by `\(C_j(e_j)\)` --&gt;
+
+&lt;!-- --- --&gt;
+
+&lt;!-- # Abatement costs --&gt;
+
+&lt;!-- Let `\(\hat{e}_j\)` be the firm's freely chosen abatement level, then `\(C_j(\hat{e}_j) = 0\)` --&gt;
+
+&lt;!-- -- --&gt;
+
+&lt;!-- `\(C_j(e_j) &gt; 0\)` for any `\(e_j &lt; \hat{e}_j\)` so that `\(C_j'(e_j) &lt; 0\)` for `\(e_j &lt; \hat{e}_j\)` --&gt;
+
+&lt;!-- -- --&gt;
+
+&lt;!-- Define the .hi[marginal abatement cost] as: --&gt;
+&lt;!-- `$$MAC_j(e) \equiv -C_j'(e_j) &gt; 0, e_j &lt; \hat{e}_j$$` --&gt;
+
+&lt;!-- -- --&gt;
+
+&lt;!-- We will also assume that the MAC weakly increases as we reduce emissions, i.e. it is weakly convex: --&gt;
+&lt;!-- `$$MAC_j'(e) = -C_j''(e_j) \leq 0, e_j &lt; \hat{e}_j$$` --&gt;
+
+&lt;!-- --- --&gt;
+
+&lt;!-- # Abatement costs assumptions --&gt;
+
+&lt;!-- These assumptions on marginal abatement cost are pretty reasonable: --&gt;
+
+&lt;!-- 1. They are increasing because firms will choose among different abatement technologies in order of their marginal cost if they are profit-maximizing or cost-minimizing --&gt;
+&lt;!-- 2. Weak convexity is a reasonable approximation of piecewise constant MAC functions, which is what many MACs look like empirically --&gt;
+
+&lt;!-- --- --&gt;
+
+&lt;!-- # Efficient allocation of emissions --&gt;
+
+&lt;!-- In our setting emissions negatively affects households and controlling emissions imposes a cost on firms --&gt;
+
+&lt;!-- An efficient outcome optimally balances these two different costs to the economy --&gt;
+
+&lt;!-- -- --&gt;
+
+&lt;!-- The efficient emission level for each firm `\(j\)` can be found by minimizing the social costs of emissions: --&gt;
+&lt;!-- `$$SC(e_1,\dots,e_J) = \sum_{j=1}^J C_j(e_j) + D(E)$$` --&gt;
+
+&lt;!-- --- --&gt;
+
+&lt;!-- # Efficient allocation of emissions --&gt;
+
+&lt;!-- The first-order conditions for minimizing SC are: --&gt;
+&lt;!-- `$$-C_j'(e_j) = D'(E), \,\, \forall j=1,\dots,J$$` --&gt;
+&lt;!-- and also that --&gt;
+&lt;!-- `$$-C_j'(e_j) = -C_k'(e_k), \,\, \forall k,j$$` --&gt;
+
+&lt;!-- These are the two fundamental characteristics of the efficient allocation of pollution --&gt;
+
+&lt;!-- --- --&gt;
+
+&lt;!-- # Efficient allocation of emissions --&gt;
+
+&lt;!-- For each firm, its marginal abatement cost is equal to the marginal damage from pollution --&gt;
+&lt;!-- `$$-C_j'(e_j) = D'(E), \,\, \forall j=1,\dots,J$$` --&gt;
+
+&lt;!-- Marginal abatement costs are equal across all polluters --&gt;
+&lt;!-- `$$-C_j'(e_j) = -C_k'(e_k), \,\, \forall k,j$$` --&gt;
+
+&lt;!-- An optimal regulation will satisfy these two condition --&gt;
+
+
+&lt;!-- --- --&gt;
+
+&lt;!-- # Abatement costs and damages --&gt;
+
+&lt;!-- .pull-left[ --&gt;
+&lt;!-- ```{r abatement_cost, echo = FALSE, fig.show = 'hide', warning = F} --&gt;
+&lt;!-- abatement_cost &lt;- function(x) 1/x --&gt;
+&lt;!-- intersections &lt;- tibble(x = 1, y = 1) --&gt;
+&lt;!-- ggplot() + --&gt;
+&lt;!--   annotate("segment", x = 0, xend = intersections$x, y = intersections$y, yend = intersections$y,  --&gt;
+&lt;!--            linetype = "dashed", size = 1, color = "black") + --&gt;
+&lt;!--   annotate("segment", x = intersections$x, xend = intersections$x, y = 0, yend = intersections$y,  --&gt;
+&lt;!--            linetype = "dashed", size = 1, color = "black") + --&gt;
+&lt;!--   stat_function(fun = abatement_cost, color = "#638ccc", size = 1.5) + --&gt;
+&lt;!--   theme_minimal()  + --&gt;
+&lt;!--   theme( --&gt;
+&lt;!--     legend.position = "none", --&gt;
+&lt;!--     title = element_text(size = 24), --&gt;
+&lt;!--     axis.text.x = element_text(size = 24, color = "black"),  --&gt;
+&lt;!--     axis.text.y = element_text(size = 24, color = "black"), --&gt;
+&lt;!--     axis.title.x = element_text(size = 24), axis.title.y = element_text(size = 24), --&gt;
+&lt;!--     panel.grid.minor.x = element_blank(), panel.grid.major.y = element_blank(), --&gt;
+&lt;!--     panel.grid.minor.y = element_blank(), panel.grid.major.x = element_blank(), --&gt;
+&lt;!--     panel.background = element_rect(fill = "#eeeeee", colour = NA), --&gt;
+&lt;!--     plot.background = element_rect(fill = "#eeeeee", colour = NA), --&gt;
+&lt;!--     axis.line = element_line(colour = "black") --&gt;
+&lt;!--   ) + --&gt;
+&lt;!--   labs(x = "Emissions", --&gt;
+&lt;!--        y = "Abatement cost", --&gt;
+&lt;!--        title = "The abatement cost function") + --&gt;
+&lt;!--   scale_x_continuous(expand = c(0, 0), limits = c(0, 5),  --&gt;
+&lt;!--                      breaks = intersections$x, labels = expression(bar(e)[1])) + --&gt;
+&lt;!--   scale_y_continuous(expand = c(0, 0), limits = c(0, 5),  --&gt;
+&lt;!--                      breaks = intersections$y, labels = expression(C[1](bar(e)[1]))) --&gt;
+
+&lt;!-- ``` --&gt;
+
+&lt;!-- ![Abatement cost functions are decreasing in emissions](4-theory-of-environmental-policy_files/figure-html/abatement_cost-1.png) --&gt;
+&lt;!-- ] --&gt;
+
+&lt;!-- .pull-right[ --&gt;
+
+&lt;!-- ```{r damages, echo = FALSE, fig.show = 'hide', warning = F} --&gt;
+&lt;!-- abatement_cost &lt;- function(x) exp(x) - 1 --&gt;
+&lt;!-- intersections &lt;- tibble(x = log(1.5), y = 0.5) --&gt;
+&lt;!-- ggplot() + --&gt;
+&lt;!--   annotate("segment", x = 0, xend = intersections$x, y = intersections$y, yend = intersections$y,  --&gt;
+&lt;!--            linetype = "dashed", size = 1, color = "black") + --&gt;
+&lt;!--   annotate("segment", x = intersections$x, xend = intersections$x, y = 0, yend = intersections$y,  --&gt;
+&lt;!--            linetype = "dashed", size = 1, color = "black") + --&gt;
+&lt;!--   stat_function(fun = abatement_cost, color = "#638ccc", size = 1.5) + --&gt;
+&lt;!--   theme_minimal()  + --&gt;
+&lt;!--   theme( --&gt;
+&lt;!--     legend.position = "none", --&gt;
+&lt;!--     title = element_text(size = 24), --&gt;
+&lt;!--     axis.text.x = element_text(size = 24, color = "black"),  --&gt;
+&lt;!--     axis.text.y = element_text(size = 24, color = "black"), --&gt;
+&lt;!--     axis.title.x = element_text(size = 24), axis.title.y = element_text(size = 24), --&gt;
+&lt;!--     panel.grid.minor.x = element_blank(), panel.grid.major.y = element_blank(), --&gt;
+&lt;!--     panel.grid.minor.y = element_blank(), panel.grid.major.x = element_blank(), --&gt;
+&lt;!--     panel.background = element_rect(fill = "#eeeeee", colour = NA), --&gt;
+&lt;!--     plot.background = element_rect(fill = "#eeeeee", colour = NA), --&gt;
+&lt;!--     axis.line = element_line(colour = "black") --&gt;
+&lt;!--   ) + --&gt;
+&lt;!--   labs(x = "Emissions", --&gt;
+&lt;!--        y = "Damages", --&gt;
+&lt;!--        title = "The damage function") + --&gt;
+
+&lt;!--   scale_x_continuous(expand = c(0, 0), limits = c(0, 1),  --&gt;
+&lt;!--                      breaks = intersections$x, labels = expression(E^"*")) + --&gt;
+&lt;!--   scale_y_continuous(expand = c(0, 0), limits = c(0, 2),  --&gt;
+&lt;!--                      breaks = intersections$y, labels = expression(D(E^"*"))) --&gt;
+
+&lt;!-- ``` --&gt;
+
+&lt;!-- ![Damage functions are increasing](4-theory-of-environmental-policy_files/figure-html/damages-1.png) --&gt;
+
+&lt;!-- ] --&gt;
+
+
+
+&lt;!-- --- --&gt;
+
+&lt;!-- # Marginal abatement cost --&gt;
+
+&lt;!-- .pull-left[ --&gt;
+&lt;!-- ```{r mac, echo = FALSE, fig.show = 'hide', warning = F} --&gt;
+&lt;!-- abatement_cost &lt;- function(x) 4 - x --&gt;
+&lt;!-- intersections &lt;- tibble(x = c(1,3,4), y = c(3,1,0)) --&gt;
+&lt;!-- polys_mac &lt;- data.frame(x = c(4, 3, 3), y = c(0, 1, 0)) --&gt;
+&lt;!-- ggplot() + --&gt;
+&lt;!--   geom_polygon(data = polys_mac, aes(x = x, y = y), fill = "slateblue", alpha = 0.2) + --&gt;
+&lt;!--   annotate("segment", x = 0, xend = intersections$x[1], y = intersections$y[1], yend = intersections$y[1],  --&gt;
+&lt;!--            linetype = "dashed", size = 1, color = "black") + --&gt;
+&lt;!--   annotate("segment", x = intersections$x[1], xend = intersections$x[1], y = 0, yend = intersections$y[1],  --&gt;
+&lt;!--            linetype = "dashed", size = 1, color = "black") + --&gt;
+&lt;!--   annotate("segment", x = 0, xend = intersections$x[2], y = intersections$y[2], yend = intersections$y[2],  --&gt;
+&lt;!--            linetype = "dashed", size = 1, color = "black") + --&gt;
+&lt;!--   annotate("segment", x = intersections$x[2], xend = intersections$x[2], y = 0, yend = intersections$y[2],  --&gt;
+&lt;!--            linetype = "dashed", size = 1, color = "black") + --&gt;
+&lt;!--   annotate("text", size = 8, label = "A", x = 3.25, y = 0.5) + --&gt;
+&lt;!--   annotate("text", size = 8, label = "B", x = 1.5, y = 0.5) + --&gt;
+&lt;!--   annotate("text", size = 8, label = "C", x = 1.5, y = 1.75) + --&gt;
+&lt;!--   stat_function(fun = abatement_cost, color = "#638ccc", size = 1.5) + --&gt;
+&lt;!--   theme_minimal()  + --&gt;
+&lt;!--   theme( --&gt;
+&lt;!--     legend.position = "none", --&gt;
+&lt;!--     title = element_text(size = 24), --&gt;
+&lt;!--     axis.text.x = element_text(size = 18, color = "black"),  --&gt;
+&lt;!--     axis.text.y = element_text(size = 18, color = "black"), --&gt;
+&lt;!--     axis.title.x = element_text(size = 24), axis.title.y = element_text(size = 24), --&gt;
+&lt;!--     panel.grid.minor.x = element_blank(), panel.grid.major.y = element_blank(), --&gt;
+&lt;!--     panel.grid.minor.y = element_blank(), panel.grid.major.x = element_blank(), --&gt;
+&lt;!--     panel.background = element_rect(fill = "#eeeeee", colour = NA), --&gt;
+&lt;!--     plot.background = element_rect(fill = "#eeeeee", colour = NA), --&gt;
+&lt;!--     axis.line = element_line(colour = "black") --&gt;
+&lt;!--   ) + --&gt;
+&lt;!--   labs(x = "Emissions", --&gt;
+&lt;!--        y = "Marginal abatement cost", --&gt;
+&lt;!--        title = "The marginal abatement\ncost function") + --&gt;
+&lt;!--   scale_x_continuous(expand = c(0, 0), limits = c(0, 5),  --&gt;
+&lt;!--                      breaks = intersections$x, labels = expression(bar(e)[1], e[1]^"*", hat(e)[1])) + --&gt;
+&lt;!--   scale_y_continuous(expand = c(0, 0), limits = c(0, 5),  --&gt;
+&lt;!--                      breaks = intersections$y, labels = expression(MAC[1] (e[1]^"*"), MAC[1] (bar(e)[1]), )) --&gt;
+
+&lt;!-- ``` --&gt;
+
+&lt;!-- ![MACs are decreasing](4-theory-of-environmental-policy_files/figure-html/mac-1.png) --&gt;
+&lt;!-- ] --&gt;
+
+&lt;!-- .pull-right[ --&gt;
+
+&lt;!-- Marginal abatement costs are decreasing in emissions, increasing in abatement --&gt;
+
+&lt;!-- The area under the MAC is total abatement cost --&gt;
+
+&lt;!-- .hi-blue[A]: Total abatement cost of abating `\(\hat{e}_1 - e_1^*\)` units --&gt;
+
+&lt;!-- .hi-blue[A+B+C]: Total abatement cost of abating `\(\hat{e}_1 -\bar{e}_1\)` units --&gt;
+
+
+&lt;!-- ] --&gt;
+
+
+&lt;!-- --- --&gt;
+
+&lt;!-- # Marginal damages --&gt;
+
+&lt;!-- .pull-left[ --&gt;
+&lt;!-- ```{r md, echo = FALSE, fig.show = 'hide', warning = F} --&gt;
+&lt;!-- damages &lt;- function(x) x/3 --&gt;
+&lt;!-- intersections &lt;- tibble(x = c(3), y = c(1)) --&gt;
+&lt;!-- polys_md &lt;- data.frame(x = c(0, 3, 3), y = c(0, 1, 0)) --&gt;
+&lt;!-- ggplot() + --&gt;
+&lt;!--   geom_polygon(data = polys_md, aes(x = x, y = y), fill = "red", alpha = 0.2) + --&gt;
+&lt;!--   annotate("segment", x = 0, xend = intersections$x[1], y = intersections$y[1], yend = intersections$y[1],  --&gt;
+&lt;!--            linetype = "dashed", size = 1, color = "black") + --&gt;
+&lt;!--   annotate("segment", x = intersections$x[1], xend = intersections$x[1], y = 0, yend = intersections$y[1],  --&gt;
+&lt;!--            linetype = "dashed", size = 1, color = "black") + --&gt;
+&lt;!--   annotate("text", size = 8, label = "F", x = 2, y = 0.25) + --&gt;
+&lt;!--   stat_function(fun = damages, color = "#ca5670", size = 1.5) + --&gt;
+&lt;!--   theme_minimal()  + --&gt;
+&lt;!--   theme( --&gt;
+&lt;!--     legend.position = "none", --&gt;
+&lt;!--     title = element_text(size = 24), --&gt;
+&lt;!--     axis.text.x = element_text(size = 18, color = "black"),  --&gt;
+&lt;!--     axis.text.y = element_text(size = 18, color = "black"), --&gt;
+&lt;!--     axis.title.x = element_text(size = 24), axis.title.y = element_text(size = 24), --&gt;
+&lt;!--     panel.grid.minor.x = element_blank(), panel.grid.major.y = element_blank(), --&gt;
+&lt;!--     panel.grid.minor.y = element_blank(), panel.grid.major.x = element_blank(), --&gt;
+&lt;!--     panel.background = element_rect(fill = "#eeeeee", colour = NA), --&gt;
+&lt;!--     plot.background = element_rect(fill = "#eeeeee", colour = NA), --&gt;
+&lt;!--     axis.line = element_line(colour = "black") --&gt;
+&lt;!--   ) + --&gt;
+&lt;!--   labs(x = "Emissions", --&gt;
+&lt;!--        y = "Marginal damages", --&gt;
+&lt;!--        title = "The marginal damage function") + --&gt;
+&lt;!--   scale_x_continuous(expand = c(0, 0), limits = c(0, 5),  --&gt;
+&lt;!--                      breaks = intersections$x, labels = expression(e[1]^"*")) + --&gt;
+&lt;!--   scale_y_continuous(expand = c(0, 0), limits = c(0, 5),  --&gt;
+&lt;!--                      breaks = intersections$y, labels = expression(MD(e[1]^"*") )) --&gt;
+
+&lt;!-- ``` --&gt;
+
+&lt;!-- ![MACs are decreasing](4-theory-of-environmental-policy_files/figure-html/md-1.png) --&gt;
+&lt;!-- ] --&gt;
+
+&lt;!-- .pull-right[ --&gt;
+
+&lt;!-- Marginal damage curve is increasing in emissions, decreasing in abatement --&gt;
+
+&lt;!-- The area under the MD is total damages --&gt;
+
+
+&lt;!-- ] --&gt;
+
+
+&lt;!-- --- --&gt;
+
+&lt;!-- # The optimal allocation --&gt;
+
+&lt;!-- .pull-left[ --&gt;
+&lt;!-- ```{r mac_and_md, echo = FALSE, fig.show = 'hide', warning = F} --&gt;
+&lt;!-- abatement_cost &lt;- function(x) 4 - x --&gt;
+&lt;!-- damages &lt;- function(x) x/3 --&gt;
+&lt;!-- intersections &lt;- tibble(x = c(3), y = c(1)) --&gt;
+&lt;!-- polys_md &lt;- data.frame(x = c(0, 3, 3), y = c(0, 1, 0)) --&gt;
+&lt;!-- polys_mac &lt;- data.frame(x = c(4, 3, 3), y = c(0, 1, 0)) --&gt;
+&lt;!-- ggplot() + --&gt;
+&lt;!--   geom_polygon(data = polys_md, aes(x = x, y = y), fill = "red", alpha = 0.2) + --&gt;
+&lt;!--   geom_polygon(data = polys_mac, aes(x = x, y = y), fill = "slateblue", alpha = 0.2) + --&gt;
+&lt;!--   annotate("segment", x = 0, xend = intersections$x[1], y = intersections$y[1], yend = intersections$y[1],  --&gt;
+&lt;!--            linetype = "dashed", size = 1, color = "black") + --&gt;
+&lt;!--   annotate("segment", x = intersections$x[1], xend = intersections$x[1], y = 0, yend = intersections$y[1],  --&gt;
+&lt;!--            linetype = "dashed", size = 1, color = "black") + --&gt;
+&lt;!--   annotate("text", size = 8, label = "F", x = 2, y = 0.25) + --&gt;
+&lt;!--   annotate("text", size = 8, label = "A", x = 3.25, y = 0.25) + --&gt;
+&lt;!--   stat_function(fun = abatement_cost, color = "#638ccc", size = 1.5) + --&gt;
+&lt;!--   stat_function(fun = damages, color = "#ca5670", size = 1.5) + --&gt;
+&lt;!--   theme_minimal()  + --&gt;
+&lt;!--   theme( --&gt;
+&lt;!--     legend.position = "none", --&gt;
+&lt;!--     title = element_text(size = 24), --&gt;
+&lt;!--     axis.text.x = element_text(size = 18, color = "black"),  --&gt;
+&lt;!--     axis.text.y = element_text(size = 18, color = "black", angle = 90, hjust = 0), --&gt;
+&lt;!--     axis.title.x = element_text(size = 24), axis.title.y = element_text(size = 24), --&gt;
+&lt;!--     panel.grid.minor.x = element_blank(), panel.grid.major.y = element_blank(), --&gt;
+&lt;!--     panel.grid.minor.y = element_blank(), panel.grid.major.x = element_blank(), --&gt;
+&lt;!--     panel.background = element_rect(fill = "#eeeeee", colour = NA), --&gt;
+&lt;!--     plot.background = element_rect(fill = "#eeeeee", colour = NA), --&gt;
+&lt;!--     axis.line = element_line(colour = "black") --&gt;
+&lt;!--   ) + --&gt;
+&lt;!--   labs(x = "Emissions", --&gt;
+&lt;!--        y = "", --&gt;
+&lt;!--        title = "The optimal allocation") + --&gt;
+&lt;!--   scale_x_continuous(expand = c(0, 0), limits = c(0, 5),  --&gt;
+&lt;!--                      breaks = intersections$x, labels = expression(e[1]^"*")) + --&gt;
+&lt;!--   scale_y_continuous(expand = c(0, 0), limits = c(0, 5),  --&gt;
+&lt;!--                      breaks = intersections$y, labels = expression(MAC[1] (e[1]^"*") == MD[1](e[1]^"*"))) --&gt;
+
+&lt;!-- ``` --&gt;
+
+&lt;!-- ![Where MAC and MD intersect minimizes total cost](4-theory-of-environmental-policy_files/figure-html/mac_and_md-1.png) --&gt;
+&lt;!-- ] --&gt;
+
+&lt;!-- .pull-right[ --&gt;
+
+&lt;!-- The optimal allocation is where MAC and MD intersect --&gt;
+
+&lt;!-- This minimizes the total cost to `\(A+F\)` --&gt;
+
+
+&lt;!-- ] --&gt;
+
+&lt;!-- --- --&gt;
+
+&lt;!-- # Property rights --&gt;
+
+&lt;!-- Do we need government intervention to solve environmental problems? --&gt;
+
+&lt;!-- Is it possible to reach an efficient outcome with negotiation? --&gt;
+
+&lt;!-- -- --&gt;
+
+&lt;!-- Let's think about a special case of our model: 1 firm and 1 household --&gt;
+
+&lt;!-- All damages are borne by the household, all abatement costs are borne by the firm --&gt;
+
+&lt;!-- -- --&gt;
+
+&lt;!-- In this setting, simply assigning property rights to the firm or household and allowing for negotiation may lead to the efficient outcome --&gt;
+
+&lt;!-- --- --&gt;
+
+&lt;!-- # Household ownership of pollution rights --&gt;
+
+&lt;!-- Suppose the household owns the right of zero pollution, but the efficient level is greater than zero --&gt;
+
+&lt;!-- How can we get to the efficient level without government intervention? --&gt;
+
+&lt;!-- -- --&gt;
+
+&lt;!-- The firm could propose a contract where the household accepts some pollution, in exchange for a transfer payment --&gt;
+
+&lt;!-- --- --&gt;
+
+&lt;!-- # Household ownership of pollution rights --&gt;
+
+&lt;!-- The firm could propose a contract `\((E,\theta)\)` consisting of emissions `\(E\)` and transfer payment `\(\theta\)` --&gt;
+
+&lt;!-- -- --&gt;
+
+&lt;!-- The household can then accept or refuse the contract --&gt;
+
+&lt;!-- -- --&gt;
+
+&lt;!-- Negotiating is costly and has its own transactions cost `\(tr\)` --&gt;
+
+&lt;!-- -- --&gt;
+
+&lt;!-- We assume both players are fully informed about each others preferences and technologies --&gt;
+
+&lt;!-- --- --&gt;
+
+&lt;!-- # Household ownership of pollution rights --&gt;
+
+&lt;!-- When does the household accept the contract? --&gt;
+
+&lt;!-- -- --&gt;
+
+&lt;!-- The household is weakly better off accepting the contract if `\(\theta \geq D(E)\)` (assuming the firm bears the transactions costs `\(tr\)`) --&gt;
+
+&lt;!-- -- --&gt;
+
+&lt;!-- What contract does the firm offer in equilibrium? --&gt;
+
+&lt;!-- --- --&gt;
+
+&lt;!-- # Household ownership of pollution rights --&gt;
+
+&lt;!-- The firm will choose to offer `\(\theta = D(E)\)`, the least amount required for the household to accept --&gt;
+
+&lt;!-- -- --&gt;
+
+&lt;!-- This means we can write the firm's total cost as: --&gt;
+&lt;!-- `$$TC(E) = C(E) + D(E) + tr$$` --&gt;
+&lt;!-- It's optimal choice of `\(E\)` (and therefore `\(\theta\)`) is given by the first-order condition: --&gt;
+&lt;!-- `$$-C'(E) = D'(E)$$` --&gt;
+&lt;!-- which matches our condition for efficiency in pollution --&gt;
+
+&lt;!-- Note that this still requires `\(tr \leq C(0) - [C(E^*) + D(E^*)]\)` --&gt;
+
+&lt;!-- --- --&gt;
+
+&lt;!-- # Firm ownership of pollution rights --&gt;
+
+&lt;!-- If the firm has the rights to pollution, we just flip the script --&gt;
+
+&lt;!-- The household proposes a contract `\((E, \theta)\)` where the firm reduces pollution in exchange for a transfer payment  --&gt;
+
+&lt;!-- The firm accepts or rejects the contract --&gt;
+
+&lt;!-- When does the firm accept the contract? --&gt;
+
+&lt;!-- -- --&gt;
+
+&lt;!-- The firm accepts if `\(\theta \geq C(E)\)` --&gt;
+
+&lt;!-- -- --&gt;
+
+&lt;!-- The household will then offer the minimum required: `\(\theta = C(E)\)` --&gt;
+
+&lt;!-- --- --&gt;
+
+&lt;!-- # Firm ownership of pollution rights --&gt;
+
+&lt;!-- The household's utility maximization problem is then: --&gt;
+&lt;!-- `$$\max_{E} y - (D(E) + C(E) + tr)$$` --&gt;
+&lt;!-- giving the first-order condition: --&gt;
+&lt;!-- `$$-C'(E) = D'(E)$$` --&gt;
+&lt;!-- where we again reach the social optimum, as long as: --&gt;
+&lt;!-- `$$tr \leq D(\hat{E}) - (D(E^*) + C(E^*))$$` --&gt;
+&lt;!-- where `\(\hat{E}\)` is the firms initial emission level --&gt;
+
+&lt;!-- --- --&gt;
+
+&lt;!-- # The Coase theorem --&gt;
+
+&lt;!-- These two examples showed that if properties rights are clearly defined and the affected parties can negotiate, private contracts between rational agents can achieve the efficient pollution level --&gt;
+
+&lt;!-- -- --&gt;
+
+&lt;!-- The assignment of property rights .hi-red[doesn't] matter for efficiency --&gt;
+
+&lt;!-- But it does matter for the distribution of wealth --&gt;
+
+&lt;!-- -- --&gt;
+
+&lt;!-- These observations are known as the .hi-blue[Coase Theorem] --&gt;
+
+&lt;!-- --- --&gt;
+
+&lt;!-- # The Coase theorem --&gt;
+
+&lt;!-- &gt; Suppose party A imposes an externality on party B. Provided transactions costs are sufficiently small, irrespective of the initial allocation of property rights: the parties can achieve the socially optimal level of pollution `\(E^*\)` using a transfer payment `\(\theta\)` where both parties are at least as well off as they were before --&gt;
+
+&lt;!-- With small enough transactions costs, the party that does not own the property rights can propose a contract that is mutually beneficial --&gt;
+
+&lt;!-- --- --&gt;
+
+&lt;!-- # The Coase theorem: real world --&gt;
+
+&lt;!-- The Coase theorem is not just a useful theoretical exercise: --&gt;
+
+&lt;!-- Vittel sells luxury mineral water --&gt;
+
+&lt;!-- In 1988 nitrates from farm runoff was polluting their water supply --&gt;
+
+&lt;!-- Vittel contacted all upstream farmers and negotiated contracts for reducing nitrogen runoff --&gt;
+
+&lt;!-- .footnote[Depres, Christophe, Gilles Grolleau, and Naoufel Mzoughi. "Contracting for Environmental Property Rights: The Case of Vittel." Economica, New Series, 75, no. 299 (2008)] --&gt;
+
+
+&lt;!-- --- --&gt;
+
+&lt;!-- # The Coase theorem: real world --&gt;
+
+&lt;!-- Mines de Potasse d'Alsace heavily polluted the Rhine river with chlorides in potash production --&gt;
+
+&lt;!-- MdPA was thought to have low abatement costs because filtering out chlorides is cheap --&gt;
+
+&lt;!-- In 1972 Switzerland, France, Germany, and the Netherlands contracted to pay MdPA 532 million francs to reduce emissions --&gt;
+
+&lt;!-- .footnote[Dieperink, C. International water negotiations under asymmetry, Lessons from the Rhine chlorides dispute settlement (1931–2004). Int Environ Agreements 11, 139–157 (2011).] --&gt;
+
+&lt;!-- --- --&gt;
+
+&lt;!-- # Policy instruments --&gt;
+
+&lt;!-- The Coase theorem is applicable for local environmental with few and easily identifiable parties --&gt;
+
+&lt;!-- -- --&gt;
+
+&lt;!-- Many of the largest environmental pollution problems have many parties, households and polluters, making transactions costs likely to be very high --&gt;
+
+&lt;!-- -- --&gt;
+
+&lt;!-- This is where there is a role for public intervention --&gt;
+
+&lt;!-- --- --&gt;
+
+&lt;!-- # Command and control --&gt;
+
+&lt;!-- .hi-blue[Command and control] policies require polluting firms to carry out prescribed pollution-reducing actions --&gt;
+
+&lt;!-- -- --&gt;
+
+&lt;!-- The most common CC policies are emissions limits and technology standards --&gt;
+&lt;!--   - Standard on absolute amount of emissions --&gt;
+&lt;!--   - Standard on emissions per unit of output, input, etc --&gt;
+&lt;!--   - Must install `\(SO_2\)` scrubber --&gt;
+&lt;!--   - Must use best available technology --&gt;
+
+&lt;!-- -- --&gt;
+
+&lt;!-- We're going to focus on absolute emissions standards --&gt;
+
+&lt;!-- --- --&gt;
+
+&lt;!-- # Emission standard --&gt;
+
+&lt;!-- The simplest policy is one where the regulator requires all firms to emit no more than their socially optimal level `\(e_j^*\)` --&gt;
+
+&lt;!-- -- --&gt;
+
+&lt;!-- By definition, this policy achieves the efficient level of pollution at minimum total abatement cost --&gt;
+
+&lt;!-- -- --&gt;
+
+&lt;!-- Is this a realistic option? --&gt;
+
+&lt;!-- Why or why not? --&gt;
+
+&lt;!-- --- --&gt;
+
+&lt;!-- # Emission standard --&gt;
+
+&lt;!-- Firm-specific emission standards aren't very realistic --&gt;
+
+&lt;!-- -- --&gt;
+
+&lt;!-- The regulator needs to know: --&gt;
+&lt;!--   - The social damage function --&gt;
+&lt;!--   - Each firm's abatement cost function --&gt;
+
+&lt;!-- And the regulator needs to be able to impose a policy that is differential across firms and is unlikely to be politically feasible --&gt;
+
+&lt;!-- --- --&gt;
+
+&lt;!-- # Uniform emission standard --&gt;
+
+&lt;!-- An alternative is to impose a .hi-blue[uniform emission standard] such that `\(e_j \leq \bar{e}\)` for all firms `\(j\)` --&gt;
+
+&lt;!-- We could imagine setting `\(\bar{e} = E^*/J\)` where `\(E^*\)` is the socially efficient level of emissions --&gt;
+
+&lt;!-- -- --&gt;
+
+&lt;!-- If firms are identical this achieves the efficient outcome --&gt;
+
+&lt;!-- -- --&gt;
+
+&lt;!-- If they're not identical it won't --&gt;
+
+
+&lt;!-- --- --&gt;
+
+&lt;!-- # Uniform standard costs --&gt;
+
+&lt;!-- .pull-left[ --&gt;
+&lt;!-- ```{r uniform_standard, echo = FALSE, fig.show = 'hide', warning = F} --&gt;
+&lt;!-- abatement_cost_1 &lt;- function(x) 4 - x --&gt;
+&lt;!-- abatement_cost_2 &lt;- function(x) 2 - x --&gt;
+&lt;!-- intersections &lt;- tibble(x = c(1, 1, 1), y = c(0, 1, 3)) --&gt;
+&lt;!-- polys_mac1 &lt;- tibble(x = c(2, 1, 1), y = c(0, 0, 1)) --&gt;
+&lt;!-- polys_mac2 &lt;- tibble(x = c(4, 1, 1), y = c(0, 0, 3)) --&gt;
+&lt;!-- ggplot() + --&gt;
+&lt;!--   geom_polygon(data = polys_mac2, aes(x = x, y = y), fill = "slateblue", alpha = 0.2) + --&gt;
+&lt;!--   geom_polygon(data = polys_mac1, aes(x = x, y = y), fill = "red", alpha = 0.2) + --&gt;
+&lt;!--   annotate("segment", x = intersections$x[1], xend = intersections$x[3], y = intersections$y[1], yend = intersections$y[3],  --&gt;
+&lt;!--            linetype = "dashed", size = 1, color = "black") + --&gt;
+&lt;!--   annotate("segment", x = 0, xend = intersections$x[1], y = intersections$y[2], yend = intersections$y[2],  --&gt;
+&lt;!--            linetype = "dashed", size = 1, color = "black") + --&gt;
+&lt;!--   annotate("segment", x = 0, xend = intersections$x[1], y = intersections$y[3], yend = intersections$y[3],  --&gt;
+&lt;!--            linetype = "dashed", size = 1, color = "black") + --&gt;
+&lt;!--   stat_function(fun = abatement_cost_1, color = "#638ccc", size = 1.5) + --&gt;
+&lt;!--   stat_function(fun = abatement_cost_2, color = "#ca5670", size = 1.5) + --&gt;
+&lt;!--   theme_minimal()  + --&gt;
+&lt;!--   theme( --&gt;
+&lt;!--     legend.position = "none", --&gt;
+&lt;!--     title = element_text(size = 24), --&gt;
+&lt;!--     axis.text.x = element_text(size = 18, color = "black"),  --&gt;
+&lt;!--     axis.text.y = element_text(size = 18, color = "black"), --&gt;
+&lt;!--     axis.title.x = element_text(size = 24), axis.title.y = element_text(size = 24), --&gt;
+&lt;!--     panel.grid.minor.x = element_blank(), panel.grid.major.y = element_blank(), --&gt;
+&lt;!--     panel.grid.minor.y = element_blank(), panel.grid.major.x = element_blank(), --&gt;
+&lt;!--     panel.background = element_rect(fill = "#eeeeee", colour = NA), --&gt;
+&lt;!--     plot.background = element_rect(fill = "#eeeeee", colour = NA), --&gt;
+&lt;!--     axis.line = element_line(colour = "black") --&gt;
+&lt;!--   ) + --&gt;
+&lt;!--   labs(x = "Emissions", --&gt;
+&lt;!--        y = "", --&gt;
+&lt;!--        title = "Not efficient if\nMACs aren't equal") + --&gt;
+&lt;!--   scale_x_continuous(expand = c(0, 0), limits = c(0, 5),  --&gt;
+&lt;!--                      breaks = intersections$x, labels = expression(bar(e), "", "")) + --&gt;
+&lt;!--   scale_y_continuous(expand = c(0, 0), limits = c(0, 5),  --&gt;
+&lt;!--                      breaks = intersections$y, labels = expression("", MAC[1]( bar(e) ), MAC[2]( bar(e) ))) --&gt;
+
+&lt;!-- ``` --&gt;
+
+&lt;!-- ![MACs are not equal under a uniform standard](4-theory-of-environmental-policy_files/figure-html/uniform_standard-1.png) --&gt;
+&lt;!-- ] --&gt;
+
+&lt;!-- .pull-right[ --&gt;
+
+&lt;!-- Even though `\(\bar{e}\times J =  E^*\)`, the MACs may not be equal --&gt;
+
+&lt;!-- If MACs aren't equal we can maintain `\(E^*\)` and reduce costs --&gt;
+
+&lt;!-- How? --&gt;
+
+&lt;!-- Firm 1 abates 1 unit more, firm 2 abates 1 unit less --&gt;
+
+&lt;!-- ] --&gt;
+
+
+&lt;!-- --- --&gt;
+
+&lt;!-- # Uniform standard costs --&gt;
+
+&lt;!-- .pull-left[ --&gt;
+&lt;!-- ```{r uniform_standard_2, echo = FALSE, fig.show = 'hide', warning = F} --&gt;
+&lt;!-- abatement_cost_1 &lt;- function(x) 4 - x --&gt;
+&lt;!-- abatement_cost_2 &lt;- function(x) 2 - x --&gt;
+&lt;!-- intersections_1 &lt;- tibble(x = c(0, 0.5, 0.5),  --&gt;
+&lt;!--                         y = c(1.5, 1.5, 0)) --&gt;
+&lt;!-- intersections_2 &lt;- tibble(x = c(0, 1.5, 1.5),  --&gt;
+&lt;!--                         y = c(2.5, 2.5, 0)) --&gt;
+&lt;!-- polys_mac1 &lt;- tibble(x = c(2, 0.5, 0.5),  --&gt;
+&lt;!--                      y = c(0, 1.5, 0)) --&gt;
+&lt;!-- polys_mac2 &lt;- tibble(x = c(4, 1.5, 1.5),  --&gt;
+&lt;!--                      y = c(0, 2.5, 0)) --&gt;
+&lt;!-- ggplot() + --&gt;
+&lt;!--   geom_polygon(data = polys_mac2, aes(x = x, y = y), fill = "slateblue", alpha = 0.2) + --&gt;
+&lt;!--   geom_polygon(data = polys_mac1, aes(x = x, y = y), fill = "red", alpha = 0.2) + --&gt;
+&lt;!--   annotate("segment", x = intersections_1$x[1], xend = intersections_1$x[2], y = intersections_1$y[1], yend = intersections_1$y[2],  --&gt;
+&lt;!--            linetype = "dashed", size = 1, color = "black") + --&gt;
+&lt;!--   annotate("segment", x = intersections_1$x[2], xend = intersections_1$x[3], y = intersections_1$y[2], yend = intersections_1$y[3],  --&gt;
+&lt;!--            linetype = "dashed", size = 1, color = "black") + --&gt;
+&lt;!--   annotate("segment", x = intersections_2$x[1], xend = intersections_2$x[2], y = intersections_2$y[1], yend = intersections_2$y[2],  --&gt;
+&lt;!--            linetype = "dashed", size = 1, color = "black") + --&gt;
+&lt;!--   annotate("segment", x = intersections_2$x[2], xend = intersections_2$x[3], y = intersections_2$y[2], yend = intersections_2$y[3],  --&gt;
+&lt;!--            linetype = "dashed", size = 1, color = "black") + --&gt;
+&lt;!--   stat_function(fun = abatement_cost_1, color = "#638ccc", size = 1.5) + --&gt;
+&lt;!--   stat_function(fun = abatement_cost_2, color = "#ca5670", size = 1.5) + --&gt;
+&lt;!--   theme_minimal()  + --&gt;
+&lt;!--   theme( --&gt;
+&lt;!--     legend.position = "none", --&gt;
+&lt;!--     title = element_text(size = 24), --&gt;
+&lt;!--     axis.text.x = element_text(size = 18, color = "black"),  --&gt;
+&lt;!--     axis.text.y = element_text(size = 18, color = "black"), --&gt;
+&lt;!--     axis.title.x = element_text(size = 24), axis.title.y = element_text(size = 24), --&gt;
+&lt;!--     panel.grid.minor.x = element_blank(), panel.grid.major.y = element_blank(), --&gt;
+&lt;!--     panel.grid.minor.y = element_blank(), panel.grid.major.x = element_blank(), --&gt;
+&lt;!--     panel.background = element_rect(fill = "#eeeeee", colour = NA), --&gt;
+&lt;!--     plot.background = element_rect(fill = "#eeeeee", colour = NA), --&gt;
+&lt;!--     axis.line = element_line(colour = "black") --&gt;
+&lt;!--   ) + --&gt;
+&lt;!--   labs(x = "Emissions", --&gt;
+&lt;!--        y = "", --&gt;
+&lt;!--        title = "Not efficient if\nMACs aren't equal") + --&gt;
+&lt;!--   scale_x_continuous(expand = c(0, 0), limits = c(0, 5),  --&gt;
+&lt;!--                      breaks = c(intersections_1$x[2], intersections_2$x[2]), labels = expression(e[1], e[2])) + --&gt;
+&lt;!--   scale_y_continuous(expand = c(0, 0), limits = c(0, 5),  --&gt;
+&lt;!--                      breaks = c(intersections_1$y[2], intersections_2$y[2]), labels = expression(MAC[1]( e[1] ), MAC[2]( e[2] ))) --&gt;
+
+&lt;!-- ``` --&gt;
+
+&lt;!-- ![MACs are not equal under a uniform standard](4-theory-of-environmental-policy_files/figure-html/uniform_standard_2-1.png) --&gt;
+&lt;!-- ] --&gt;
+
+&lt;!-- .pull-right[ --&gt;
+
+&lt;!-- Now firm 1, the lower MAC firm, is abating more than firm 2 --&gt;
+
+&lt;!-- This changed the total abatement cost --&gt;
+
+&lt;!-- ] --&gt;
+
+
+&lt;!-- --- --&gt;
+
+&lt;!-- # Uniform standard costs --&gt;
+
+&lt;!-- .pull-left[ --&gt;
+&lt;!-- ```{r uniform_standard_3, echo = FALSE, fig.show = 'hide', warning = F} --&gt;
+&lt;!-- abatement_cost_1 &lt;- function(x) 4 - x --&gt;
+&lt;!-- abatement_cost_2 &lt;- function(x) 2 - x --&gt;
+&lt;!-- intersections_1 &lt;- tibble(x = c(0, 0.5, 0.5),  --&gt;
+&lt;!--                         y = c(1.5, 1.5, 0)) --&gt;
+&lt;!-- intersections_2 &lt;- tibble(x = c(0, 1.5, 1.5),  --&gt;
+&lt;!--                         y = c(2.5, 2.5, 0)) --&gt;
+&lt;!-- polys_mac1 &lt;- tibble(x = c(1, 1, 0.5, 0.5),  --&gt;
+&lt;!--                      y = c(0, 1, 1.5, 0)) --&gt;
+&lt;!-- polys_mac2 &lt;- tibble(x = c(1, 1, 1.5, 1.5),  --&gt;
+&lt;!--                      y = c(0, 3, 2.5, 0)) --&gt;
+&lt;!-- ggplot() + --&gt;
+&lt;!--   geom_polygon(data = polys_mac2, aes(x = x, y = y), fill = "slateblue", alpha = 0.2) + --&gt;
+&lt;!--   geom_polygon(data = polys_mac1, aes(x = x, y = y), fill = "red", alpha = 0.2) + --&gt;
+&lt;!--   annotate("segment", x = intersections_1$x[1], xend = intersections_1$x[2], y = intersections_1$y[1], yend = intersections_1$y[2],  --&gt;
+&lt;!--            linetype = "dashed", size = 1, color = "black") + --&gt;
+&lt;!--   annotate("segment", x = intersections_1$x[2], xend = intersections_1$x[3], y = intersections_1$y[2], yend = intersections_1$y[3],  --&gt;
+&lt;!--            linetype = "dashed", size = 1, color = "black") + --&gt;
+&lt;!--   annotate("segment", x = intersections_2$x[1], xend = intersections_2$x[2], y = intersections_2$y[1], yend = intersections_2$y[2],  --&gt;
+&lt;!--            linetype = "dashed", size = 1, color = "black") + --&gt;
+&lt;!--   annotate("segment", x = intersections_2$x[2], xend = intersections_2$x[3], y = intersections_2$y[2], yend = intersections_2$y[3],  --&gt;
+&lt;!--            linetype = "dashed", size = 1, color = "black") + --&gt;
+&lt;!--   stat_function(fun = abatement_cost_1, color = "#638ccc", size = 1.5) + --&gt;
+&lt;!--   stat_function(fun = abatement_cost_2, color = "#ca5670", size = 1.5) + --&gt;
+&lt;!--   theme_minimal()  + --&gt;
+&lt;!--   theme( --&gt;
+&lt;!--     legend.position = "none", --&gt;
+&lt;!--     title = element_text(size = 24), --&gt;
+&lt;!--     axis.text.x = element_text(size = 18, color = "black"),  --&gt;
+&lt;!--     axis.text.y = element_text(size = 18, color = "black"), --&gt;
+&lt;!--     axis.title.x = element_text(size = 24), axis.title.y = element_text(size = 24), --&gt;
+&lt;!--     panel.grid.minor.x = element_blank(), panel.grid.major.y = element_blank(), --&gt;
+&lt;!--     panel.grid.minor.y = element_blank(), panel.grid.major.x = element_blank(), --&gt;
+&lt;!--     panel.background = element_rect(fill = "#eeeeee", colour = NA), --&gt;
+&lt;!--     plot.background = element_rect(fill = "#eeeeee", colour = NA), --&gt;
+&lt;!--     axis.line = element_line(colour = "black") --&gt;
+&lt;!--   ) + --&gt;
+&lt;!--   labs(x = "Emissions", --&gt;
+&lt;!--        y = "", --&gt;
+&lt;!--        title = "Gains and losses from\nshifting abatement")  + --&gt;
+&lt;!--   scale_x_continuous(expand = c(0, 0), limits = c(0, 5),  --&gt;
+&lt;!--                      breaks = c(intersections_1$x[2], intersections_2$x[2]), labels = expression(e[1], e[2])) + --&gt;
+&lt;!--   scale_y_continuous(expand = c(0, 0), limits = c(0, 5),  --&gt;
+&lt;!--                      breaks = c(intersections_1$y[2], intersections_2$y[2]), labels = expression(MAC[1]( e[1] ), MAC[2]( e[2] ))) --&gt;
+
+&lt;!-- ``` --&gt;
+
+&lt;!-- ![Gains from equating macs](4-theory-of-environmental-policy_files/figure-html/uniform_standard_3-1.png) --&gt;
+&lt;!-- ] --&gt;
+
+&lt;!-- .pull-right[ --&gt;
+
+&lt;!-- Now firm 1, the lower MAC firm, is abating more than firm 2 --&gt;
+
+&lt;!-- This changed the total abatement cost --&gt;
+
+&lt;!-- Firm 1 has costs .hi-red[increase] --&gt;
+
+&lt;!-- Firm 2 has costs .hi-blue[decrease] --&gt;
+
+&lt;!-- Net effect is a .hi-blue[decrease] in costs --&gt;
+
+&lt;!-- ] --&gt;
+
+
+&lt;!-- --- --&gt;
+
+&lt;!-- # Uniform standard costs --&gt;
+
+&lt;!-- .pull-left[ --&gt;
+&lt;!-- ```{r uniform_standard_4, echo = FALSE, fig.show = 'hide', warning = F} --&gt;
+&lt;!-- abatement_cost_1 &lt;- function(x) 4 - x --&gt;
+&lt;!-- abatement_cost_2 &lt;- function(x) 2 - x --&gt;
+&lt;!-- intersections &lt;- tibble(x = c(0, 2),  --&gt;
+&lt;!--                         y = c(2, 2)) --&gt;
+&lt;!-- polys_mac1 &lt;- tibble(x = c(1, 1, 0, 0),  --&gt;
+&lt;!--                      y = c(0, 1, 2, 0)) --&gt;
+&lt;!-- polys_mac2 &lt;- tibble(x = c(1, 1, 2, 2),  --&gt;
+&lt;!--                      y = c(0, 3, 2, 0)) --&gt;
+&lt;!-- polys_mac3 &lt;- tibble(x = c(1, 2, 2, 1),  --&gt;
+&lt;!--                      y = c(3, 2, 1, 2)) --&gt;
+&lt;!-- ggplot() + --&gt;
+&lt;!--   geom_polygon(data = polys_mac2, aes(x = x, y = y), fill = "slateblue", alpha = 0.2) + --&gt;
+&lt;!--   geom_polygon(data = polys_mac1, aes(x = x, y = y), fill = "red", alpha = 0.2) + --&gt;
+&lt;!--   geom_polygon(data = polys_mac3, aes(x = x, y = y), linetype = "dotted", size = 2, alpha = 0.7) + --&gt;
+&lt;!--   annotate("segment", x = intersections$x[1], xend = intersections$x[2], y = intersections$y[1], yend = intersections$y[2],  --&gt;
+&lt;!--            linetype = "dashed", size = 1, color = "black") + --&gt;
+&lt;!--   stat_function(fun = abatement_cost_1, color = "#638ccc", size = 1.5) + --&gt;
+&lt;!--   stat_function(fun = abatement_cost_2, color = "#ca5670", size = 1.5) + --&gt;
+&lt;!--   theme_minimal()  + --&gt;
+&lt;!--   theme( --&gt;
+&lt;!--     legend.position = "none", --&gt;
+&lt;!--     title = element_text(size = 24), --&gt;
+&lt;!--     axis.text.x = element_text(size = 18, color = "black"),  --&gt;
+&lt;!--     axis.text.y = element_text(size = 18, color = "black", angle = 90, hjust = 1), --&gt;
+&lt;!--     axis.title.x = element_text(size = 24), axis.title.y = element_text(size = 24), --&gt;
+&lt;!--     panel.grid.minor.x = element_blank(), panel.grid.major.y = element_blank(), --&gt;
+&lt;!--     panel.grid.minor.y = element_blank(), panel.grid.major.x = element_blank(), --&gt;
+&lt;!--     panel.background = element_rect(fill = "#eeeeee", colour = NA), --&gt;
+&lt;!--     plot.background = element_rect(fill = "#eeeeee", colour = NA), --&gt;
+&lt;!--     axis.line = element_line(colour = "black") --&gt;
+&lt;!--   ) + --&gt;
+&lt;!--   labs(x = "Emissions", --&gt;
+&lt;!--        y = "", --&gt;
+&lt;!--        title = "Gains and losses from\nshifting abatement")  + --&gt;
+&lt;!--   scale_x_continuous(expand = c(0, 0), limits = c(0, 5),  --&gt;
+&lt;!--                      breaks = c(intersections_1$x[2], intersections_2$x[2]), labels = expression(e[1], e[2])) + --&gt;
+&lt;!--   scale_y_continuous(expand = c(0, 0), limits = c(0, 5),  --&gt;
+&lt;!--                      breaks = c(intersections_2$y[2]), labels = expression(MAC[1]( e[1] ) == MAC[2]( e[2] ))) --&gt;
+
+&lt;!-- ``` --&gt;
+
+&lt;!-- ![Gains from equating macs](4-theory-of-environmental-policy_files/figure-html/uniform_standard_4-1.png) --&gt;
+&lt;!-- ] --&gt;
+
+&lt;!-- .pull-right[ --&gt;
+
+&lt;!-- We can keep obtaining cost reductions until MACs are equal across firms --&gt;
+
+&lt;!-- With net reductions in deadweight loss equal to the dark gray area (light blue minus light red) --&gt;
+
+&lt;!-- We want low MAC firms to abate more than high MAC firms --&gt;
+
+
+&lt;!-- ] --&gt;
+
+---
+
+# Emission taxes
+
+An emission tax is a fee that the pollution firm must pay per unit of effluent
+
+These aren't very common in the US but are more widespread in Europe
+
+--
+
+Suppose the government imposes a tax of size `\(\tau\)` per unit of pollution
+
+---
+
+# Emission taxes
+
+The firm's problem is then to minimize total pollution-related costs:
+`$$TC_j(e_j) = C_j(e_j) + \tau e_j$$`
+
+--
+
+The first-order conditions are then:
+`$$-C'_j(e_j) = \tau$$`
+
+--
+
+The firm's optimal choice is to set marginal abatement cost equal to the tax rate
+
+--
+
+The firm reduces emissions as long as the cost of emissions reductions is less than the alternative: paying the tax
+
+---
+
+# Emission taxes
+
+.pull-left[
+
+
+![MACs are decreasing](4-theory-of-environmental-policy_files/figure-html/taxes-1.png)
+]
+
+.pull-right[
+
+Under a tax `\(\tau\)`, the emission choice is a function of the tax: `\(e_j(\tau)\)`
+
+The firm pays total tax `\(A\)` and incurs abatement cost `\(B\)`
+
+Now the government has revenue `\(\tau \times e_j(\tau)\)` that it can use for different purposes
+
+
+]
+
+---
+
+# Emission taxes
+
+If all firms face the same marginal tax rate, what does the firm first-order condition imply?
+
+--
+
+`$$-C'_j(e_j) \equiv MAC_j(e_j) = \tau \,\, \forall j$$`
+
+--
+
+This then implies that:
+`$$MAC_j(e_j) = MAC_j(e_k) \,\, \forall j,k$$`
+
+Marginal abatement costs across firms are equal and we have obtained the given emissions reduction at least-cost
+
+---
+
+# Emission taxes
+
+If we change the tax rate what do we expect to happen to emissions?
+
+--
+
+Return to the firm FOC:
+`$$-C'_j(e_j) = \tau$$`
+
+and differentate it with respect to `\(\tau\)` and recognize that `\(e_j\)` is a function of `\(\tau\)`:
+`$$-C''_j(e_j) {de_j(\tau) \over d\tau} = 1$$`
+
+--
+
+This gives us that: `\({de_j(\tau) \over d\tau} = {1 \over -C''_j(e_j)} &lt; 0\)`: higher taxes lower emissions if MACs are decreasing in emissions
+
+---
+
+# Auctioned pollution permits
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
