@@ -6,11 +6,11 @@
 
 **Office hours:** Wed 3:00-4:30 Warren 462.
 
-**Textbook:** A Course in Environmental Economics by Phaneuf and Requate is required. Natural Resource and Environmental Economics 3rd Edition by Perman is recommended as a supplemental text.
+**Textbook:** A Course in Environmental Economics by Phaneuf and Requate is required. [Causal Inference: The Mixtape](https://www.scunning.com/mixtape.html) by Cunningham is also required and free. 
 
 **Prerequisites:** MATH 1110 or equivalent. 
 
-**Course description:** An introduction to environmental economics. The first half of the class focuses on the core theory, theory of regulation, and theory of welfare analysis. The second half of the course covers empirical topics.
+**Course description:** An introduction to environmental economics. The first half of the class focuses on the core theory, theory of regulation, and theory of welfare analysis. The second half of the course covers empirical topics. We will be learning how to use R for empirical research in environmental economics.
 
 **Course requirements:** Students are expected to attend two 75 minute lectures per week for the entire semester. In addition, students are expected to prepare for class, prelims, and complete homework outside of class. 
 
@@ -117,6 +117,7 @@ Some sections of the course have readings (available on Canvas if not in the boo
 ### [Oct 22: R and the tidyverse, causal inference](https://ivanrudik.com)
 
 **Reading**: 
+  - Mixtape properties of regression and potential outcomes causal model
   - Greenstone, M. and Gayer, T., 2009. Quasi-experimental and experimental approaches to environmental economics. Journal of Environmental Economics and Management, 57(1), pp.21-44.
   - Deschenes, O. and Meng, K.C., 2018. Quasi-experimental methods in environmental economics: Opportunities and challenges. In Handbook of Environmental Economics (Vol. 4, pp. 285-332). 
 
@@ -129,13 +130,15 @@ Some sections of the course have readings (available on Canvas if not in the boo
 ### [Oct 29: Environmental health, difference-in-differences, and event studies](https://ivanrudik.com)
 
 **Reading**: 
+  - Mixtape difference-in-differences chapter
   - [Hollingsworth A. and Rudik, I., 2021. The effect of leaded gasoline on elderly mortality: Evidence from regulatory exemptions. American Economic Journal: Economic Policy.](https://osf.io/preprints/socarxiv/rdy6g/)
   - Graff Zivin, J. and Neidell, M., 2013. Environment, health, and human capital. Journal of Economic Literature, 51(3), pp.689-730.
   - Currie, J., Zivin, J.G., Mullins, J. and Neidell, M., 2014. What do we know about short-and long-term effects of early-life exposure to pollution? Annual Review Resourse Economics, 6(1), pp.217-247.
   
 ### [Nov 3: Environmental health, difference-in-differences, and event studies](https://ivanrudik.com)
 
-**Reading**: 
+**Reading**:  
+  - Mixtape difference-in-differences chapter
   - [Hollingsworth A. and Rudik, I., 2021. The effect of leaded gasoline on elderly mortality: Evidence from regulatory exemptions. American Economic Journal: Economic Policy.](https://osf.io/preprints/socarxiv/rdy6g/)
   - Graff Zivin, J. and Neidell, M., 2013. Environment, health, and human capital. Journal of Economic Literature, 51(3), pp.689-730.
   - Currie, J., Zivin, J.G., Mullins, J. and Neidell, M., 2014. What do we know about short-and long-term effects of early-life exposure to pollution? Annual Review Resourse Economics, 6(1), pp.217-247.
@@ -144,12 +147,14 @@ Some sections of the course have readings (available on Canvas if not in the boo
 
 **Reading**:
   - PR Chapter 18
+  - Mixtape regression discontinuity chapter
   - Chay, K. Y. and Greenstone, M. (2005). Does air quality matter? Evidence from the housing market. Journal of Political Economy, 113(2):pp. 376–424
 
 ### [Nov 10: Hedonics and regression discontinuity](https://ivanrudik.com)
 
 **Reading**:
   - PR Chapter 18
+  - Mixtape regression discontinuity chapter
   - Chay, K. Y. and Greenstone, M. (2005). Does air quality matter? Evidence from the housing market. Journal of Political Economy, 113(2):pp. 376–424
 
 ### [Nov 12: Climate change](https://ivanrudik.com)
@@ -178,7 +183,7 @@ Some sections of the course have readings (available on Canvas if not in the boo
   - [Geocomputation with R](https://geocompr.robinlovelace.net/)
   - Burgess, R., Costa, F. and Olken, B.A., 2019. The Brazilian Amazon’s Double Reversal of Fortune.
   
-### [Dec 3: Perverse incentives, clean air act, remote sensin](https://ivanrudik.com)
+### [Dec 3: Perverse incentives, clean air act, remote sensing](https://ivanrudik.com)
 
 **Reading**: Zou, E., 2018. Unwatched pollution: The effect of intermittent monitoring on air quality.
 
