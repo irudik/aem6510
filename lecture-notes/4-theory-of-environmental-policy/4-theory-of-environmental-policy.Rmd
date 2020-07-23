@@ -19,7 +19,7 @@ exclude: true
 ```{r setup}
 if (!require("pacman")) install.packages("pacman")
 pacman::p_load(
-  tidyverse, tidylog, xaringanExtra, Ryacas, rlang
+  tidyverse, tidylog, xaringanExtra, rlang, patchwork
 )
 options(htmltools.dir.version = FALSE)
 knitr::opts_hooks$set(fig.callout = function(options) {
@@ -938,52 +938,329 @@ xaringanExtra::style_panelset(panel_tab_color_active = "red")
 
 <!-- ] -->
 
+<!-- --- -->
+
+<!-- # Emission taxes -->
+
+<!-- An emission tax is a fee that the pollution firm must pay per unit of effluent -->
+
+<!-- These aren't very common in the US but are more widespread in Europe -->
+
+<!-- -- -->
+
+<!-- Suppose the government imposes a tax of size $\tau$ per unit of pollution -->
+
+<!-- --- -->
+
+<!-- # Emission taxes -->
+
+<!-- The firm's problem is then to minimize total pollution-related costs: -->
+<!-- $$TC_j(e_j) = C_j(e_j) + \tau e_j$$ -->
+
+<!-- -- -->
+
+<!-- The first-order conditions are then: -->
+<!-- $$-C'_j(e_j) = \tau$$ -->
+
+<!-- -- -->
+
+<!-- The firm's optimal choice is to set marginal abatement cost equal to the tax rate -->
+
+<!-- -- -->
+
+<!-- The firm reduces emissions as long as the cost of emissions reductions is less than the alternative: paying the tax -->
+
+<!-- --- -->
+
+<!-- # Emission taxes -->
+
+<!-- .pull-left[ -->
+<!-- ```{r taxes, echo = FALSE, fig.show = 'hide', warning = F} -->
+<!-- abatement_cost <- function(x) 4 - x -->
+<!-- intersections <- tibble(x = c(2,2), y = c(2,0)) -->
+<!-- polys_mac <- data.frame(x = c(4, 2, 2), y = c(0, 2, 0)) -->
+<!-- polys_tax <- data.frame(x = c(0, 0, 2, 2), y = c(0, 2, 2, 0)) -->
+<!-- ggplot() + -->
+<!--   geom_polygon(data = polys_mac, aes(x = x, y = y), fill = "slateblue", alpha = 0.2) + -->
+<!--   geom_polygon(data = polys_tax, aes(x = x, y = y), fill = "red", alpha = 0.2) + -->
+<!--   annotate("segment", x = 0, xend = intersections$x[1], y = intersections$y[1], yend = intersections$y[1], -->
+<!--            linetype = "dashed", size = 1, color = "black") + -->
+<!--   annotate("segment", x = intersections$x[1], xend = intersections$x[1], y = 0, yend = intersections$y[1], -->
+<!--            linetype = "dashed", size = 1, color = "black") + -->
+<!--   annotate("segment", x = 0, xend = intersections$x[2], y = intersections$y[2], yend = intersections$y[2], -->
+<!--            linetype = "dashed", size = 1, color = "black") + -->
+<!--   annotate("segment", x = intersections$x[2], xend = intersections$x[2], y = 0, yend = intersections$y[2], -->
+<!--            linetype = "dashed", size = 1, color = "black") + -->
+<!--   annotate("text", size = 8, label = "B", x = 2.5, y = 1) + -->
+<!--   annotate("text", size = 8, label = "A", x = 1, y = 1) + -->
+<!--   stat_function(fun = abatement_cost, color = "#638ccc", size = 1.5) + -->
+<!--   theme_minimal()  + -->
+<!--   theme( -->
+<!--     legend.position = "none", -->
+<!--     title = element_text(size = 24), -->
+<!--     axis.text.x = element_text(size = 20, color = "black"), -->
+<!--     axis.text.y = element_text(size = 20, color = "black"), -->
+<!--     axis.title.x = element_text(size = 24), axis.title.y = element_text(size = 24), -->
+<!--     panel.grid.minor.x = element_blank(), panel.grid.major.y = element_blank(), -->
+<!--     panel.grid.minor.y = element_blank(), panel.grid.major.x = element_blank(), -->
+<!--     panel.background = element_rect(fill = "#eeeeee", colour = NA), -->
+<!--     plot.background = element_rect(fill = "#eeeeee", colour = NA), -->
+<!--     axis.line = element_line(colour = "black") -->
+<!--   ) + -->
+<!--   labs(x = "Emissions", -->
+<!--        y = "", -->
+<!--        title = "Costs under taxation") + -->
+<!--   scale_x_continuous(expand = c(0, 0), limits = c(0, 5), -->
+<!--                      breaks = intersections$x[1], labels = expression(e[j](tau))) + -->
+<!--   scale_y_continuous(expand = c(0, 0), limits = c(0, 5), -->
+<!--                      breaks = intersections$y[1], labels = expression(tau)) -->
+
+<!-- ``` -->
+
+<!-- ![MACs are decreasing](`r knitr::fig_chunk("taxes", "png")`) -->
+<!-- ] -->
+
+<!-- .pull-right[ -->
+
+<!-- Under a tax $\tau$, the emission choice is a function of the tax: $e_j(\tau)$ -->
+
+<!-- The firm pays total tax $A$ and incurs abatement cost $B$ -->
+
+<!-- Now the government has revenue $\tau \times e_j(\tau)$ that it can use for different purposes -->
+
+
+<!-- ] -->
+
+<!-- --- -->
+
+<!-- # Emission taxes -->
+
+<!-- If all firms face the same marginal tax rate, what does the firm first-order condition imply? -->
+
+<!-- -- -->
+
+<!-- $$-C'_j(e_j) \equiv MAC_j(e_j) = \tau \,\, \forall j$$ -->
+
+<!-- -- -->
+
+<!-- This then implies that: -->
+<!-- $$MAC_j(e_j) = MAC_j(e_k) \,\, \forall j,k$$ -->
+
+<!-- Marginal abatement costs across firms are equal and we have obtained the given emissions reduction at least-cost -->
+
+<!-- --- -->
+
+<!-- # Emission taxes -->
+
+<!-- If we change the tax rate what do we expect to happen to emissions? -->
+
+<!-- -- -->
+
+<!-- Return to the firm FOC: -->
+<!-- $$-C'_j(e_j) = \tau$$ -->
+
+<!-- and differentate it with respect to $\tau$ and recognize that $e_j$ is a function of $\tau$: -->
+<!-- $$-C''_j(e_j) {de_j(\tau) \over d\tau} = 1$$ -->
+
+<!-- -- -->
+
+<!-- This gives us that: ${de_j(\tau) \over d\tau} = {1 \over -C''_j(e_j)} < 0$: higher taxes lower emissions if MACs are decreasing in emissions -->
+
+<!-- --- -->
+
+<!-- # Auctioned pollution permits -->
+
+<!-- Instead of charging a fee *ex post*, what if the government auctioned off a fixed number of *ex ante* rights to emit a unit of pollution? -->
+
+<!-- -- -->
+
+<!-- In the case, firms need to purchase the right to pollute from the public -->
+
+<!-- -- -->
+
+<!-- Let there be $L$ permits for sale, and let $\sigma$ be the auction price that emerges -->
+
+<!-- --- -->
+
+<!-- # Auctioned pollution permits -->
+
+<!-- If firms are price-takers then their total cost is given by: -->
+<!-- $$TC_j(e_j) = C_j(e_j) + \sigma e_j$$ -->
+
+<!-- -- -->
+
+<!-- The second term is the permit purchase cost, the first term is the abatement cost -->
+
+<!-- Cost-minimization gives us: -->
+<!-- $$-C'_j(e_j) = \sigma$$ -->
+
+<!-- which indicates that firms set their MACs equal to the permit price (and implicitly each other's MACs) -->
+
+<!-- --- -->
+
+<!-- # Auctioned permits -->
+
+<!-- .pull-left[ -->
+<!-- ```{r auctioned_permits, echo = FALSE, fig.show = 'hide', warning = F} -->
+<!-- abatement_cost <- function(x) 4 - x -->
+<!-- intersections <- tibble(x = c(2,2), y = c(2,0)) -->
+<!-- polys_mac <- data.frame(x = c(4, 2, 2), y = c(0, 2, 0)) -->
+<!-- polys_tax <- data.frame(x = c(0, 0, 2, 2), y = c(0, 2, 2, 0)) -->
+<!-- ggplot() + -->
+<!--   geom_polygon(data = polys_mac, aes(x = x, y = y), fill = "slateblue", alpha = 0.2) + -->
+<!--   geom_polygon(data = polys_tax, aes(x = x, y = y), fill = "red", alpha = 0.2) + -->
+<!--   annotate("segment", x = 0, xend = intersections$x[1], y = intersections$y[1], yend = intersections$y[1], -->
+<!--            linetype = "dashed", size = 1, color = "black") + -->
+<!--   annotate("segment", x = intersections$x[1], xend = intersections$x[1], y = 0, yend = intersections$y[1], -->
+<!--            linetype = "dashed", size = 1, color = "black") + -->
+<!--   annotate("segment", x = 0, xend = intersections$x[2], y = intersections$y[2], yend = intersections$y[2], -->
+<!--            linetype = "dashed", size = 1, color = "black") + -->
+<!--   annotate("segment", x = intersections$x[2], xend = intersections$x[2], y = 0, yend = intersections$y[2], -->
+<!--            linetype = "dashed", size = 1, color = "black") + -->
+<!--   annotate("text", size = 8, label = "B", x = 2.5, y = 1) + -->
+<!--   annotate("text", size = 8, label = "A", x = 1, y = 1) + -->
+<!--   stat_function(fun = abatement_cost, color = "#638ccc", size = 1.5) + -->
+<!--   theme_minimal()  + -->
+<!--   theme( -->
+<!--     legend.position = "none", -->
+<!--     title = element_text(size = 24), -->
+<!--     axis.text.x = element_text(size = 20, color = "black"), -->
+<!--     axis.text.y = element_text(size = 20, color = "black"), -->
+<!--     axis.title.x = element_text(size = 24), axis.title.y = element_text(size = 24), -->
+<!--     panel.grid.minor.x = element_blank(), panel.grid.major.y = element_blank(), -->
+<!--     panel.grid.minor.y = element_blank(), panel.grid.major.x = element_blank(), -->
+<!--     panel.background = element_rect(fill = "#eeeeee", colour = NA), -->
+<!--     plot.background = element_rect(fill = "#eeeeee", colour = NA), -->
+<!--     axis.line = element_line(colour = "black") -->
+<!--   ) + -->
+<!--   labs(x = "Emissions", -->
+<!--        y = "", -->
+<!--        title = "Costs under\nauctioned permits") + -->
+<!--   scale_x_continuous(expand = c(0, 0), limits = c(0, 5), -->
+<!--                      breaks = intersections$x[1], labels = expression(e[j](sigma))) + -->
+<!--   scale_y_continuous(expand = c(0, 0), limits = c(0, 5), -->
+<!--                      breaks = intersections$y[1], labels = expression(sigma)) -->
+
+<!-- ``` -->
+
+<!-- ![MACs are decreasing](`r knitr::fig_chunk("auctioned_permits", "png")`) -->
+<!-- ] -->
+
+
+<!-- .pull-right[ -->
+
+<!-- Under a permit price $\sigma$, the emission choice is a function of the price: $e_j(\sigma)$ -->
+
+<!-- The firm pays total tax $A$ and incurs abatement cost $B$ -->
+
+<!-- This is .hi-blue[identical] to an emission tax if $\sigma = \tau$ -->
+
+
+<!-- ] -->
+
+<!-- --- -->
+
+<!-- # Auctioned pollution permits -->
+
+<!-- We can then invert the MAC to get the firm's emission-response to permit prices -->
+<!-- $$e_j(\sigma) = C'^{-1}_j(-\sigma)$$ -->
+<!-- -- -->
+
+<!-- What is this expression? -->
+
+<!-- -- -->
+
+<!-- It's just firm $j$'s .hi-blue[permit demand] -->
+
+<!-- -- -->
+
+<!-- Aggregate demand for permits is then: -->
+<!-- $$E(\sigma) = \sum_{j=1}^J e_j(\sigma)$$ -->
+<!-- --- -->
+
+<!-- # Auctioned pollution permits -->
+
+<!-- and the price $\sigma$ that clears the market equates supply of permits $L$ and demand for permits: -->
+<!-- $$L = \sum_{j=1}^J e_j(\sigma)$$ -->
+
+<!-- This equation (supply = demand) defines the market equilibrium -->
+
+<!-- --- -->
+
+<!-- # Taxes, permits, and efficiency -->
+
+<!-- Both taxes and permits achieve $MAC_j = MAC_k$ $\forall j,k$, so both achieve any given emission reduction at least-cost -->
+
+<!-- -- -->
+
+<!-- With knowledge of the damage function $D(E)$, both can also be used by a regulator to achieve the socially optimal emission level $E*$ -->
+
+<!-- --- -->
+
+<!-- # Freely distributed transferable permits -->
+
+<!-- Most permits aren't auctioned but freely distributed to firms based on historical emissions -->
+
+<!-- -- -->
+
+<!-- This is a de facto subsidy to firms so there are long run and distributional consequences from allocation choices -->
+
+<!-- -- -->
+
+<!-- How does this system work? -->
+
+<!-- --- -->
+
+<!-- # Freely distributed transferable permits -->
+
+<!-- 1. Regulator sets total amount of pollution -->
+<!-- 2. Regulator disburses permits -->
+<!-- 3. Firms can trade permits -->
+
+<!-- -- -->
+
+<!-- Suppose firm $j$ is given $\bar{e}_j$ permits, their total cost is: -->
+<!-- $$TC_j(e_j) = C_j(e_j) + \sigma(e_j - \bar{e}_j)$$ -->
+
+<!-- -- -->
+
+<!-- FOCs are: -->
+<!-- $$ -C'_j(e_j) = \sigma$$ -->
+
+<!-- identical to auctioned permits!  -->
+
+<!-- --- -->
+
+<!-- # Freely distributed transferable permits -->
+
+<!-- Why do we get the same result for auctioned and freely distributed permits? -->
+
+<!-- -- -->
+
+<!-- The initial giveaway of permits is basically just a .hi-blue[lump sum transfer] -->
+
+<!-- -- -->
+
+<!-- It does not affect firm's .hi-blue[marginal] decision making -->
+
+<!-- -- -->
+
+<!-- As before, market equilibrium is given by: -->
+<!-- $$L = \sum_{j=1}^J e_j(\sigma) = \sum_{j=1}^J \bar{e}_j(\sigma)$$ -->
+
+<!-- -- -->
+
+<!-- In short: efficiency is the same, but distributional outcomes will be different -->
+
 ---
 
-# Emission taxes
+# Freely distributed transferable permits
 
-An emission tax is a fee that the pollution firm must pay per unit of effluent
-
-These aren't very common in the US but are more widespread in Europe
-
---
-
-Suppose the government imposes a tax of size $\tau$ per unit of pollution
-
----
-
-# Emission taxes
-
-The firm's problem is then to minimize total pollution-related costs:
-$$TC_j(e_j) = C_j(e_j) + \tau e_j$$
-
---
-
-The first-order conditions are then:
-$$-C'_j(e_j) = \tau$$
-
---
-
-The firm's optimal choice is to set marginal abatement cost equal to the tax rate
-
---
-
-The firm reduces emissions as long as the cost of emissions reductions is less than the alternative: paying the tax
-
----
-
-# Emission taxes
-
-.pull-left[
-```{r taxes, echo = FALSE, fig.show = 'hide', warning = F}
+```{r distribution_permits, echo = FALSE, fig.show = 'hide', warning = F, fig.width=12, fig.height=5}
 abatement_cost <- function(x) 4 - x
-intersections <- tibble(x = c(2,2), y = c(2,0))
-polys_mac <- data.frame(x = c(4, 2, 2), y = c(0, 2, 0))
-polys_tax <- data.frame(x = c(0, 0, 2, 2), y = c(0, 2, 2, 0))
-ggplot() +
-  geom_polygon(data = polys_mac, aes(x = x, y = y), fill = "slateblue", alpha = 0.2) +
-  geom_polygon(data = polys_tax, aes(x = x, y = y), fill = "red", alpha = 0.2) +
-  annotate("segment", x = 0, xend = intersections$x[1], y = intersections$y[1], yend = intersections$y[1],
+intersections <- tibble(x = c(2,2,3), y = c(2,0,2))
+firm1 <- ggplot() +
+  annotate("segment", x = 0, xend = 5, y = intersections$y[1], yend = intersections$y[1],
            linetype = "dashed", size = 1, color = "black") +
   annotate("segment", x = intersections$x[1], xend = intersections$x[1], y = 0, yend = intersections$y[1],
            linetype = "dashed", size = 1, color = "black") +
@@ -991,8 +1268,11 @@ ggplot() +
            linetype = "dashed", size = 1, color = "black") +
   annotate("segment", x = intersections$x[2], xend = intersections$x[2], y = 0, yend = intersections$y[2],
            linetype = "dashed", size = 1, color = "black") +
-  annotate("text", size = 8, label = "B", x = 2.5, y = 1) +
-  annotate("text", size = 8, label = "A", x = 1, y = 1) +
+  annotate("segment", x = intersections$x[3], xend = intersections$x[3], y = 0, yend = intersections$y[3],
+           linetype = "dashed", size = 1, color = "black") +
+  annotate("text", size = 8, label = "D", x = 3.3, y = 0.25) +
+  annotate("text", size = 8, label = "E", x = 2.4, y = 0.25) +
+  annotate("text", size = 8, label = "F", x = 2.6, y = 1.8) +
   stat_function(fun = abatement_cost, color = "#638ccc", size = 1.5) +
   theme_minimal()  +
   theme(
@@ -1009,63 +1289,371 @@ ggplot() +
   ) +
   labs(x = "Emissions",
        y = "",
-       title = "Costs under taxation") +
+       title = "Firm 1") +
   scale_x_continuous(expand = c(0, 0), limits = c(0, 5),
-                     breaks = intersections$x[1], labels = expression(e[j](tau))) +
+                     breaks = intersections$x[c(1,3)], labels = expression(e[2](sigma), bar(e)[1])) +
   scale_y_continuous(expand = c(0, 0), limits = c(0, 5),
-                     breaks = intersections$y[1], labels = expression(tau))
+                     breaks = intersections$y[1], labels = expression(sigma))
+
+abatement_cost <- function(x) 5 - 5/4*x
+intersections <- tibble(x = c(2.4,2.4,1), y = c(2,0,5-5/4))
+firm2 <- ggplot() +
+  annotate("segment", x = 0, xend = 5, y = intersections$y[1], yend = intersections$y[1],
+           linetype = "dashed", size = 1, color = "black") +
+  annotate("segment", x = intersections$x[1], xend = intersections$x[1], y = 0, yend = intersections$y[1],
+           linetype = "dashed", size = 1, color = "black") +
+  annotate("segment", x = 0, xend = intersections$x[2], y = intersections$y[2], yend = intersections$y[2],
+           linetype = "dashed", size = 1, color = "black") +
+  annotate("segment", x = intersections$x[2], xend = intersections$x[2], y = 0, yend = intersections$y[2],
+           linetype = "dashed", size = 1, color = "black") +
+  annotate("segment", x = intersections$x[3], xend = intersections$x[3], y = 0, yend = intersections$y[3],
+           linetype = "dashed", size = 1, color = "black") +
+  annotate("text", size = 8, label = "A", x = 2.8, y = 1) +
+  annotate("text", size = 8, label = "B", x = 1.5, y = 1) +
+  annotate("text", size = 8, label = "C", x = 1.5, y = 2.3) +
+  stat_function(fun = abatement_cost, color = "#638ccc", size = 1.5) +
+  theme_minimal()  +
+  theme(
+    legend.position = "none",
+    title = element_text(size = 24),
+    axis.text.x = element_text(size = 20, color = "black"),
+    axis.text.y = element_text(size = 20, color = "black"),
+    axis.title.x = element_text(size = 24), axis.title.y = element_text(size = 24),
+    panel.grid.minor.x = element_blank(), panel.grid.major.y = element_blank(),
+    panel.grid.minor.y = element_blank(), panel.grid.major.x = element_blank(),
+    panel.background = element_rect(fill = "#eeeeee", colour = NA),
+    plot.background = element_rect(fill = "#eeeeee", colour = NA),
+    axis.line = element_line(colour = "black")
+  ) +
+  labs(x = "Emissions",
+       y = "",
+       title = "Firm 2") +
+  scale_x_continuous(expand = c(0, 0), limits = c(0, 5),
+                     breaks = intersections$x[c(1,3)], labels = expression(e[2](sigma), bar(e)[2])) +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 5),
+                     breaks = intersections$y[1], labels = expression(sigma))
+
+firm1 + firm2 & theme(
+    plot.background = element_rect(fill = "#eeeeee", colour = NA))
 
 ```
 
-![MACs are decreasing](`r knitr::fig_chunk("taxes", "png")`)
+![Initial distribution matters for how costs and benefits are spread out](`r knitr::fig_chunk("distribution_permits", "png")`)
+
+Firm 1: Abatement cost (D $\rightarrow$ D+E); Permit revenues (0 $\rightarrow$ E+F)  
+Firm 2: Abatement cost (A+B+C $\rightarrow$ A); Permit costs (0 $\rightarrow$ B)  
+Total cost reductions: .hi-blue[C+F] (A+B+C+D - (A+D+E) = B+C-E = (E+F)+C-E = C+F)
+
+---
+
+# Subsidies
+
+So far we've put the responsibility of expenditures on firms
+
+But, for political economy reasons, regulators may not want to put this extra burden on firms
+
+--
+
+Often regulators subsidize abatement
+
+How does this different from taxation and permits?
+
+---
+
+# Subsidies
+
+Suppose we subsidize a firm $\xi$ for each unit pollution is below some baseline level $\hat{e}_j$, its total costs are now
+$$TC_j(e_j) = C_j(e_j) + \xi(e_j - \hat{e}_j)$$
+
+--
+
+$\xi \hat{e}_j$ is just a lump sum transfer to firms with no effect on its decision making
+
+--
+
+The firm's FOC condition is then:
+$$-C'_j(e_j) = \xi$$
+
+The per-unit abatement subsidy has the same behavioral effect as a per-unit emission tax: firms set MAC equal to the subsidy
+
+---
+
+# Abatement subsidies
+
+.pull-left[
+```{r subsidies, echo = FALSE, fig.show = 'hide', warning = F}
+abatement_cost <- function(x) 4 - x
+intersections <- tibble(x = c(2,2,3), y = c(2,0,2))
+polys_mac <- data.frame(x = c(4, 3, 3), y = c(0, 1, 0))
+polys_tax <- data.frame(x = c(3, 3, 2, 2), y = c(0, 2, 2, 0))
+ggplot() +
+  geom_polygon(data = polys_mac, aes(x = x, y = y), fill = "slateblue", alpha = 0.2) +
+  geom_polygon(data = polys_tax, aes(x = x, y = y), fill = "red", alpha = 0.2) +
+  annotate("segment", x = 0, xend = intersections$x[3], y = intersections$y[1], yend = intersections$y[1],
+           linetype = "dashed", size = 1, color = "black") +
+  annotate("segment", x = intersections$x[1], xend = intersections$x[1], y = 0, yend = intersections$y[1],
+           linetype = "dashed", size = 1, color = "black") +
+  annotate("segment", x = intersections$x[2], xend = intersections$x[2], y = 0, yend = intersections$y[2],
+           linetype = "dashed", size = 1, color = "black") +
+  annotate("segment", x = intersections$x[3], xend = intersections$x[3], y = 0, yend = intersections$y[3],
+           linetype = "dashed", size = 1, color = "black") +
+  annotate("text", size = 8, label = "B", x = 2.5, y = 1) +
+  annotate("text", size = 8, label = "C", x = 2.7, y = 1.8) +
+  annotate("text", size = 8, label = "A", x = 3.25, y = .25) +
+  stat_function(fun = abatement_cost, color = "#638ccc", size = 1.5) +
+  theme_minimal()  +
+  theme(
+    legend.position = "none",
+    title = element_text(size = 24),
+    axis.text.x = element_text(size = 20, color = "black"),
+    axis.text.y = element_text(size = 20, color = "black"),
+    axis.title.x = element_text(size = 24), axis.title.y = element_text(size = 24),
+    panel.grid.minor.x = element_blank(), panel.grid.major.y = element_blank(),
+    panel.grid.minor.y = element_blank(), panel.grid.major.x = element_blank(),
+    panel.background = element_rect(fill = "#eeeeee", colour = NA),
+    plot.background = element_rect(fill = "#eeeeee", colour = NA),
+    axis.line = element_line(colour = "black")
+  ) +
+  labs(x = "Emissions",
+       y = "",
+       title = "Costs and benefits\nunder subsidies") +
+  scale_x_continuous(expand = c(0, 0), limits = c(0, 5),
+                     breaks = intersections$x[2:3], labels = expression(e[j](xi), hat(e)[j])) +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 5),
+                     breaks = intersections$y[1], labels = expression(xi))
+
+```
+
+![MACs are decreasing](`r knitr::fig_chunk("subsidies", "png")`)
 ]
 
 .pull-right[
 
-Under a tax $\tau$, the emission choice is a function of the tax: $e_j(\tau)$
+Under a subsidy $\xi$, the emission choice is a function of the subsidy: $e_j(\xi)$
 
-The firm pays total tax $A$ and incurs abatement cost $B$
+The firm incurs abatement cost $A$ and receives total subsidy $B+C$ with a baseline level of emissions of $\hat{e}_j$
 
-Now the government has revenue $\tau \times e_j(\tau)$ that it can use for different purposes
+
+]
+
+
+---
+
+# Abatement subsidies
+
+.pull-left[
+```{r subsidies_2, echo = FALSE, fig.show = 'hide', warning = F}
+abatement_cost <- function(x) 4 - x
+intersections <- tibble(x = c(2,2,4), y = c(2,0,2))
+polys_mac <- data.frame(x = c(4, 3, 3), y = c(0, 1, 0))
+polys_tax <- data.frame(x = c(3, 3, 2, 2), y = c(0, 2, 2, 0))
+ggplot() +
+  annotate("segment", x = 0, xend = intersections$x[3], y = intersections$y[1], yend = intersections$y[1],
+           linetype = "dashed", size = 1, color = "black") +
+  annotate("segment", x = intersections$x[1], xend = intersections$x[1], y = 0, yend = intersections$y[1],
+           linetype = "dashed", size = 1, color = "black") +
+  annotate("segment", x = intersections$x[2], xend = intersections$x[2], y = 0, yend = intersections$y[2],
+           linetype = "dashed", size = 1, color = "black") +
+  annotate("segment", x = intersections$x[3], xend = intersections$x[3], y = 0, yend = intersections$y[3],
+           linetype = "dashed", size = 1, color = "black") +
+  annotate("text", size = 8, label = "B", x = 3, y = 1.5) +
+  annotate("text", size = 8, label = "A", x = 3, y = 0.5) +
+  stat_function(fun = abatement_cost, color = "#638ccc", size = 1.5) +
+  theme_minimal()  +
+  theme(
+    legend.position = "none",
+    title = element_text(size = 24),
+    axis.text.x = element_text(size = 20, color = "black"),
+    axis.text.y = element_text(size = 20, color = "black"),
+    axis.title.x = element_text(size = 24), axis.title.y = element_text(size = 24),
+    panel.grid.minor.x = element_blank(), panel.grid.major.y = element_blank(),
+    panel.grid.minor.y = element_blank(), panel.grid.major.x = element_blank(),
+    panel.background = element_rect(fill = "#eeeeee", colour = NA),
+    plot.background = element_rect(fill = "#eeeeee", colour = NA),
+    axis.line = element_line(colour = "black")
+  ) +
+  labs(x = "Emissions",
+       y = "",
+       title = "Costs and benefits\nunder subsidies") +
+  scale_x_continuous(expand = c(0, 0), limits = c(0, 5),
+                     breaks = intersections$x[2:3], labels = expression(e[j](xi), bar(e)[j])) +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 5),
+                     breaks = intersections$y[1], labels = expression(xi))
+
+```
+
+![MACs are decreasing](`r knitr::fig_chunk("subsidies_2", "png")`)
+]
+
+.pull-right[
+
+If we change the emission baseline to $\bar{e}_j$ the incentives are identical!
+
+Total costs change:
+
+Abatement cost is now: A
+
+Total subsidy is now: A + B
 
 
 ]
 
 ---
 
-# Emission taxes
+# Abatement subsidies
 
-If all firms face the same marginal tax rate, what does the firm first-order condition imply?
-
---
-
-$$-C'_j(e_j) \equiv MAC_j(e_j) = \tau \,\, \forall j$$
+The key difference between taxes and subsidies is the distribution of costs
 
 --
 
-This then implies that:
-$$MAC_j(e_j) = MAC_j(e_k) \,\, \forall j,k$$
+Under taxes, firms must pay fees to the regulator
 
-Marginal abatement costs across firms are equal and we have obtained the given emissions reduction at least-cost
+--
+
+Under subsidies, the regulator pays the firms
+
+--
+
+.hi-blue[The efficiency properties are the same]
 
 ---
 
-# Emission taxes
+# Aggregate marginal abatment cost
 
-If we change the tax rate what do we expect to happen to emissions?
+What the regulator cares about when designing policy is the .hi-blue[aggregate marginal abatement cost]
 
---
-
-Return to the firm FOC:
-$$-C'_j(e_j) = \tau$$
-
-and differentate it with respect to $\tau$ and recognize that $e_j$ is a function of $\tau$:
-$$-C''_j(e_j) {de_j(\tau) \over d\tau} = 1$$
+This is the horizontal sum of individual MACs
 
 --
 
-This gives us that: ${de_j(\tau) \over d\tau} = {1 \over -C''_j(e_j)} < 0$: higher taxes lower emissions if MACs are decreasing in emissions
+It reflects the industry's marginal abatement cost when an efficient (i.e. least-cost) policy is implemented
+
+--
+
+Lets develop this formally
 
 ---
 
-# Auctioned pollution permits
+# Aggregate marginal abatment cost
+
+Suppose firms pay a per-unit tax $\tau$, we know the firm's optimal emission decision is given by:
+$$C'_j(e_j) = \tau$$
+with a resulting emission response function $e_j(\tau)$ which we can interpret as the firm's demand for emissions
+
+---
+
+# Aggregate marginal abatment cost
+
+Aggregate demand for emissions is then:
+$$E(\tau) = \sum_{j=1^J}e_j(\tau)$$
+
+--
+
+and the .hi-blue[aggregate MAC] is derived by inverting the aggregate demand:
+$$AMAC = E^{-1}(\cdot)$$
+
+This allows us to characterize socially optimal emissions in a more direct way
+
+
+---
+
+# Aggregate marginal abatment cost
+
+How do you horizontally sum?
+
+Suppose our two MACs are: $MAC_1 = 4-e, MAC_2 = 2-e$
+
+--
+
+We first need to invert the MACs: $e_1 = 4 - MAC, e_2 = 2 - MAC$
+
+--
+
+The sum horizontally: $E = 6 - 2\times MAC$
+
+--
+
+And re-invert: $MAC = 3 - {1 \over 2} E$
+
+--
+
+What's the last step?
+
+---
+
+# Aggregate marginal abatment cost
+
+Recall our two MACs are: $MAC_1 = 4-e, MAC_2 = 2-e$
+
+Recognize that firm 2 can't abatement any more than 2 units, so any emission reductions for prices greater than 2 .hi-red[must] come from firm 1
+
+--
+
+So $MAC = 3 - {1 \over 2} E$ is only defined for $P \leq 2, E \geq 4$
+
+--
+
+This gives us that:
+\begin{align}
+AMAC(E) = 
+  \begin{cases}
+    4 - E, & \text{for } 0 \leq E < 2 \\
+    3 - {1 \over 2} E & \text{for } E \geq 2
+  \end{cases}
+\end{align}
+
+---
+
+# Aggregate MAC
+
+.pull-left[
+```{r agg_mac, echo = FALSE, fig.show = 'hide', warning = F}
+abatement_cost_1 <- function(x) 4 - x
+abatement_cost_2 <- function(x) 2 - x
+intersections <- tibble(x = c(1, 1, 1), y = c(0, 1, 3))
+polys_mac1 <- tibble(x = c(2, 1, 1), y = c(0, 0, 1))
+polys_mac2 <- tibble(x = c(4, 1, 1), y = c(0, 0, 3))
+ggplot() +
+  stat_function(fun = abatement_cost_1, color = "#638ccc", size = 1.5) +
+  stat_function(fun = abatement_cost_2, color = "#ca5670", size = 1.5) +
+  annotate("segment", x = 0, xend = 2, y = 4, yend = 2,
+           linetype = "dotted", size = 1.5, color = "black") +
+  annotate("segment", x = 2, xend = 6, y = 2, yend = 0,
+           linetype = "dotted", size = 1.5, color = "black") +
+  
+  annotate("text", size = 8, label = "Aggregate MAC", x = 4, y = 1.75) +
+  annotate("text", size = 8, label = expression(MAC[1]), x = 1, y = 0.5) +
+  annotate("text", size = 8, label = expression(MAC[2]), x = 3, y = 0.5) +
+  theme_minimal()  +
+  theme(
+    legend.position = "none",
+    title = element_text(size = 24),
+    axis.text.x = element_text(size = 18),
+    axis.text.y = element_text(size = 18),
+    axis.title.x = element_text(size = 24), axis.title.y = element_text(size = 24),
+    panel.grid.minor.x = element_blank(), panel.grid.major.y = element_blank(),
+    panel.grid.minor.y = element_blank(), panel.grid.major.x = element_blank(),
+    panel.background = element_rect(fill = "#eeeeee", colour = NA),
+    plot.background = element_rect(fill = "#eeeeee", colour = NA),
+    axis.line = element_line(colour = "black")
+  ) +
+  labs(x = "Emissions",
+       y = "MAC and Aggregate MAC",
+       title = "Not efficient if\nMACs aren't equal") +
+  scale_x_continuous(expand = c(0, 0), limits = c(0, 6)) +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 5))
+
+```
+
+![We care about AMAC for social regulation](`r knitr::fig_chunk("agg_mac", "png")`)
+]
+
+.pull-right[
+
+The social objective is to minimize the sum of total abatement costs, so we care about where .hi-blue[aggregate MAC] crosses marginal damage
+
+AMAC tells us: at a given price, what is the total quantity we can abatement?
+
+]
+
+

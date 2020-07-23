@@ -30,15 +30,8 @@ exclude: true
 
 ```r
 if (!require("pacman")) install.packages("pacman")
-```
-
-```
-## Loading required package: pacman
-```
-
-```r
 pacman::p_load(
-  tidyverse, tidylog, xaringanExtra, Ryacas, rlang
+  tidyverse, tidylog, xaringanExtra, rlang, patchwork
 )
 options(htmltools.dir.version = FALSE)
 knitr::opts_hooks$set(fig.callout = function(options) {
@@ -954,97 +947,528 @@ knitr::opts_chunk$set(echo = TRUE, fig.align="center")
 
 &lt;!-- ] --&gt;
 
+&lt;!-- --- --&gt;
+
+&lt;!-- # Emission taxes --&gt;
+
+&lt;!-- An emission tax is a fee that the pollution firm must pay per unit of effluent --&gt;
+
+&lt;!-- These aren't very common in the US but are more widespread in Europe --&gt;
+
+&lt;!-- -- --&gt;
+
+&lt;!-- Suppose the government imposes a tax of size `\(\tau\)` per unit of pollution --&gt;
+
+&lt;!-- --- --&gt;
+
+&lt;!-- # Emission taxes --&gt;
+
+&lt;!-- The firm's problem is then to minimize total pollution-related costs: --&gt;
+&lt;!-- `$$TC_j(e_j) = C_j(e_j) + \tau e_j$$` --&gt;
+
+&lt;!-- -- --&gt;
+
+&lt;!-- The first-order conditions are then: --&gt;
+&lt;!-- `$$-C'_j(e_j) = \tau$$` --&gt;
+
+&lt;!-- -- --&gt;
+
+&lt;!-- The firm's optimal choice is to set marginal abatement cost equal to the tax rate --&gt;
+
+&lt;!-- -- --&gt;
+
+&lt;!-- The firm reduces emissions as long as the cost of emissions reductions is less than the alternative: paying the tax --&gt;
+
+&lt;!-- --- --&gt;
+
+&lt;!-- # Emission taxes --&gt;
+
+&lt;!-- .pull-left[ --&gt;
+&lt;!-- ```{r taxes, echo = FALSE, fig.show = 'hide', warning = F} --&gt;
+&lt;!-- abatement_cost &lt;- function(x) 4 - x --&gt;
+&lt;!-- intersections &lt;- tibble(x = c(2,2), y = c(2,0)) --&gt;
+&lt;!-- polys_mac &lt;- data.frame(x = c(4, 2, 2), y = c(0, 2, 0)) --&gt;
+&lt;!-- polys_tax &lt;- data.frame(x = c(0, 0, 2, 2), y = c(0, 2, 2, 0)) --&gt;
+&lt;!-- ggplot() + --&gt;
+&lt;!--   geom_polygon(data = polys_mac, aes(x = x, y = y), fill = "slateblue", alpha = 0.2) + --&gt;
+&lt;!--   geom_polygon(data = polys_tax, aes(x = x, y = y), fill = "red", alpha = 0.2) + --&gt;
+&lt;!--   annotate("segment", x = 0, xend = intersections$x[1], y = intersections$y[1], yend = intersections$y[1], --&gt;
+&lt;!--            linetype = "dashed", size = 1, color = "black") + --&gt;
+&lt;!--   annotate("segment", x = intersections$x[1], xend = intersections$x[1], y = 0, yend = intersections$y[1], --&gt;
+&lt;!--            linetype = "dashed", size = 1, color = "black") + --&gt;
+&lt;!--   annotate("segment", x = 0, xend = intersections$x[2], y = intersections$y[2], yend = intersections$y[2], --&gt;
+&lt;!--            linetype = "dashed", size = 1, color = "black") + --&gt;
+&lt;!--   annotate("segment", x = intersections$x[2], xend = intersections$x[2], y = 0, yend = intersections$y[2], --&gt;
+&lt;!--            linetype = "dashed", size = 1, color = "black") + --&gt;
+&lt;!--   annotate("text", size = 8, label = "B", x = 2.5, y = 1) + --&gt;
+&lt;!--   annotate("text", size = 8, label = "A", x = 1, y = 1) + --&gt;
+&lt;!--   stat_function(fun = abatement_cost, color = "#638ccc", size = 1.5) + --&gt;
+&lt;!--   theme_minimal()  + --&gt;
+&lt;!--   theme( --&gt;
+&lt;!--     legend.position = "none", --&gt;
+&lt;!--     title = element_text(size = 24), --&gt;
+&lt;!--     axis.text.x = element_text(size = 20, color = "black"), --&gt;
+&lt;!--     axis.text.y = element_text(size = 20, color = "black"), --&gt;
+&lt;!--     axis.title.x = element_text(size = 24), axis.title.y = element_text(size = 24), --&gt;
+&lt;!--     panel.grid.minor.x = element_blank(), panel.grid.major.y = element_blank(), --&gt;
+&lt;!--     panel.grid.minor.y = element_blank(), panel.grid.major.x = element_blank(), --&gt;
+&lt;!--     panel.background = element_rect(fill = "#eeeeee", colour = NA), --&gt;
+&lt;!--     plot.background = element_rect(fill = "#eeeeee", colour = NA), --&gt;
+&lt;!--     axis.line = element_line(colour = "black") --&gt;
+&lt;!--   ) + --&gt;
+&lt;!--   labs(x = "Emissions", --&gt;
+&lt;!--        y = "", --&gt;
+&lt;!--        title = "Costs under taxation") + --&gt;
+&lt;!--   scale_x_continuous(expand = c(0, 0), limits = c(0, 5), --&gt;
+&lt;!--                      breaks = intersections$x[1], labels = expression(e[j](tau))) + --&gt;
+&lt;!--   scale_y_continuous(expand = c(0, 0), limits = c(0, 5), --&gt;
+&lt;!--                      breaks = intersections$y[1], labels = expression(tau)) --&gt;
+
+&lt;!-- ``` --&gt;
+
+&lt;!-- ![MACs are decreasing](4-theory-of-environmental-policy_files/figure-html/taxes-1.png) --&gt;
+&lt;!-- ] --&gt;
+
+&lt;!-- .pull-right[ --&gt;
+
+&lt;!-- Under a tax `\(\tau\)`, the emission choice is a function of the tax: `\(e_j(\tau)\)` --&gt;
+
+&lt;!-- The firm pays total tax `\(A\)` and incurs abatement cost `\(B\)` --&gt;
+
+&lt;!-- Now the government has revenue `\(\tau \times e_j(\tau)\)` that it can use for different purposes --&gt;
+
+
+&lt;!-- ] --&gt;
+
+&lt;!-- --- --&gt;
+
+&lt;!-- # Emission taxes --&gt;
+
+&lt;!-- If all firms face the same marginal tax rate, what does the firm first-order condition imply? --&gt;
+
+&lt;!-- -- --&gt;
+
+&lt;!-- `$$-C'_j(e_j) \equiv MAC_j(e_j) = \tau \,\, \forall j$$` --&gt;
+
+&lt;!-- -- --&gt;
+
+&lt;!-- This then implies that: --&gt;
+&lt;!-- `$$MAC_j(e_j) = MAC_j(e_k) \,\, \forall j,k$$` --&gt;
+
+&lt;!-- Marginal abatement costs across firms are equal and we have obtained the given emissions reduction at least-cost --&gt;
+
+&lt;!-- --- --&gt;
+
+&lt;!-- # Emission taxes --&gt;
+
+&lt;!-- If we change the tax rate what do we expect to happen to emissions? --&gt;
+
+&lt;!-- -- --&gt;
+
+&lt;!-- Return to the firm FOC: --&gt;
+&lt;!-- `$$-C'_j(e_j) = \tau$$` --&gt;
+
+&lt;!-- and differentate it with respect to `\(\tau\)` and recognize that `\(e_j\)` is a function of `\(\tau\)`: --&gt;
+&lt;!-- `$$-C''_j(e_j) {de_j(\tau) \over d\tau} = 1$$` --&gt;
+
+&lt;!-- -- --&gt;
+
+&lt;!-- This gives us that: `\({de_j(\tau) \over d\tau} = {1 \over -C''_j(e_j)} &lt; 0\)`: higher taxes lower emissions if MACs are decreasing in emissions --&gt;
+
+&lt;!-- --- --&gt;
+
+&lt;!-- # Auctioned pollution permits --&gt;
+
+&lt;!-- Instead of charging a fee *ex post*, what if the government auctioned off a fixed number of *ex ante* rights to emit a unit of pollution? --&gt;
+
+&lt;!-- -- --&gt;
+
+&lt;!-- In the case, firms need to purchase the right to pollute from the public --&gt;
+
+&lt;!-- -- --&gt;
+
+&lt;!-- Let there be `\(L\)` permits for sale, and let `\(\sigma\)` be the auction price that emerges --&gt;
+
+&lt;!-- --- --&gt;
+
+&lt;!-- # Auctioned pollution permits --&gt;
+
+&lt;!-- If firms are price-takers then their total cost is given by: --&gt;
+&lt;!-- `$$TC_j(e_j) = C_j(e_j) + \sigma e_j$$` --&gt;
+
+&lt;!-- -- --&gt;
+
+&lt;!-- The second term is the permit purchase cost, the first term is the abatement cost --&gt;
+
+&lt;!-- Cost-minimization gives us: --&gt;
+&lt;!-- `$$-C'_j(e_j) = \sigma$$` --&gt;
+
+&lt;!-- which indicates that firms set their MACs equal to the permit price (and implicitly each other's MACs) --&gt;
+
+&lt;!-- --- --&gt;
+
+&lt;!-- # Auctioned permits --&gt;
+
+&lt;!-- .pull-left[ --&gt;
+&lt;!-- ```{r auctioned_permits, echo = FALSE, fig.show = 'hide', warning = F} --&gt;
+&lt;!-- abatement_cost &lt;- function(x) 4 - x --&gt;
+&lt;!-- intersections &lt;- tibble(x = c(2,2), y = c(2,0)) --&gt;
+&lt;!-- polys_mac &lt;- data.frame(x = c(4, 2, 2), y = c(0, 2, 0)) --&gt;
+&lt;!-- polys_tax &lt;- data.frame(x = c(0, 0, 2, 2), y = c(0, 2, 2, 0)) --&gt;
+&lt;!-- ggplot() + --&gt;
+&lt;!--   geom_polygon(data = polys_mac, aes(x = x, y = y), fill = "slateblue", alpha = 0.2) + --&gt;
+&lt;!--   geom_polygon(data = polys_tax, aes(x = x, y = y), fill = "red", alpha = 0.2) + --&gt;
+&lt;!--   annotate("segment", x = 0, xend = intersections$x[1], y = intersections$y[1], yend = intersections$y[1], --&gt;
+&lt;!--            linetype = "dashed", size = 1, color = "black") + --&gt;
+&lt;!--   annotate("segment", x = intersections$x[1], xend = intersections$x[1], y = 0, yend = intersections$y[1], --&gt;
+&lt;!--            linetype = "dashed", size = 1, color = "black") + --&gt;
+&lt;!--   annotate("segment", x = 0, xend = intersections$x[2], y = intersections$y[2], yend = intersections$y[2], --&gt;
+&lt;!--            linetype = "dashed", size = 1, color = "black") + --&gt;
+&lt;!--   annotate("segment", x = intersections$x[2], xend = intersections$x[2], y = 0, yend = intersections$y[2], --&gt;
+&lt;!--            linetype = "dashed", size = 1, color = "black") + --&gt;
+&lt;!--   annotate("text", size = 8, label = "B", x = 2.5, y = 1) + --&gt;
+&lt;!--   annotate("text", size = 8, label = "A", x = 1, y = 1) + --&gt;
+&lt;!--   stat_function(fun = abatement_cost, color = "#638ccc", size = 1.5) + --&gt;
+&lt;!--   theme_minimal()  + --&gt;
+&lt;!--   theme( --&gt;
+&lt;!--     legend.position = "none", --&gt;
+&lt;!--     title = element_text(size = 24), --&gt;
+&lt;!--     axis.text.x = element_text(size = 20, color = "black"), --&gt;
+&lt;!--     axis.text.y = element_text(size = 20, color = "black"), --&gt;
+&lt;!--     axis.title.x = element_text(size = 24), axis.title.y = element_text(size = 24), --&gt;
+&lt;!--     panel.grid.minor.x = element_blank(), panel.grid.major.y = element_blank(), --&gt;
+&lt;!--     panel.grid.minor.y = element_blank(), panel.grid.major.x = element_blank(), --&gt;
+&lt;!--     panel.background = element_rect(fill = "#eeeeee", colour = NA), --&gt;
+&lt;!--     plot.background = element_rect(fill = "#eeeeee", colour = NA), --&gt;
+&lt;!--     axis.line = element_line(colour = "black") --&gt;
+&lt;!--   ) + --&gt;
+&lt;!--   labs(x = "Emissions", --&gt;
+&lt;!--        y = "", --&gt;
+&lt;!--        title = "Costs under\nauctioned permits") + --&gt;
+&lt;!--   scale_x_continuous(expand = c(0, 0), limits = c(0, 5), --&gt;
+&lt;!--                      breaks = intersections$x[1], labels = expression(e[j](sigma))) + --&gt;
+&lt;!--   scale_y_continuous(expand = c(0, 0), limits = c(0, 5), --&gt;
+&lt;!--                      breaks = intersections$y[1], labels = expression(sigma)) --&gt;
+
+&lt;!-- ``` --&gt;
+
+&lt;!-- ![MACs are decreasing](4-theory-of-environmental-policy_files/figure-html/auctioned_permits-1.png) --&gt;
+&lt;!-- ] --&gt;
+
+
+&lt;!-- .pull-right[ --&gt;
+
+&lt;!-- Under a permit price `\(\sigma\)`, the emission choice is a function of the price: `\(e_j(\sigma)\)` --&gt;
+
+&lt;!-- The firm pays total tax `\(A\)` and incurs abatement cost `\(B\)` --&gt;
+
+&lt;!-- This is .hi-blue[identical] to an emission tax if `\(\sigma = \tau\)` --&gt;
+
+
+&lt;!-- ] --&gt;
+
+&lt;!-- --- --&gt;
+
+&lt;!-- # Auctioned pollution permits --&gt;
+
+&lt;!-- We can then invert the MAC to get the firm's emission-response to permit prices --&gt;
+&lt;!-- `$$e_j(\sigma) = C'^{-1}_j(-\sigma)$$` --&gt;
+&lt;!-- -- --&gt;
+
+&lt;!-- What is this expression? --&gt;
+
+&lt;!-- -- --&gt;
+
+&lt;!-- It's just firm `\(j\)`'s .hi-blue[permit demand] --&gt;
+
+&lt;!-- -- --&gt;
+
+&lt;!-- Aggregate demand for permits is then: --&gt;
+&lt;!-- `$$E(\sigma) = \sum_{j=1}^J e_j(\sigma)$$` --&gt;
+&lt;!-- --- --&gt;
+
+&lt;!-- # Auctioned pollution permits --&gt;
+
+&lt;!-- and the price `\(\sigma\)` that clears the market equates supply of permits `\(L\)` and demand for permits: --&gt;
+&lt;!-- `$$L = \sum_{j=1}^J e_j(\sigma)$$` --&gt;
+
+&lt;!-- This equation (supply = demand) defines the market equilibrium --&gt;
+
+&lt;!-- --- --&gt;
+
+&lt;!-- # Taxes, permits, and efficiency --&gt;
+
+&lt;!-- Both taxes and permits achieve `\(MAC_j = MAC_k\)` `\(\forall j,k\)`, so both achieve any given emission reduction at least-cost --&gt;
+
+&lt;!-- -- --&gt;
+
+&lt;!-- With knowledge of the damage function `\(D(E)\)`, both can also be used by a regulator to achieve the socially optimal emission level `\(E*\)` --&gt;
+
+&lt;!-- --- --&gt;
+
+&lt;!-- # Freely distributed transferable permits --&gt;
+
+&lt;!-- Most permits aren't auctioned but freely distributed to firms based on historical emissions --&gt;
+
+&lt;!-- -- --&gt;
+
+&lt;!-- This is a de facto subsidy to firms so there are long run and distributional consequences from allocation choices --&gt;
+
+&lt;!-- -- --&gt;
+
+&lt;!-- How does this system work? --&gt;
+
+&lt;!-- --- --&gt;
+
+&lt;!-- # Freely distributed transferable permits --&gt;
+
+&lt;!-- 1. Regulator sets total amount of pollution --&gt;
+&lt;!-- 2. Regulator disburses permits --&gt;
+&lt;!-- 3. Firms can trade permits --&gt;
+
+&lt;!-- -- --&gt;
+
+&lt;!-- Suppose firm `\(j\)` is given `\(\bar{e}_j\)` permits, their total cost is: --&gt;
+&lt;!-- `$$TC_j(e_j) = C_j(e_j) + \sigma(e_j - \bar{e}_j)$$` --&gt;
+
+&lt;!-- -- --&gt;
+
+&lt;!-- FOCs are: --&gt;
+&lt;!-- $$ -C'_j(e_j) = \sigma$$ --&gt;
+
+&lt;!-- identical to auctioned permits!  --&gt;
+
+&lt;!-- --- --&gt;
+
+&lt;!-- # Freely distributed transferable permits --&gt;
+
+&lt;!-- Why do we get the same result for auctioned and freely distributed permits? --&gt;
+
+&lt;!-- -- --&gt;
+
+&lt;!-- The initial giveaway of permits is basically just a .hi-blue[lump sum transfer] --&gt;
+
+&lt;!-- -- --&gt;
+
+&lt;!-- It does not affect firm's .hi-blue[marginal] decision making --&gt;
+
+&lt;!-- -- --&gt;
+
+&lt;!-- As before, market equilibrium is given by: --&gt;
+&lt;!-- `$$L = \sum_{j=1}^J e_j(\sigma) = \sum_{j=1}^J \bar{e}_j(\sigma)$$` --&gt;
+
+&lt;!-- -- --&gt;
+
+&lt;!-- In short: efficiency is the same, but distributional outcomes will be different --&gt;
+
 ---
 
-# Emission taxes
+# Freely distributed transferable permits
 
-An emission tax is a fee that the pollution firm must pay per unit of effluent
 
-These aren't very common in the US but are more widespread in Europe
 
---
+![Initial distribution matters for how costs and benefits are spread out](4-theory-of-environmental-policy_files/figure-html/distribution_permits-1.png)
 
-Suppose the government imposes a tax of size `\(\tau\)` per unit of pollution
-
----
-
-# Emission taxes
-
-The firm's problem is then to minimize total pollution-related costs:
-`$$TC_j(e_j) = C_j(e_j) + \tau e_j$$`
-
---
-
-The first-order conditions are then:
-`$$-C'_j(e_j) = \tau$$`
-
---
-
-The firm's optimal choice is to set marginal abatement cost equal to the tax rate
-
---
-
-The firm reduces emissions as long as the cost of emissions reductions is less than the alternative: paying the tax
+Firm 1: Abatement cost (D `\(\rightarrow\)` D+E); Permit revenues (0 `\(\rightarrow\)` E+F)  
+Firm 2: Abatement cost (A+B+C `\(\rightarrow\)` A); Permit costs (0 `\(\rightarrow\)` B)  
+Total cost reductions: .hi-blue[C+F] (A+B+C+D - (A+D+E) = B+C-E = (E+F)+C-E = C+F)
 
 ---
 
-# Emission taxes
+# Subsidies
+
+So far we've put the responsibility of expenditures on firms
+
+But, for political economy reasons, regulators may not want to put this extra burden on firms
+
+--
+
+Often regulators subsidize abatement
+
+How does this different from taxation and permits?
+
+---
+
+# Subsidies
+
+Suppose we subsidize a firm `\(\xi\)` for each unit pollution is below some baseline level `\(\hat{e}_j\)`, its total costs are now
+`$$TC_j(e_j) = C_j(e_j) + \xi(e_j - \hat{e}_j)$$`
+
+--
+
+`\(\xi \hat{e}_j\)` is just a lump sum transfer to firms with no effect on its decision making
+
+--
+
+The firm's FOC condition is then:
+`$$-C'_j(e_j) = \xi$$`
+
+The per-unit abatement subsidy has the same behavioral effect as a per-unit emission tax: firms set MAC equal to the subsidy
+
+---
+
+# Abatement subsidies
 
 .pull-left[
 
 
-![MACs are decreasing](4-theory-of-environmental-policy_files/figure-html/taxes-1.png)
+![MACs are decreasing](4-theory-of-environmental-policy_files/figure-html/subsidies-1.png)
 ]
 
 .pull-right[
 
-Under a tax `\(\tau\)`, the emission choice is a function of the tax: `\(e_j(\tau)\)`
+Under a subsidy `\(\xi\)`, the emission choice is a function of the subsidy: `\(e_j(\xi)\)`
 
-The firm pays total tax `\(A\)` and incurs abatement cost `\(B\)`
+The firm incurs abatement cost `\(A\)` and receives total subsidy `\(B+C\)` with a baseline level of emissions of `\(\hat{e}_j\)`
 
-Now the government has revenue `\(\tau \times e_j(\tau)\)` that it can use for different purposes
+
+]
+
+
+---
+
+# Abatement subsidies
+
+.pull-left[
+
+
+![MACs are decreasing](4-theory-of-environmental-policy_files/figure-html/subsidies_2-1.png)
+]
+
+.pull-right[
+
+If we change the emission baseline to `\(\bar{e}_j\)` the incentives are identical!
+
+Total costs change:
+
+Abatement cost is now: A
+
+Total subsidy is now: A + B
 
 
 ]
 
 ---
 
-# Emission taxes
+# Abatement subsidies
 
-If all firms face the same marginal tax rate, what does the firm first-order condition imply?
-
---
-
-`$$-C'_j(e_j) \equiv MAC_j(e_j) = \tau \,\, \forall j$$`
+The key difference between taxes and subsidies is the distribution of costs
 
 --
 
-This then implies that:
-`$$MAC_j(e_j) = MAC_j(e_k) \,\, \forall j,k$$`
+Under taxes, firms must pay fees to the regulator
 
-Marginal abatement costs across firms are equal and we have obtained the given emissions reduction at least-cost
+--
+
+Under subsidies, the regulator pays the firms
+
+--
+
+.hi-blue[The efficiency properties are the same]
 
 ---
 
-# Emission taxes
+# Aggregate marginal abatment cost
 
-If we change the tax rate what do we expect to happen to emissions?
+What the regulator cares about when designing policy is the .hi-blue[aggregate marginal abatement cost]
 
---
-
-Return to the firm FOC:
-`$$-C'_j(e_j) = \tau$$`
-
-and differentate it with respect to `\(\tau\)` and recognize that `\(e_j\)` is a function of `\(\tau\)`:
-`$$-C''_j(e_j) {de_j(\tau) \over d\tau} = 1$$`
+This is the horizontal sum of individual MACs
 
 --
 
-This gives us that: `\({de_j(\tau) \over d\tau} = {1 \over -C''_j(e_j)} &lt; 0\)`: higher taxes lower emissions if MACs are decreasing in emissions
+It reflects the industry's marginal abatement cost when an efficient (i.e. least-cost) policy is implemented
+
+--
+
+Lets develop this formally
 
 ---
 
-# Auctioned pollution permits
+# Aggregate marginal abatment cost
+
+Suppose firms pay a per-unit tax `\(\tau\)`, we know the firm's optimal emission decision is given by:
+`$$C'_j(e_j) = \tau$$`
+with a resulting emission response function `\(e_j(\tau)\)` which we can interpret as the firm's demand for emissions
+
+---
+
+# Aggregate marginal abatment cost
+
+Aggregate demand for emissions is then:
+`$$E(\tau) = \sum_{j=1^J}e_j(\tau)$$`
+
+--
+
+and the .hi-blue[aggregate MAC] is derived by inverting the aggregate demand:
+`$$AMAC = E^{-1}(\cdot)$$`
+
+This allows us to characterize socially optimal emissions in a more direct way
+
+
+---
+
+# Aggregate marginal abatment cost
+
+How do you horizontally sum?
+
+Suppose our two MACs are: `\(MAC_1 = 4-e, MAC_2 = 2-e\)`
+
+--
+
+We first need to invert the MACs: `\(e_1 = 4 - MAC, e_2 = 2 - MAC\)`
+
+--
+
+The sum horizontally: `\(E = 6 - 2\times MAC\)`
+
+--
+
+And re-invert: `\(MAC = 3 - {1 \over 2} E\)`
+
+--
+
+What's the last step?
+
+---
+
+# Aggregate marginal abatment cost
+
+Recall our two MACs are: `\(MAC_1 = 4-e, MAC_2 = 2-e\)`
+
+Recognize that firm 2 can't abatement any more than 2 units, so any emission reductions for prices greater than 2 .hi-red[must] come from firm 1
+
+--
+
+So `\(MAC = 3 - {1 \over 2} E\)` is only defined for `\(P \leq 2, E \geq 4\)`
+
+--
+
+This gives us that:
+`\begin{align}
+AMAC(E) = 
+  \begin{cases}
+    4 - E, &amp; \text{for } 0 \leq E &lt; 2 \\
+    3 - {1 \over 2} E &amp; \text{for } E \geq 2
+  \end{cases}
+\end{align}`
+
+---
+
+# Aggregate MAC
+
+.pull-left[
+
+
+![We care about AMAC for social regulation](4-theory-of-environmental-policy_files/figure-html/agg_mac-1.png)
+]
+
+.pull-right[
+
+The social objective is to minimize the sum of total abatement costs, so we care about where .hi-blue[aggregate MAC] crosses marginal damage
+
+AMAC tells us: at a given price, what is the total quantity we can abatement?
+
+]
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
