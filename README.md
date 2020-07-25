@@ -141,7 +141,22 @@ Some sections of the course have readings (available on Canvas if not in the boo
   - Mixtape: regression discontinuity
   - Chay, K. Y. and Greenstone, M. (2005). Does air quality matter? Evidence from the housing market. Journal of Political Economy, 113(2):pp. 376–424
 
-### [Nov 5: Environmental health, difference-in-differences, and event studies](https://ivanrudik.com)
+### [Nov 5: Climate change](https://ivanrudik.com)
+
+**Reading**: 
+  - Hsiang, S. and Robert Kopp. 2018. An economist's guide to climate change science, Journal of Economic Perspectives, Vol. 32, No. 4, pp. 3-32.
+  - Hsiang, S., 2016. Climate econometrics. Annual Review of Resource Economics, 8, pp.43-75.
+  
+### [Nov 10: Climate change and cross-sectional regressions](https://ivanrudik.com)
+
+**Reading**: Mendelsohn, R., Nordhaus, W.D. and Shaw, D., 1994. The impact of global warming on agriculture: a Ricardian analysis. The American economic review, pp.753-771.
+
+### [Nov 12: Climate change and two way fixed effects](https://ivanrudik.com)
+
+**Reading**: Deschênes, O. and Greenstone, M., 2007. The economic impacts of climate change: evidence from agricultural output and random fluctuations in weather. American Economic Review, 97(1), pp.354-385.
+
+
+### [Nov 12: Environmental health, difference-in-differences, and event studies](https://ivanrudik.com)
 
 **Reading**: 
   - Mixtape: difference-in-differences
@@ -149,28 +164,13 @@ Some sections of the course have readings (available on Canvas if not in the boo
   - Graff Zivin, J. and Neidell, M., 2013. Environment, health, and human capital. Journal of Economic Literature, 51(3), pp.689-730.
   - Currie, J., Zivin, J.G., Mullins, J. and Neidell, M., 2014. What do we know about short-and long-term effects of early-life exposure to pollution? Annual Review Resourse Economics, 6(1), pp.217-247.
   
-### [Nov 10: Environmental health, difference-in-differences, and event studies](https://ivanrudik.com)
+### [Nov 19: Environmental health, difference-in-differences, and event studies](https://ivanrudik.com)
 
 **Reading**:  
   - Mixtape: difference-in-differences
   - [Hollingsworth A. and Rudik, I., 2021. The effect of leaded gasoline on elderly mortality: Evidence from regulatory exemptions. American Economic Journal: Economic Policy.](https://osf.io/preprints/socarxiv/rdy6g/)
   - Graff Zivin, J. and Neidell, M., 2013. Environment, health, and human capital. Journal of Economic Literature, 51(3), pp.689-730.
   - Currie, J., Zivin, J.G., Mullins, J. and Neidell, M., 2014. What do we know about short-and long-term effects of early-life exposure to pollution? Annual Review Resourse Economics, 6(1), pp.217-247.
-
-
-### [Nov 12: Climate change](https://ivanrudik.com)
-
-**Reading**: 
-  - Hsiang, S. and Robert Kopp. 2018. An economist's guide to climate change science, Journal of Economic Perspectives, Vol. 32, No. 4, pp. 3-32.
-  - Hsiang, S., 2016. Climate econometrics. Annual Review of Resource Economics, 8, pp.43-75.
-  
-### [Nov 17: Climate change and cross-sectional regressions](https://ivanrudik.com)
-
-**Reading**: Mendelsohn, R., Nordhaus, W.D. and Shaw, D., 1994. The impact of global warming on agriculture: a Ricardian analysis. The American economic review, pp.753-771.
-
-### [Nov 19: Climate change and two way fixed effects](https://ivanrudik.com)
-
-**Reading**: Deschênes, O. and Greenstone, M., 2007. The economic impacts of climate change: evidence from agricultural output and random fluctuations in weather. American Economic Review, 97(1), pp.354-385.
 
 ### [Nov 24: Deforestation, remote sensing, and simple features](https://ivanrudik.com)
 
