@@ -125,7 +125,7 @@ Some sections of the course have readings (available on Canvas if not in the boo
 
 **Reading**: 
   - Mixtape: properties of regression, directed acyclical graphs, potential outcomes causal model
-  - Allcott, H. and Rogers, T., 2014. The short-run and long-run effects of behavioral interventions: Experimental evidence from energy conservation. American Economic Review, 104(10), pp.3003-37.
+  - Guiteras, Raymond, James Levinsohn, and Ahmed Mushfiq Mobarak. "Encouraging sanitation investment in the developing world: a cluster-randomized trial." Science 348, no. 6237 (2015): 903-906.
   
 ### [Oct 29: Hedonics and regression discontinuity](https://ivanrudik.com)
 
