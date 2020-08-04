@@ -54,7 +54,7 @@ knitr::opts_chunk$set(echo = TRUE, fig.align="center")
 What happens when the regulator has imperfect information about:
   - Marginal abatement costs?
   - Marginal damages?
-  
+
 So we far have assumed perfect information which is unlikely to be true
 
 We will continue assuming that firm's know their own marginal abatement cost
@@ -187,7 +187,7 @@ What did we learn?
 
 --
 
-With damage function uncertainty,  
+With damage function uncertainty,
 the regulator will set the incorrect level of policy
 
 --
@@ -195,10 +195,10 @@ the regulator will set the incorrect level of policy
 If she underestimates MD:
   - She sets the total number of permits too high
   - She sets too low of a tax
-  
+
 --
 
-Both lead to the exact same welfare loss  
+Both lead to the exact same welfare loss
 so both policies have the same efficiency
 
 ---
@@ -224,7 +224,7 @@ What is the welfare loss from targeting `\(\tilde{E}\)` instead of `\(E^*\)`?
 
 ---
 
-# Abatement cost function uncertainty 
+# Abatement cost function uncertainty
 
 
 .pull-left[
@@ -247,7 +247,7 @@ Firm behavior sets the price even though quantity is fixed by the regulator
 
 ---
 
-# Abatement cost function uncertainty 
+# Abatement cost function uncertainty
 
 
 .pull-left[
@@ -266,7 +266,7 @@ Firm behavior sets the quantity even though price is fixed by the regulator
 
 ---
 
-# Abatement cost function uncertainty 
+# Abatement cost function uncertainty
 
 
 .pull-left[
@@ -283,7 +283,7 @@ Is there any systematic difference in the efficiency properties of permits and t
 
 ---
 
-# Abatement cost function uncertainty 
+# Abatement cost function uncertainty
 
 
 In general it seems like sometimes the welfare loss of taxes will be higher, and other times the welfare losses of permits will be higher
@@ -316,6 +316,57 @@ Welfare loss for taxes is given by `\(A\)`, welfare loss for permits is given by
 Permits do better with steep MD, taxes do better with flat MD!
 
 Why?
+
+
+---
+
+# Steep versus flat MD
+
+With a steep (and known) MD:
+  - The difference between `\(E^*\)` and `\(\tilde{E}\)` is restricted: steeper curves are more inelastic, errors in estimating MAC lead to small errors in `\(\tilde{E}-E^*\)`
+  - The difference between `\(E^*\)` and `\(E(\tau)\)` can be very large: errors in estimating the MAC lead to bigger errors in `\(\tau(\tilde{E}) - \tau(E^*)\)` because MD is very steep
+
+
+---
+
+# Steep versus flat MD
+
+With a flat (and known) MD:
+  - The difference between `\(E^*\)` and `\(\tilde{E}\)` is can be very large: flatter curves are more elastic, errors in estimating MAC lead to large errors in `\(\tilde{E}-E^*\)`
+  - The difference between `\(E^*\)` and `\(E(\tau)\)` is restricted: errors in estimating the MAC lead to smaller errors in `\(\tau(\tilde{E}) - \tau(E^*)\)` because MD is very flat
+
+---
+
+# The Weitzman theorem
+
+So far we've focused on the intuition, now lets formalize the results
+
+--
+
+Let the damage function be `\(D(E,\eta)\)` where `\(\eta\)` is a random variable representing the regulator's uncertainty about the damage function
+
+--
+
+We assume `\(D_E, D_{EE} &gt; 0\)`, and that `\(D_\eta, D_{E\eta} &gt; 0\)`
+
+--
+
+Increases in `\(\eta\)` shift up the damage and marginal damage curves
+
+---
+
+# The Weitzman theorem
+
+
+Let the abatement cost function be `\(C(E,\epsilon)\)` where `\(\epsilon\)` is a random variable representing the regulator's uncertainty about the abatement cost function
+
+--
+
+We assume `\(-C_E &gt; 0, -C_{EE} &gt; 0\)`, and that `\(-C_\epsilon, -C_{E\epsilon} &gt; 0\)`
+
+--
+
+Increases in `\(\epsilon\)` shift up the total and marginal abatement cost curves
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

@@ -1,0 +1,1070 @@
+---
+title: "Lecture 6"
+subtitle: "Competitive output markets"
+author: Ivan Rudik
+date: AEM 6510
+output:
+  xaringan::moon_reader:
+    css: ['default', 'metropolis', 'metropolis-fonts', 'my-css.css']
+    # self_contained: true
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: '16:9'
+
+
+---
+exclude: true
+```{r setup}
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(
+  tidyverse, tidylog, xaringanExtra, rlang, patchwork
+)
+options(htmltools.dir.version = FALSE)
+knitr::opts_hooks$set(fig.callout = function(options) {
+  if (options$fig.callout) {
+    options$echo <- FALSE
+  }
+knitr::opts_chunk$set(echo = TRUE, fig.align="center")
+  options
+})
+```
+```{r xaringanExtra, echo = FALSE}
+xaringanExtra::use_xaringan_extra(c("tile_view", "panelset", "webcam"))
+
+```
+```{r echo=FALSE}
+xaringanExtra::style_panelset(panel_tab_color_active = "red")
+```
+
+---
+
+# Roadmap
+
+So far we have ignored output markets in our analysis
+
+--
+
+But firms actually have production costs in addition to abatement costs, and sometimes these costs cannot be disentangled
+
+--
+
+Now we explore models where output and abatement may not be separable
+
+This captures a wider range of potential abatement methods and technologies
+
+---
+
+# The competitive output model
+
+This model is simply an extension of our previous one
+
+For now drop firm-specific subscripts but we assume firms are asymmetric
+
+--
+
+A firm's production technology is given by: 
+$$x = f(l_1,\dots,l_K)$$
+where $x$ is how many units of output are produced using production function $f$ and vector of inputs $\{l_1,\dots,l_K\}$
+
+---
+
+# The competitive output model
+
+
+A firm's emission technology is given by: 
+$$e = g(l_1,\dots,l_K)$$
+where $e$ is how many units of emissions resulting from using the vector of inputs $\{l_1,\dots,l_K\}$
+
+--
+
+Note that the marginal product of $l_k$ for either $f$ or $g$ could be positive, negative, or zero
+
+--
+
+Why?
+
+--
+
+An input that reduces emissions could reduce output, output-enhancing inputs could increase emissions or be emission-neutral
+
+---
+
+# The competitive output model
+
+Next we need the cost functions
+
+The cost function $C(x,e)$ is derived from the firm's cost minimization problem:
+$$C(x,e) = \min_{l_1,\dots,l_k} \left\{ \sum_{k=1}^K w_k l_k + \lambda \left[ x - f(l_1,\dots,l_K) \right] + \mu\left[e-g(l_1,\dots,l_K)\right] \right\}$$
+where $\{w_1,\dots,w_K\}$ is a vector of input prices
+
+
+---
+
+# The competitive output model
+
+We need two sets of assumptions to continue
+
+## Assumption set 1
+
+- $C(x,e)$ is twice continuously-differentiable with $C_x > 0$ and for any $x$ there is an emission level $\hat{e}^x$ such that $C_e(x,\hat{e}^x) = 0$
+- $C_e(x,\hat{e}^x) < 0 \,\,\, \forall e < \hat{e}^x$
+- $C_e(x, \hat{e}^x) \geq 0 \,\,\, \forall e \geq \hat{e}^x$
+- $C_{xe} = C_{ex} < 0 \,\,\, \forall e < \hat{e}^x$ | $x$ and $e$ are 
+- $C_{xx} > 0, C_{ee} > 0, C_{xx}C_{ee} - C_{ex}^2 > 0$   ( $C$ is strictly convex)
+
+---
+
+# The competitive output model
+
+What do these tell us?
+
+- MC is positive
+- There is a cost-minimizing emission level $\hat{e}^x$ for all $x$ in the absense of environmental regulation
+- MC of production is smaller with higher emissions
+- MAC shifts up if output rises
+- The non-regulated emission level $\hat{e}^x$ rises with $x$:
+
+Totally differentiate $C_e(x, \hat{e}^x)$ to get $C_{ee}(x,\hat{e}^x)d\hat{e}^x + C_{ex}(x,\hat{e}^x)dx = 0$
+
+Rearrange to get: ${d\hat{e}^x \over dx} = - {C_{ee} \over C_{ex}} > 0$
+
+---
+
+# The competitive output model
+
+## Assumption set 2
+
+We will be directly linking emissions to output so we make these assumptions:
+
+- Cost function $C(x)$ is twice continuously-differentiable
+- $C'(x) > 0, C''(x) > 0$
+- Emissions are given by $e = \delta(x)$ where $\delta'(x) > 0$
+- In some cases we will assume $\delta(x) = \delta \cdot x$ to simplify
+
+---
+
+# The competitive output model
+
+What do these tell us?
+
+The MAC function is tired directly to the firm's marginal profit
+
+--
+
+If $p$ is the output price of $x$, profit is:
+$$\Pi = px - c(x)$$
+and if $e = \delta x$ we have that:
+$${d \Pi \over de} = {p - C'(e/\delta) \over \delta}$$
+
+---
+
+# The competitive output model
+
+At an unregulated optimum it must be that $p - C'(x) = 0$ so $p - C'(\hat{e}^x/\delta)$ defines the unregulated level of emissions
+
+--
+
+For $e < \hat{e}^x$: $p - C'(e/\delta) > 0$ since $\hat{e}^x$ is privately optimal for the firm
+
+Thus ${d \Pi \over de}$ is the marginal abatement cost where ${d \Pi \over de} > 0$ for $e < \hat{e}^x$
+
+The MC of abatement is the MC of forgone profits from reducing emissions
+
+--
+
+We can also see that the MAC is increasing:
+$${d^2 \Pi \over de^2} = {C''(e/\delta) \over \delta^2} \geq 0$$
+
+---
+
+# The competitive output model
+
+Next we need to model the demand side of the market
+
+Let consumer utility be:
+$$U^i = U_i(x_i) + z_i - D_i(E)$$
+where $x_i$ is the person's consumption level, $z_i$ is spending on all other non- $x$ goods, $D_i(E)$ are damages from aggregate emissions $E$, and there are $i=1,\dots,J$ consumers
+
+---
+
+# The competitive output model
+
+The consumer has a budget constraint:
+$$y = px_i + z_i$$
+where the price of $z_i$ is normalized to 1, $p$ is the price of $x$ in terms of $z$
+
+--
+
+Utility maximization gives us that $u'_i(x_i) = p$
+
+--
+
+This defines the inverse demand for $x$ as: $p_i(x_i) = u'_i(x_i)$
+
+--
+
+We can then derive gross benefits from consumption: $\int_0^{x_i} u'_i(s)ds =  u_i(x_i)$
+
+---
+
+# The competitive output model
+
+Next we want to derive .hi-blue[aggregate] market benefits
+
+--
+
+Let $X = \sum_{i=1}^I x_i$ be aggregate consumption,  $P(X)$ be the market inverse demand curve, and $D(E)$ be the aggregate damage curve
+  - You get $P(X)$ by just horizontally summing $p_i(x_i)$ like we did in previous classes
+
+--
+
+$P(X)$ and $D(E)$ allow us to .hi-blue[fully] characterize benefits and damages to households
+  
+---
+
+# The competitive output model
+
+Now we have both sides of our model, next we need to define .hi-blue[social welfare] so we can find efficient outcomes
+
+--
+
+Social welfare in the general case is given by:
+$$W(x_1,\dots,x_J,e_1,\dots,e_J) \equiv \int_0^{X\equiv\sum x_j} P(s)ds - \sum_{j=1}^J C^j(x_j, e_j) - D(E)$$
+where $j$ are specific firms, and household costs and firm revenues cancel out because they are just a transfer from households to firms
+
+---
+
+# The competitive output model
+
+Social welfare in the specific case when $e_j = \delta_j(x_j)$ is given by:
+$$W(x_1,\dots,x_J) \equiv \int_0^{X\equiv\sum x_j} P(s)ds - \sum_{j=1}^J C^j(x_j) - D(E)$$
+
+where $E = \sum_{j=1}^J \delta_j(x_j)$
+
+--
+
+Now we can derive the efficiency conditions for our model to understand what defines the optimal allocation
+
+---
+
+# The competitive output model: Efficiency
+
+Begin with the general case, the FOCs are defined by: $\partial W / \partial x_j$ and $\partial W / \partial e_j$ which yield:
+$${\partial W\over\partial x_j} = P(X) - C^j_{x_j}(x_j, e_j) \rightarrow P(X) = C^j_{x_j}(x_j, e_j)$$
+where ${\partial \over \partial x_j} \int_0^{X\equiv\sum x_j} P(s)ds = P(\sum x_j) = P(X)$ by the fundamental theorem of calculus, and
+$${\partial W\over\partial e_j} = C^j_{e_j}(x_j,e_j) + D'(E) \rightarrow D'(E) = -C^j_{e_j}(x_j,e_j)$$
+
+These $2J$ equations give us the solutions $x^*_j, e^*_j$ for $j=1,\dots,J$
+
+---
+
+# The competitive output model: Efficiency
+
+The conditions are pretty straightforward, right?
+
+- $P(X) = C^j_{x_j}(x_j, e_j)$ tells us that marginal benefit of consumption must equal marginal cost of consumption
+- $D'(E) = -C^j_{e_j}(x_j,e_j)$ tells us that marginal abatement cost must equal marginal damage
+
+For efficiency, we need to balance the environmental and production costs of producing the good with the benefits of consuming it
+
+---
+
+# The competitive output model: Efficiency
+
+The specific case can give us some more insight
+
+Here only the $x_j$s are choice variables so we get the following FOCs:
+$$P(X) = C'_j(x_j) + D'(E)\delta_j'(x_j) \,\,\,\, j=1,\dots,J$$
+
+The left hand side the marginal benefit of consumption
+
+The right hand side is the total marginal cost:
+  - Private production costs
+  - External damage costs
+  
+  
+---
+
+# Efficiency in the specific case
+
+
+.pull-left[
+```{r uncertain_damages_permit, echo = FALSE, fig.show = 'hide', warning = F}
+damage_1 <- function(x) 0 + x/2
+damage_2 <- function(x) 1 + x
+damage_3 <- function(x) 1 + 3*x/2
+abatement_cost <- function(x) 5 - x
+intersections_1 <- tibble(x = c(0, 2, 2, 8/5, 2, 8/5),
+                        y = c(2, 3, 0, 17/5, 2, 0))
+polys_dwl <- tibble(x = c(2, 3, 3),
+                     y = c(3, 4, 2))
+ggplot() +
+  annotate("segment", x = intersections_1$x[1], xend = intersections_1$x[5],
+           y = intersections_1$y[2], yend = intersections_1$y[2],
+           linetype = "dashed", size = 1, color = "black") +
+  annotate("segment", x = intersections_1$x[2], xend = intersections_1$x[3],
+           y = intersections_1$y[2], yend = intersections_1$y[3],
+           linetype = "dashed", size = 1, color = "black") +
+  annotate("segment", x = intersections_1$x[4], xend = intersections_1$x[6],
+           y = intersections_1$y[4], yend = intersections_1$y[6],
+           linetype = "dashed", size = 1, color = "black") +
+  annotate("segment", x = intersections_1$x[1], xend = intersections_1$x[4],
+           y = intersections_1$y[4], yend = intersections_1$y[4],
+           linetype = "dashed", size = 1, color = "black") +
+  stat_function(fun = damage_1, color = "#ca5670", size = 1.5) +
+  stat_function(fun = damage_2, color = "#ca5670", size = 1.5) +
+  stat_function(fun = damage_3, color = "#ca5670", size = 1.5) +
+  stat_function(fun = abatement_cost, color = "darkslateblue", size = 1.5) +
+  annotate("text", size = 8, label = "A", x = 2.6, y = 3) +
+  annotate("text", size = 8, label = expression(delta*D*minute (delta*X)), x = 4, y = 2.5) +
+  annotate("text", size = 8, label = expression(C*minute (X)), x = 3, y = 4.5) +
+  annotate("text", size = 8, label = expression(P(E)), x = 4.5, y = 1) +
+  annotate("text", size = 8, label = expression(C*minute (X) + delta*D*minute (delta*X)), x = 1.5, y = 4.75) +
+  theme_minimal()  +
+  theme(
+    legend.position = "none",
+    title = element_text(size = 24),
+    axis.text.x = element_text(size = 18, color = "black"),
+    axis.text.y = element_text(size = 18, color = "black"),
+    axis.title.x = element_text(size = 24), axis.title.y = element_text(size = 24),
+    panel.grid.minor.x = element_blank(), panel.grid.major.y = element_blank(),
+    panel.grid.minor.y = element_blank(), panel.grid.major.x = element_blank(),
+    panel.background = element_rect(fill = "#eeeeee", colour = NA),
+    plot.background = element_rect(fill = "#eeeeee", colour = NA),
+    axis.line = element_line(colour = "black")
+  ) +
+  labs(x = "Output",
+       y = "MC/MD ($)",
+       title = "Efficient allocation in\nthe specific case") +
+  scale_x_continuous(expand = c(0, 0), limits = c(0, 5),
+                     breaks = c(intersections_1$x[2], intersections_1$x[4]), labels = expression(X^c, X^"*")) +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 5),
+                     breaks = c(intersections_1$y[2], intersections_1$y[4]), labels = expression(P^c, P^"*"))
+
+```
+
+![aggregate efficiency sets SMC = SMB](`r knitr::fig_chunk("uncertain_damages_permit", "png")`)
+]
+
+.pull-right[
+$X^c$ is the competitive allocation, this results in:
+   - Too much production
+   - Too low of an output price
+
+$X^*$ is the optimal allocation where SMB = SMC
+   - This results in less production than the competitive allocation at a higher price
+ 
+]
+
+
+---
+
+# Efficiency in the specific case
+
+
+.pull-left[
+![aggregate efficiency sets SMC = SMB](`r knitr::fig_chunk("uncertain_damages_permit", "png")`)
+]
+
+.pull-right[
+
+ Where do the aggregate curves come from?
+ 
+ We get aggregate private MC $C'(X) = \sum_{j=1}^J C'_j(x_j)$ by *horizontally* summing firm MCs
+ 
+ We get SMC by *vertically* summing PMC and MD
+ 
+]
+
+---
+
+# Policy instruments
+
+Now we will take another look at our environmental policy instruments in this more general model
+
+We will see that:
+  - There are additional results related to the output market that we didn't have before
+  - The previous results all still hold: taxes, subsidies, permits can all achieve the efficient allocation
+  
+---
+
+# Policy instruments: taxes
+
+When facing an emission tax $\tau$ a competitive firm's problem in the general case is:
+$$\Pi_j(x_j, e_j) = p x_j - C^j(x_j,e_j) - \tau e_j$$
+where $p$ is the market price of $x$
+
+The firm's FOCs are:
+\begin{align}
+  p &= C'_{x_j}(x_j,e_j) \\
+  \tau &= -C'_{e_j}(x_j,e_j)
+\end{align}
+
+---
+
+# Policy instruments: taxes
+
+The firm's FOCs are:
+\begin{align}
+  p &= C'_{x_j}(x_j,e_j) \\
+  \tau &= -C'_{e_j}(x_j,e_j)
+\end{align}
+
+The firm equates MR to MC of production
+
+The firm equates the marginal abatement cost to the tax level
+
+So if the regulator sets $\tau = D'(E^*)$ we can achieve the efficient allocation
+
+---
+
+# Policy instruments: taxes
+
+When facing an emission tax $\tau$ a competitive firm's problem in the *specific* case is:
+$$\Pi_j(x_j, e_j) = p x_j - C^j(x_j) - \tau \delta_j x_j$$
+with FOC:
+$$p = C'_j(x_j) - \tau \delta_j$$
+
+If the regulator sets $\tau = D'(E^*)$ then firms behave as if
+$$P(X) = C'_j(x_j) - \delta_j D'(E^*)$$
+which matches our social efficiency condition
+
+---
+
+# Comparative statics
+
+Now that we have an output market in our model we can study how taxes influence it
+
+To start we will assume all firms are identical and we are in the specific case of the model so our profit-maximizing firm FOC is:
+$$P(X) = C'(x) + \delta\tau$$
+where $X = x\cdot J$
+Differentiate with respect to $\tau$ to get how output and emissions respond to a change in the tax rate
+
+---
+
+# Comparative statics
+
+$$\left[P'(X)J - C''(x)\right]{dx\overd\tau} = \delta$$
+which implies that:
+$${dx\over d\tau} = {\delta \over P'(X)J - C''(x)} < 0$$
+and ${dX\over d\tau} = J{dx\over d\tau} < 0$  
+
+---
+
+# Comparative statics
+
+With $E = \delta \cdot X$ we have how emissions respond to the tax:
+$${dE\over d\tau} = {\delta \over P'(X)J - C''(x)} < 0$$
+and since $p = P(X)$ is the market price of output, we can determine the relationship between output prices and the tax:
+$${dp\over d\tau} = P'(X){d X \over d\tau} > 0$$
+
+---
+
+# Comparative statics
+
+What do the comparative statics tell us?
+
+Output and emissions decline in the tax:
+  - A tax on emissions raises the marginal cost of production for firms
+  - Supply shifts left
+  - Price goes up, quantity goes down
+  
+---
+
+# Comparative statics
+
+The .hi-blue[incidence] of the tax is also made clear by:
+$${dp\over d\tau} = P'(X){d X \over d\tau} > 0$$
+
+If $P'(X)$ is small, demand is elastic (flat), and consumers have low incidence because the price they pay does not change much in the tax, firms bear most of the cost of the tax
+  - If demand is perfectly elastic $P'(X) = 0$ and there is no associated price increase from a tax increase
+
+---
+
+# Comparative statics
+
+The .hi-blue[incidence] of the tax is also made clear by:
+$${dp\over d\tau} = P'(X){d X \over d\tau} > 0$$
+
+If $P'(X)$ is large, demand is inelastic, and consumers have high incidence because the price they pay for $x$ increases substantially in the tax, firms pass-through most of the tax to consumers
+  - If demand is perfectly inelastic, then consumers bear the entire cost of the tax
+  
+---
+
+# Comparative statics: taxes recap
+
+What did we learn?
+
+Increasing a tax:
+1. Decreases firm and aggregate emission levels
+2. Decreases firm and aggregate output (even in the general case, see the book)
+3. Increases output prices
+
+---
+
+# Policy instruments: permits
+
+Now suppose the regulator issues $L=E^*$ permits instead of setting a tax
+
+The regulator knows that the permit price that clears the permit market will be $\sigma(L) = \sigma(E^*) = D'(E^*)$
+
+--
+
+Similarly, the output price will then be $p = P(X^*)$
+
+--
+
+The regulator can achieve the first-best efficient outcome
+
+---
+
+# Policy instruments: permits
+
+Auctioned versus freely-distributed permits are equivalent in this model in terms of .hi-red[efficiency]
+
+--
+
+The permit price in the market will match the price that clears the auction
+
+--
+
+Output prices will also be the same because all firm and consumer decisions will be identical
+
+--
+
+The one way they will be different is how the .hi-blue[rents] are distributed: who gets the value from the scarcity of permits, the firms or the government?
+
+
+---
+
+# Distribution of rents in permit markets
+
+
+.pull-left[
+```{r permits_rents, echo = FALSE, fig.show = 'hide', warning = F}
+damage_1 <- function(x) 0 + x/2
+damage_2 <- function(x) 2 + x/2
+abatement_cost <- function(x) 5 - x
+intersections_1 <- tibble(x = c(0, 2, 2, 10/3, 2, 10/3),
+                        y = c(2, 3, 0, 5/3, 2, 0))
+polys_rent <- tibble(x = c(0, 2, 2, 0),
+                     y = c(1, 1, 3, 3))
+ggplot() +
+  geom_polygon(data = polys_rent, aes(x = x, y = y), fill = "red", alpha = 0.2) +
+  annotate("segment", x = intersections_1$x[1], xend = intersections_1$x[5],
+           y = intersections_1$y[2], yend = intersections_1$y[2],
+           linetype = "dashed", size = 1, color = "black") +
+  annotate("segment", x = polys_rent$x[1], xend = polys_rent$x[2],
+           y = polys_rent$y[2], yend = polys_rent$y[2],
+           linetype = "dashed", size = 1, color = "black") +
+  annotate("segment", x = intersections_1$x[2], xend = intersections_1$x[3],
+           y = intersections_1$y[2], yend = intersections_1$y[3],
+           linetype = "dashed", size = 1, color = "black") +
+  annotate("segment", x = intersections_1$x[4], xend = intersections_1$x[6],
+           y = intersections_1$y[4], yend = intersections_1$y[6],
+           linetype = "dashed", size = 1, color = "black") +
+  annotate("segment", x = intersections_1$x[1], xend = intersections_1$x[4],
+           y = intersections_1$y[4], yend = intersections_1$y[4],
+           linetype = "dashed", size = 1, color = "black") +
+  stat_function(fun = damage_1, color = "#ca5670", size = 1.5) +
+  stat_function(fun = damage_2, color = "#ca5670", size = 1.5) +
+  stat_function(fun = abatement_cost, color = "darkslateblue", size = 1.5) +
+  annotate("text", size = 8, label = "A", x = 2.6, y = 3) +
+  annotate("text", size = 8, label = expression(C*minute (X) + sigma), x = 2.9, y = 4.75) +
+  annotate("text", size = 8, label = expression(P(X)), x = 4.5, y = 1) +
+  annotate("text", size = 8, label = expression(C*minute (X)), x = 4, y = 2.55) +
+  theme_minimal()  +
+  theme(
+    legend.position = "none",
+    title = element_text(size = 24),
+    axis.text.x = element_text(size = 18, color = "black"),
+    axis.text.y = element_text(size = 18, color = "black"),
+    axis.title.x = element_text(size = 24), axis.title.y = element_text(size = 24),
+    panel.grid.minor.x = element_blank(), panel.grid.major.y = element_blank(),
+    panel.grid.minor.y = element_blank(), panel.grid.major.x = element_blank(),
+    panel.background = element_rect(fill = "#eeeeee", colour = NA),
+    plot.background = element_rect(fill = "#eeeeee", colour = NA),
+    axis.line = element_line(colour = "black")
+  ) +
+  labs(x = "Output and Emissions",
+       y = "MC and P ($)",
+       title = "Rent distribution\nunder permits") +
+  scale_x_continuous(expand = c(0, 0), limits = c(0, 5),
+                     breaks = c(intersections_1$x[2], intersections_1$x[4]), labels = expression(X^"*", X^c)) +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 5),
+                     breaks = c(intersections_1$y[2], intersections_1$y[4]), labels = expression(P^"*", P^c))
+
+```
+
+![scarcity rents are distributed to firms or the government depending on the permit allocation scheme](`r knitr::fig_chunk("permits_rents", "png")`)
+]
+
+.pull-right[
+Assume $x = \delta e$ and $\delta=1$ so we can plot them on the same scale
+
+The red shaded area is the rents from the permit scheme
+
+If freely allocated: they remain with firms
+
+If auctioned: they go to the government as revenue
+]
+
+---
+
+# Relative/intensity standards
+
+A common form of standards is called .hi-red[relative standards]
+
+Relative standards regulate firms based on the concentration of pollution relative to some measurable output
+
+A relative standard would look something like:
+$$ e/x \leq \alpha$$
+or equivalently: $e \leq \alpha x$
+where $\alpha$ is the policy variable
+
+Relative standards are often called intensity standards because $e/x$ measures the pollution intensity of output
+
+---
+
+# Relative/intensity standards
+
+Relative standards are only interesting in the general case of our model, in the specific case:
+- If $\delta > \alpha$, the firm has to shut down
+- If $\delta \leq \alpha$, the firm complies with the regulation no matter its actions
+
+Assume the regulation is binding (i.e. it actually affects firm behavior), then the firm will always set $e = \alpha x$
+
+This lets us re-write a firm's profit function as:
+$$\Pi(x) = px - C(x, \alpha x)$$
+
+---
+
+# Relative/intensity standards
+
+$$\Pi(x) = px - C(x, \alpha x)$$
+
+If the regulation is binding, the firm really is only choosing one variable, $x$
+
+The FOC is:
+$$p = C_x(x,\alpha x) + \alpha C_e(x, \alpha x)$$
+
+The implicit solution to this, $x(\alpha)$, is the firms supply function
+
+---
+
+# Relative standards vs quantity standards
+
+Suppose the regulator wants to hit $e = \bar{e}$ and she knows $x(\alpha)$
+
+All the regulator has to do is set $\alpha = \bar{e}/x(\alpha)$
+
+--
+
+Now suppose the firm just uses a quantity standard and directly sets $e = \bar{e}$
+
+--
+
+The firm's profit function is:
+$$\Pi(x,\bar{e}) = px - C(x,\bar{e})$$
+and the firm's supply $x(\bar{e})$ is defined by $p = C_x(x,\bar{e})$
+
+If the regulator chooses $\bar{e} = e^*$ the regulator can achieve the efficient outcome
+
+---
+
+# Relative standards vs quantity standards
+
+Recall the relative standard FOC if we wanted to set $e = \bar{e}$:
+$$p = C_x(x(\alpha),\bar{e}) + \alpha C_e((\alpha), \bar{e})$$
+and notice that this means that:
+$$p - \alpha C_e(x(\alpha), \bar{e}) = C_x(x(\alpha), \bar{e}) > p$$
+since $-C_e$ is positive
+
+--
+
+What does this mean?
+
+---
+
+# Relative standards vs quantity standards
+
+This means that:
+$$C_x(x(\alpha), \bar{e}) > C_x(x(\bar{e}), \bar{e})$$
+
+--
+
+It follows pretty simply that: $x(\alpha) > x(\bar{e})$ and that:
+- $C(x(\alpha), \bar{e}) > C(x(\bar{e}), \bar{e})$ since $C_{xx} > 0$
+- $-C_e(x(\alpha), \bar{e}) > -C_e(x(\bar{e}), \bar{e})$ since $C_{ex} < 0$
+
+Total cost **and** marginal cost are higher under a relative standard
+
+---
+
+# Relative standards vs quantity standards
+
+Takeaways:
+
+If a regulator sets an emission goal of $\bar{e}$ for a single firm or $J$ firms, then a relative standard will lead to:
+- higher output
+- higher total cost
+- higher marginal abatement cost
+relative to a quantity standard
+
+--
+
+Why?
+
+---
+
+# Relative standards vs quantity standards
+
+How can the firm achieve compliance under a relative standard $(e/x \leq \alpha)$?
+
+--
+
+Two ways:
+
+--
+
+1. Decrease emissions $e$
+2. Increase output $x$
+
+Relative standards allow the firm to meet the standard in ways we don't want them to so we end up with too much output
+
+This limits us to .hi-blue[second-best] outcomes
+
+---
+
+# Relative standards: optimal policy
+
+If we need to use a relative standard due to political or technical reasons what standard should we set to maximize welfare?
+
+The regulator's problem is:
+$$W(\alpha) = \int_{0}^{x(\alpha)} P(t) dt - C(x(\alpha), \alpha x(\alpha)) - D(\alpha x( \alpha))$$
+The FOC is:
+$$[P - C_x - \alpha C_e] x'(\alpha) - C_e x - D' \times [x + \alpha x'(\alpha)] = 0$$
+where the term in the first bracket is 0 from the firm's FOCs
+
+---
+
+# Relative standards: optimal policy
+
+This gives us that:
+$$- C_e  ={x + \alpha x'(\alpha) \over x } D'$$
+
+--
+
+$x'(\alpha)$ tells us how output responds to policy and its sign tells us whether MAC $>$ MD or vice versa
+
+Suppose $x'(\alpha) > 0$, then the second best policy sets MAC $>$ MD:
+
+The second-best quantity of emissions is lower than the first-best / optimal level that sets MAC = MD
+
+
+---
+
+# Environmental policy in the long run
+
+So far we have assumed a fixed number of firms $J$
+
+In the long run, firms may enter or exit the market, and this may affect the efficiency properties of our policies
+
+--
+
+Econ 101 tells us that in perfectly competitive markets:
+
+--
+
+- Firms are identical
+- Firms enter or exit until profits are driven to zero
+- Firms produce at minimum average cost
+- Optimal number of firms is endogenous (usually)
+
+We will now look at long run properties of policy with identical firms
+
+---
+
+# Environmental policy in the long run
+
+In the long run, firms have fixed and variable costs:
+\begin{align}
+C(x,e) = \begin{cases}
+VC(x,e) + F \text{  if  } x,e \neq 0 \\
+0  \text{  if  } x,e = 0 
+\end{cases} \\
+\end{align}
+
+where $F$ is the fixed cost of entry, and $VC$ denotes variable costs of operation
+
+--
+
+In the long run, social welfare will depend on $x,e$ .hi-blue[and the number of firms] $J$
+
+---
+
+# Environmental policy in the long run
+
+Social welfare is given by:
+$$W(x,e,J) = \max_{x,e,J} \int_0^{x\cdot J} P(t) dt - J\cdot C(x,e)-D(e\cdot J)$$
+
+The FOCs for a social optimum are:
+\begin{align}
+P(X^*) =& C_x(x^*,e^*) \\
+D'(E^*) =& -C_e(x^*,e^*) \\
+P(X^*)x^* =& C(x^*,e^*) + D'(E^*)e^*
+\end{align}
+
+The last expression is the new one for long-run efficiency
+
+---
+
+# Environmental policy in the long run
+
+With some slight rearranging we can get:
+$$P(X^*) = { C(x^*,e^*) + D'(E^*)e^*\over x^*}$$
+
+What does this say?
+
+--
+
+First, for a small firm, $D'(E^*)e^*$ is approximately the damage caused by that firm because for sufficiently small $e^*$, $D'(E^*)$ will be approximately constant (Taylor expansion argument)
+
+--
+
+This means that it is socially efficient for firms to enter or exit until the price of output equals the .hi-blue[average social cost curve]
+
+---
+
+# Standards in the long run
+
+In the short run we had that standards were equivalent to taxes and tradable permits
+
+Is this true in the long run?
+
+--
+
+Suppose the regulator wants to cap total emissions at $E^*$
+
+--
+
+She sets an emission standard $e^* = E^*/J^*$ for all firms where $J^*$ is the optimal long run number of firms
+
+--
+
+Firms can now only choose $x$ since $e$ is fixed at $e^*$
+
+---
+
+# Standards in the long run
+
+Firms choose output according to:
+$$p = C_x(x,e^*)$$
+
+--
+
+In the long run equilibrium we will have $\hat{J}$ firms all producing $\hat{x}$ units of output such that:
+\begin{align}
+  &P(\hat{x}\hat{J}) = C_x(\hat{x},e^*) \\
+  &P(\hat{x}\hat{J})\hat{x} - C(\hat{x},e^*) = 0
+\end{align}
+
+MR = MC, and zero profits are our two equilibrium conditions
+
+What do these tell us about standards and efficiency?
+
+---
+
+# Standards in the long run
+
+Recall that long run efficiency required that:
+$$P(X^*)x^* - C(x^*,e^*) = D'(E^*)e^* > 0$$
+so we have that $\hat{J} \neq J^*$ and $\hat{x} \neq x^*$!
+
+What's the intuition?
+
+When we impose a standard:
+1. Firms cut back output
+2. This raises marginal profit above zero: MR > MC!
+3. Firms enter the market so $\hat{J} > J^*$ and we will have that $\hat{x} < x^*$
+
+---
+
+# Standards in the long run
+
+This is important!
+
+--
+
+Conventional wisdom tells us that taxes and permits are only better to use than standards because they equate MACs across firms (achieving least-cost) without requiring knowledge of MACs
+
+--
+
+This is only true in the short run
+
+--
+
+In the long run, standards do not appropriate the damage to the environment $D'(E^*)e^*$ from firms, so we get .hi-red[excess entry] and standards are no longer first-best
+
+---
+
+# Taxes in the long run
+
+Can taxes achieve the efficient outcome in the long run?
+
+--
+
+Yes and it is pretty easy to see, suppose the regulator sets a tax of:
+$$\tau = D'(E^*)$$
+
+--
+
+Firm profit is then:
+$$\Pi = px - C(x,e) - \tau e$$
+Giving us FOCs:
+$$p = C_x(x^*,e^*) \qquad -C_e(x^*,e^*) = \tau$$
+
+---
+
+# Taxes in the long run
+
+In the long run firms enter until profits are zero so:
+$$\Pi = P(X^*)x^* - C(x^*,e^*) - \tau e^* = 0$$
+so $\tau = D'(E^*)$ implies that
+$$P(X^*)x^* = C(x^*,e^*) + D'(E^*)e^*$$
+
+The firm FOCs for production and the entry zero-profit condition map exactly to the social welfare maximizing conditions!
+
+The payment of rents from the firms to the regulator of $\tau e^* = D'(E^*)e^*$ limits entry and is what makes taxes efficient in the long run
+
+---
+
+# Permits in the long run
+
+Now what about permit systems?
+
+--
+
+Suppose the regulator auctions off $L=E^*=e^*J$ permits and let $\sigma$ be the market-clearing permit price
+
+--
+
+The long run equilibrium is defined by the two firm FOCs and the entry condition:
+\begin{align}
+  &P(x^*J) = C_x(x^*,e^*) \\
+  &\sigma = -C_e(x^*,e^*) \\
+  &P(x^*J)x^* - C(x,e) - \sigma e^* = 0
+\end{align}
+
+---
+
+# Permits in the long run
+
+Similar to the short run we will have that $\sigma = -C_e(x^*,e^*) = D'(L) = D'(E^*)$
+
+Thus the three long run efficiency conditions are satisfied again if we auction off the permits:
+- MR = MC
+- MAC = MD
+- Zero profit
+
+--
+
+Now what if we freely distribute permits?
+
+--
+
+It seems like it might be long run efficient since firms are not paying the environmental rent, so zero profit might not occur
+
+---
+
+# Permits in the long run
+
+Suppose we allocate $\bar{e}$ firms to the incumbent identical firms, profit for the incumbent firms given permits is then:
+$$\Pi = px - C(x,e) - \sigma(e-\bar{e})$$
+and profit for any future entrants who were not given an allocation is:
+$$\Pi = px - C(x,e) - \sigma e$$
+
+What two things do you notice?
+
+--
+
+First, for any given $\sigma$, entrants and incumbents cannot both have zero profit!
+
+---
+
+# Permits in the long run
+
+Our efficiency condition is now: .hi-red[new firms enter until profits are zero]
+$$\Pi = px - C(x,e) - \sigma e = 0$$
+so that incumbent firms sustain long run profits of:
+$$\sigma\bar{e}$$
+
+--
+
+What is this saying?
+
+--
+
+.hi-blue[Operating profits] of any firms in the market are zero, incumbents had long run profits **only** from their initial permit allocation
+
+---
+
+# Permits in the long run
+
+The second thing you should have noticed is that the firm FOCs will be identical to the auctioned permit case, firms face the .hi-blue[exact same] incentives for output and emissions
+
+--
+
+This means that freely allocated permits are also long run efficient
+
+--
+
+This is just an application of the Coase theorem: the initial assignment of property rights to pollute does not matter for efficiency
+
+---
+
+# Subsidies in the long run
+
+Now what about subsidies?
+
+In the short run they are equivalent to taxes, are they still equivalent in the long run?
+
+--
+
+Denote the reference level of emissions as $\hat{e}$, firm profits under a subsidy per unit $\xi$ are:
+$$Pi = px - C(x,e) - \xi(e-\hat{e})$$
+
+---
+
+# Subsidies in the long run
+
+For efficiency we need to set the subsidy equal to MD $\xi = D'(E^*)$
+
+--
+
+In the long run equilibrium, firms enter until profits are zero
+$$\Pi = P(X^*)x* - C(x^*,e^*) - D'(E^*)(e^*-\hat{e}) = 0$$
+which implies that
+$$P(X^*)x* - C(x^*,e^*) - D'(E^*)e^* = D'(E^*)\hat{e} > 0$$
+
+Too many firms have entered!
+
+---
+
+# Subsidies in the long run
+
+Why did too many firms enter? 
+
+--
+
+Payments are available to **all** firms and induces excess market entry
+
+--
+
+Permits do not have these problems because the payment was only to incumbent firms, not entrants
+
+--
+
+Incumbent firms are already in the market: giving them the rents from freely distributed permits does not lead to excess entry
