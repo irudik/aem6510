@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Lecture 7</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Ivan Rudik" />
+    <link href="7-non-competitive-output-markets_files/remark-css/default.css" rel="stylesheet" />
+    <link href="7-non-competitive-output-markets_files/remark-css/metropolis.css" rel="stylesheet" />
+    <link href="7-non-competitive-output-markets_files/remark-css/metropolis-fonts.css" rel="stylesheet" />
+    <link href="7-non-competitive-output-markets_files/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="7-non-competitive-output-markets_files/tile-view/tile-view.js"></script>
+    <link href="7-non-competitive-output-markets_files/panelset/panelset.css" rel="stylesheet" />
+    <script src="7-non-competitive-output-markets_files/panelset/panelset.js"></script>
+    <script src="7-non-competitive-output-markets_files/xaringanExtra-webcam/webcam.js"></script>
+    <script id="xaringanExtra-webcam-options" type="application/json">{"width":"200","height":"200","margin":"1em"}</script>
+    <link rel="stylesheet" href="my-css.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Lecture 7
+## Non-competitive output markets
+### Ivan Rudik
+### AEM 6510
+
+---
+
+exclude: true
+
+```r
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(
+  tidyverse, tidylog, xaringanExtra, rlang, patchwork
+)
+options(htmltools.dir.version = FALSE)
+knitr::opts_hooks$set(fig.callout = function(options) {
+  if (options$fig.callout) {
+    options$echo &lt;- FALSE
+  }
+knitr::opts_chunk$set(echo = TRUE, fig.align="center")
+  options
+})
+```
+
+<style>.panelset {
+  --panel-tab-color-active: red;
+}</style>
+
+---
+
+# Roadmap
+
+Previously we assumed output markets were competitive and found that the conditions for efficiency (MAC = MD) still hold
+
+--
+
+But markets are often  .hi-red[not] competitive
+
+--
+
+Will this affect our results?
+
+--
+
+Why might it?
+
+--
+
+Preview: now we have .hi-blue[two] distortions in our market, pollution and market power
+
+---
+
+# Environmental policy under monopoly
+
+Suppose we have an industry with a single firm that generates a local pollutant
+
+--
+
+We will again look at both the general and specific cases of our model
+
+--
+
+Lets begin with the specific case where abatement is only possible through output reductions and `\(E=\delta X\)`
+
+---
+
+# Environmental policy under monopoly
+
+The monopolist's profit-maximization problem under an emission tax is:
+`$$\max_{X} \Pi(X) = P(X)X - C(X) - \tau E = P(X)X - C(X) - \tau \delta X$$`
+The FOC for the problem is:
+`$$P'(X)X + P(X) = C'(X) + \tau \delta$$`
+and the profit-maximizing output choice is given by `\(X^M(\tau)\)`
+
+--
+
+This illustrates the monopolists decision rule: MR = MC where MR consists of changes in price for .hi-blue[inframarginal units] `\((P'(X)X)\)`
+
+---
+
+# Environmental policy under monopoly
+
+How does the firm respond to the tax? Differentiate the FOC wrt `\(\tau\)`:
+`$$\left[P''(X^M)X^M+ 2P'(X^M) - C''(X^M)\right]{d X^M \over d \tau} = \delta$$`
+and rearrange:
+`$${d X^M \over d \tau} = {\delta \over \left[P''(X^M)X^M+ 2P'(X^M) - C''(X^M)\right]}$$`
+
+What's the sign on this expression? 
+
+--
+
+Let's make two assumptions
+
+---
+
+# Environmental policy under monopoly
+
+`$${d X^M \over d \tau} = {\delta \over \left[P''(X^M)X^M+ 2P'(X^M) - C''(X^M)\right]}$$`
+
+--
+
+Assume the inverse demand function `\(P(X)\)` is decreasing, and for all `\(X&gt;0\)`:
+`$${P''(X) \over P'(X)}X &gt; -1$$`
+
+--
+
+This just comes from the second-order sufficient condition for a maximum being satisfied, it mean inverse demand isn't *too convex*: `\(P''\)` is bounded above
+
+--
+
+It also ensures that `\({d X^M \over d \tau} &lt; 0\)`
+
+---
+
+# Environmental policy under monopoly
+
+Now lets look at the regulators problem of maximizing the benefits minus the costs of production, accounting for damages:
+`$$\max_{X} \int_{0}^XP(t)dt - C(X) - D(\delta X)$$`
+She is maximizing the consumption value minus production and environmental costs
+
+--
+
+The FOC for this problem is:
+`$$P(X^*) = C'(X^*) + \delta D'(\delta X^*)$$`
+which doesn't map as nicely to the firm's FOC as in competitive markets
+
+---
+
+# Environmental policy under monopoly
+
+Lets re-write the regulator's problem and explicitly include the firm's optimal response to `\(\tau\)`:
+`$$W(\tau) =  \int_{0}^{X^m(\tau)} P(t)dt - C(X^m(\tau)) - D(\delta X^m(\tau))$$`
+Then differentiate with respect to `\(\tau\)` to get:
+`$$P'(X^m)dt - C'(X^m) - \delta D'(\delta X^m) \times {d X^m \over d\tau} = 0$$`
+
+--
+
+Recognize `\(P'(X^m)dt - C'(X^m) = \tau\delta - P'(X^m)X^M\)` from the firm FOC, now we can solve for `\(\tau\)`!
+
+---
+
+# Environmental policy under monopoly
+
+Rearranging gives us the optimal tax rate is characterized by:
+`$$\tau = D'(\delta X^m) + {P'(X^m)X^m \over \delta}$$`
+
+--
+
+Can we achieve the first-best with this tax?
+
+--
+
+Yes!
+
+--
+
+If we plug it into the firm FOC it is the same as the regulators welfare-maximizing FOC
+
+---
+
+# Environmental policy under monopoly
+
+`$$\tau = D'(\delta X^m) + {P'(X^m)X^m \over \delta}$$`
+
+What is the intuition behind this expression?
+
+--
+
+First, since `\(P'(X^m) &lt; 0\)`, `\(\tau &lt; D'(\delta X^m)\)`
+
+--
+
+Why?
+
+--
+
+The monopolist already reduces output to exercise its market power
+
+--
+
+So we don't need as big of a tax, or may even need a .hi-blue[subsidy] if the monopolist was reducing output too much, to achieve the first-best
+
+
+
+---
+
+# Graphical intuition for the optimal tax
+
+
+.pull-left[
+
+
+![optimal emission tax for a monopoly is less than marginal damage](7-non-competitive-output-markets_files/figure-html/optimal_monopoly_tax-1.png)
+]
+
+.pull-right[
+Suppose MD and MC are constant for simplicity and we are in the specific case
+ 
+`\(X^m, P^m\)` is the unregulated monopoly allocation
+
+`\(X^{MD}, P^{MD}\)` is the outcome if we set `\(\tau = D'(E^*)\)`
+
+Since `\(X^{MD} &lt; X^m &lt; X^*\)` this clearly .hi-red[reduced welfare]
+]
+
+
+---
+
+# Graphical intuition for the optimal tax
+
+
+.pull-left[
+
+
+![optimal emission tax for a monopoly is less than marginal damage](7-non-competitive-output-markets_files/figure-html/optimal_monopoly_tax2-1.png)
+]
+
+.pull-right[
+The purple/blue area is the original DWL under monopoly
+
+The red + purple/blue area is the DWL if we tax at marginal damage, this .hi-red[worsened welfare]
+
+What's the optimal tax that gets us `\(E^*\)`?
+]
+
+---
+
+# Graphical intuition for the optimal tax
+
+
+.pull-left[
+
+![optimal emission tax for a monopoly is less than marginal damage](7-non-competitive-output-markets_files/figure-html/optimal_monopoly_tax2-1.png)
+]
+
+.pull-right[
+We want to shift the marginal cost of the firm so that it intersects MR at `\(X^*\)`, this vertical distance is the optimal tax
+
+MR at `\(X^*\)` is 0, so we want to shift marginal cost down to zero
+
+Our tax is then: `\(0-C_X\)`: we actually .hi-blue[subsidize output]
+]
+
+---
+
+# Environmental policy under monopoly
+
+In the specific case we could achieve the first-best with just an emission tax and solve two externalities at once
+
+--
+
+Does this hold more generally?
+
+--
+
+The general monopoly problem is:
+`$$\max_{X,E} \Pi(X,E) = P(X)X - C(X,E) - \tau E$$`
+
+---
+
+# Environmental policy under monopoly
+
+The FOCs are
+`$$P'(X)X + P(X) = C_X(X,E) \qquad -C_E(X,E) = \tau$$`
+
+The first is just MR = MC of production
+
+The second is the MAC = tax for emissions
+
+--
+
+Recall the regulators solution will look like:
+`$$P(X^*) = C_X(X^*,E^*) \qquad -C_E(X^*,E^*) = D'(E^*)$$`
+
+--
+
+Can the regulator use an emission tax alone to achieve the efficient outcome?
+
+---
+
+# Environmental policy under monopoly
+
+The regulator's problem is:
+`$$W(\tau) = \int_0^{X^m(\tau)}P(t)dt - C(X^m(\tau),E^m(\tau)) - D(E^m(\tau))$$`
+The FOC of this problem is:
+`$$[P(X^M) - C_X(X^m,E^m)]{dX^m \over d\tau} - [C_E(X^m,E^m) + D'(E^m)]{dE^m \over d\tau} = 0$$`
+
+--
+
+To get the .hi-blue[second-best] tax rate, substitute in the conditions from the firm FOCs:
+`$$P'(X)X + P(X) = C_X(X,E) \qquad -C_E(X,E) = \tau$$`
+
+---
+
+# Environmental policy under monopoly
+
+This gives us that:
+`$$\tau = D'(E^m) + P'(X^m)X^m {dX^m/d\tau \over dE^m/d\tau}$$`
+--
+
+What is the second term?
+
+--
+
+It represents how a change in emissions induces by the tax changes the degree to which the monopolist exercises market power
+
+--
+
+`\(P'(X^m)X^m\)` is the market power term in MR, `\({dX^m/d\tau \over dE^m/d\tau}\)` is the output response to a tax-induced change in emissions
+
+---
+
+# Environmental policy under monopoly
+
+The sign of this term depends on `\({dX^m/d\tau \over dE^m/d\tau}\)`, so lets sign the two components
+
+--
+
+We do this by totally differentiating the firm FOCs wrt `\(\tau\)`:
+`$$P'(X)X + P(X) = C_X(X,E) \qquad -C_E(X,E) = \tau$$`
+to give us that (dropping function arguments):
+`$${dX^m \over d\tau} = { -C_{XE} \over C_{EE}\left[ P''X + 2P' - C_{EE}\left\{ C_{XX}C_{EE}-C^2_{XE} \right\} \right] } &lt; 0$$`
+
+We assumed `\(-C_{XE}&gt; 0\)`, strict convexity ensures `\(C_{EE}, C_{XX}C_{EE}-C^2_{XE} &gt; 0\)`, and our most recent assumption that demand is not too convex ensures `\(P''X + 2P' &lt; 0\)`
+
+---
+
+# Environmental policy under monopoly
+
+For emissions we have:
+`$${dE^m \over d\tau} = {-1 \over C_{EE}} + { C^2_{XE} \over C^2_{EE}\left[ P''X + 2P' - C_{EE}\left\{ C_{XX}C_{EE}-C^2_{XE} \right\} \right] } &lt; 0$$`
+
+--
+
+As before, we assumed:
+- `\(-C_{XE}&gt; 0\)`
+- Strict convexity ensures `\(C_{EE}, C_{XX}C_{EE}-C^2_{XE} &gt; 0\)`
+- Demand is not too convex assumption ensures `\(P''X + 2P' &lt; 0\)`
+
+So both output and emissions decline in the tax rate
+
+---
+
+# Environmental policy under monopoly
+
+Can we use the tax alone to achieve the first-best?
+
+--
+
+Substitute in the optimal tax expression `\(\tau\)` into the firm emission FOC and see if it reduces to the conditions for the first-best outcome:
+`$$-C_E(X,E) = D'(E^m) + P'(X^m)X^m {dX^m/d\tau \over dE^m/d\tau}$$`
+
+--
+
+The last term doesn't equal zero so this FOC, given the second-best tax, cannot is not equal to the first-best condition
+
+--
+
+.hi-red[The regulator cannot achieve the first-best in the general case with a tax alone]
+
+---
+
+# Environmental policy under monopoly
+
+What ended up being the difference between the specific and general case?
+
+--
+
+In the specific case the monopolist only had one degree of freedom, output, and the regulator had one instrument, the tax
+
+--
+
+With one instrument and one degree of freedom the regulator can incentivize the firm to select a specific value of output AND emissions
+
+---
+
+# Environmental policy under monopoly
+
+In the general case the monopolist has two degrees of freedom: it can choose output and emissions separately
+
+--
+
+The regulator still has only one instrument
+
+--
+
+You cannot use one instrument to pin down two values (similar to solving one equation for two unknowns)
+
+--
+
+When you have fewer instruments than degrees of freedom you are in a .hi-blue[second-best world]
+
+---
+
+# Environmental policy under monopoly
+
+Here's some intuition:
+
+--
+
+Suppose `\(|P'(X)|\)` is large so demand is very inelastic `\(\rightarrow\)` small changes in quantity lead to big changes in price
+
+--
+
+In this case, the market power distortion is a big problem `\((P(X^M) &gt;&gt;&gt; C_X(X^M,E^M))\)`
+
+--
+
+If we tax equal to marginal damage, we will make the market power distortion worse
+
+--
+
+The second term in the tax expression reduces the tax to account for these concerns
+
+
+
+---
+
+# Environmental policy under monopoly
+
+We can achieve the first-best if we have two instruments to address two distortions
+
+- Use an output subsidy to incentivize the monopolist to produce the efficient level
+- Use an emission tax to get the efficient level of emissions
+
+The monopolist's problem is:
+`$$\Pi(X,E) = [P(X) + \xi]X - C(X,E) - \tau E$$`
+---
+
+# Environmental policy under monopoly
+
+The FOCs are:
+`$$P(X) + \xi + P'(X)X = C_X(X,E) \qquad -C_E(X,E) = \tau$$`
+
+If we set:
+`$$\xi = -P'(X^*)X^* \qquad \tau - D'(E^*)$$`
+the firm FOCs reduce to the regulator's efficiency conditions
+
+--
+
+This is a special case of the *Tinbergen Rule* that says you need as many instruments as distortions to achieve the first-best
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

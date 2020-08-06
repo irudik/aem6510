@@ -1,0 +1,578 @@
+---
+title: "Lecture 7"
+subtitle: "Non-competitive output markets"
+author: Ivan Rudik
+date: AEM 6510
+output:
+  xaringan::moon_reader:
+    css: ['default', 'metropolis', 'metropolis-fonts', 'my-css.css']
+    # self_contained: true
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: '16:9'
+
+
+---
+exclude: true
+```{r setup}
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(
+  tidyverse, tidylog, xaringanExtra, rlang, patchwork
+)
+options(htmltools.dir.version = FALSE)
+knitr::opts_hooks$set(fig.callout = function(options) {
+  if (options$fig.callout) {
+    options$echo <- FALSE
+  }
+knitr::opts_chunk$set(echo = TRUE, fig.align="center")
+  options
+})
+```
+```{r xaringanExtra, echo = FALSE}
+xaringanExtra::use_xaringan_extra(c("tile_view", "panelset", "webcam"))
+
+```
+```{r echo=FALSE}
+xaringanExtra::style_panelset(panel_tab_color_active = "red")
+```
+
+---
+
+# Roadmap
+
+Previously we assumed output markets were competitive and found that the conditions for efficiency (MAC = MD) still hold
+
+--
+
+But markets are often  .hi-red[not] competitive
+
+--
+
+Will this affect our results?
+
+--
+
+Why might it?
+
+--
+
+Preview: now we have .hi-blue[two] distortions in our market, pollution and market power
+
+---
+
+# Environmental policy under monopoly
+
+Suppose we have an industry with a single firm that generates a local pollutant
+
+--
+
+We will again look at both the general and specific cases of our model
+
+--
+
+Lets begin with the specific case where abatement is only possible through output reductions and $E=\delta X$
+
+---
+
+# Environmental policy under monopoly
+
+The monopolist's profit-maximization problem under an emission tax is:
+$$\max_{X} \Pi(X) = P(X)X - C(X) - \tau E = P(X)X - C(X) - \tau \delta X$$
+The FOC for the problem is:
+$$P'(X)X + P(X) = C'(X) + \tau \delta$$
+and the profit-maximizing output choice is given by $X^M(\tau)$
+
+--
+
+This illustrates the monopolists decision rule: MR = MC where MR consists of changes in price for .hi-blue[inframarginal units] $(P'(X)X)$
+
+---
+
+# Environmental policy under monopoly
+
+How does the firm respond to the tax? Differentiate the FOC wrt $\tau$:
+$$\left[P''(X^M)X^M+ 2P'(X^M) - C''(X^M)\right]{d X^M \over d \tau} = \delta$$
+and rearrange:
+$${d X^M \over d \tau} = {\delta \over \left[P''(X^M)X^M+ 2P'(X^M) - C''(X^M)\right]}$$
+
+What's the sign on this expression? 
+
+--
+
+Let's make two assumptions
+
+---
+
+# Environmental policy under monopoly
+
+$${d X^M \over d \tau} = {\delta \over \left[P''(X^M)X^M+ 2P'(X^M) - C''(X^M)\right]}$$
+
+--
+
+Assume the inverse demand function $P(X)$ is decreasing, and for all $X>0$:
+$${P''(X) \over P'(X)}X > -1$$
+
+--
+
+This just comes from the second-order sufficient condition for a maximum being satisfied, it mean inverse demand isn't *too convex*: $P''$ is bounded above
+
+--
+
+It also ensures that ${d X^M \over d \tau} < 0$
+
+---
+
+# Environmental policy under monopoly
+
+Now lets look at the regulators problem of maximizing the benefits minus the costs of production, accounting for damages:
+$$\max_{X} \int_{0}^XP(t)dt - C(X) - D(\delta X)$$
+She is maximizing the consumption value minus production and environmental costs
+
+--
+
+The FOC for this problem is:
+$$P(X^*) = C'(X^*) + \delta D'(\delta X^*)$$
+which doesn't map as nicely to the firm's FOC as in competitive markets
+
+---
+
+# Environmental policy under monopoly
+
+Lets re-write the regulator's problem and explicitly include the firm's optimal response to $\tau$:
+$$W(\tau) =  \int_{0}^{X^m(\tau)} P(t)dt - C(X^m(\tau)) - D(\delta X^m(\tau))$$
+Then differentiate with respect to $\tau$ to get:
+$$P'(X^m)dt - C'(X^m) - \delta D'(\delta X^m) \times {d X^m \over d\tau} = 0$$
+
+--
+
+Recognize $P'(X^m)dt - C'(X^m) = \tau\delta - P'(X^m)X^M$ from the firm FOC, now we can solve for $\tau$!
+
+---
+
+# Environmental policy under monopoly
+
+Rearranging gives us the optimal tax rate is characterized by:
+$$\tau = D'(\delta X^m) + {P'(X^m)X^m \over \delta}$$
+
+--
+
+Can we achieve the first-best with this tax?
+
+--
+
+Yes!
+
+--
+
+If we plug it into the firm FOC it is the same as the regulators welfare-maximizing FOC
+
+---
+
+# Environmental policy under monopoly
+
+$$\tau = D'(\delta X^m) + {P'(X^m)X^m \over \delta}$$
+
+What is the intuition behind this expression?
+
+--
+
+First, since $P'(X^m) < 0$, $\tau < D'(\delta X^m)$
+
+--
+
+Why?
+
+--
+
+The monopolist already reduces output to exercise its market power
+
+--
+
+So we don't need as big of a tax, or may even need a .hi-blue[subsidy] if the monopolist was reducing output too much, to achieve the first-best
+
+
+
+---
+
+# Graphical intuition for the optimal tax
+
+
+.pull-left[
+```{r optimal_monopoly_tax, echo = FALSE, fig.show = 'hide', warning = F}
+smc <- function(x) 2.5
+md <- function(x) 1.5
+pmc <- function(x) 1
+demand <- function(x) 5 - x
+marginal_revenue <- function(x) 5 - 2*x
+intersections_1 <- tibble(x = c(0, 2, 2, 2.5, 2, 2.5/2),
+                        y = c(2.5, 3, 0, 2.5, 2, 5-2.5/2))
+polys_dwl <- tibble(x = c(2, 3, 3),
+                     y = c(3, 4, 2))
+ggplot() +
+  annotate("segment", x = intersections_1$x[1], xend = intersections_1$x[5],
+           y = intersections_1$y[2], yend = intersections_1$y[2],
+           linetype = "dashed", size = 1, color = "black") +
+  annotate("segment", x = intersections_1$x[2], xend = intersections_1$x[3],
+           y = intersections_1$y[2], yend = intersections_1$y[3],
+           linetype = "dashed", size = 1, color = "black") +
+  stat_function(fun = smc, color = "#ca5670", size = 1.5) +
+  stat_function(fun = pmc, color = "#ca5670", size = 1.5) +
+  stat_function(fun = md, color = "#ca5670", size = 1.5) +
+  stat_function(fun = demand, color = "darkslateblue", size = 1.5) +
+  stat_function(fun = marginal_revenue, color = "darkslateblue", size = 1.5) +
+  annotate("segment", x = intersections_1$x[1], xend = intersections_1$x[4],
+           y = intersections_1$y[1], yend = intersections_1$y[4],
+           linetype = "dashed", size = 1, color = "black") +
+  annotate("segment", x = intersections_1$x[4], xend = intersections_1$x[4],
+           y = intersections_1$y[1], yend = intersections_1$y[3],
+           linetype = "dashed", size = 1, color = "black") +
+  annotate("segment", x = intersections_1$x[1], xend = intersections_1$x[6],
+           y = intersections_1$y[6], yend = intersections_1$y[6],
+           linetype = "dashed", size = 1, color = "black") +
+  annotate("segment", x = intersections_1$x[6], xend = intersections_1$x[6],
+           y = intersections_1$y[3], yend = intersections_1$y[6],
+           linetype = "dashed", size = 1, color = "black") +
+  annotate("text", size = 8, label = expression(D*minute + C[X]), x = 4.5, y = 2.7) +
+  annotate("text", size = 8, label = expression(D*minute), x = 4.5, y = 1.7) +
+  annotate("text", size = 8, label = expression(C[X]), x = 4.5, y = 1.2) +
+  annotate("text", size = 8, label = expression(P(X)), x = 4.4, y = 0.15) +
+  annotate("text", size = 8, label = expression(P*minute(X)), x = 3, y = 0.15) +
+  theme_minimal()  +
+  theme(
+    legend.position = "none",
+    title = element_text(size = 24),
+    axis.text.x = element_text(size = 18, color = "black"),
+    axis.text.y = element_text(size = 18, color = "black"),
+    axis.title.x = element_text(size = 24), axis.title.y = element_text(size = 24),
+    panel.grid.minor.x = element_blank(), panel.grid.major.y = element_blank(),
+    panel.grid.minor.y = element_blank(), panel.grid.major.x = element_blank(),
+    panel.background = element_rect(fill = "#eeeeee", colour = NA),
+    plot.background = element_rect(fill = "#eeeeee", colour = NA),
+    axis.line = element_line(colour = "black")
+  ) +
+  labs(x = "Quantity",
+       y = "MC/MD ($)",
+       title = "Optimal tax is less than MD") +
+  scale_x_continuous(expand = c(0, 0), limits = c(0, 5),
+                     breaks = c(intersections_1$x[2], intersections_1$x[4], intersections_1$x[6]), labels = expression(X^m, X^"*", X^"MD")) +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 5),
+                     breaks = c(intersections_1$y[2], intersections_1$y[4], intersections_1$y[6]), labels = expression(P^m, P^"*", P^"MD"))
+
+```
+
+![optimal emission tax for a monopoly is less than marginal damage](`r knitr::fig_chunk("optimal_monopoly_tax", "png")`)
+]
+
+.pull-right[
+Suppose MD and MC are constant for simplicity and we are in the specific case
+ 
+$X^m, P^m$ is the unregulated monopoly allocation
+
+$X^{MD}, P^{MD}$ is the outcome if we set $\tau = D'(E^*)$
+
+Since $X^{MD} < X^m < X^*$ this clearly .hi-red[reduced welfare]
+]
+
+
+---
+
+# Graphical intuition for the optimal tax
+
+
+.pull-left[
+```{r optimal_monopoly_tax2, echo = FALSE, fig.show = 'hide', warning = F}
+smc <- function(x) 2.5
+md <- function(x) 1.5
+pmc <- function(x) 1
+demand <- function(x) 5 - x
+marginal_revenue <- function(x) 5 - 2*x
+intersections_1 <- tibble(x = c(0, 2, 2, 2.5, 2, 2.5/2),
+                        y = c(2.5, 3, 0, 2.5, 2, 5-2.5/2))
+polys_dwl_m <- tibble(x = c(2.5/2, 2.5/2, 2.5),
+                      y = c(5-2.5/2, 2.5, 2.5))
+polys_dwl_md <- tibble(x = c(2, 2, 2.5),
+                       y = c(3, 2.5, 2.5))
+  
+ggplot() +
+  geom_polygon(data = polys_dwl_m, aes(x = x, y = y), fill = "red", alpha = 0.2) +
+  geom_polygon(data = polys_dwl_md, aes(x = x, y = y), fill = "blue", alpha = 0.2) +
+  annotate("segment", x = intersections_1$x[1], xend = intersections_1$x[5],
+           y = intersections_1$y[2], yend = intersections_1$y[2],
+           linetype = "dashed", size = 1, color = "black") +
+  annotate("segment", x = intersections_1$x[2], xend = intersections_1$x[3],
+           y = intersections_1$y[2], yend = intersections_1$y[3],
+           linetype = "dashed", size = 1, color = "black") +
+  stat_function(fun = smc, color = "#ca5670", size = 1.5) +
+  stat_function(fun = pmc, color = "#ca5670", size = 1.5) +
+  stat_function(fun = md, color = "#ca5670", size = 1.5) +
+  stat_function(fun = demand, color = "darkslateblue", size = 1.5) +
+  stat_function(fun = marginal_revenue, color = "darkslateblue", size = 1.5) +
+  annotate("segment", x = intersections_1$x[1], xend = intersections_1$x[4],
+           y = intersections_1$y[1], yend = intersections_1$y[4],
+           linetype = "dashed", size = 1, color = "black") +
+  annotate("segment", x = intersections_1$x[4], xend = intersections_1$x[4],
+           y = intersections_1$y[1], yend = intersections_1$y[3],
+           linetype = "dashed", size = 1, color = "black") +
+  annotate("segment", x = intersections_1$x[1], xend = intersections_1$x[6],
+           y = intersections_1$y[6], yend = intersections_1$y[6],
+           linetype = "dashed", size = 1, color = "black") +
+  annotate("segment", x = intersections_1$x[6], xend = intersections_1$x[6],
+           y = intersections_1$y[3], yend = intersections_1$y[6],
+           linetype = "dashed", size = 1, color = "black") +
+  annotate("text", size = 8, label = expression(D*minute + C[X]), x = 4.5, y = 2.7) +
+  annotate("text", size = 8, label = expression(D*minute), x = 4.5, y = 1.7) +
+  annotate("text", size = 8, label = expression(C[X]), x = 4.5, y = 1.2) +
+  annotate("text", size = 8, label = expression(P(X)), x = 4.4, y = 0.15) +
+  annotate("text", size = 8, label = expression(P*minute(X)), x = 3, y = 0.15) +
+  theme_minimal()  +
+  theme(
+    legend.position = "none",
+    title = element_text(size = 24),
+    axis.text.x = element_text(size = 18, color = "black"),
+    axis.text.y = element_text(size = 18, color = "black"),
+    axis.title.x = element_text(size = 24), axis.title.y = element_text(size = 24),
+    panel.grid.minor.x = element_blank(), panel.grid.major.y = element_blank(),
+    panel.grid.minor.y = element_blank(), panel.grid.major.x = element_blank(),
+    panel.background = element_rect(fill = "#eeeeee", colour = NA),
+    plot.background = element_rect(fill = "#eeeeee", colour = NA),
+    axis.line = element_line(colour = "black")
+  ) +
+  labs(x = "Quantity",
+       y = "MC/MD ($)",
+       title = "Optimal tax is less than MD") +
+  scale_x_continuous(expand = c(0, 0), limits = c(0, 5),
+                     breaks = c(intersections_1$x[2], intersections_1$x[4], intersections_1$x[6]), labels = expression(X^m, X^"*", X^"MD")) +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 5),
+                     breaks = c(intersections_1$y[2], intersections_1$y[4], intersections_1$y[6]), labels = expression(P^m, P^"*", P^"MD"))
+
+```
+
+![optimal emission tax for a monopoly is less than marginal damage](`r knitr::fig_chunk("optimal_monopoly_tax2", "png")`)
+]
+
+.pull-right[
+The purple/blue area is the original DWL under monopoly
+
+The red + purple/blue area is the DWL if we tax at marginal damage, this .hi-red[worsened welfare]
+
+What's the optimal tax that gets us $E^*$?
+]
+
+---
+
+# Graphical intuition for the optimal tax
+
+
+.pull-left[
+
+![optimal emission tax for a monopoly is less than marginal damage](`r knitr::fig_chunk("optimal_monopoly_tax2", "png")`)
+]
+
+.pull-right[
+We want to shift the marginal cost of the firm so that it intersects MR at $X^*$, this vertical distance is the optimal tax
+
+MR at $X^*$ is 0, so we want to shift marginal cost down to zero
+
+Our tax is then: $0-C_X$: we actually .hi-blue[subsidize output]
+]
+
+---
+
+# Environmental policy under monopoly
+
+In the specific case we could achieve the first-best with just an emission tax and solve two externalities at once
+
+--
+
+Does this hold more generally?
+
+--
+
+The general monopoly problem is:
+$$\max_{X,E} \Pi(X,E) = P(X)X - C(X,E) - \tau E$$
+
+---
+
+# Environmental policy under monopoly
+
+The FOCs are
+$$P'(X)X + P(X) = C_X(X,E) \qquad -C_E(X,E) = \tau$$
+
+The first is just MR = MC of production
+
+The second is the MAC = tax for emissions
+
+--
+
+Recall the regulators solution will look like:
+$$P(X^*) = C_X(X^*,E^*) \qquad -C_E(X^*,E^*) = D'(E^*)$$
+
+--
+
+Can the regulator use an emission tax alone to achieve the efficient outcome?
+
+---
+
+# Environmental policy under monopoly
+
+The regulator's problem is:
+$$W(\tau) = \int_0^{X^m(\tau)}P(t)dt - C(X^m(\tau),E^m(\tau)) - D(E^m(\tau))$$
+The FOC of this problem is:
+$$[P(X^M) - C_X(X^m,E^m)]{dX^m \over d\tau} - [C_E(X^m,E^m) + D'(E^m)]{dE^m \over d\tau} = 0$$
+
+--
+
+To get the .hi-blue[second-best] tax rate, substitute in the conditions from the firm FOCs:
+$$P'(X)X + P(X) = C_X(X,E) \qquad -C_E(X,E) = \tau$$
+
+---
+
+# Environmental policy under monopoly
+
+This gives us that:
+$$\tau = D'(E^m) + P'(X^m)X^m {dX^m/d\tau \over dE^m/d\tau}$$
+--
+
+What is the second term?
+
+--
+
+It represents how a change in emissions induces by the tax changes the degree to which the monopolist exercises market power
+
+--
+
+$P'(X^m)X^m$ is the market power term in MR, ${dX^m/d\tau \over dE^m/d\tau}$ is the output response to a tax-induced change in emissions
+
+---
+
+# Environmental policy under monopoly
+
+The sign of this term depends on ${dX^m/d\tau \over dE^m/d\tau}$, so lets sign the two components
+
+--
+
+We do this by totally differentiating the firm FOCs wrt $\tau$:
+$$P'(X)X + P(X) = C_X(X,E) \qquad -C_E(X,E) = \tau$$
+to give us that (dropping function arguments):
+$${dX^m \over d\tau} = { -C_{XE} \over C_{EE}\left[ P''X + 2P' - C_{EE}\left\{ C_{XX}C_{EE}-C^2_{XE} \right\} \right] } < 0$$
+
+We assumed $-C_{XE}> 0$, strict convexity ensures $C_{EE}, C_{XX}C_{EE}-C^2_{XE} > 0$, and our most recent assumption that demand is not too convex ensures $P''X + 2P' < 0$
+
+---
+
+# Environmental policy under monopoly
+
+For emissions we have:
+$${dE^m \over d\tau} = {-1 \over C_{EE}} + { C^2_{XE} \over C^2_{EE}\left[ P''X + 2P' - C_{EE}\left\{ C_{XX}C_{EE}-C^2_{XE} \right\} \right] } < 0$$
+
+--
+
+As before, we assumed:
+- $-C_{XE}> 0$
+- Strict convexity ensures $C_{EE}, C_{XX}C_{EE}-C^2_{XE} > 0$
+- Demand is not too convex assumption ensures $P''X + 2P' < 0$
+
+So both output and emissions decline in the tax rate
+
+---
+
+# Environmental policy under monopoly
+
+Can we use the tax alone to achieve the first-best?
+
+--
+
+Substitute in the optimal tax expression $\tau$ into the firm emission FOC and see if it reduces to the conditions for the first-best outcome:
+$$-C_E(X,E) = D'(E^m) + P'(X^m)X^m {dX^m/d\tau \over dE^m/d\tau}$$
+
+--
+
+The last term doesn't equal zero so this FOC, given the second-best tax, cannot is not equal to the first-best condition
+
+--
+
+.hi-red[The regulator cannot achieve the first-best in the general case with a tax alone]
+
+---
+
+# Environmental policy under monopoly
+
+What ended up being the difference between the specific and general case?
+
+--
+
+In the specific case the monopolist only had one degree of freedom, output, and the regulator had one instrument, the tax
+
+--
+
+With one instrument and one degree of freedom the regulator can incentivize the firm to select a specific value of output AND emissions
+
+---
+
+# Environmental policy under monopoly
+
+In the general case the monopolist has two degrees of freedom: it can choose output and emissions separately
+
+--
+
+The regulator still has only one instrument
+
+--
+
+You cannot use one instrument to pin down two values (similar to solving one equation for two unknowns)
+
+--
+
+When you have fewer instruments than degrees of freedom you are in a .hi-blue[second-best world]
+
+---
+
+# Environmental policy under monopoly
+
+Here's some intuition:
+
+--
+
+Suppose $|P'(X)|$ is large so demand is very inelastic $\rightarrow$ small changes in quantity lead to big changes in price
+
+--
+
+In this case, the market power distortion is a big problem $(P(X^M) >>> C_X(X^M,E^M))$
+
+--
+
+If we tax equal to marginal damage, we will make the market power distortion worse
+
+--
+
+The second term in the tax expression reduces the tax to account for these concerns
+
+
+
+---
+
+# Environmental policy under monopoly
+
+We can achieve the first-best if we have two instruments to address two distortions
+
+- Use an output subsidy to incentivize the monopolist to produce the efficient level
+- Use an emission tax to get the efficient level of emissions
+
+The monopolist's problem is:
+$$\Pi(X,E) = [P(X) + \xi]X - C(X,E) - \tau E$$
+---
+
+# Environmental policy under monopoly
+
+The FOCs are:
+$$P(X) + \xi + P'(X)X = C_X(X,E) \qquad -C_E(X,E) = \tau$$
+
+If we set:
+$$\xi = -P'(X^*)X^* \qquad \tau - D'(E^*)$$
+the firm FOCs reduce to the regulator's efficiency conditions
+
+--
+
+This is a special case of the *Tinbergen Rule* that says you need as many instruments as distortions to achieve the first-best
