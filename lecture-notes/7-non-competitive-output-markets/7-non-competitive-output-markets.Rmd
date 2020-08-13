@@ -549,8 +549,6 @@ If we tax equal to marginal damage, we will make the market power distortion wor
 
 The second term in the tax expression reduces the tax to account for these concerns
 
-
-
 ---
 
 # Environmental policy under monopoly

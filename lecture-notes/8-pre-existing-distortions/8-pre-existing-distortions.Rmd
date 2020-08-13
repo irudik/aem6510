@@ -1,0 +1,748 @@
+---
+title: "Lecture 8"
+subtitle: "Environmental policy with pre-existing distortions"
+author: Ivan Rudik
+date: AEM 6510
+output:
+  xaringan::moon_reader:
+    css: ['default', 'metropolis', 'metropolis-fonts', 'my-css.css']
+    # self_contained: true
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: '16:9'
+
+
+---
+exclude: true
+```{r setup}
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(
+  tidyverse, tidylog, xaringanExtra, rlang, patchwork
+)
+options(htmltools.dir.version = FALSE)
+knitr::opts_hooks$set(fig.callout = function(options) {
+  if (options$fig.callout) {
+    options$echo <- FALSE
+  }
+knitr::opts_chunk$set(echo = TRUE, fig.align="center")
+  options
+})
+```
+```{r xaringanExtra, echo = FALSE}
+xaringanExtra::use_xaringan_extra(c("tile_view", "panelset", "webcam"))
+
+```
+```{r echo=FALSE}
+xaringanExtra::style_panelset(panel_tab_color_active = "red")
+```
+
+---
+
+# Roadmap
+
+So far we have looked at single sector (partial equilibrium) economies with:
+- Pollution distortions
+- Competitive markets
+- Market power distortions
+
+--
+
+Now we will learn about multi-sector (general equilibrium) economies
+
+How does environmental policy spillover into these other sectors?
+
+How does environmental policy interact with revenue-raising taxes (e.g. income taxes)?
+
+---
+
+# Environmental policy with leisure
+
+First we extend the model so that labor supply is .hi-blue[elastic]
+  - Households have a choice of either working or leisure time
+  
+--
+
+To focus on the key intuition we assume: $^1$
+  - There is a representative (single) firm
+  - There is a representative household
+
+This allows us to treat individual and aggregate behavior the same
+
+.footnote[1: The underlying critical assumption is that utility and profit functions take what's called a Gorman form.]
+
+---
+
+# Environmental policy with leisure
+
+Define the following:
+- $X$ is consumption of the polluting good
+- $Z$ is consumption of the *numeraire* good (i.e. the relative good)
+- $N$ is the hours of leisure time
+- $E$ is aggregate emissions
+
+--
+
+Utility is then:
+$$U(X,Z,N,E)  = U(X,N) + Z - D(E)$$
+where $U_{XX}, U_{NN} < 0$ and  $U_{XX}U_{NN}-U_{NX}^2 > 0$ and the person is endowed with some amount of time $T$ to allocate between work and leisure
+
+---
+
+# Environmental policy with leisure
+
+Wages earned by the household are $w$, and we assume demand for labor is perfectly elastic
+  - Demand is horizontal at $w$
+  
+Household income is then: $w\cdot(T-N)$
+
+We can now write the households utility maximization problem as:
+$$\max_{X,N} U(X,Z,N,E)  = U(X,N) + Z - D(E) \text{ subject to: } w\cdot(T-N) = Z + pX$$
+---
+
+# Environmental policy with leisure
+
+We can substitute the budget constraint in for $Z$ to get an unconstrained problem:
+$$\max_{X,N} U(X,Z,N,E)  = U(X,N) + w\cdot(T-N) - pX - D(E)$$
+with FOCs:
+$$U_X = p \qquad U_N = w$$
+which implicitly define the demand function for consumption $X(p,w)$ and the demand function for leisure $N(p,w)$
+
+---
+
+# Environmental policy with leisure
+
+How do choices of $X,N$ respond to a change in price $p$?
+
+Differentiate both FOCs with respect to p:
+$$U_{XX} {\partial X \over \partial p} + U_{XN} {\partial N \over \partial p} = 1 \qquad U_{NN} {\partial N \over \partial p} + U_{XN} {\partial X \over \partial p} = 0$$
+
+We have two equations and two unknowns so we can solve to get:
+$${\partial N \over \partial p} = {-U_{XN} \over U_{XX}U_{NN} - U_{XN}^2} \qquad {\partial X \over \partial p} = {U_{NN} \over U_{XX}U_{NN} - U_{XN}^2}$$
+
+---
+
+# Environmental policy with leisure
+
+$${\partial N \over \partial p} = {-U_{XN} \over U_{XX}U_{NN} - U_{XN}^2} \qquad {\partial X \over \partial p} = {U_{NN} \over U_{XX}U_{NN} - U_{XN}^2}$$
+
+${\partial X \over \partial p}$ is negative since $U$ is concave $(U_{NN} < 0, U_{XX}U_{NN} - U_{XN}^2 > 0)$
+
+The sign of ${\partial N \over \partial p}$ equals the sign on $-U_{XN}$
+
+If $X$ and $N$ are substitutes, $-U_{XN} > 0$, and leisure increases in the price of the consumption good
+
+If they are complements, $-U_{XN} < 0$, and leisure decreases in the price of the consumption good
+
+---
+
+# Environmental policy with leisure
+
+The firm side of the economy will be the same as before: it produces $X$ and emits $E$ and for simplicity we will focus on the specific case:
+$$\Pi = pX - C(X) \text{ where } E = \delta X$$
+
+We will also assume:
+
+- $\delta=1$ so we can use $E$ and $X$ interchangeably
+- $C'(X) > 0, C''(X) \geq 0$
+- The polluting industry's demand for labor is small relative to the entire economy, i.e. wages are effectively fixed
+
+---
+
+# Environmental policy with leisure
+
+Now lets solve for the optimum:
+$$\max_{X} W = U(X,N) + w\cdot(T-N) - pX - D(X) + pX - C(X)$$
+To focus on interactions with non-regulated industries, we assume the regulator cannot determine leisure
+
+--
+
+The consumer chooses $N$ and therefore $Z$ according to the budget constraint $Z = w(T-N) - pX$ and FOC $U_N(X^*,N) = w$
+
+--
+
+One way you can think about this is as if the regulator imposes a quantity standard $X^*$ and then a market price $p^*$ arises which affects leisure demand
+
+---
+
+# Environmental policy with leisure
+
+The FOC for the optimum is:
+$$U_X - D'(X) - C'(X) + [U_N -w]{\partial N \over \partial X} = 0$$
+where the last term captures the households .hi-blue[indirect] leisure response to the regulator's policy choice
+
+--
+
+Given household utility maximization $U_N -w = 0$ and the condition is then:
+$$U_X - C'(X) = D'(X)$$
+
+--
+
+Marginal abatement cost $(U_X - C'(X))$ equals marginal damage $(D'(X))$ !
+
+---
+
+# Environmental policy with labor market distortions
+
+Now suppose the government needs to raise revenue with a labor income tax $m$
+
+--
+
+It needs to finance a budget of size $G$
+
+--
+
+The consumer's utility maximization problem is:
+\begin{gather}
+  \max_{X,Z,N} U = u(X,N) + Z - D(E) \\
+  \text{ subject to } (1-m)w(T-N) = Z + pX
+\end{gather}
+
+Where the budget is scaled down by $(1-m)$ reflecting the income tax
+
+---
+
+# Environmental policy with labor market distortions
+
+The FOCs are:
+$$u_X = p \qquad u_N = (1-m)w$$
+
+--
+
+The labor tax causes an inefficiency in the labor market: the marginal value of leisure $(u_N)$ is no longer equal to the marginal value of labor $(w)$
+
+--
+
+$u_N < w$ which means that the household overconsumes leisure
+
+--
+
+Another way to see this is to re-write the FOC as:
+$$u_N + mw = w$$
+
+--
+
+The tax $m$ makes the consumer act as if there is a subsidy $mw$ on leisure
+
+---
+
+# Environmental policy with labor market distortions
+
+.pull-left[
+```{r labor_market_1, echo = FALSE, fig.show = 'hide', warning = F}
+
+# demand <- function(x) 5 - x
+demand <- function(x) 3.5 - x
+intersections_1 <- tibble(x = c(5, 5, 0, 0, 5, 2.5, 2.5),
+                        y = c(0, 2, 2, 1, 1, 0, 2))
+polys_dwl <- tibble(x = c(2, 3, 3),
+                     y = c(3, 4, 2))
+ggplot() +
+  annotate("segment", x = intersections_1$x[1], xend = intersections_1$x[2],
+           y = intersections_1$y[1], yend = intersections_1$y[2],
+           linetype = "dashed", size = 1, color = "black") +
+  annotate("segment", x = intersections_1$x[2], xend = intersections_1$x[3],
+           y = intersections_1$y[2], yend = intersections_1$y[3],
+           linetype = "dashed", size = 1, color = "black") +
+  annotate("segment", x = intersections_1$x[4], xend = intersections_1$x[5],
+           y = intersections_1$y[4], yend = intersections_1$y[5],
+           linetype = "dashed", size = 1, color = "black") +
+  annotate("segment", x = intersections_1$x[6], xend = intersections_1$x[7],
+           y = intersections_1$y[6], yend = intersections_1$y[7],
+           linetype = "dashed", size = 1, color = "black") +
+  stat_function(fun = demand, color = "darkslateblue", size = 1.5) +
+  annotate("text", size = 8, label = expression(N(p^c,w)), x = 0.75, y = 3.5) +
+  annotate("text", size = 8, label = "b", x = 2.25, y = 1.75) +
+  annotate("text", size = 8, label = "G", x = 4, y = 1.5) +
+  theme_minimal()  +
+  theme(
+    legend.position = "none",
+    title = element_text(size = 24),
+    axis.text.x = element_text(size = 18, color = "black"),
+    axis.text.y = element_text(size = 18, color = "black"),
+    axis.title.x = element_text(size = 24), axis.title.y = element_text(size = 24),
+    panel.grid.minor.x = element_blank(), panel.grid.major.y = element_blank(),
+    panel.grid.minor.y = element_blank(), panel.grid.major.x = element_blank(),
+    panel.background = element_rect(fill = "#eeeeee", colour = NA),
+    plot.background = element_rect(fill = "#eeeeee", colour = NA),
+    axis.line = element_line(colour = "black")
+  ) +
+  labs(x = "Leisure",
+       y = "Wage ($)",
+       title = "Income taxation causes DWL") +
+  scale_x_continuous(expand = c(0, 0), limits = c(0, 5),
+                     breaks = c(intersections_1$x[2], intersections_1$x[4], intersections_1$x[6]), labels = expression(T, 0, N^c)) +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 5),
+                     breaks = c(intersections_1$y[2], intersections_1$y[4], intersections_1$y[6]), labels = expression(w, "(1-m)w", ))
+
+```
+
+
+![excess burden is because MU of leisure is less than wage](`r knitr::fig_chunk("labor_market_1", "png")`)
+]
+
+.pull-right[
+
+$N^c$ is how much leisure the consumer chooses, since $(1-m)w < w$ this is too much and induces DWL equal to $b$
+
+The tax raises revenues equal to $G$
+
+]
+
+
+---
+
+# Environmental policy with labor market distortions
+
+.pull-left[
+```{r labor_market_2, echo = FALSE, fig.show = 'hide', warning = F}
+
+demand_2 <- function(x) 5 - x
+demand <- function(x) 3.5 - x
+intersections_1 <- tibble(x = c(5, 5, 0, 0, 5, 2.5, 2.5, 4, 4),
+                        y = c(0, 2, 2, 1, 1, 0, 2, 2, 0))
+polys_dwl <- tibble(x = c(2, 3, 3),
+                     y = c(3, 4, 2))
+ggplot() +
+  annotate("segment", x = intersections_1$x[1], xend = intersections_1$x[2],
+           y = intersections_1$y[1], yend = intersections_1$y[2],
+           linetype = "dashed", size = 1, color = "black") +
+  annotate("segment", x = intersections_1$x[2], xend = intersections_1$x[3],
+           y = intersections_1$y[2], yend = intersections_1$y[3],
+           linetype = "dashed", size = 1, color = "black") +
+  annotate("segment", x = intersections_1$x[4], xend = intersections_1$x[5],
+           y = intersections_1$y[4], yend = intersections_1$y[5],
+           linetype = "dashed", size = 1, color = "black") +
+  annotate("segment", x = intersections_1$x[6], xend = intersections_1$x[7],
+           y = intersections_1$y[6], yend = intersections_1$y[7],
+           linetype = "dashed", size = 1, color = "black") +
+  annotate("segment", x = intersections_1$x[8], xend = intersections_1$x[9],
+           y = intersections_1$y[8], yend = intersections_1$y[9],
+           linetype = "dashed", size = 1, color = "black") +
+  stat_function(fun = demand, color = "darkslateblue", size = 1.5) +
+  stat_function(fun = demand_2, color = "#ca5670", size = 1.5) +
+  annotate("text", size = 8, label = expression(N(p^c,w)), x = 0.75, y = 3.5) +
+  annotate("text", size = 8, label = expression(N(p^"*",w)), x = 2.25, y = 3.5) +
+  annotate("text", size = 8, label = "e", x = 3, y = 1.5) +
+  annotate("text", size = 8, label = "c", x = 3.75, y = 1.75) +
+  annotate("text", size = 8, label = "d", x = 4.5, y = 1.5) +
+  theme_minimal()  +
+  theme(
+    legend.position = "none",
+    title = element_text(size = 24),
+    axis.text.x = element_text(size = 18, color = "black"),
+    axis.text.y = element_text(size = 18, color = "black"),
+    axis.title.x = element_text(size = 24), axis.title.y = element_text(size = 24),
+    panel.grid.minor.x = element_blank(), panel.grid.major.y = element_blank(),
+    panel.grid.minor.y = element_blank(), panel.grid.major.x = element_blank(),
+    panel.background = element_rect(fill = "#eeeeee", colour = NA),
+    plot.background = element_rect(fill = "#eeeeee", colour = NA),
+    axis.line = element_line(colour = "black")
+  ) +
+  labs(x = "Leisure",
+       y = "Wage ($)",
+       title = "Income taxation causes DWL") +
+  scale_x_continuous(expand = c(0, 0), limits = c(0, 5),
+                     breaks = c(intersections_1$x[2], intersections_1$x[4], intersections_1$x[6], intersections_1$x[9]), labels = expression(T, 0, N^c, N^"*")) +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 5),
+                     breaks = c(intersections_1$y[2], intersections_1$y[4], intersections_1$y[6]), labels = expression(w, "(1-m)w", ))
+
+```
+
+
+![excess burden is because MU of leisure is less than wage](`r knitr::fig_chunk("labor_market_2", "png")`)
+]
+
+.pull-right[
+
+Suppose the regulator sets $X=X^*$ where $X^* \rightarrow MAC = MD$
+
+This raises the price of $X$, shifts leisure demand to the .hi-red[right]
+
+New DWL is $c$, and government revenues are now only $d$
+
+Change in DWL from $X^c \rightarrow X^*$ is indeterminant
+
+]
+
+
+---
+
+# Second-best environmental policy
+
+What does the optimal environmental policy look like if there's a pre-existing labor market distortion?
+
+The government has a budget $G$ it needs to finance using labor taxes or emission taxes
+
+First let's consider the case where they can only raise revenue via a labor tax: this is non-revenue raising environmental policy
+
+---
+
+# Second-best non-revenue raising environmental policy
+
+If we cannot raise revenue with the environmental policy, the regulator chooses $X$ (and $E$) and the marginal tax rate $m$ to maximize the sum of profit and utility, subject to the budget constraint
+
+--
+
+The household consumes leisure according to the FOC: $U_N(\bar{X},N) = (1-m)w$ given the regulator chose $X=\bar{X}$
+
+--
+
+The firm obtains profits:
+$$\Pi = p\bar{X} - C(\bar{X})$$
+
+---
+
+# Second-best non-revenue raising environmental policy
+
+The marginal value of the dirty good comes from the consumers inverse demand:
+$$P(\bar{X}) = u_X(\bar{X},N)$$
+which depends on $N$
+
+--
+
+How do the endogenous variables $N$ and $p$ vary with $\bar{X}$?
+
+Let's look at the comparative statics and differentiate the consumer FOCs wrt $\bar{X}$
+
+---
+
+# Second-best non-revenue raising environmental policy
+
+\begin{align}
+  u_{XX} + u_{XN} \frac{\partial N}{\partial \bar{X}} &= \frac{\partial p}{\partial \bar{X}} \\
+  u_{NX} + u_{NN} \frac{\partial N}{\partial \bar{X}} &= 0
+\end{align}
+
+which gives us:
+\begin{align}
+ \frac{\partial N}{\partial \bar{X}} &= - {u_{XN} \over u_{NN}} \\
+ \frac{\partial p}{\partial \bar{X}} &= {u_{XX}u_{NN} - u_{NN}^2 \over u_{NN}} < 0
+\end{align}
+The sign of $\frac{\partial N}{\partial \bar{X}}$ depends on whether $X$ and $N$ are complements or substitutes
+
+---
+
+# Second-best non-revenue raising environmental policy
+
+The regulator's problem is then:
+$$\max_{X,m} u(X,N) + Z - D(X) + pX - C(X) \text{ s.t. } wm(T-N) = G$$
+
+--
+
+We still need to decide what the government does with its revenue
+
+--
+
+For convenience, we assume its returned to the consumer as a lump sum transfer so that:
+$$Z=(1-m)w(T-N)-pX+G = w(T-N) - pX$$
+Income is unchanged for a given level of $N$ under the tax and transfer
+
+
+---
+
+# Second-best non-revenue raising environmental policy
+
+The regulator's problem is then:
+$$\max_{X,m} u(X,N) +  w(T-N) - D(X) - C(X) + \lambda[ wm(T-N)  -G]$$
+$\lambda$ is the marginal welfare cost of public funds
+
+--
+
+It measures the welfare costs of raising revenue by taxing labor
+
+--
+
+What's the FOC for $m$?
+
+---
+
+# Second-best non-revenue raising environmental policy
+
+The FOC for $m$ is:
+$$(u_N - w){\partial N \over \partial m} + \lambda \left[w(T-N)-wm {\partial N \over \partial m} \right] = 0$$
+
+The household's optimal choice of $N$ tells us that: $-mw = u_N - w$, we can substitute this in to get $\lambda$:
+$$\lambda = \frac{w  m {\partial N \over \partial m}}{w(T-N)-wm{\partial N \over \partial m}}$$
+
+Whats the interpretation of the right hand side?
+
+---
+
+# Second-best non-revenue raising environmental policy
+
+$$\lambda = \frac{w  m {\partial N \over \partial m}}{w(T-N)-wm{\partial N \over \partial m}}$$
+
+--
+
+The numerator is:
+
+--
+
+The welfare cost of changing $m$
+
+--
+
+Why?
+
+--
+
+Higher $m$ increases leisure demand ${\partial N \over \partial m}$
+
+--
+
+This times the tax wedge $mw$ gives us the change in excess burden (i.e. the DWL $d$)
+
+---
+
+# Second-best non-revenue raising environmental policy
+
+$$\lambda = \frac{w  m {\partial N \over \partial m}}{w(T-N)-wm{\partial N \over \partial m}}$$
+
+The denominator is:
+
+--
+
+The change in tax revenue
+
+--
+
+First term is the increase in marginal revenue
+
+--
+
+Second term is the decrease in infra-marginal revenue
+
+---
+
+# Second-best non-revenue raising environmental policy
+
+$$\lambda = \frac{w  m {\partial N \over \partial m}}{w(T-N)-wm{\partial N \over \partial m}}$$
+
+Numerator and denominator combined give us the ratio of change in welfare from a change in $m$ to the change in tax revenue from a change in $m$
+
+--
+
+This is the change in welfare from a change in tax revenue!
+
+---
+
+# Second-best non-revenue raising environmental policy
+
+Now consider the FOC for $X$:
+$$u_X - D'(X) - C'(X) + \left[ u_N - w - \lambda w m \right] {\partial N \over \partial X} = 0$$
+
+Recall that we know:
+- $-wm = u_N - w$
+- $\frac{\partial N}{\partial X} = \frac{\partial N}{\partial p}\frac{\partial p}{\partial X}$
+
+This gives us that:
+$$u_X - C'(X) + (1+\lambda)\left[-{\partial N \over \partial p}\frac{\partial p}{\partial X}\right] = D'(X)$$
+
+---
+
+# Second-best non-revenue raising environmental policy
+
+$$u_X - C'(X) + (1+\lambda)\left[-{\partial N \over \partial p}\frac{\partial p}{\partial X}\right]wm = D'(X)$$
+
+--
+
+What are each of the terms:
+
+--
+
+$u_X - C'(X)$ is the marginal abatement cost
+
+--
+
+$D'(X)$ is marginal damage
+
+--
+
+$(1+\lambda)\left[-{\partial N \over \partial p}\frac{\partial p}{\partial X}\right]$ is new
+
+--
+
+What's the interpretation?
+
+---
+
+# Second-best non-revenue raising environmental policy
+
+$(1+\lambda)\left[-{\partial N \over \partial p}\frac{\partial p}{\partial X}\right]wm$ is called the .hi-blue[marginal interaction effect (MIE)]
+
+It tells us how the optimal choice of $X$ departs from $X^*$ because of the labor market distortion
+
+--
+
+We need to account for this because the household's choice of leisure will respond to changes in $X$
+
+--
+
+Suppose $N$ and $X$ are substitutes, what does this mean?
+
+---
+
+# Second-best non-revenue raising environmental policy
+
+Substitutes means that $MIE > 0$
+
+--
+
+The marginal social cost of abatement $(MAC + MIE)$ has become *larger*
+
+--
+
+Intuition?
+
+--
+
+Its more socially costly to reduce $X$ because the household increases $N$ in responses
+
+--
+
+This .hi-red[exacerbates] the distortion caused by the income tax
+
+--
+
+The opposite is true if $X$ and $N$ are complements, $MIE < 0$ and addressing the pollution distortion helps address the labor market distortion
+
+
+---
+
+# Second-best non-revenue raising environmental policy
+
+.pull-left[
+![excess burden is because MU of leisure is less than wage](`r knitr::fig_chunk("labor_market_2", "png")`)
+]
+
+.pull-right[
+
+$N^c \rightarrow N^*$ when $p^c \rightarrow p^*$ because of a change in $X$
+
+This is $-{\partial N \over \partial p}\frac{\partial p}{\partial X}$
+
+This reduces tax revenue by $e+c$ which is just 
+$$(N^*c* - N^c)(w - (1-m)w) \\
+= (N^* - N^c)mw$$
+
+]
+
+---
+
+# Second-best non-revenue raising environmental policy
+
+The marginal welfare cost of recouping the lost tax revenue by raising $m$ is $\lambda$ giving us a total welfare cost of:
+$$\lambda (N^* - N^c)mw$$
+
+But $(N^* - N^c)mw$ is also the excess burden: its a .hi-red[direct welfare loss!]
+
+So the total welfare loss is:
+$$(1+\lambda) (N^* - N^c)mw$$
+
+The discrete version of MIE!
+
+---
+
+# Findings recap
+
+If there's a gov't revenue constraint, and it can only be met with labor taxes then:
+
+1. The marginal social cost of reducing $X$ is higher than the first-best if $X$ and $N$ are substitutes and lower if they are complements
+2. The optimal level of pollution is larger if they are substitutes, lower if they are complements
+3. The absolute value of the difference in first and second-best pollution levels is larger if:
+  - Labor supply is more elastic
+  - Demand for $X$ is more inelastic
+  - Elasticity of substitution between $N$ and $X$ is greater
+  
+  
+---
+
+# Second-best non-revenue raising environmental policy
+
+We didn't actually show the last part yet
+
+--
+
+First define:
+- $\varepsilon_x$ as the own price elasticity ${\frac{\partial X}{\partial p} / \frac{p}{X}}$
+- $\eta_{XN}$ as the elasticity of substitution ${\frac{\partial X}{\partial w} / \frac{(1-m)w}{X}}$
+
+and take advantage of the .hi-blue[Slusky symmetry condition] $\partial N / \partial p = \partial X / \partial w$
+
+We can then use these to substitute into the MIE and get:
+$$MIE = (1+\lambda)\left[- {\eta_{XN} \over \varepsilon_X}\right]p {m \over 1-m}$$
+
+---
+
+# Second-best non-revenue raising environmental policy
+
+$$MIE = (1+\lambda)\left[- {\eta_{XN} \over \varepsilon_X}\right]p {m \over 1-m}$$
+MIE bigger if $|\eta_{XN}|$ is bigger
+
+--
+
+MIE bigger if $|\varepsilon_X|$ is smaller (more inelastic)
+
+--
+
+Still need to show labor supply part
+
+---
+
+# Second-best non-revenue raising environmental policy
+
+Define the elasticity of labor supply *at the net wage* as:
+$$\varepsilon_{L} = - {\partial N \over \partial w}{(1-m)w \over L}$$
+
+And recognize that:
+$${\partial N(p,(1-m)w) \over \partial m} = -w {\partial N(p,w) \over \partial w}$$
+
+Combining these two gives:
+$${\partial N \over \partial m}m = \varepsilon_{L} L m / (1-m)$$
+
+---
+
+# Second-best non-revenue raising environmental policy
+
+Finally, put:
+$${\partial N \over \partial m}m = \varepsilon_{L} L m / (1-m)$$
+in
+$$\lambda = \frac{w  m {\partial N \over \partial m}}{w(T-N)-wm{\partial N \over \partial m}}$$
+
+---
+
+# Second-best non-revenue raising environmental policy
+
+To get:
+$$\lambda = \frac{\varepsilon_{L}m/(1-m)}{1- \varepsilon_{L}m/(1-m)}$$
+
+Side note: 
+If labor is more elastic $\varepsilon_{L}$ is larger, the numerator is larger, denominator is smaller $\rightarrow$ MIE is bigger
+
+If labor supply is perfectly inelastic (vertical), there is no welfare cost of public funds!
+
+---
+
+# Second-best non-revenue raising environmental policy
+
+Finally use:
+$$\lambda = \frac{\varepsilon_{L}m/(1-m)}{1- \varepsilon_{L}m/(1-m)}$$
+to get:
+$${m\over(1-m)} = {\lambda \over (1-\lambda)\varepsilon_L}$$
+
+and then substitute into our MIE expression
+
+---
+
+# Second-best non-revenue raising environmental policy
+
+Finally we will get:
+$$MIE = \lambda {-\eta_{XN} \over \varepsilon_X} {p \over \varepsilon_L}$$
+
+Bigger $\varepsilon_L$ ... huh?
+
+---
+
+# Revenue raising environmental policy
