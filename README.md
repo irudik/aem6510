@@ -47,11 +47,11 @@ For your final project you can choose between a literature review or a data dive
 
 #### Literature review
 
-You can do a literature review on up to 5 papers on an environmental, resource, or energy economics topic of your choice. Your goal will be to summarise the findings, find common threads, and work yet to be done in the area. In the last week of class you will give a short presentation of your review of the literature. Papers are due the last day of class. My approval of your choice of papers is required before you start the literature review. 
+You can do a literature review on up to 5 papers on an environmental, resource, or energy economics topic of your choice. Your goal will be to summarise the findings, find common threads, and work yet to be done in the area. In the last two weeks of class you will give a short presentation of your review of the literature. Papers are due after the semi-final period. My approval of your choice of papers is required before you start the literature review. 
 
 #### Data dive
 
-You can find a new dataset that we do not cover in class but appears useful for environmental economics research. Your goal is to describe the data, how you get them, how you use them, and what makes them relevant. You will also need to do some preliminary analysis on the data. In the last week of class you will give a short presentation of your review of the literature. Papers are due the last day of class. My approval of your choice of dataset is required before you start the literature review. 
+You can find a new dataset that we do not cover in class but appears useful for environmental economics research. Your goal is to describe the data, how you get them, how you use them, and what makes them relevant. You will also need to do some preliminary analysis on the data. In the last two weeks of class you will give a short presentation of the data and your preliminary analysis. Papers are due after the semi-final period. My approval of your choice of dataset is required before you start the literature review. 
 
 ### Readings
 
@@ -59,9 +59,10 @@ Some sections of the course have readings (available on Canvas if not in the boo
 
 ## Important dates
 
-- Prelim 1: October 20
-- Empirical prelim: December 17
-- Literature review presentations: December 10, 15
+- Theory prelim: October 25
+- Empirical prelim: December 15
+- Final project paper due: December 1
+- Final project presentations: December 8, 10
 
 **Attendance:** Class attendance is not explicitly required but highly recommended.
 
@@ -113,67 +114,58 @@ Some sections of the course have readings (available on Canvas if not in the boo
 
 **Reading**: PR Chapter 14
 
-### [Oct 13: Theory of Applied Welfare Economics](https://ivanrudik.com)
+### [Oct 8: Theory of Applied Welfare Economics](https://ivanrudik.com)
 
 **Reading**: PR Chapter 14
 
-### [Oct 15: Revealed Preference Models](https://ivanrudik.com)
+### [Oct 13: Revealed Preference Models](https://ivanrudik.com)
 
 **Reading**: PR Chapter 15
 
-### Oct 20: Theory Prelim
+### Oct 15: Theory Prelim
 
-### [Oct 22: R and the tidyverse, causal inference](https://ivanrudik.com)
+### [Oct 20: R and the tidyverse, causal inference](https://ivanrudik.com)
 
 **Reading**: 
   - Mixtape: properties of regression, directed acyclical graphs, potential outcomes causal model
   - Greenstone, M. and Gayer, T., 2009. Quasi-experimental and experimental approaches to environmental economics. Journal of Environmental Economics and Management, 57(1), pp.21-44.
   - Deschenes, O. and Meng, K.C., 2018. Quasi-experimental methods in environmental economics: Opportunities and challenges. In Handbook of Environmental Economics (Vol. 4, pp. 285-332). 
 
-### [Oct 27: R and the tidyverse, causal inference, randomized control trials](https://ivanrudik.com)
+### [Oct 22: R and the tidyverse, causal inference, randomized control trials](https://ivanrudik.com)
 
 **Reading**: 
   - Mixtape: properties of regression, directed acyclical graphs, potential outcomes causal model
   - Guiteras, Raymond, James Levinsohn, and Ahmed Mushfiq Mobarak. "Encouraging sanitation investment in the developing world: a cluster-randomized trial." Science 348, no. 6237 (2015): 903-906.
   
-### [Oct 29: Hedonics and regression discontinuity](https://ivanrudik.com)
+### [Oct 27: Deforestation, remote sensing/simple features, regression discontinuity](https://ivanrudik.com)
 
-**Reading**:
-  - PR Chapter 18
-  - Mixtape: regression discontinuity
-  - Chay, K. Y. and Greenstone, M. (2005). Does air quality matter? Evidence from the housing market. Journal of Political Economy, 113(2):pp. 376–424
+**Reading**: 
+  - [Geocomputation with R](https://geocompr.robinlovelace.net/)
+  - Burgess, R., Costa, F. and Olken, B.A., 2019. The Brazilian Amazon’s Double Reversal of Fortune.
 
-### [Nov 3: Hedonics and regression discontinuity](https://ivanrudik.com)
-
-**Reading**:
-  - PR Chapter 18
-  - Mixtape: regression discontinuity
-  - Chay, K. Y. and Greenstone, M. (2005). Does air quality matter? Evidence from the housing market. Journal of Political Economy, 113(2):pp. 376–424
-
-### [Nov 5: Climate change](https://ivanrudik.com)
+### [Oct 29: Climate change](https://ivanrudik.com)
 
 **Reading**: 
   - Hsiang, S. and Robert Kopp. 2018. An economist's guide to climate change science, Journal of Economic Perspectives, Vol. 32, No. 4, pp. 3-32.
   - Hsiang, S., 2016. Climate econometrics. Annual Review of Resource Economics, 8, pp.43-75.
   
-### [Nov 10: Climate change and cross-sectional regressions](https://ivanrudik.com)
+### [Nov 3: Climate change and cross-sectional regressions](https://ivanrudik.com)
 
 **Reading**: Mendelsohn, R., Nordhaus, W.D. and Shaw, D., 1994. The impact of global warming on agriculture: a Ricardian analysis. The American economic review, pp.753-771.
 
-### [Nov 12: Climate change and two way fixed effects](https://ivanrudik.com)
+### [Nov 5: Climate change and two way fixed effects](https://ivanrudik.com)
 
 **Reading**: Deschênes, O. and Greenstone, M., 2007. The economic impacts of climate change: evidence from agricultural output and random fluctuations in weather. American Economic Review, 97(1), pp.354-385.
 
-
-### [Nov 12: Environmental health, difference-in-differences, and event studies](https://ivanrudik.com)
+### [Nov 10: Environmental health, difference-in-differences, and event studies](https://ivanrudik.com)
 
 **Reading**: 
   - Mixtape: difference-in-differences
   - [Hollingsworth A. and Rudik, I., 2021. The effect of leaded gasoline on elderly mortality: Evidence from regulatory exemptions. American Economic Journal: Economic Policy.](https://osf.io/preprints/socarxiv/rdy6g/)
   - Graff Zivin, J. and Neidell, M., 2013. Environment, health, and human capital. Journal of Economic Literature, 51(3), pp.689-730.
   - Currie, J., Zivin, J.G., Mullins, J. and Neidell, M., 2014. What do we know about short-and long-term effects of early-life exposure to pollution? Annual Review Resourse Economics, 6(1), pp.217-247.
-  
-### [Nov 19: Environmental health, difference-in-differences, and event studies](https://ivanrudik.com)
+
+### [Nov 12: Environmental health, difference-in-differences, and event studies](https://ivanrudik.com)
 
 **Reading**:  
   - Mixtape: difference-in-differences
@@ -181,28 +173,26 @@ Some sections of the course have readings (available on Canvas if not in the boo
   - Graff Zivin, J. and Neidell, M., 2013. Environment, health, and human capital. Journal of Economic Literature, 51(3), pp.689-730.
   - Currie, J., Zivin, J.G., Mullins, J. and Neidell, M., 2014. What do we know about short-and long-term effects of early-life exposure to pollution? Annual Review Resourse Economics, 6(1), pp.217-247.
 
-### [Nov 24: Deforestation, remote sensing, and simple features](https://ivanrudik.com)
+### [Nov 17: Semi-final period]
 
-**Reading**: 
-  - [Geocomputation with R](https://geocompr.robinlovelace.net/)
-  - Burgess, R., Hansen, M., Olken, B.A., Potapov, P. and Sieber, S., 2012. The political economy of deforestation in the tropics. The Quarterly Journal of Economics, 127(4), pp.1707-1754.
+### [Nov 19: Semi-final period]
 
-### [Dec 1: Deforestation, remote sensing, and simple features](https://ivanrudik.com)
+### [Nov 24: Semi-final period]
 
-**Reading**: 
-  - [Geocomputation with R](https://geocompr.robinlovelace.net/)
-  - Burgess, R., Costa, F. and Olken, B.A., 2019. The Brazilian Amazon’s Double Reversal of Fortune.
+### [Nov 26: Thanksgiving break]
   
+### [Dec 1: Perverse incentives, clean air act, remote sensing](https://ivanrudik.com)
+
+**Reading**: 
+  - [Geocomputation with R](https://geocompr.robinlovelace.net/)
+  -  Zou, E., 2021. Unwatched pollution: The effect of intermittent monitoring on air quality. American Economic Review.
+
 ### [Dec 3: Perverse incentives, clean air act, remote sensing](https://ivanrudik.com)
 
 **Reading**: Zou, E., 2021. Unwatched pollution: The effect of intermittent monitoring on air quality. American Economic Review.
 
-### [Dec 8: Perverse incentives, clean air act, remote sensing](https://ivanrudik.com)
+### Dec 8: Final project presentations
 
-**Reading**: Zou, E., 2021. Unwatched pollution: The effect of intermittent monitoring on air quality. American Economic Review.
+### Dec 10: Final project presentations
 
-### Dec 10: Literature review presentations
-
-### Dec 15: Literature review presentations
-
-### Dec 17: Empirical Prelim
+### Dec 15: Empirical prelim
