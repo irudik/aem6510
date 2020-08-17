@@ -186,11 +186,11 @@ Some sections of the course have readings (available on Canvas if not in the boo
   
 ### [Dec 3: Perverse incentives, clean air act, remote sensing](https://ivanrudik.com)
 
-**Reading**: Zou, E., 2018. Unwatched pollution: The effect of intermittent monitoring on air quality.
+**Reading**: Zou, E., 2021. Unwatched pollution: The effect of intermittent monitoring on air quality. American Economic Review.
 
 ### [Dec 8: Perverse incentives, clean air act, remote sensing](https://ivanrudik.com)
 
-**Reading**: Zou, E., 2018. Unwatched pollution: The effect of intermittent monitoring on air quality.
+**Reading**: Zou, E., 2021. Unwatched pollution: The effect of intermittent monitoring on air quality. American Economic Review.
 
 ### Dec 10: Literature review presentations
 
