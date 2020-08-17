@@ -21,8 +21,8 @@
 ## Grading and Assignments
 
 ### Grading
-- Prelims: 30% and 20%
-- Problem sets: 25%
+- Prelims: 30% and 25%
+- Problem sets: 20%
 - Final project paper: 20%
 - Final project presentation: 5%
 
