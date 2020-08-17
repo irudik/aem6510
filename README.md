@@ -173,13 +173,13 @@ Some sections of the course have readings (available on Canvas if not in the boo
   - Graff Zivin, J. and Neidell, M., 2013. Environment, health, and human capital. Journal of Economic Literature, 51(3), pp.689-730.
   - Currie, J., Zivin, J.G., Mullins, J. and Neidell, M., 2014. What do we know about short-and long-term effects of early-life exposure to pollution? Annual Review Resourse Economics, 6(1), pp.217-247.
 
-### [Nov 17: Semi-final period]
+### Nov 17: Semi-final period
 
-### [Nov 19: Semi-final period]
+### Nov 19: Semi-final period
 
-### [Nov 24: Semi-final period]
+### Nov 24: Semi-final period
 
-### [Nov 26: Thanksgiving break]
+### Nov 26: Thanksgiving break
   
 ### [Dec 1: Perverse incentives, clean air act, remote sensing](https://ivanrudik.com)
 
