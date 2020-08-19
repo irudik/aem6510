@@ -68,7 +68,7 @@ Some sections of the course have readings (available on Canvas if not in the boo
 
 **Grade appeals:** If you wish to appeal your grade on a prelim or problem you must bring it to my attention, in writing, within 24 hours of when the prelim or problem set is returned.  Grades brought to my attention after this will not be eligible for a grade appeal. I reserve the right to regrade the entire assignment and the new grade will be final.
 
-**Group work:** For problem sets, you may consult with me during office hours or with other students. Problem sets can done in groups of up to 3. If you work in a group, turn in only one assignment for the group. You must complete prelims without help.
+**Group work:** For problem sets, you may consult with me or Diego during office hours, or with other students. Problem sets can done in groups of up to 3. If you work in a group, turn in only one assignment for the group. You must complete prelims without help.
 
 **Integrity of credit:** I expect every student in this course to abide by the Cornell University Code of Academic Integrity. I strongly encourage collaboration in this course, but each student is responsible for making sure that she or he follows the rules laid out in this syllabus, and with those stated in the Code of Academic Integrity. Any student found to have violated the stated policies on problem sets will receive a zero for that assignment, and any student found to have cheated on a prelim will receive a zero on that prelim. Multiple violations in a semester may result in failure of the course. The Code of Academic Integrity is available for review here: https://cuinfo.cornell.edu/aic.cfm.
 
