@@ -78,23 +78,19 @@ Some sections of the course have readings (available on Canvas if not in the boo
 
 **Reading**: PR Chapter 1
 
-### [Sep 8: Environmental problems and policy issues](https://ivanrudik.com)
+### [Sep 8: Introduction to the theory of environmental policy](https://ivanrudik.com)
 
-**Reading**: PR Chapter 2
+**Reading**: PR Chapter 3
 
 ### [Sep 10: Introduction to the theory of environmental policy](https://ivanrudik.com)
 
 **Reading**: PR Chapter 3
 
-### [Sep 15: Introduction to the theory of environmental policy](https://ivanrudik.com)
-
-**Reading**: PR Chapter 3
-
-### [Sep 17: Imperfect information](https://ivanrudik.com)
+### [Sep 15: Imperfect information](https://ivanrudik.com)
 
 **Reading**: PR Chapter 4
 
-### [Sep 22: Competitive output markets](https://ivanrudik.com)
+### [Sep 17: Competitive output markets](https://ivanrudik.com)
 
 **Reading**: PR Chapter 5
 
@@ -102,52 +98,58 @@ Some sections of the course have readings (available on Canvas if not in the boo
 
 **Reading**: PR Chapter 6
 
-### [Sep 29: Pre-existing distortions](https://ivanrudik.com)
+### [Sep 22: Pre-existing distortions](https://ivanrudik.com)
 
 **Reading**: PR Chapter 7
 
-### [Oct 1: Cap and Trade Institutional Topics](https://ivanrudik.com)
+### [Sep 29: Cap and Trade Institutional Topics](https://ivanrudik.com)
 
 **Reading**: PR Chapter 8
+
+### [Oct 1: Theory of Applied Welfare Economics](https://ivanrudik.com)
+
+**Reading**: PR Chapter 14
 
 ### [Oct 6: Theory of Applied Welfare Economics](https://ivanrudik.com)
 
 **Reading**: PR Chapter 14
 
-### [Oct 8: Theory of Applied Welfare Economics](https://ivanrudik.com)
-
-**Reading**: PR Chapter 14
-
-### [Oct 13: Revealed Preference Models](https://ivanrudik.com)
+### [Oct 8: Revealed Preference Models](https://ivanrudik.com)
 
 **Reading**: PR Chapter 15
 
-### Oct 15: Theory Prelim
+### Oct 13: Theory Prelim
 
-### [Oct 20: R and the tidyverse, causal inference](https://ivanrudik.com)
+### [Oct 15: R and the tidyverse, causal inference](https://ivanrudik.com)
 
 **Reading**: 
   - Mixtape: properties of regression, directed acyclical graphs, potential outcomes causal model
   - Greenstone, M. and Gayer, T., 2009. Quasi-experimental and experimental approaches to environmental economics. Journal of Environmental Economics and Management, 57(1), pp.21-44.
   - Deschenes, O. and Meng, K.C., 2018. Quasi-experimental methods in environmental economics: Opportunities and challenges. In Handbook of Environmental Economics (Vol. 4, pp. 285-332). 
 
-### [Oct 22: R and the tidyverse, causal inference, randomized control trials](https://ivanrudik.com)
+### [Oct 20: R and the tidyverse, causal inference, randomized control trials](https://ivanrudik.com)
 
 **Reading**: 
   - Mixtape: properties of regression, directed acyclical graphs, potential outcomes causal model
   - Guiteras, Raymond, James Levinsohn, and Ahmed Mushfiq Mobarak. "Encouraging sanitation investment in the developing world: a cluster-randomized trial." Science 348, no. 6237 (2015): 903-906.
   
-### [Oct 27: Deforestation, remote sensing/simple features, regression discontinuity](https://ivanrudik.com)
+### [Oct 22: Deforestation, remote sensing/simple features, regression discontinuity](https://ivanrudik.com)
 
 **Reading**: 
   - [Geocomputation with R](https://geocompr.robinlovelace.net/)
   - Burgess, R., Costa, F. and Olken, B.A., 2019. The Brazilian Amazon’s Double Reversal of Fortune.
 
-### [Oct 29: Climate change](https://ivanrudik.com)
+### [Oct 29: Hedonics](https://ivanrudik.com)
 
 **Reading**: 
-  - Hsiang, S. and Robert Kopp. 2018. An economist's guide to climate change science, Journal of Economic Perspectives, Vol. 32, No. 4, pp. 3-32.
-  - Hsiang, S., 2016. Climate econometrics. Annual Review of Resource Economics, 8, pp.43-75.
+  - PR Chapter 18
+  - Keiser, David A., and Joseph S. Shapiro. "Consequences of the Clean Water Act and the demand for water quality." The Quarterly Journal of Economics 134, no. 1 (2019): 349-396.
+
+### [Oct 29: Hedonics](https://ivanrudik.com)
+
+**Reading**: 
+  - PR Chapter 18
+  - Keiser, David A., and Joseph S. Shapiro. "Consequences of the Clean Water Act and the demand for water quality." The Quarterly Journal of Economics 134, no. 1 (2019): 349-396.
   
 ### [Nov 3: Climate change and cross-sectional regressions](https://ivanrudik.com)
 
