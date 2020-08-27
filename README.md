@@ -2,9 +2,9 @@
 
 **Class location:** Warren 138
 
-**Class time:** Tues/Thurs 2:55-4:10
+**Class time:** Tues/Thurs 3:00-4:15
 
-**Office hours:** Wed 3:00-4:00
+**Office hours:** Tues/Thurs 4:20-4:50
 
 **Teaching assistant:** Diego Cardoso
 
@@ -16,7 +16,7 @@
 
 **Course description:** An introduction to environmental economics. The first half of the class focuses on the core theory, theory of regulation, and theory of welfare analysis. The second half of the course covers empirical topics. We will be learning how to use R for empirical research in environmental economics.
 
-**Course requirements:** Students are expected to attend the Zoom class sessions. In addition, students are expected to prepare for class, prelims, and complete homework outside of class. 
+**Course requirements:** Students are expected to attend the Zoom class sessions if they are in a reasonable timezone. If you are not (e.g. 12 hour difference) you may take the course asynchronously. Students are expected to prepare for class, prelims, and complete problem sets outside of class. 
 
 ## Grading and Assignments
 
