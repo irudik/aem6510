@@ -35,7 +35,7 @@ The grading scale is:
 
 ### Prelims
 
-There will be 2 prelims. The theory prelim will be assigned and done during class time. It'll be the same as an in-class prelim except you can use the book or whatever material you like to help you. You will have 24 hours for the empirical prelim and the class time is reserved for Zoom office hours for any questions.  **You are expected to complete the prelims on your own, not in groups.** Your higher-scoring prelim will be 30% of your grade, your lower-scoring prelim will be 20% of your grade. If you miss a prelim without an acceptable excuse you will receive a zero.  If you have an acceptable excuse (these must be brought in beforehand except for sickness, injuries, accidents, etc) an alternative prelim will be scheduled. If you miss a prelim and do not notify me beforehand you must have a valid document (doctor's note, etc) explaining why you missed class and were not able to let me know before the missed prelim. 
+There will be 2 prelims. The theory prelim will be assigned and done during class time. It'll be the same as an in-class prelim except you can use the book or whatever material you like to help you. You will have 24 hours for the empirical prelim and the class time is reserved for Zoom office hours for any questions.  **You are expected to complete the prelims on your own, not in groups.** Your higher-scoring prelim will be 30% of your grade, your lower-scoring prelim will be 25% of your grade. If you miss a prelim without an acceptable excuse you will receive a zero.  If you have an acceptable excuse (these must be brought in beforehand except for sickness, injuries, accidents, etc) an alternative prelim will be scheduled. If you miss a prelim and do not notify me beforehand you must have a valid document (doctor's note, etc) explaining why you missed class and were not able to let me know before the missed prelim. 
 
 ### Problem sets
 
@@ -59,7 +59,7 @@ Some sections of the course have readings (available on Canvas if not in the boo
 
 ## Important dates
 
-- Theory prelim: October 25
+- Theory prelim: October 13
 - Empirical prelim: December 15
 - Final project paper due: December 1
 - Final project presentations: December 8, 10
@@ -139,7 +139,7 @@ Some sections of the course have readings (available on Canvas if not in the boo
   - [Geocomputation with R](https://geocompr.robinlovelace.net/)
   - Burgess, R., Costa, F. and Olken, B.A., 2019. The Brazilian Amazon’s Double Reversal of Fortune.
 
-### [Oct 29: Hedonics](https://ivanrudik.com)
+### [Oct 27: Hedonics](https://ivanrudik.com)
 
 **Reading**: 
   - PR Chapter 18
