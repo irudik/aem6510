@@ -1,14 +1,14 @@
 # AEM 6510 - Environmental and Resource Economics
 
-**Class location:** Warren 138
+**Class location:** Zoom (link on Canvas)
 
 **Class time:** Tues/Thurs 3:00-4:15
 
-**Office hours:** Tues/Thurs 4:20-4:50
+**Office hours:** Tues/Thurs 4:20-4:50 (link on Canvas)
 
 **Teaching assistant:** Diego Cardoso
 
-**TA office hours:** Mon 3:00-4:00
+**TA office hours:** Mon 3:00-4:00  (link on Canvas)
 
 **Textbook:** A Course in Environmental Economics by Phaneuf and Requate is required. [Causal Inference: The Mixtape](https://www.scunning.com/mixtape.html) by Cunningham is also required and free. 
 
@@ -126,6 +126,8 @@ Some sections of the course have readings (available on Canvas if not in the boo
   - Mixtape: properties of regression, directed acyclical graphs, potential outcomes causal model
   - Greenstone, M. and Gayer, T., 2009. Quasi-experimental and experimental approaches to environmental economics. Journal of Environmental Economics and Management, 57(1), pp.21-44.
   - Deschenes, O. and Meng, K.C., 2018. Quasi-experimental methods in environmental economics: Opportunities and challenges. In Handbook of Environmental Economics (Vol. 4, pp. 285-332). 
+
+We will be using [RStudio Cloud](https://rstudio.cloud/) for computing.
 
 ### [Oct 20: R and the tidyverse, causal inference, randomized control trials](https://ivanrudik.com)
 
