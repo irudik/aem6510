@@ -104,19 +104,19 @@ Some sections of the course have readings (available on Canvas if not in the boo
 
 **Reading**: PR Chapter 7
 
-### [Sep 29: Cap and Trade Institutional Topics](https://ivanrudik.com)
+### [Sep 29: Cap and trade institutional topics](https://ivanrudik.com)
 
 **Reading**: PR Chapter 8
 
-### [Oct 1: Theory of Applied Welfare Economics](https://ivanrudik.com)
+### [Oct 1: Theory of pplied welfare economics](https://ivanrudik.com)
 
 **Reading**: PR Chapter 14
 
-### [Oct 6: Theory of Applied Welfare Economics](https://ivanrudik.com)
+### [Oct 6: Theory of applied welfare economics](https://ivanrudik.com)
 
 **Reading**: PR Chapter 14
 
-### [Oct 8: Revealed Preference Models](https://ivanrudik.com)
+### [Oct 8: Revealed preference models](https://ivanrudik.com)
 
 **Reading**: PR Chapter 15
 
