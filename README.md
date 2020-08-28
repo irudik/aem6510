@@ -64,6 +64,8 @@ Some sections of the course have readings (available on Canvas if not in the boo
 - Final project paper due: December 1
 - Final project presentations: December 8, 10
 
+## Other things
+
 **Attendance:** Class attendance is not explicitly required but highly recommended.
 
 **Grade appeals:** If you wish to appeal your grade on a prelim or problem you must bring it to my attention, in writing, within 24 hours of when the prelim or problem set is returned.  Grades brought to my attention after this will not be eligible for a grade appeal. I reserve the right to regrade the entire assignment and the new grade will be final.
