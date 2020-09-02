@@ -59,10 +59,10 @@ Some sections of the course have readings (available on Canvas if not in the boo
 
 ## Important dates
 
-- Theory prelim: October 8
-- Empirical prelim: December 15
-- Final project paper due: December 6
-- Final project presentations: December 8, 10
+- Theory prelim: October 13
+- Empirical prelim: December 3
+- Final project paper due: December 16
+- Final project presentations: December 8, 10, 15
 
 ## Other things
 
@@ -118,8 +118,7 @@ Some sections of the course have readings (available on Canvas if not in the boo
 
 ### [Oct 8: Hedonics](https://ivanrudik.com)
 
-**Reading**: 
-  - PR Chapter 18
+**Reading**: PR Chapter 18
 
 ### Oct 13: Theory Prelim
 
@@ -128,7 +127,6 @@ Some sections of the course have readings (available on Canvas if not in the boo
 **Reading**: 
   - Mixtape: properties of regression, directed acyclical graphs, potential outcomes causal model
   - Greenstone, M. and Gayer, T., 2009. Quasi-experimental and experimental approaches to environmental economics. Journal of Environmental Economics and Management, 57(1), pp.21-44.
-  - Deschenes, O. and Meng, K.C., 2018. Quasi-experimental methods in environmental economics: Opportunities and challenges. In Handbook of Environmental Economics (Vol. 4, pp. 285-332). 
 
 We will be using [RStudio Cloud](https://rstudio.cloud/) for computing.
 
@@ -141,14 +139,13 @@ We will be using [RStudio Cloud](https://rstudio.cloud/) for computing.
 ### [Oct 22: Deforestation, remote sensing/simple features, regression discontinuity](https://ivanrudik.com)
 
 **Reading**: 
+  - Mixtape: regression discontinuity
   - [Geocomputation with R](https://geocompr.robinlovelace.net/)
   - Burgess, R., Costa, F. and Olken, B.A., 2019. The Brazilian Amazon’s Double Reversal of Fortune.
 
 ### [Oct 27: Hedonics](https://ivanrudik.com)
 
-**Reading**: 
-  - PR Chapter 18
-  - Keiser, David A., and Joseph S. Shapiro. "Consequences of the Clean Water Act and the demand for water quality." The Quarterly Journal of Economics 134, no. 1 (2019): 349-396.
+**Reading**: Muehlenbachs, Lucija, Elisheba Spiller, and Christopher Timmins. "The housing market impacts of shale gas development." American Economic Review 105, no. 12 (2015): 3633-59.
 
 ### [Oct 29: Climate change and cross-sectional regressions](https://ivanrudik.com)
 
@@ -168,17 +165,17 @@ We will be using [RStudio Cloud](https://rstudio.cloud/) for computing.
 
 ### [Nov 10: Environmental health, difference-in-differences, and event studies](https://ivanrudik.com)
 
-### [Nov 12: Perverse incentives, clean air act, remote sensing](https://ivanrudik.com)
-
-**Reading**: 
-  - [Geocomputation with R](https://geocompr.robinlovelace.net/)
-  -  Zou, E., 2021. Unwatched pollution: The effect of intermittent monitoring on air quality. American Economic Review.
-
 **Reading**:  
   - Mixtape: difference-in-differences
   - [Hollingsworth A. and Rudik, I., 2021. The effect of leaded gasoline on elderly mortality: Evidence from regulatory exemptions. American Economic Journal: Economic Policy.](https://osf.io/preprints/socarxiv/rdy6g/)
   - Graff Zivin, J. and Neidell, M., 2013. Environment, health, and human capital. Journal of Economic Literature, 51(3), pp.689-730.
   - Currie, J., Zivin, J.G., Mullins, J. and Neidell, M., 2014. What do we know about short-and long-term effects of early-life exposure to pollution? Annual Review Resourse Economics, 6(1), pp.217-247.
+
+### [Nov 12: Perverse incentives, clean air act, remote sensing](https://ivanrudik.com)
+
+**Reading**: 
+  - [Geocomputation with R](https://geocompr.robinlovelace.net/)
+  -  Zou, E., 2021. Unwatched pollution: The effect of intermittent monitoring on air quality. American Economic Review.
 
 ### Nov 17: Semi-final period
 
@@ -194,10 +191,12 @@ We will be using [RStudio Cloud](https://rstudio.cloud/) for computing.
   - [Geocomputation with R](https://geocompr.robinlovelace.net/)
   -  Zou, E., 2021. Unwatched pollution: The effect of intermittent monitoring on air quality. American Economic Review.
 
-### Dec 3: Final project presentations
+### Dec 3: Empirical prelim
 
 ### Dec 8: Final project presentations
 
 ### Dec 10: Final project presentations
 
-### Dec 15: Empirical prelim
+### Dec 15: Final project presentations
+
+
