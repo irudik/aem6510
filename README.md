@@ -35,7 +35,7 @@ The grading scale is:
 
 ### Prelims
 
-There will be 2 prelims. The theory prelim will be assigned and done during class time. It'll be the same as an in-class prelim except you can use the book or whatever material you like to help you. You will have 24 hours for the empirical prelim and the class time is reserved for Zoom office hours for any questions.  **You are expected to complete the prelims on your own, not in groups.** Your higher-scoring prelim will be 30% of your grade, your lower-scoring prelim will be 25% of your grade. If you miss a prelim without an acceptable excuse you will receive a zero.  If you have an acceptable excuse (these must be brought in beforehand except for sickness, injuries, accidents, etc) an alternative prelim will be scheduled. If you miss a prelim and do not notify me beforehand you must have a valid document (doctor's note, etc) explaining why you missed class and were not able to let me know before the missed prelim. 
+There will be 2 prelims. The theory prelim will be assigned and done during class time. It'll be the same as an in-class prelim except you can use the book or whatever material you like to help you. You will have 24 hours for the empirical prelim and the class time is reserved for Zoom office hours for any questions.  **You are expected to complete the prelims on your own, not in groups.** Your higher-scoring prelim will be 30% of your grade, your lower-scoring prelim will be 25% of your grade. If you miss a prelim without an acceptable excuse you will receive a zero.  If you have an acceptable excuse (these must be brought in beforehand except for sickness, injuries, accidents, etc) an alternative prelim will be scheduled. If you miss a prelim and do not notify me beforehand you must have a valid document (doctor's note, etc) explaining why you missed class and were not able to let me know before the missed prelim. Prelims submitted late will have a 30% deduction.
 
 ### Problem sets
 
@@ -59,7 +59,7 @@ Some sections of the course have readings (available on Canvas if not in the boo
 
 ## Important dates
 
-- Theory prelim: October 13
+- Theory prelim: October 8
 - Empirical prelim: December 15
 - Final project paper due: December 6
 - Final project presentations: December 8, 10
@@ -104,25 +104,21 @@ Some sections of the course have readings (available on Canvas if not in the boo
 
 **Reading**: PR Chapter 7
 
-### [Sep 29: Cap and trade institutional topics](https://ivanrudik.com)
-
-**Reading**: PR Chapter 8
-
-### [Oct 1: Theory of pplied welfare economics](https://ivanrudik.com)
+### [Sep 29: Theory of applied welfare economics](https://ivanrudik.com)
 
 **Reading**: PR Chapter 14
 
-### [Oct 6: Theory of applied welfare economics](https://ivanrudik.com)
+### [Oct 1: Theory of applied welfare economics](https://ivanrudik.com)
 
 **Reading**: PR Chapter 14
 
-### [Oct 8: Revealed preference models](https://ivanrudik.com)
+### [Oct 6: Revealed preference models](https://ivanrudik.com)
 
 **Reading**: PR Chapter 15
 
-### Oct 13: Theory Prelim
+### Oct 8: Theory Prelim
 
-### [Oct 15: R and the tidyverse, causal inference](https://ivanrudik.com)
+### [Oct 13: R and the tidyverse, causal inference](https://ivanrudik.com)
 
 **Reading**: 
   - Mixtape: properties of regression, directed acyclical graphs, potential outcomes causal model
@@ -131,17 +127,23 @@ Some sections of the course have readings (available on Canvas if not in the boo
 
 We will be using [RStudio Cloud](https://rstudio.cloud/) for computing.
 
-### [Oct 20: R and the tidyverse, causal inference, randomized control trials](https://ivanrudik.com)
+### [Oct 15: R and the tidyverse, causal inference, randomized control trials](https://ivanrudik.com)
 
 **Reading**: 
   - Mixtape: properties of regression, directed acyclical graphs, potential outcomes causal model
   - Guiteras, Raymond, James Levinsohn, and Ahmed Mushfiq Mobarak. "Encouraging sanitation investment in the developing world: a cluster-randomized trial." Science 348, no. 6237 (2015): 903-906.
   
-### [Oct 22: Deforestation, remote sensing/simple features, regression discontinuity](https://ivanrudik.com)
+### [Oct 20: Deforestation, remote sensing/simple features, regression discontinuity](https://ivanrudik.com)
 
 **Reading**: 
   - [Geocomputation with R](https://geocompr.robinlovelace.net/)
   - Burgess, R., Costa, F. and Olken, B.A., 2019. The Brazilian Amazon’s Double Reversal of Fortune.
+
+### [Oct 22: Hedonics](https://ivanrudik.com)
+
+**Reading**: 
+  - PR Chapter 18
+  - Keiser, David A., and Joseph S. Shapiro. "Consequences of the Clean Water Act and the demand for water quality." The Quarterly Journal of Economics 134, no. 1 (2019): 349-396.
 
 ### [Oct 27: Hedonics](https://ivanrudik.com)
 
@@ -149,21 +151,15 @@ We will be using [RStudio Cloud](https://rstudio.cloud/) for computing.
   - PR Chapter 18
   - Keiser, David A., and Joseph S. Shapiro. "Consequences of the Clean Water Act and the demand for water quality." The Quarterly Journal of Economics 134, no. 1 (2019): 349-396.
 
-### [Oct 29: Hedonics](https://ivanrudik.com)
-
-**Reading**: 
-  - PR Chapter 18
-  - Keiser, David A., and Joseph S. Shapiro. "Consequences of the Clean Water Act and the demand for water quality." The Quarterly Journal of Economics 134, no. 1 (2019): 349-396.
-  
-### [Nov 3: Climate change and cross-sectional regressions](https://ivanrudik.com)
+### [Oct 29: Climate change and cross-sectional regressions](https://ivanrudik.com)
 
 **Reading**: Mendelsohn, R., Nordhaus, W.D. and Shaw, D., 1994. The impact of global warming on agriculture: a Ricardian analysis. The American economic review, pp.753-771.
 
-### [Nov 5: Climate change and two way fixed effects](https://ivanrudik.com)
+### [Nov 3: Climate change and two way fixed effects](https://ivanrudik.com)
 
 **Reading**: Deschênes, O. and Greenstone, M., 2007. The economic impacts of climate change: evidence from agricultural output and random fluctuations in weather. American Economic Review, 97(1), pp.354-385.
 
-### [Nov 10: Environmental health, difference-in-differences, and event studies](https://ivanrudik.com)
+### [Nov 5: Environmental health, difference-in-differences, and event studies](https://ivanrudik.com)
 
 **Reading**: 
   - Mixtape: difference-in-differences
@@ -171,7 +167,13 @@ We will be using [RStudio Cloud](https://rstudio.cloud/) for computing.
   - Graff Zivin, J. and Neidell, M., 2013. Environment, health, and human capital. Journal of Economic Literature, 51(3), pp.689-730.
   - Currie, J., Zivin, J.G., Mullins, J. and Neidell, M., 2014. What do we know about short-and long-term effects of early-life exposure to pollution? Annual Review Resourse Economics, 6(1), pp.217-247.
 
-### [Nov 12: Environmental health, difference-in-differences, and event studies](https://ivanrudik.com)
+### [Nov 10: Environmental health, difference-in-differences, and event studies](https://ivanrudik.com)
+
+### [Nov 12: Perverse incentives, clean air act, remote sensing](https://ivanrudik.com)
+
+**Reading**: 
+  - [Geocomputation with R](https://geocompr.robinlovelace.net/)
+  -  Zou, E., 2021. Unwatched pollution: The effect of intermittent monitoring on air quality. American Economic Review.
 
 **Reading**:  
   - Mixtape: difference-in-differences
@@ -193,9 +195,7 @@ We will be using [RStudio Cloud](https://rstudio.cloud/) for computing.
   - [Geocomputation with R](https://geocompr.robinlovelace.net/)
   -  Zou, E., 2021. Unwatched pollution: The effect of intermittent monitoring on air quality. American Economic Review.
 
-### [Dec 3: Perverse incentives, clean air act, remote sensing](https://ivanrudik.com)
-
-**Reading**: Zou, E., 2021. Unwatched pollution: The effect of intermittent monitoring on air quality. American Economic Review.
+### Dec 3: Final project presentations
 
 ### Dec 8: Final project presentations
 
