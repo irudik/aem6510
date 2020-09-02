@@ -116,9 +116,14 @@ Some sections of the course have readings (available on Canvas if not in the boo
 
 **Reading**: PR Chapter 15
 
-### Oct 8: Theory Prelim
+### [Oct 8: Hedonics](https://ivanrudik.com)
 
-### [Oct 13: R and the tidyverse, causal inference](https://ivanrudik.com)
+**Reading**: 
+  - PR Chapter 18
+
+### Oct 13: Theory Prelim
+
+### [Oct 15: R and the tidyverse, causal inference](https://ivanrudik.com)
 
 **Reading**: 
   - Mixtape: properties of regression, directed acyclical graphs, potential outcomes causal model
@@ -127,23 +132,17 @@ Some sections of the course have readings (available on Canvas if not in the boo
 
 We will be using [RStudio Cloud](https://rstudio.cloud/) for computing.
 
-### [Oct 15: R and the tidyverse, causal inference, randomized control trials](https://ivanrudik.com)
+### [Oct 20: R and the tidyverse, causal inference, randomized control trials](https://ivanrudik.com)
 
 **Reading**: 
   - Mixtape: properties of regression, directed acyclical graphs, potential outcomes causal model
   - Guiteras, Raymond, James Levinsohn, and Ahmed Mushfiq Mobarak. "Encouraging sanitation investment in the developing world: a cluster-randomized trial." Science 348, no. 6237 (2015): 903-906.
   
-### [Oct 20: Deforestation, remote sensing/simple features, regression discontinuity](https://ivanrudik.com)
+### [Oct 22: Deforestation, remote sensing/simple features, regression discontinuity](https://ivanrudik.com)
 
 **Reading**: 
   - [Geocomputation with R](https://geocompr.robinlovelace.net/)
   - Burgess, R., Costa, F. and Olken, B.A., 2019. The Brazilian Amazon’s Double Reversal of Fortune.
-
-### [Oct 22: Hedonics](https://ivanrudik.com)
-
-**Reading**: 
-  - PR Chapter 18
-  - Keiser, David A., and Joseph S. Shapiro. "Consequences of the Clean Water Act and the demand for water quality." The Quarterly Journal of Economics 134, no. 1 (2019): 349-396.
 
 ### [Oct 27: Hedonics](https://ivanrudik.com)
 
