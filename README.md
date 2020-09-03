@@ -80,7 +80,7 @@ Some sections of the course have readings (available on Canvas if not in the boo
 
 **Reading**: None
 
-### [Sep 8: Theory of externalities](https://ivanrudik.com)
+### [Sep 8: Theory of externalities](https://rawcdn.githack.com/irudik/aem6510/55362adb89991e12077312cc5e409d4452ec2fbd/lecture-notes/2-theory-of-externalities/2-theory-of-externalities.html)
 
 **Reading**: PR Chapter 1
 
