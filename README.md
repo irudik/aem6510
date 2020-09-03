@@ -55,7 +55,7 @@ You can find a new dataset that we do not cover in class but appears useful for 
 
 ### Readings
 
-Some sections of the course have readings (available on Canvas if not in the book). The lectures, homeworks and exams will draw from these readings. Lecture notes will be posted online at the end of each section.
+Some sections of the course have readings (available on Canvas if not in the book or through the library). The lectures, homeworks and exams will draw from these readings. Lecture notes will be posted online at the end of each section.
 
 ## Important dates
 
