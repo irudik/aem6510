@@ -76,7 +76,7 @@ Some sections of the course have readings (available on Canvas if not in the boo
 
 ## Course outline and readings
 
-### [Sep 3: Micro and math recap, theory of externalities](https://ivanrudik.com)
+### [Sep 3: Micro and math recap, theory of externalities](https://rawcdn.githack.com/irudik/aem6510/68e8dbc30f2cacaf49bdcfd4fafdba730656902d/lecture-notes/1-micro-and-math/1-micro-math.html)
 
 **Reading**: PR Chapter 1
 
