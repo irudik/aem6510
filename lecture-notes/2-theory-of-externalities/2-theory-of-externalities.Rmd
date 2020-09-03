@@ -107,7 +107,11 @@ Big draw back of Pareto optimality is that some seemingly undesirable outcomes c
 
 Pareto optimal is central to the first and second welfare theorems of economics:
 
+--
+
 .b[First Welfare Theorem:] If markets are perfectly competitive and complete, then a decentralized price system will deliver a Pareto optimal allocation
+
+--
 
 .b[Second Welfare Theorem:] If markets are perfectly competitive and complete, then any Pareto optimal allocation can be supported by a decentralized price system and lump sum taxes and transfers
 
@@ -115,7 +119,7 @@ Pareto optimal is central to the first and second welfare theorems of economics:
 
 # The welfare-theoretic basis
 
-The welfare theorems' appeal is pretty clear: if the conditions are met we can have the largest economic pie (efficiency) simply by letting the free market function
+The welfare theorems' appeal is pretty clear: .hi-blue[if the conditions are met we can have the largest economic pie (efficiency) simply by letting the free market function]
 
 --
 
@@ -125,15 +129,19 @@ If we perceive there are inequities in outcomes under the free market, we can si
 
 Unfortunately the conditions required by the welfare theorems are not usually met, especially in environmental economics
 
+--
+
+Why?
+
 ---
 
 # Externalities
 
-Most environmental goods have no market
+Most environmental goods have no market or price
 
 --
 
-There is no market for noise, air pollution, water pollution, biodiversity, etc
+There is no price for noise, air pollution, water pollution, biodiversity, etc
 
 --
 
@@ -153,11 +161,19 @@ There are not complete markets!
 
 A key concept in environmental economics is externalities
 
+--
+
 > An .hi-blue[externality] exists when agent A's utility or production function depends directly on real variables chosen by another agent B, without an offer of compensation or other attention given to the effect on A's well-being.
 
-A critical aspect of this is that it must be a real variable:
+--
+
+A critical aspect of this is that it must be a *real* variable:
+
+--
 
 Pollution, noise, etc
+
+--
 
 Not changes in wages or prices of regular market goods
 
@@ -167,9 +183,15 @@ Not changes in wages or prices of regular market goods
 
 Another concept closely related to externalities is public goods
 
+--
+
 > A .hi-blue[public good] is a good that is non-rival and non-excludable. The good can be simultaenously enjoyed by several people (non-rivalry), and none of these people can be prevented from enjoying the good (non-excludability).
 
+--
+
 Non-excludability causes problems for the welfare theorems: how are decentralized price systems suppose to work if anyone can enjoy the good whenever they want without having to pay?
+
+--
 
 This is the .hi-blue[free rider problem]
 
@@ -183,9 +205,17 @@ Lets start building our model of the economy
 
 Suppose there is:
 
+--
+
 - Two people
+--
+
 - A dirty good
+--
+
 - A clean good
+--
+
 - Labor as the only factor (input) of production
 
 
@@ -193,10 +223,18 @@ Suppose there is:
 
 # Our beginning model
 
-Define each person $i$'s utility as $U_I(x_i,z_i,E)$ for $i=1,2$
+Define each person $i$'s utility as $U_i(x_i,z_i,E)$ for $i=1,2$
+
+--
 
 $x_i$ is consumption of the dirty good,  
+
+--
+
 $z_i$ is consumption of the clean good,  
+
+--
+
 and $E$ is the level of pollution emissions
 
 ---
@@ -205,9 +243,14 @@ and $E$ is the level of pollution emissions
 
 Production of $x$ causes the emissions $E$
 
+--
+
 We can define production of x as: $x = f(l_x,E)$ where $f_l > 0$ and $f_E > 0$
 
+--
+
 Emissions are defined as an *input*, so if you want less emissions you will produce less because $f_E > 0$
+
 
 .footnote[We could equivalently define emissions as a joint product but the input setup is cleaner.]
 
@@ -237,7 +280,13 @@ How do we do this?
 
 --
 
-By just following the definition of Pareto optimality: we find the allocations of consumption, labor, and pollution, that maximizes one person's utility while making the other person no worse off than some benchmark 
+By just following the definition of Pareto optimality: 
+
+--
+
+We find the allocations of consumption, labor, and pollution, that maximizes one person's utility while making the other person no worse off than some (arbitrary) benchmark 
+
+--
 
 While also satisfying technology and endowment constraints
 
@@ -249,7 +298,7 @@ The problem is given by:
 \begin{align}
   \max_{x_1,x_2,z_1,z_2,l_x,l_z,E} U_1(x_1,z_1,E) &+ \lambda_u[U_2(x_2,z_2,E) - \bar{u}_2] \\ 
     &+ \lambda_x[f(l_x,E) - x_1 - x_2] \\
-    &+ \lambda_z[g(l_x) - z_1-x_2] \\
+    &+ \lambda_z[g(l_x) - z_1-z_2] \\
     &+ \lambda_l[l - l_x - l_z]
 \end{align}
 We are maximizing person 1's utility subject to keeping person 2s utility constant, and the relevant tech and labor constraints
@@ -268,7 +317,7 @@ xaringanExtra::style_panelset(panel_tab_color_active = "red")
 
 .panel[.panel-name[Problem]
 
-$$\max_{x_1,x_2,z_1,z_2,l_x,l_z,E} U_1(x_1,z_1,E) \\+ \lambda_u[U_2(x_2,z_2,E) - \bar{u}_2] \\+ \lambda_x[f(l_x,E) - x_1 - x_2] \\+ \lambda_z[g(l_x) - z_1-x_2] \\+ \lambda_l[l - l_x - l_z]$$
+$$\max_{x_1,x_2,z_1,z_2,l_x,l_z,E} U_1(x_1,z_1,E) \\+ \lambda_u[U_2(x_2,z_2,E) - \bar{u}_2] \\+ \lambda_x[f(l_x,E) - x_1 - x_2] \\+ \lambda_z[g(l_x) - z_1-z_2] \\+ \lambda_l[l - l_x - l_z]$$
   
 ]
   
@@ -323,9 +372,9 @@ xaringanExtra::style_panelset(panel_tab_color_active = "red")
 .panel[.panel-name[Consumption Efficiency]
   
 The consumption FOCs give us efficiency in consumption: 
-$${\partial U_1 \over \partial x_1}\Bigg/{\partial U_1 \over \partial z_1} 
+$$MRS^{xz}_1 \equiv {\partial U_1 \over \partial x_1}\Bigg/{\partial U_1 \over \partial z_1} 
 = \lambda_x/\lambda_z 
-= {\partial U_2 \over \partial x_2}\Bigg/{\partial U_2 \over \partial z_2}$$
+= {\partial U_2 \over \partial x_2}\Bigg/{\partial U_2 \over \partial z_2} \equiv MRS^{xz}_2$$
 Efficiency in consumption requires that the marginal rate of substitution (MRS) between goods between individuals is equal (i.e. the slopes of their indifference curves are equal)
   
 ]
@@ -334,10 +383,10 @@ Efficiency in consumption requires that the marginal rate of substitution (MRS) 
 
 The consumption and labor supply FOCs give us
   
-$${\partial U_i \over \partial x_i}\Bigg/{\partial U_i \over \partial z_i} 
+$$ MRS^{xz}_i \equiv {\partial U_i \over \partial x_i}\Bigg/{\partial U_i \over \partial z_i} 
 = \lambda_x/\lambda_z 
-= {\partial g \over \partial l_z}\Bigg/{\partial f \over \partial l_x}$$
-MRSs must equal the marginal rate of technical substitution (MRTS)
+= {\partial g \over \partial l_z}\Bigg/{\partial f \over \partial l_x} \equiv MRT$$
+MRSs must equal the marginal rate of transformation (MRT)
   
 The slope of the indifference curves must equal the slope of the production possibility frontier
   
@@ -347,7 +396,7 @@ The slope of the indifference curves must equal the slope of the production poss
 .panel[.panel-name[Emissions Efficiency]
 
 Substitute in the consumption FOCs to obtain a new expression for emissions efficiency:
-$$-{\partial U_1 \over \partial E}\bigg/{\partial U_1 \over \partial x_1} - {\partial U_2 \over \partial E}\bigg/{\partial U_2 \over \partial x_2} = {\partial f \over \partial E}$$
+$$MRS^{Ex}_1 + MRS^{Ex}_2 \equiv -{\partial U_1 \over \partial E}\bigg/{\partial U_1 \over \partial x_1} - {\partial U_2 \over \partial E}\bigg/{\partial U_2 \over \partial x_2} = {\partial f \over \partial E}$$
 The marginal product of emissions must equal the *sum* of the marginal rates of substitution of between $x$ and $E$ across both individuals
 
   
@@ -376,20 +425,20 @@ For any case where the three efficiency conditions are not met, we can show ther
   
 .panel[.panel-name[Consumption Efficiency]
   
-Suppose 1's MRS is 2, and 2's MRS is 4, the MRSs tell us that:
+Suppose Ann's MRS is 2, and Bob's MRS is 4, the MRSs tell us that:
   
-- 1 is willing to give up 2 units of $x$ for 1 more unit of $z$
-- 2 is willing to give up 4 units of $x$ for 1 more unit of $z$
+- Ann is willing to give up 2 units of $x$ for 1 more unit of $z$
+- Bob is willing to give up 4 units of $x$ for 1 more unit of $z$
   
-If 2 gives 1 3 units of $x$ in exchange for $1$ unit of z, .b[both are better off]
+If Bob gives Ann 3 units of $x$ in exchange for $1$ unit of z, .b[both are better off]
 
-2 was willing to give up 4 units, 1 was willing to accept 2 units
+Bob was willing to give up 4 units, Ann was willing to accept 2 units
   
 ]
   
 .panel[.panel-name[Exchange Efficiency]
 
-Suppose MRS is 1 and MRTS is 3, the MRS and MRTS tell us that:
+Suppose MRS is 1 and MRT is 3, the MRS and MRT tell us that:
 
 - The consumer is willing to give up 1 unit of $x$ for 1 unit of $z$
 - If we move labor from producing $x$ to $z$ we can get 3 units of $z$ for 1 unit of $x$
@@ -403,7 +452,7 @@ If we move 1 unit of labor from $x$ to $z$, we give up 1 unit of $x$, but get 3 
 
 Suppose $\text{MRS}_1$ + $\text{MRS}_2 = 3$ and $\text{MP}_E = 4$, these conditions tell us that:
    
-- The total  cost to both consumers of 1 more unit of $E$ in terms of units of $x$ is 3
+- The total cost to both consumers of 1 more unit of $E$ in terms of units of $x$ is 3
 - 1 more unit of $E$ gets us 4 more units of $x$
    
 If we increase $E$ by 1 unit, the benefits (4) outweigh the costs (3), we can make the consumers better off
@@ -435,11 +484,19 @@ In the free market:
 
 Let $p_x$ and $p_z$ be the prices of $x$ and $z$
 
+--
+
 Let $w$ be the wage paid to labor
+
+--
 
 Let $y_i$ be income for person $i$
 
+--
+
 Each person maximizes their utility
+
+--
 
 Each firm maximizes profit
 
@@ -456,7 +513,7 @@ $${\partial U_i \over \partial x_i} = \lambda_i p_x, \qquad {\partial U_i \over 
 
 # Competitive markets
 
-THe profit maximization problems for firms producing $z$ and $x$ are:
+The profit maximization problems for firms producing $z$ and $x$ are:
 $$\max_{l_z} p_z g(l_z) - w l_z, \qquad  \max_{l_x, E} p_xf(l_x, E) - w l_z$$
 
 --
@@ -486,6 +543,7 @@ $${\partial U_1 \over \partial x_1} \bigg/ {\partial U_1 \over \partial z_1}
 ]
 
 .panel[.panel-name[Exchange]
+
 The consumption and labor use FOCs give us that the exchange efficiency condition is met:
 $${\partial U_i \over \partial x_i} \bigg/ {\partial U_i \over \partial z_i} 
 =  p_x/p_z
@@ -575,6 +633,8 @@ There are two parts to the intuition for the tax:
 --
 
 1. $-\left[{\partial U_1 \over \partial E}\bigg/{\partial U_1 \over \partial x_1} - {\partial U_2 \over \partial E}\bigg/{\partial U_2 \over \partial x_2}\right]$ tells us how much total $x$ we need in order to compensate both consumers for an additional unit of $E$ and keep their utility constant
+--
+
 2. $p_x$ tells us the dollar value of this much $x$  
 
 --
@@ -647,7 +707,7 @@ ggplot() +
 
 $-p_x\left[{\partial U_i \over \partial E}\bigg/{\partial U_i \over \partial x_i}\right]$ is the individual marginal utility cost of emissions
 
-$p_x {\partial f \over \partial E}$ is the value of marginal product of emissions
+$p_x {\partial f \over \partial E}$ is the value of marginal product of emissions (VMP)
 
 At a Pareto optimum the sum of MUCs must be equal to the VMP
 
@@ -705,7 +765,7 @@ ggplot() +
 
 Let abatement $A^*$ be how much we reduce emissions below baseline: $A^* = \bar{E} - E^*$
 
-$-p_x\left[{\partial U_i \over \partial E}\bigg/{\partial U_i \over \partial x_i}\right]$ is the individual marginal utility cost of benefit
+$-p_x\left[{\partial U_i \over \partial E}\bigg/{\partial U_i \over \partial x_i}\right]$ is the individual marginal utility  benefit
 
 $p_x {\partial f \over \partial E}$ is the marginal cost of abatement
 

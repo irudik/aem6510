@@ -4,6 +4,7 @@
     <title>Lecture 1</title>
     <meta charset="utf-8" />
     <meta name="author" content="Ivan Rudik" />
+    <script src="1-micro-math_files/header-attrs/header-attrs.js"></script>
     <link href="1-micro-math_files/remark-css/default.css" rel="stylesheet" />
     <link href="1-micro-math_files/remark-css/metropolis.css" rel="stylesheet" />
     <link href="1-micro-math_files/remark-css/metropolis-fonts.css" rel="stylesheet" />
@@ -30,13 +31,6 @@ exclude: true
 
 ```r
 if (!require("pacman")) install.packages("pacman")
-```
-
-```
-## Loading required package: pacman
-```
-
-```r
 pacman::p_load(
   tidyverse, tidylog, xaringanExtra, Ryacas, rlang
 )
@@ -86,18 +80,49 @@ knitr::opts_chunk$set(echo = TRUE, fig.align="center")
 
 # AEM 6510: Environmental and resource economics
 
-Welcome to AEM 6510
+.hi-blue[Welcome to AEM 6510]
+
+--
+
+**Synchronous class time:** Tuesday and Thursday 3:00-4:15
 
 **Instructor:** Ivan Rudik
 
-**Synchronous class time:** Tuesday and Thursday
+**Zoom office hours:** Tuesday and Thursday 4:20-4:50
 
-**Zoom office hours:**
+**Teaching assistant:** Diego Cardoso
 
-**Textbook:** A Course in Environmental Economics by Phaneuf and Requate
+**TA zoom office hours:** Monday 3:00-4:00
 
-**Prerequisites:** MATH 1110 or equivalent. 
+Class and office hour zoom links are on Canvas
 
+---
+
+# AEM 6510: Environmental and resource economics
+
+**Textbooks:** 
+- A Course in Environmental Economics by Phaneuf and Requate
+- [Causal Inference: The Mixtape](https://www.scunning.com/mixtape.html) by Cunningham
+
+**Formal Prerequisites:** MATH 1110 or equivalent. 
+
+**Highly recommended:** Intermediate micro and masters-level econometrics
+
+**Lecture notes:** https://github.com/irudik/aem6510, accessible through Canvas
+
+---
+
+# Zoom etiquette
+
+A few requests on how you should interact through zoom:
+
+1. Be on time
+2. Stay muted unless answering/asking a question
+3. Turn on video, have a non-distracting actual or virtual background
+4. Display your full name and any preferred nick name
+5. Be active!
+  - Ask questions in chat or use the hand raise feature
+  - If I don't respond in a reasonable timeframe feel free to unmute and ask your question
 
 ---
 
@@ -127,18 +152,28 @@ How to use R and do geospatial analysis
 
 ---
 
-# What do you need for this class?
+# What do you need to succeed in this class?
 
 Attend lectures if possible
 
-Do your homework and takehome prelims
+--
+
+Do your homework and prelims
+
+--
+
+Start your final project early
+
+--
+
+Contact me or Diego if you have and questions or concerns
 
 ---
 
 # Here's how you'll be graded
 
-Prelims: 30% and 20% (one theory, one empirical)   
-Problem sets: 25%  
+Prelims (2): 30% and 25% (one theory, one empirical)   
+Problem sets (4): 20%  
 Literature review paper: 20%  
 Literature review presentation: 5%
 
@@ -155,31 +190,45 @@ F: &lt; 60
 
 There are two, one on theory and one on empirical methods
 
+--
+
 Your highest-scoring prelim is 30% of your grade,  
-your lowest-scoring prelim is 20%
+your lowest-scoring prelim is 25%
+
+--
 
 Prelims will basically just be longer homeworks that you are expected to complete .hi-red[on your own]
 
-Prelims are due at the listed time and can be submitted on Canvas
+--
 
-Late prelims automatically get 30% deducted
+You have 24 hours to finish the theory prelim and 48 hours to finish the empirical prelim
 
-If a prelim is more than 24 hours late it will be assigned 0%
+--
+
+Late prelims automatically get 30% deducted: don't wait until the last minute to turn them in
 
 
 ---
 
 # Problem sets
 
-There will be 4 problem sets
+There will be 4 problem sets worth 10% each
 
-Your highest scoring problem set is worth 10%, the rest are worth 5%
+--
+
+Problem sets will be 3-4 questions long, typically from the Phaneuf and Requate book
+
+--
+
+You will have at least 1 week to complete each problem set
 
 ---
 
 # Final project
 
-There is a final project for the course aimed toward getting you moving toward your M exam
+There is a final project for the course aimed to get you moving toward research
+
+--
 
 You can choose one of two options:
 
@@ -191,11 +240,18 @@ You can choose one of two options:
 
 # Final project: lit review
 
-Write a literature review on 5-10 papers all in a particular subfield of environmental and resource economics
-  - What are the findings? Common threads? Work yet to be done?
-  - You'll need to run the papers by me before committing
+Write a literature review on up to 5 papers all in a particular subfield of environmental and resource economics
 
-Present your literature review to the class
+--
+
+- What are the findings? Common threads? Work yet to be done?
+- You'll need to run the papers by me before committing
+
+--
+
+You will present your literature review to the class
+
+--
 
 More details later
 
@@ -204,12 +260,21 @@ More details later
 # Final project: data dive
 
 Find a new data set that we will not use in class but is useful for environmental economics
-  - What are the data? How do you get them? How do you use them? What makes them relevant for economics?
-  - You'll need to run it by me
-  
+
+--
+
+- What are the data? How do you get them? How do you use them? What makes them relevant for economics?
+- You'll need to run it by me
+
+--
+
 Do some preliminary analyses on the data
 
+--
+
 Present the dataset to the class
+
+--
 
 More details later
 
@@ -218,34 +283,33 @@ More details later
 # Course schedule: Theory
 
 1. Micro &amp; math recap, theory of externalities
-2. Environmental problems and policy issues
+2. Intro to the theory of environmental policy
 3. Intro to the theory of environmental policy
-4. Intro to the theory of environmental policy
-5. Imperfect information
-6. Competitive output markets
-7. Non-competitive output markets
-8. Pre-existing distortions
-9. Cap and trade
-10. Theory of applied welfare economics
-11. Theory of applied welfare economics
-12. Revealed preference models
+4. Imperfect information
+5. Competitive output markets
+6. Non-competitive output markets
+7. Pre-existing distortions
+8. Theory of applied welfare economics
+9. Theory of applied welfare economics
+10. Revealed preference models
+11. Hedonics (theory)
+12. Extra theory prelim office hours
 
 ---
 
 # Course schedule: Empirics
 
 13. R and the tidyverse, causal inference
-14. R and the tidyverse, causal inference
-15. Environmental health, difference-in-differences, and event studies
-16. Environmental health, difference-in-differences, and event studies
-17. Hedonics and regression discontinuity
-18. Hedonics and regression discontinuity
-19. Climate change background
-20. Climate change and the Ricardian model
-21. Climate change and two-way fixed effects
-22. Deforestation, remote sensing, and simple features
-23. Deforestation, remote sensing, and simple features
-24. Perverse incentives, remote sensing, and simple features
+14. R and the tidyverse, causal inference, RCTs
+15. Deforestation, remote sensing/simple features, regression discontinuity
+16. Hedonics (applied)
+17. Climate change science
+18. Climate change and the Ricardian Model
+19. Climate change and two-way fixed effects
+20. Environmental health, difference-in-differences, and event studies
+21. Environmental health, difference-in-differences, and event studies
+22. Perverse incentives, clean air act, remote sensing
+23. Extra empirical prelim office hours
 
 
 ---
@@ -257,11 +321,14 @@ Before getting into the core material we need to review the mathematical foundat
 --
 
 What is central to economic decisionmaking is .hi-blue[constrained optimization]
-  - We want to max utility subject to a budget
-  - We want to max profits subject to a constraining regulation
-  - We want to max social welfare subject to an environmental target
-  - We want to minimize costs subject to meeting electricity demand
-  - Etc
+
+--
+
+- We want to max utility subject to a budget
+- We want to max profits subject to a constraining regulation
+- We want to max social welfare subject to an environmental target
+- We want to minimize costs subject to meeting electricity demand
+- Etc
   
 
 ---
@@ -273,12 +340,18 @@ What is central to economic decisionmaking is .hi-blue[constrained optimization]
 --
 
 Suppose we want to maximize utility from eating fruit:
+
+--
+
 $$ \max_{x_1,...,x_N \in \mathbf{A}} U(\mathbf{x}) $$ 
 where `\(U(\mathbf{x}):\mathbb{R}^N \rightarrow\mathbb{R}\)`
 
 --
 
 .b[Theorem]: Let `\(U\)` be once continuously-differentiable ( `\(\mathbb{C}^1\)` ) so that first partial derivatives exist and are continuous. If `\(x^*\)` is a local maximum of `\(U\)` on `\(A\)` then
+
+--
+
 `$${\partial U(\mathbf{x}^*) \over \partial x_i} = 0 \text{ for } i = 1,...,N$$`
 
 ---
@@ -349,7 +422,7 @@ Do necessary conditions guarantee that we have found the utility-maximizing bund
 
 --
 
-They are necessary but not sufficient: you can come up with counter-examples where a function's derivative equals zero but it is not maximized ( e.g. `\(x^3\)` )
+They are necessary but not .hi-red[sufficient]: you can come up with counter-examples where a function's derivative equals zero but it is not maximized ( e.g. `\(x^3\)` )
 
 --
 
@@ -427,7 +500,7 @@ What if our actions are now constrained?
 
 --
 
-$$ \max_{x_1,...,x_N \in \mathbf{A}} U(\mathbf{x}), A = \{ \mathbf{x} \in \mathbb{R}^n: h_1(\mathbf{x}) = a_1, \dots, h_m(\mathbf{x}) = a_m \}$$
+$$ \max_{x_1,...,x_N \in \mathbf{A}} U(\mathbf{x}), \,\,\,\,\, A = \\{ \mathbf{x} \in \mathbb{R}^n: h_1(\mathbf{x}) = a_1, \dots, h_m(\mathbf{x}) = a_m \\}$$
 
 where `\(m &lt; n\)`
 
@@ -461,9 +534,18 @@ Because of our budget constraint, marginal utility may not equal zero at the uti
 --
 
 No proof, but for some `\(\lambda\)` we can characterize this bundle by
+
+--
+
 `$$DU(x^*_1, x^*_2) - \lambda Dh(x_1^*, x_2^*) = (0,0)$$`
 and
+
+--
+
 `$$h(x_1^*,x_2^*) = a$$`
+
+--
+
 We now have 3 equations, and 3 unknowns `\((x^*_1,x^*_2,\lambda^*)\)`, we just transformed our constrained problem into an unconstrained problem
 
 ---
@@ -481,6 +563,9 @@ How does this magic happen?
 This gives us an alternative, unconstrained problem, known as a *Lagrangian*:
 `$$\mathcal{L}(x_1,x_2,\lambda) = \max_{x_1,x_2,\lambda} U(x_1,x_2) - \lambda[h(x_1,x_2) - a]$$`
 
+--
+
+Maximize utility, but also pay a fine `\(\lambda\)` for each unit difference between `\(h(x_1,x_2)\)` and `\(a\)`
 
 ---
 
@@ -489,25 +574,30 @@ This gives us an alternative, unconstrained problem, known as a *Lagrangian*:
 `$$\max_{x_1,x_2,\lambda} U(x_1,x_2) - \lambda[h(x_1,x_2) - a]$$`
 
 with first-order conditions:
+
+--
+
 $$ {\partial \mathcal{L} \over \partial x_i} = {\partial U \over \partial x_i} - \lambda {\partial h \over \partial x_i} = 0 \text{ for } i = 1,2$$
-and
-`$$h(x_1,x_2) = a$$`
+
+--
+
+Notice marginal utility is no longer zero at the optimum allocation unless `\(\lambda = 0\)`
 
 ---
 
 # Constrained optimization
 
-We have one remaining issue: some arbitrary `\(\lambda\)` won't guarantee that the solution of our Lagrangian will match the actual constrainted problem
+We have one remaining issue: some arbitrary `\(\lambda\)` won't guarantee that the solution of our Lagrangian will match the actual constrained problem
 
 --
 
-We need to find a way to pick the correct `\(\lambda^*\)` that incentivizes the agent to exactly satisfy the constraint `\(h(x_1,x_2) = a\)`
+We need to find a way to pick the .hi-blue[correct] `\(\lambda^*\)` that incentivizes the agent to exactly satisfy the constraint `\(h(x_1,x_2) = a\)`
 
 --
 
 In other words, we need a third condition to pin down `\(\lambda^*\)`, this is the feasibility condition:
 `$${\partial \mathcal{L} \over \partial \lambda} = h(x_1,x_2) - a = 0$$`
-This is just the constraint!
+Which is just the constraint!
 
 ---
 
@@ -515,10 +605,17 @@ This is just the constraint!
 
 We can translate a constrained optimization problem into an unconstrained one (the Lagrangian) by:
 
+--
+
 1. Adding a new variable `\(\lambda\)`, which is called the *Lagrange Multiplier* or the *shadow value* of the constraint
+--
+
 2. Adding another first-order condition (feasibility condition) and modifying the original first-order conditions to reflect the constraint
 
+--
+
 The intuition for `\(\lambda\)` is that it is the marginal value of loosening (or tightening) the constraint
+
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
