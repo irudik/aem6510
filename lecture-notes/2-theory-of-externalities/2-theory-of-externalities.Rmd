@@ -336,6 +336,8 @@ $$\lambda_u{\partial U_2 \over \partial x_2}
 \qquad 
 \lambda_u{\partial U_2 \over \partial z_2} 
 = \lambda_z$$
+
+Marginal utility equals the shadow price of the good
   
 ]
   
@@ -427,10 +429,10 @@ For any case where the three efficiency conditions are not met, we can show ther
   
 Suppose Ann's MRS is 2, and Bob's MRS is 4, the MRSs tell us that:
   
-- Ann is willing to give up 2 units of $x$ for 1 more unit of $z$
-- Bob is willing to give up 4 units of $x$ for 1 more unit of $z$
+- Ann is willing to give up 2 units of $z$ for 1 more unit of $x$
+- Bob is willing to give up 4 units of $z$ for 1 more unit of $x$
   
-If Bob gives Ann 3 units of $x$ in exchange for $1$ unit of z, .b[both are better off]
+If Bob gives Ann 3 units of $z$ in exchange for $1$ unit of $x$, .b[both are better off]
 
 Bob was willing to give up 4 units, Ann was willing to accept 2 units
   
