@@ -166,6 +166,7 @@ We will be using [RStudio Cloud](https://rstudio.cloud/) for computing.
 **Reading**: 
   - Hsiang, S. and Robert Kopp. 2018. An economist's guide to climate change science, Journal of Economic Perspectives, Vol. 32, No. 4, pp. 3-32.
   - Hsiang, S., 2016. Climate econometrics. Annual Review of Resource Economics, 8, pp.43-75.
+  - Good resource on doing climate-econ research: [ClimateEstimate.net](https://climateestimate.net/getting-started)
 
 ### [Nov 10: Climate change and the Ricardian model](https://ivanrudik.com)
 
