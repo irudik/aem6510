@@ -778,7 +778,7 @@ What is this new term, `\(MRE\)`: `\(\lambda\left[\tau + x/{\partial X \over \pa
 
 --
 
-It's the .hi-blue[marginal revenue effect]: the amount by which emission tax revenue changes when `\(X\)` changes, scaled into welfare units by `\(\lambda\)`
+It's the .hi-blue[marginal revenue effect]: the amount by which emission tax revenue changes when `\(X\)` changes, scaled by `\(\lambda\)`, the MC of public funds
 
 --
 
@@ -788,7 +788,278 @@ MRE changes the marginal social cost of `\(X\)` because changes in `\(\tau\)` af
 
 Let's get some intuition at the corner case of `\(\tau = 0\)`
 
-Here `\(MRE &lt; 0\)` because `\({\partial X \over \partial \tau} &lt; 0\)` `\(\rightarrow\)` the additional revenue from an increase in `\(\tau\)` lets us reduce labor taxes and reduce the distortion, this reduces the total marginal cost of abatement
+What's the sign of `\(MRE\)`?
+
+---
+
+# Revenue raising environmental policy
+
+`\(MRE(\tau=0)\)`: `\(\lambda\left[x/{\partial X \over \partial \tau}\right]\)`
+
+--
+
+Here `\(MRE &lt; 0\)` because `\({\partial X \over \partial \tau} &lt; 0\)`, what's the intuition?
+
+--
+
+`\(\rightarrow\)` the additional revenue from an increase in `\(\tau\)` lets us reduce labor taxes
+
+--
+
+`\(\rightarrow\)` this reduces the distortionary tax in the labor market
+
+--
+
+`\(\rightarrow\)` this reduces welfare losses in the labor market
+
+--
+
+`\(\rightarrow\)` this reduction in welfare losses reduces the marginal social cost of reducing `\(X\)`
+
+---
+
+# Revenue raising environmental policy
+
+Is MRE always negative?
+
+--
+
+No
+
+--
+
+We can get some intuition by making a substitution:
+`$$MRE \equiv \lambda\left[\tau + x\Big/{\partial X \over \partial \tau}\right] = \lambda\left[\tau + x\Big/{\partial X \over \partial p}\right] = \lambda\left[\tau + p/\varepsilon_{X}\right]$$`
+where `\(\varepsilon_{X} &lt; 0\)` is the elasticity of demand for the dirty good
+
+--
+
+---
+
+# Revenue raising environmental policy
+
+`$$MRE \equiv \lambda\left[\tau + p/\varepsilon_{X}\right]$$`
+
+MRE is negative and increases total abatement if:
+
+--
+
+- demand for for dirty good is sufficiently inelastic
+
+--
+
+- the price of the dirty good is sufficiently larger than the emission tax
+
+--
+
+Why?
+
+
+---
+
+# Revenue raising environmental policy
+
+
+.pull-left[
+
+
+
+![MRE can increase optimal tax](7-pre-existing-distortions_files/figure-html/negative_mre-1.png)
+]
+
+.pull-right[
+
+
+.hi-blue[Demand for for dirty good is sufficiently inelastic]:
+
+Suppose `\({\partial N \over \partial p}= 0\)` so `\(MIE = 0\)`, `\(C'(X) = c\)`, `\(D'(X) = d\)`
+
+Inelastic demand lets us raise more revenue from a small change in the tax
+
+]
+
+
+---
+
+# Revenue raising environmental policy
+
+
+.pull-left[
+
+![MRE can increase optimal tax](7-pre-existing-distortions_files/figure-html/negative_mre-1.png)
+]
+
+.pull-right[
+
+Inelastic demand lets us raise more revenue from a small change in the tax
+
+This reduces the marginal social cost of reducing X
+
+Optimal X with revenue-raising is lower than without: `\(X^{RE} &lt; X^*\)`
+
+]
+
+---
+
+# Revenue raising environmental policy
+
+
+.pull-left[
+
+![MRE can increase optimal tax](7-pre-existing-distortions_files/figure-html/negative_mre-1.png)
+]
+
+.pull-right[
+
+We can also see that if `\(D'(X)\)` was very large, making `\(\tau\)` larger, we would be where `\(MRE &gt; 0\)`
+
+]
+
+
+---
+
+# Double dividend
+
+Is there a prospect for a double dividend?
+
+There is a .hi-blue[weak double dividend] if welfare is always greater when revenue raised via environmental taxation is used to reduced distortionary taxation rather than refunded lump sum
+- This is always true
+
+--
+
+There is a .hi-red[strong double dividend] if the emission tax should always be set above the `\(MAC = MD\)` level, resulting in greater pollution reductions and more revenue raised
+- This may or may not be true
+
+---
+
+# Double dividend
+
+When is there a strong double dividend?
+
+--
+
+Recall: `\(MSC = MAC + MIE + MRE\)`
+
+--
+
+To have a strong double dividend we need: 
+--
+`\(MSC &lt; MAC \Rightarrow MIE + MRE &lt; 0\)`
+
+--
+
+This can happen via two pathways:
+
+**Pathway 1:** `\(MIE, MRE &lt; 0\)` or, `\(MIE &lt; 0\)` and `\(|MIE| &gt; MRE &gt; 0\)`
+
+--
+
+In this pathway we have that leisure and the polluting good are .hi-blue[complements]
+
+--
+
+Price of `\(X\)` rises from `\(\tau\)`, demand for leisure goes down, labor supply goes up
+
+---
+
+# Double dividend
+
+Is this likely to be true?
+
+--
+
+Not really: leisure and consumption are generally substitutes
+
+--
+
+**Pathway 2:** `\(MIE &gt; 0 &gt; MRE\)`, `\(|MRE| &gt; MIE\)`
+
+--
+
+Here leisure and consumption are substitutes, but the revenue effect dominates the interaction effect
+
+--
+
+Let's look at this pathway in more detail
+
+---
+
+# Double dividend
+
+Again, assume `\(C'(X) = c\)`, this gives us that:
+`\begin{align}
+  MIE =&amp; \lambda\left(- {\eta_{XN} \over \varepsilon_X} \right){p \over \varepsilon_L} \\
+  MRE =&amp; \lambda\left({p \over \varepsilon_X} + \tau \right)
+\end{align}`
+
+Suppose N and X are *average subsitutes* so that `\(\eta_{XN} = \varepsilon_L\)`, then:
+`$$MIE = \lambda\left(- {p\over \varepsilon_X} \right) &lt; \lambda\left({p \over \varepsilon_X} + \tau \right) = MRE$$`
+
+`\(\Rightarrow\)` we shouldn't expect a strong double dividend
+
+
+
+---
+
+# Revenue raising environmental policy
+
+
+.pull-left[
+
+
+
+![MRE can increase optimal tax](7-pre-existing-distortions_files/figure-html/mac_mie_mre-1.png)
+]
+
+.pull-right[
+
+
+Even though there isn't a double dividend, MIE and MRE .hi-red[still matter] for the optimal second-best pollution level
+
+Optimal pollution `\(X^{GE}\)` is larger than first-best `\(X^*\)`, but less than the level without revenue recycling `\(X^{IE}\)` 
+
+]
+
+
+---
+
+# Policy instruments with labor market distortions
+
+How do environmental policy instruments work when we have the distortionary labor tax?
+
+--
+
+Taxes and auctioned permits are easy, just set the tax equal to:
+`$$\tau = D'(X) + MIE + MRE$$`
+or the number of permits equal to `\(X^{GE}\)` to obtain the optimal second-best outcome
+
+--
+
+The regulator obtains revenues `\(\tau X^{GE} = \sigma x^{GE}\)` and recycles it to reduce labor taxation
+
+--
+
+What about freely allocated permits or command and control?
+
+---
+
+# Policy instruments with labor market distortions
+
+This would lead to the same *environmental* outcome, but not achieve the the welfare maximizing outcome
+
+Why?
+
+--
+
+Free allocation and command and control do not generate revenues that let us reduce labor taxation
+
+--
+
+Setting `\(X^{GE} &lt; X^c\)` raises the price of `\(X\)`, increases leisure, and reduces revenues via the interaction effect
+
+--
+
+Without revenue from permits or taxes, the optimal pollution level is higher
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

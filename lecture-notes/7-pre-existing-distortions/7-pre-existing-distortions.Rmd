@@ -866,7 +866,7 @@ What is this new term, $MRE$: $\lambda\left[\tau + x/{\partial X \over \partial 
 
 --
 
-It's the .hi-blue[marginal revenue effect]: the amount by which emission tax revenue changes when $X$ changes, scaled into welfare units by $\lambda$
+It's the .hi-blue[marginal revenue effect]: the amount by which emission tax revenue changes when $X$ changes, scaled by $\lambda$, the MC of public funds
 
 --
 
@@ -876,4 +876,377 @@ MRE changes the marginal social cost of $X$ because changes in $\tau$ affect how
 
 Let's get some intuition at the corner case of $\tau = 0$
 
-Here $MRE < 0$ because ${\partial X \over \partial \tau} < 0$ $\rightarrow$ the additional revenue from an increase in $\tau$ lets us reduce labor taxes and reduce the distortion, this reduces the total marginal cost of abatement
+What's the sign of $MRE$?
+
+---
+
+# Revenue raising environmental policy
+
+$MRE(\tau=0)$: $\lambda\left[x/{\partial X \over \partial \tau}\right]$
+
+--
+
+Here $MRE < 0$ because ${\partial X \over \partial \tau} < 0$, what's the intuition?
+
+--
+
+$\rightarrow$ the additional revenue from an increase in $\tau$ lets us reduce labor taxes
+
+--
+
+$\rightarrow$ this reduces the distortionary tax in the labor market
+
+--
+
+$\rightarrow$ this reduces welfare losses in the labor market
+
+--
+
+$\rightarrow$ this reduction in welfare losses reduces the marginal social cost of reducing $X$
+
+---
+
+# Revenue raising environmental policy
+
+Is MRE always negative?
+
+--
+
+No
+
+--
+
+We can get some intuition by making a substitution:
+$$MRE \equiv \lambda\left[\tau + x\Big/{\partial X \over \partial \tau}\right] = \lambda\left[\tau + x\Big/{\partial X \over \partial p}\right] = \lambda\left[\tau + p/\varepsilon_{X}\right]$$
+where $\varepsilon_{X} < 0$ is the elasticity of demand for the dirty good
+
+--
+
+---
+
+# Revenue raising environmental policy
+
+$$MRE \equiv \lambda\left[\tau + p/\varepsilon_{X}\right]$$
+
+MRE is negative and increases total abatement if:
+
+--
+
+- demand for for dirty good is sufficiently inelastic
+
+--
+
+- the price of the dirty good is sufficiently larger than the emission tax
+
+--
+
+Why?
+
+
+---
+
+# Revenue raising environmental policy
+
+
+.pull-left[
+```{r negative_mre, echo = FALSE, fig.show = 'hide', warning = F}
+
+# demand <- function(x) 5 - x
+mac_mre <- function(x) 9 - 3*x
+mac <- function(x) 7 - 2*x
+mre <- function(x) 2-x
+intersections_1 <- tibble(x = c(5, 5, 0, 0, 5, 2.5, 2.5),
+                        y = c(0, 2, 2, 1, 1, 0, 2))
+ggplot() +
+  annotate("segment", x = 0, xend = 5,
+           y = 1, yend = 1,
+           linetype = "solid", size = 1.5, color = "#ca5670") +
+  annotate("segment", x = 0, xend = 5,
+           y = 0, yend = 0,
+           linetype = "dotted", size = 1, color = "black") +
+  annotate("segment", x = 8/3, xend = 8/3,
+           y = -2, yend = 1,
+           linetype = "dashed", size = 1, color = "black") +
+  annotate("segment", x = 7/2, xend = 7/2,
+           y = -2, yend = 0,
+           linetype = "dashed", size = 1, color = "black") +
+  annotate("segment", x = 3, xend = 3,
+           y = -2, yend = 1,
+           linetype = "dashed", size = 1, color = "black") +
+  stat_function(fun = mac_mre, color = "darkslateblue", size = 1.5) +
+  stat_function(fun = mac, color = "#638ccc", size = 1.5) +
+  stat_function(fun = mre, color = "violetred", size = 1.5) +
+  annotate("text", size = 8, label = expression(u[X] - "C'(X) + MRE"), x = 2.25, y = 4.5) +
+  annotate("text", size = 8, label = expression(u[X] - "C'(X)"), x = 0.75, y = 4.5) +
+  annotate("text", size = 8, label = "MRE", x = 0.5, y = 2) +
+  annotate("text", size = 8, label = "D'(X)", x = 3.5, y = 1.25) +
+  theme_minimal()  +
+  theme(
+    legend.position = "none",
+    title = element_text(size = 24),
+    axis.text.x = element_text(size = 18, color = "black"),
+    axis.text.y = element_text(size = 18, color = "black"),
+    axis.title.x = element_text(size = 24), axis.title.y = element_text(size = 24),
+    panel.grid.minor.x = element_blank(), panel.grid.major.y = element_blank(),
+    panel.grid.minor.y = element_blank(), panel.grid.major.x = element_blank(),
+    panel.background = element_rect(fill = "#eeeeee", colour = NA),
+    plot.background = element_rect(fill = "#eeeeee", colour = NA),
+    axis.line = element_line(colour = "black")
+  ) +
+  labs(x = "X",
+       y = "$",
+       title = "Inelastic demand -> MRE < 0") +
+  scale_x_continuous(expand = c(0, 0), limits = c(0, 5),
+                     breaks = c(7/2, intersections_1$x[4], 8/3, 3), labels = expression(X^C, 0, X^{RE}, X^"*")) +
+  scale_y_continuous(expand = c(0, 0), limits = c(-2, 5),
+                     breaks = c(intersections_1$y[4], 0), labels = expression("d", 0)) +
+  coord_cartesian(xlim = c(0, 3.7))
+
+```
+
+
+![MRE can increase optimal tax](`r knitr::fig_chunk("negative_mre", "png")`)
+]
+
+.pull-right[
+
+
+.hi-blue[Demand for for dirty good is sufficiently inelastic]:
+
+Suppose ${\partial N \over \partial p}= 0$ so $MIE = 0$, $C'(X) = c$, $D'(X) = d$
+
+Inelastic demand lets us raise more revenue from a small change in the tax
+
+]
+
+
+---
+
+# Revenue raising environmental policy
+
+
+.pull-left[
+
+![MRE can increase optimal tax](`r knitr::fig_chunk("negative_mre", "png")`)
+]
+
+.pull-right[
+
+Inelastic demand lets us raise more revenue from a small change in the tax
+
+This reduces the marginal social cost of reducing X
+
+Optimal X with revenue-raising is lower than without: $X^{RE} < X^*$
+
+]
+
+---
+
+# Revenue raising environmental policy
+
+
+.pull-left[
+
+![MRE can increase optimal tax](`r knitr::fig_chunk("negative_mre", "png")`)
+]
+
+.pull-right[
+
+We can also see that if $D'(X)$ was very large, making $\tau$ larger, we would be where $MRE > 0$
+
+]
+
+
+---
+
+# Double dividend
+
+Is there a prospect for a double dividend?
+
+There is a .hi-blue[weak double dividend] if welfare is always greater when revenue raised via environmental taxation is used to reduced distortionary taxation rather than refunded lump sum
+- This is always true
+
+--
+
+There is a .hi-red[strong double dividend] if the emission tax should always be set above the $MAC = MD$ level, resulting in greater pollution reductions and more revenue raised
+- This may or may not be true
+
+---
+
+# Double dividend
+
+When is there a strong double dividend?
+
+--
+
+Recall: $MSC = MAC + MIE + MRE$
+
+--
+
+To have a strong double dividend we need: 
+--
+$MSC < MAC \Rightarrow MIE + MRE < 0$
+
+--
+
+This can happen via two pathways:
+
+**Pathway 1:** $MIE, MRE < 0$ or, $MIE < 0$ and $|MIE| > MRE > 0$
+
+--
+
+In this pathway we have that leisure and the polluting good are .hi-blue[complements]
+
+--
+
+Price of $X$ rises from $\tau$, demand for leisure goes down, labor supply goes up
+
+---
+
+# Double dividend
+
+Is this likely to be true?
+
+--
+
+Not really: leisure and consumption are generally substitutes
+
+--
+
+**Pathway 2:** $MIE > 0 > MRE$, $|MRE| > MIE$
+
+--
+
+Here leisure and consumption are substitutes, but the revenue effect dominates the interaction effect
+
+--
+
+Let's look at this pathway in more detail
+
+---
+
+# Double dividend
+
+Again, assume $C'(X) = c$, this gives us that:
+\begin{align}
+  MIE =& \lambda\left(- {\eta_{XN} \over \varepsilon_X} \right){p \over \varepsilon_L} \\
+  MRE =& \lambda\left({p \over \varepsilon_X} + \tau \right)
+\end{align}
+
+Suppose N and X are *average subsitutes* so that $\eta_{XN} = \varepsilon_L$, then:
+$$MIE = \lambda\left(- {p\over \varepsilon_X} \right) < \lambda\left({p \over \varepsilon_X} + \tau \right) = MRE$$
+
+$\Rightarrow$ we shouldn't expect a strong double dividend
+
+
+
+---
+
+# Revenue raising environmental policy
+
+
+.pull-left[
+```{r mac_mie_mre, echo = FALSE, fig.show = 'hide', warning = F}
+
+# demand <- function(x) 5 - x
+mac_mre <- function(x) 8 - 2*x
+mac <- function(x) 4 - x
+mre <- function(x) 2 - x/2
+intersections_1 <- tibble(x = c(5, 5, 0, 0, 5, 2.5, 2.5),
+                        y = c(0, 2, 2, 1, 1, 0, 2))
+ggplot() +
+  annotate("segment", x = 0, xend = 5,
+           y = 1, yend = 1,
+           linetype = "solid", size = 1.5, color = "#ca5670") +
+  annotate("segment", x = 2, xend = 2,
+           y = 0, yend = 1,
+           linetype = "dashed", size = 1, color = "black") +
+  annotate("segment", x = 3, xend = 3,
+           y = 0, yend = 1,
+           linetype = "dashed", size = 1, color = "black") +
+  annotate("segment", x = 7/2, xend = 7/2,
+           y = 0, yend = 1,
+           linetype = "dashed", size = 1, color = "black") +
+  stat_function(fun = mac_mre, color = "darkslateblue", size = 1.5) +
+  stat_function(fun = mac, color = "#638ccc", size = 1.5) +
+  stat_function(fun = mre, color = "violetred", size = 1.5) +
+  annotate("text", size = 8, label = "MAC+MIE", x = 2.5, y = 4.5) +
+  annotate("text", size = 8, label = "MAC+MIE+MRE", x = 1, y = 4.0) +
+  annotate("text", size = 8, label = "MAC", x = 0.5, y = 2) +
+  annotate("text", size = 8, label = "D'(X)", x = 4, y = 1.25) +
+  theme_minimal()  +
+  theme(
+    legend.position = "none",
+    title = element_text(size = 24),
+    axis.text.x = element_text(size = 18, color = "black"),
+    axis.text.y = element_text(size = 18, color = "black"),
+    axis.title.x = element_text(size = 24), axis.title.y = element_text(size = 24),
+    panel.grid.minor.x = element_blank(), panel.grid.major.y = element_blank(),
+    panel.grid.minor.y = element_blank(), panel.grid.major.x = element_blank(),
+    panel.background = element_rect(fill = "#eeeeee", colour = NA),
+    plot.background = element_rect(fill = "#eeeeee", colour = NA),
+    axis.line = element_line(colour = "black")
+  ) +
+  labs(x = "X",
+       y = "$",
+       title = "Inelastic demand -> MRE < 0") +
+  scale_x_continuous(expand = c(0, 0), limits = c(0, 5),
+                     breaks = c(4, 7/2, 3, 2), labels = expression(X^C, X^{IE}, X^{GE}, X^"*")) +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 5),
+                     breaks = c(intersections_1$y[4], 0), labels = expression("d", 0)) 
+
+```
+
+
+![MRE can increase optimal tax](`r knitr::fig_chunk("mac_mie_mre", "png")`)
+]
+
+.pull-right[
+
+
+Even though there isn't a double dividend, MIE and MRE .hi-red[still matter] for the optimal second-best pollution level
+
+Optimal pollution $X^{GE}$ is larger than first-best $X^*$, but less than the level without revenue recycling $X^{IE}$ 
+
+]
+
+
+---
+
+# Policy instruments with labor market distortions
+
+How do environmental policy instruments work when we have the distortionary labor tax?
+
+--
+
+Taxes and auctioned permits are easy, just set the tax equal to:
+$$\tau = D'(X) + MIE + MRE$$
+or the number of permits equal to $X^{GE}$ to obtain the optimal second-best outcome
+
+--
+
+The regulator obtains revenues $\tau X^{GE} = \sigma x^{GE}$ and recycles it to reduce labor taxation
+
+--
+
+What about freely allocated permits or command and control?
+
+---
+
+# Policy instruments with labor market distortions
+
+This would lead to the same *environmental* outcome, but not achieve the the welfare maximizing outcome
+
+Why?
+
+--
+
+Free allocation and command and control do not generate revenues that let us reduce labor taxation
+
+--
+
+Setting $X^{GE} < X^c$ raises the price of $X$, increases leisure, and reduces revenues via the interaction effect
+
+--
+
+Without revenue from permits or taxes, the optimal pollution level is higher

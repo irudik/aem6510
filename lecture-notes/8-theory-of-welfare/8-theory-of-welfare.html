@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Lecture 8</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Ivan Rudik" />
+    <script src="8-theory-of-welfare_files/header-attrs/header-attrs.js"></script>
+    <link href="8-theory-of-welfare_files/remark-css/default.css" rel="stylesheet" />
+    <link href="8-theory-of-welfare_files/remark-css/metropolis.css" rel="stylesheet" />
+    <link href="8-theory-of-welfare_files/remark-css/metropolis-fonts.css" rel="stylesheet" />
+    <link href="8-theory-of-welfare_files/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="8-theory-of-welfare_files/tile-view/tile-view.js"></script>
+    <link href="8-theory-of-welfare_files/panelset/panelset.css" rel="stylesheet" />
+    <script src="8-theory-of-welfare_files/panelset/panelset.js"></script>
+    <script src="8-theory-of-welfare_files/xaringanExtra-webcam/webcam.js"></script>
+    <script id="xaringanExtra-webcam-options" type="application/json">{"width":"200","height":"200","margin":"1em"}</script>
+    <link rel="stylesheet" href="my-css.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Lecture 8
+## Theory of applied welfare analysis
+### Ivan Rudik
+### AEM 6510
+
+---
+
+exclude: true
+
+```r
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(
+  tidyverse, tidylog, xaringanExtra, rlang, patchwork
+)
+options(htmltools.dir.version = FALSE)
+knitr::opts_hooks$set(fig.callout = function(options) {
+  if (options$fig.callout) {
+    options$echo &lt;- FALSE
+  }
+knitr::opts_chunk$set(echo = TRUE, fig.align="center")
+  options
+})
+```
+
+<style>.panelset {
+  --panel-tab-color-active: red;
+}</style>
+
+---
+
+# Roadmap
+
+- Review welfare theory
+- Understand how the theory can be used to measure changes in welfare from changes in prices
+- Understand different kinds of welfare measures, and when to use them
+
+---
+
+# Establishing value
+
+How do we establish monetary value?
+
+We need at minimum two things:
+
+--
+
+A defined baseline state and an ending state (i.e. a change)
+
+--
+
+Measures of a person's:
+
+- .hi-blue[Willingness to pay] to secure the ending state, or
+- .hi-red[willingness to accept] to forgo the ending state
+
+--
+
+WTP and WTA are income-equivalents that link the starting and ending states to preferences
+
+---
+
+# How to think about it
+
+Suppose there is a price decrease for a private good
+
+--
+
+A lower price widens the range of consumption outcomes (income effect) and potentially increases well-being
+
+--
+
+The starting state is the initial price
+
+--
+
+The ending state is the new price
+
+--
+
+WTP is how much the person is willing to give up to have the new price
+
+--
+
+WTA is how much the person needs to be given in lieu of the price decrease
+
+---
+
+# WTP and WTA
+
+WTP and WTA are nice because they translate preferences into money equivalents
+
+--
+
+e.g. substitutability matters
+- If there's a lot of substitutes for the good, the price decrease isn't that valuable
+- If there's few substitutes, the price decrease may be very valuable
+
+---
+
+# The general model
+
+Our goal is to use observed behavior (data) to tell us the structure of preferences needed to calculate welfare measures
+
+--
+
+We first need a model that gives rise to observed behavior
+
+--
+
+Let's start with a generalization of our consumer model
+
+---
+
+# The general model
+
+Utility is `\(U(x,z,q)\)`
+--
+
+- `\(x\)` is a vector of private goods
+--
+
+- `\(z\)` is the numeraire with price = 1
+--
+
+- `\(q\)` is a vector of environmental goods
+
+--
+
+`\(q\)` can be a bunch of stuff, here we assume it's a good `\((U_q &gt; 0)\)`:
+--
+
+- Recreation
+--
+
+- Health impacts
+--
+
+- Ecosystem services
+--
+
+- etc
+
+---
+
+# The general model
+
+The consumer maximizes utility given some fixed level of `\(q\)`, vector of market prices `\(p = \{p_1,...,p_J\}\)`, and income `\(y\)`:
+`$$\max_{z,x} U(x,z,q) + \lambda[y - z - p\cdot x]$$`
+
+--
+
+This gives us the following FOCs:
+`$$U_{x_j} = \lambda p_j\,\,\,\,\, j = 1,\dots, J$$`
+and
+`$$U_z = \lambda$$`
+
+---
+
+# The general model
+
+With the FOCs we can solve for the ordinary demand functions `\(x_j(p,y,q)\)`, the Lagrange multiplier `\(\lambda(p,y,q)\)`, and `\(z\)`.
+
+--
+
+Note we can directly estimate ordinary demand functions since they depend on observables `\(p, y, q\)`
+
+--
+
+If we substitute `\(x_j\)` into `\(U\)` we get the .hi-blue[indirect utility function] `\(V(p,y,q)\)` which tells us the maximized level of utility given prices, income, and environmental quality
+
+--
+
+Note that `\(\lambda\)` is interpreted as the marginal utility of income
+
+---
+
+# The general model
+
+We can also represent the consumer's behavior by the dual expenditure minimization problem:
+`$$\min_{x,z} p\cdot x + z + \mu[\bar{u} - U(x,z,q)]$$`
+where `\(\bar{u}\)` is a reference level of utility
+
+--
+
+We are minimizing costs subject to keeping utility constant at some arbitrary level
+
+--
+
+Next, get the FOCs
+
+---
+
+# The general model
+
+`\begin{align}
+  U_{x_j} &amp;= p_j/\mu \\
+  U_z &amp;= 1/\mu \\
+  U(x,z,q) &amp;= \bar{u}
+\end{align}`
+
+--
+
+These FOCs allow us to derive .hi-blue[compensated demand functions] `\(h_j(p, \bar{u}, q)\)`
+
+--
+
+Note that these are .hi-red[not] directly estimable because we do not observe `\(\bar{u}\)`
+
+--
+
+If we substitute the `\(h_j's\)` into the minimization problem we get the expenditure function `\(E(p,\bar{u},q)\)` which is the minimum income required to achieve `\(\bar{u}\)`
+
+---
+
+# Duality
+
+The utility max and cost min problems are linked and critical in applied welfare analysis
+
+--
+
+Suppose `\(u^0\)` is the utility level obtained in the utility max problem
+
+--
+
+This gives us that `\(E(p,u^0,q)\)` is the required expenditure
+
+--
+
+And by construction, `\(y = E(p,u^0,q)\)`
+
+--
+
+This links the solutions to utility max and cost min at the observed point of consumption by:
+`$$x_j(p,E(p,u^0,q),q) \equiv h_j(p,u^0,q) \,\,\,\,\, \forall j$$`
+
+---
+
+# Duality
+
+`$$x_j(p,E(p,u^0,q),q) \equiv h_j(p,u^0,q) \,\,\,\,\, \forall j$$`
+
+--
+
+We can now determine the price responses for both kinds of demand functions by differentiating wrt `\(p_j\)`:
+`\begin{align}
+  {\partial x_j \over \partial p_j} &amp;= {\partial h_j \over \partial p_j} - {\partial x_j \over \partial y}\times {\partial E_j \over p_j} \\
+  &amp;= {\partial h_j \over \partial p_j} - {\partial x_j \over \partial y}\times x_j
+\end{align}`
+
+--
+
+The second equality comes from Shephard's Lemma: `\(h_j = {\partial E_j \over \partial p_j}\)` (envelope theorem) and the fact that `\(x_j(p,E(p,u^0,q),q) \equiv h_j(p,u^0,q)\)`
+
+---
+
+# Ordinary and compensated demand
+
+`$${\partial x_j \over \partial p_j}  ={\partial h_j \over \partial p_j} - {\partial x_j \over \partial y}\times x_j$$`
+
+What does this result show us?
+
+--
+
+- The difference between compensated and ordinary demand is an .hi-blue[income gradient]
+  - If there's no income effect `\({\partial x_j \over \partial y}\)`, then they are equivalent
+
+---
+
+# Ordinary and compensated demand
+
+`$${\partial x_j \over \partial p_j}  ={\partial h_j \over \partial p_j} - {\partial x_j \over \partial y}\times x_j$$`
+
+What does this result show us?
+
+--
+
+- Utility is held constant for movements in price along the *compensated* demand curve, but not the ordinary demand curve
+  - Moving along the ordinary demand curve confounds the pure price effect, and an implicit income effect (i.e. the substitution and income effects)
+  
+--
+
+This is important to understand the types of welfare measures we will be using
+
+---
+
+# Price change welfare measures
+
+Suppose there is a change in the price of a private good and we want to know how it affects a person or group's well-being
+
+--
+
+e.g. how does subsidized tuition affect low income households?
+
+--
+
+There are two concepts we can use to measure this effect, which just differ in reference point
+
+---
+
+# Compensating variation
+
+The first concept is .hi-blue[compensating variation] (CV)
+
+--
+
+&gt; Given a price decrease (increase), the CV is the amount of money that would need to be taken from (given to) a person to restore the original utility level.
+
+CV uses the .hi-red[pre-change] level of utility as a reference point
+
+--
+
+CV is the income offset that gives you the pre-change utility back following the price change
+
+---
+
+# Compensating variation
+
+Given a change in price from `\(p^0 to p^1 &lt; p^0\)` the CV is:
+`$$V(p^0,y,q) = V(p^1,y-CV,q)$$`
+where `\(V\)` is the indirect (maximized) utility function
+
+--
+
+LHS is maximized utility at the baseline price, RHS is maximized utility at the new price taking into account the behavioral change
+
+--
+
+CV is the adjustment to the post-change maximized utility's income level that makes it equal to the pre-change utility
+
+--
+
+Here `\(CV &gt; 0\)` since we are looking at a price decrease
+
+---
+
+# Compensating variation
+
+CV can also be interpreted as WTP or WTA measures
+
+--
+
+CV is the maximum someone is willing to pay to have a lower price
+- Anything less provides a utility improvement
+
+--
+
+CV is the minimum someone is willing to accept to have a higher price
+- Anything more provides a utility improvement
+
+---
+
+# Equivalent variation
+
+The second concept is .hi-blue[equivalent variation] (EV)
+
+&gt; For a price decrease (increase) that provides a higher (lower) utility level, the EV is the payment (reduction) that moves the person to the new utility level, without the price change
+
+EV uses the post-change level of utility as the reference, it's the income change that puts them at the post-change level of utility without the price change occuring
+
+---
+
+# Equvalent variation
+
+Given a change in price from `\(p^0 to p^1 &lt; p^0\)` the CV is:
+`$$V(p^1,y,q) = V(p^0,y+CV,q)$$`
+--
+
+LHS is maximized utility at the baseline (changed) price, RHS is maximized utility at the old price but with an income adjustment to keep utility equal
+
+--
+
+Here `\(EV &gt; 0\)` since we are looking at a price decrease
+
+---
+
+# Compensating variation
+
+CV can also be interpreted as WTP or WTA measures
+
+--
+
+CV is the maximum someone is willing to pay to have a lower price
+- Anything less provides a utility improvement
+
+--
+
+CV is the minimum someone is willing to accept to have a higher price
+- Anything more provides a utility improvement
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
