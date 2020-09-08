@@ -1,5 +1,5 @@
 ---
-title: "Lecture 4"
+title: "Lecture 3"
 subtitle: "Theory of environmental policy"
 author: Ivan Rudik
 date: AEM 6510
@@ -57,11 +57,19 @@ This will guide us in
 
 Here's our set up:
 
+--
+
 We have a number of households in a given area
+
+--
 
 There are $J$ electricity-generating firms
 
-The firms use coal and emit sulfur dioxide ( $SO_2$ ) that negatively affects the households
+--
+
+The firms use coal and emit sulfur dioxide $(SO_2)$ that negatively affects the households
+
+--
 
 The firms take output prices as given, and sell electricity in the national market, households buy electricity on the national market
 
@@ -71,8 +79,14 @@ The firms take output prices as given, and sell electricity in the national mark
 
 Each firm emits $e_j$ units of pollution and total emissions are $E = \sum_{j=1}^J e_j$
 
+--
+
 The model is .hi-blue[non-spatial:]
-  - All firms emissions count the same toward aggregate emissions $E$
+--
+
+  - All firms' emissions count the same toward aggregate emissions $E$
+--
+
   - All households experience the same level of pollution $E$
 
 ---
@@ -112,11 +126,11 @@ Generating electricity has costs
 
 --
 
-There are also costs with reducing emissions of $SO_2$
+There are also costs of reducing emissions of $SO_2$
 
 --
 
-For now we assume that these costs are separable so we can focus solely on costs of abating pollution
+For now we assume that these costs are separable (i.e. don't depend on other stuff) so we can focus solely on costs of abating pollution
 
 --
 
@@ -126,7 +140,7 @@ Define the .hi-blue[abatement cost function] for firm $j$ by $C_j(e_j)$
 
 # Abatement costs
 
-Let $\hat{e}_j$ be the firm's freely chosen abatement level, then $C_j(\hat{e}_j) = 0$
+Let $\hat{e}_j$ be the firm's freely chosen abatement level, so that $C_j(\hat{e}_j) = 0$
 
 --
 
@@ -134,12 +148,12 @@ $C_j(e_j) > 0$ for any $e_j < \hat{e}_j$ so that $C_j'(e_j) < 0$ for $e_j < \hat
 
 --
 
-Define the .hi[marginal abatement cost] as:
+Define the .hi-blue[marginal abatement cost] as:
 $$MAC_j(e) \equiv -C_j'(e_j) > 0, e_j < \hat{e}_j$$
 
 --
 
-We will also assume that the MAC weakly increases as we reduce emissions, i.e. it is weakly convex:
+We will also assume that the MAC weakly increases as we reduce emissions, i.e. $C$ is weakly convex:
 $$MAC_j'(e) = -C_j''(e_j) \leq 0, e_j < \hat{e}_j$$
 
 ---
@@ -148,8 +162,10 @@ $$MAC_j'(e) = -C_j''(e_j) \leq 0, e_j < \hat{e}_j$$
 
 These assumptions on marginal abatement cost are pretty reasonable:
 
-1. They are increasing because firms will choose among different abatement technologies in order of their marginal cost if they are profit-maximizing or cost-minimizing
-2. Weak convexity is a reasonable approximation of piecewise constant MAC functions, which is what many MACs look like empirically
+1. MACs are increasing because firms will choose among different abatement technologies in order of their marginal cost if they are profit-maximizing or cost-minimizing
+--
+
+2. Weak abatement cost convexity / weakly increasing MACs is a reasonable approximation of piecewise constant MAC functions, which is what many MACs look like empirically
 
 ---
 
@@ -182,8 +198,12 @@ These are the two fundamental characteristics of the efficient allocation of pol
 For each firm, its marginal abatement cost is equal to the marginal damage from pollution
 $$-C_j'(e_j) = D'(E), \,\, \forall j=1,\dots,J$$
 
+--
+
 Marginal abatement costs are equal across all polluters
 $$-C_j'(e_j) = -C_k'(e_k), \,\, \forall k,j$$
+
+--
 
 An optimal regulation will satisfy these two condition
 

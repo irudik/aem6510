@@ -266,7 +266,45 @@ Labor can be measured in terms of hours and there is only so many hours that can
 
 --
 
-This is all we need for the model, now we just need to set it up
+This is all we need for the model, now we just need to set it up, and define two terms
+
+---
+
+# Consumption trade offs
+
+A key piece of economics is the .hi-blue[marginal rate of substitution] (MRS)
+
+--
+
+The MRS tells us how an individual trades off consumption of two different goods and is defined as:
+$$MRS^{xz}_1 \equiv {\partial U_1 \over \partial x_1}\Bigg/{\partial U_1 \over \partial z_1} \equiv dz_1/dx_1$$
+
+--
+
+It tells us how many units of $z$ person 1 is willing to give up to get 1 more unit of $x$
+
+--
+
+It is just the slope of an indifference curve
+
+---
+
+# Production trade offs
+
+Another key piece of economics is the .hi-blue[marginal rate of transformation] (MRT)
+
+--
+
+The MRT tells us how a firm trades off production of two different goods and is defined as:
+$$MRT^{xz}_1 \equiv {\partial g \over \partial l_z}\Bigg/{\partial f \over \partial l_x} \equiv MRT \equiv dz/dx$$
+
+--
+
+It tells us how many units of $z$ the firm has to give up to produce 1 more unit of $x$
+
+--
+
+It is just the slope of the production possibility frontier
 
 ---
 
@@ -288,20 +326,39 @@ We find the allocations of consumption, labor, and pollution, that maximizes one
 
 --
 
-While also satisfying technology and endowment constraints
+While also satisfying technology (production) and endowment (labor) constraints
 
 ---
 
 # Pareto optimality
 
 The problem is given by:
+\begin{gather}
+  \max_{x_1,x_2,z_1,z_2,l_x,l_z,E} U_1(x_1,z_1,E) \,\,\,\,\, \text{subject to:} \\
+  U_2(x_2,z_2,E)  \geq \bar{u}_2 \tag{1}\\ 
+  f(l_x,E) = x_1 + x_2 \tag{2}\\
+  g(l_x) = z_1 + z_2 \tag{3} \\
+  l = l_x + l_z \tag{4}
+\end{gather}
+
+We are maximizing person 1's utility subject to (1) keeping person 2s utility at least some level, (2,3) production constraints, (4) total labor allocation
+
+--
+
+Now let's look at the Lagrangian
+
+---
+
+# Pareto optimality
+
+The Lagrangian is given by:
 \begin{align}
-  \max_{x_1,x_2,z_1,z_2,l_x,l_z,E} U_1(x_1,z_1,E) &+ \lambda_u[U_2(x_2,z_2,E) - \bar{u}_2] \\ 
+  \mathcal{L} = \max_{x_1,x_2,z_1,z_2,l_x,l_z,E}& U_1(x_1,z_1,E) \\
+    &+ \lambda_u[U_2(x_2,z_2,E) - \bar{u}_2] \\ 
     &+ \lambda_x[f(l_x,E) - x_1 - x_2] \\
     &+ \lambda_z[g(l_x) - z_1-z_2] \\
     &+ \lambda_l[l - l_x - l_z]
 \end{align}
-We are maximizing person 1's utility subject to keeping person 2s utility constant, and the relevant tech and labor constraints
 
 --
 
@@ -377,17 +434,16 @@ The consumption FOCs give us efficiency in consumption:
 $$MRS^{xz}_1 \equiv {\partial U_1 \over \partial x_1}\Bigg/{\partial U_1 \over \partial z_1} 
 = \lambda_x/\lambda_z 
 = {\partial U_2 \over \partial x_2}\Bigg/{\partial U_2 \over \partial z_2} \equiv MRS^{xz}_2$$
-Efficiency in consumption requires that the marginal rate of substitution (MRS) between goods between individuals is equal (i.e. the slopes of their indifference curves are equal)
+Efficiency in consumption requires that the marginal rate of substitution (MRS) between individuals is equal (i.e. the slopes of their indifference curves are equal)
   
 ]
   
 .panel[.panel-name[Exchange Efficiency]
 
 The consumption and labor supply FOCs give us
-  
 $$ MRS^{xz}_i \equiv {\partial U_i \over \partial x_i}\Bigg/{\partial U_i \over \partial z_i} 
 = \lambda_x/\lambda_z 
-= {\partial g \over \partial l_z}\Bigg/{\partial f \over \partial l_x} \equiv MRT$$
+= {\partial g \over \partial l_z}\Bigg/{\partial f \over \partial l_x} \equiv MRT^{xz}$$
 MRSs must equal the marginal rate of transformation (MRT)
   
 The slope of the indifference curves must equal the slope of the production possibility frontier
@@ -399,7 +455,7 @@ The slope of the indifference curves must equal the slope of the production poss
 
 Substitute in the consumption FOCs to obtain a new expression for emissions efficiency:
 $$MRS^{Ex}_1 + MRS^{Ex}_2 \equiv -{\partial U_1 \over \partial E}\bigg/{\partial U_1 \over \partial x_1} - {\partial U_2 \over \partial E}\bigg/{\partial U_2 \over \partial x_2} = {\partial f \over \partial E}$$
-The marginal product of emissions must equal the *sum* of the marginal rates of substitution of between $x$ and $E$ across both individuals
+The marginal product of emissions must equal the .hi-red[sum] of the marginal rates of substitution of between $x$ and $E$ across both individuals
 
   
 ]
@@ -408,60 +464,77 @@ The marginal product of emissions must equal the *sum* of the marginal rates of 
 
 ---
 
-# Efficiency intuition
-
-```{r echo=FALSE}
-xaringanExtra::style_panelset(panel_tab_color_active = "red")
-```
-.panelset[
-
-.panel[.panel-name[General Intuition]
+# General Intuition
     
 We can understand (prove) why these conditions need to be met by considering cases when they are not met
   
 For any case where the three efficiency conditions are not met, we can show there exists a possible .hi-blue[Pareto improvement] $\rightarrow$ the conditions must be met for Pareto optimality
   
 > A Pareto improvement is a reallocation of resources that makes at least one person better off without making anyone else worse off
-    
-]
-  
-.panel[.panel-name[Consumption Efficiency]
+
+
+
+---
+
+# Consumption Efficiency
   
 Suppose Ann's MRS is 2, and Bob's MRS is 4, the MRSs tell us that:
-  
-- Ann is willing to give up 2 units of $z$ for 1 more unit of $x$
-- Bob is willing to give up 4 units of $z$ for 1 more unit of $x$
-  
-If Bob gives Ann 3 units of $z$ in exchange for $1$ unit of $x$, .b[both are better off]
 
-Bob was willing to give up 4 units, Ann was willing to accept 2 units
-  
-]
-  
-.panel[.panel-name[Exchange Efficiency]
+--
+
+- Ann is willing to give up 2 units of $z$ for 1 more unit of $x$
+
+--
+
+- Bob is willing to give up 4 units of $z$ for 1 more unit of $x$
+
+--
+
+If Bob gives Ann 3 units of $z$ in exchange for $1$ unit of $x$, .hi-blue[both are better off]
+
+--
+
+Bob was willing to give up 4 units, Ann was willing to accept 2 units $\rightarrow$ both are 1 unit of $z$ better off
+
+
+
+---
+
+# Exchange Efficiency
 
 Suppose MRS is 1 and MRT is 3, the MRS and MRT tell us that:
 
+--
+
 - The consumer is willing to give up 1 unit of $x$ for 1 unit of $z$
+
+--
+
 - If we move labor from producing $x$ to $z$ we can get 3 units of $z$ for 1 unit of $x$
 
+--
+
 If we move 1 unit of labor from $x$ to $z$, we give up 1 unit of $x$, but get 3 units of $z \rightarrow$ the consumer gets 2 more units of $z$ than they needed to be better off
-  
-]
-  
-  
-.panel[.panel-name[Emissions Efficiency]
+
+
+---
+
+# Emissions Efficiency
+
 
 Suppose $\text{MRS}_1$ + $\text{MRS}_2 = 3$ and $\text{MP}_E = 4$, these conditions tell us that:
-   
-- The total cost to both consumers of 1 more unit of $E$ in terms of units of $x$ is 3
-- 1 more unit of $E$ gets us 4 more units of $x$
-   
-If we increase $E$ by 1 unit, the benefits (4) outweigh the costs (3), we can make the consumers better off
-  
-]
 
-]
+--
+
+- The total cost to both consumers of 1 more unit of $E$ in terms of units of $x$ is 3
+
+--
+
+- 1 more unit of $E$ gets us 4 more units of $x$
+
+--
+
+If we increase $E$ by 1 unit, the benefits (4) outweigh the costs (3), we can make the consumers better off
 
 ---
 
@@ -507,7 +580,15 @@ Each firm maximizes profit
 # Competitive markets
 
 The utility maximization problem is:
+$$\max_{x_i,z_i} U_i(x_i,z_i,E) \,\,\,\, \text{subject to: } y_i = p_x x_i + p_z z_i$$
+
+--
+
+The Lagrangian is
+
 $$\max_{x_i,z_i} U_i(x_i,z_i,E) + \lambda_i[y_i - p_x x_i - p_z z_i]$$
+--
+
 with first-order conditions:
 $${\partial U_i \over \partial x_i} = \lambda_i p_x, \qquad {\partial U_i \over \partial z_i} = \lambda_i p_z$$
 
@@ -520,51 +601,62 @@ $$\max_{l_z} p_z g(l_z) - w l_z, \qquad  \max_{l_x, E} p_xf(l_x, E) - w l_z$$
 
 --
 
-This gives us the FOC for labor inputs:
-$$p_x {\partial f \over \partial l_x} = w \qquad p_z {\partial g \over \partial l_z} = w$$
-and the FOC for emissions:
-$$p_x {\partial f \over \partial E} = 0$$
+This gives us the FOCs for the firm producing x:
+$$p_x {\partial f \over \partial l_x} = w \qquad p_x {\partial f \over \partial E} = 0$$
+and the firm producing z
+$$p_z {\partial g \over \partial l_z} = w$$
 
 ---
 
-# Competitive markets: efficiency
-```{r echo=FALSE}
-xaringanExtra::style_panelset(panel_tab_color_active = "red")
-```
-.panelset[
-
-.panel[.panel-name[Consumption]
+# Competitive markets: Consumption
 
 The consumption first-order conditions:
 $${\partial U_i \over \partial x_i} = \lambda_i p_x, \qquad {\partial U_i \over \partial z_i} = \lambda_i p_z$$
-give us the condition for efficiency in consumption:
+
+give us:
+
+--
+
 $${\partial U_1 \over \partial x_1} \bigg/ {\partial U_1 \over \partial z_1} 
 =  p_x/p_z
 = {\partial U_2 \over \partial x_2} \bigg/ {\partial U_2 \over \partial z_2}$$
 
-]
+--
 
-.panel[.panel-name[Exchange]
+The equal MRS condition for efficiency in consumption is met
 
-The consumption and labor use FOCs give us that the exchange efficiency condition is met:
+
+---
+
+# Competitive markets: Exchange
+
+Combining the consumption and labor FOCs gives us that:
+
+--
+
 $${\partial U_i \over \partial x_i} \bigg/ {\partial U_i \over \partial z_i} 
 =  p_x/p_z
 = {\partial g \over \partial l_z} \bigg/ {\partial f \over \partial l_x}$$
-]
+--
+
+The MRS=MRT exchange efficiency condition is met
 
 
+---
 
-.panel[.panel-name[Emissions]
+# Competitive markets: Emissions
+
 
 The efficiency condition for emissions:
-$${\partial U_1 \over \partial E}\bigg/{\partial U_1 \over \partial x_1} - {\partial U_2 \over \partial E}\bigg/{\partial U_2 \over \partial x_2} = {\partial f \over \partial E}$$
+$$-{\partial U_1 \over \partial E}\bigg/{\partial U_1 \over \partial x_1} - {\partial U_2 \over \partial E}\bigg/{\partial U_2 \over \partial x_2} = {\partial f \over \partial E}$$
+
+--
+
 .hi-red[is not met!]
 
+--
+
 The free market provides no incentive for the firm to treat $E$ as scarce or to account for its impact on consumers: the firm faces a price on pollution of 0
-
-]
-
-]
 
 ---
 
@@ -617,7 +709,7 @@ $$-{\partial U_1 \over \partial E}\bigg/{\partial U_1 \over \partial x_1} - {\pa
 Notice that if you multiply the right hand side of the emissions efficiency condition by $p_x$, it is equal to the left hand side of the firm FOC
 
 The Pareto optimal tax is thus:
-$$\tau^* = -p_x\left[{\partial U_1 \over \partial E}\bigg/{\partial U_1 \over \partial x_1} - {\partial U_2 \over \partial E}\bigg/{\partial U_2 \over \partial x_2}\right]$$
+$$\tau^* = -p_x\left[{\partial U_1 \over \partial E}\bigg/{\partial U_1 \over \partial x_1} + {\partial U_2 \over \partial E}\bigg/{\partial U_2 \over \partial x_2}\right]$$
 This tax can thus make the firm's profit-maximizing condition consistent with Pareto optimality
 
 ]
@@ -628,13 +720,13 @@ This tax can thus make the firm's profit-maximizing condition consistent with Pa
 
 # Emissions taxation
 
-$$\tau^* = -p_x\left[{\partial U_1 \over \partial E}\bigg/{\partial U_1 \over \partial x_1} - {\partial U_2 \over \partial E}\bigg/{\partial U_2 \over \partial x_2}\right]$$
+$$\tau^* = -p_x\left[{\partial U_1 \over \partial E}\bigg/{\partial U_1 \over \partial x_1} + {\partial U_2 \over \partial E}\bigg/{\partial U_2 \over \partial x_2}\right]$$
 
 There are two parts to the intuition for the tax:
 
 --
 
-1. $-\left[{\partial U_1 \over \partial E}\bigg/{\partial U_1 \over \partial x_1} - {\partial U_2 \over \partial E}\bigg/{\partial U_2 \over \partial x_2}\right]$ tells us how much total $x$ we need in order to compensate both consumers for an additional unit of $E$ and keep their utility constant
+1. $-\left[{\partial U_1 \over \partial E}\bigg/{\partial U_1 \over \partial x_1} - {\partial U_2 \over \partial E}\bigg/{\partial U_2 \over \partial x_2}\right]$ tells us how much total $x$ we need in order to compensate both consumers for an additional unit of $E$ and keep their utilities constant
 --
 
 2. $p_x$ tells us the dollar value of this much $x$  
@@ -647,13 +739,15 @@ There are two parts to the intuition for the tax:
 
 # Emissions taxation
 
-$$\tau^* = -p_x\left[{\partial U_1 \over \partial E}\bigg/{\partial U_1 \over \partial x_1} - {\partial U_2 \over \partial E}\bigg/{\partial U_2 \over \partial x_2}\right]$$
+$$\tau^* = -p_x\left[{\partial U_1 \over \partial E}\bigg/{\partial U_1 \over \partial x_1} + {\partial U_2 \over \partial E}\bigg/{\partial U_2 \over \partial x_2}\right]$$
 
 The tax depends on marginal utility of consumption, this implies two things:
 
 --
 
 1. The tax depends on the distribution of income
+--
+
 2. The tax depends on the distribution of endowments in general (e.g. income, labor)
 
 --
