@@ -337,7 +337,7 @@ The problem is given by:
   \max_{x_1,x_2,z_1,z_2,l_x,l_z,E} U_1(x_1,z_1,E) \,\,\,\,\, \text{subject to:} \\
   U_2(x_2,z_2,E)  \geq \bar{u}_2 \tag{1}\\ 
   f(l_x,E) = x_1 + x_2 \tag{2}\\
-  g(l_x) = z_1 + z_2 \tag{3} \\
+  g(l_z) = z_1 + z_2 \tag{3} \\
   l = l_x + l_z \tag{4}
 \end{gather}
 
@@ -374,7 +374,7 @@ xaringanExtra::style_panelset(panel_tab_color_active = "red")
 
 .panel[.panel-name[Problem]
 
-$$\max_{x_1,x_2,z_1,z_2,l_x,l_z,E} U_1(x_1,z_1,E) \\+ \lambda_u[U_2(x_2,z_2,E) - \bar{u}_2] \\+ \lambda_x[f(l_x,E) - x_1 - x_2] \\+ \lambda_z[g(l_x) - z_1-z_2] \\+ \lambda_l[l - l_x - l_z]$$
+$$\max_{x_1,x_2,z_1,z_2,l_x,l_z,E} U_1(x_1,z_1,E) \\+ \lambda_u[U_2(x_2,z_2,E) - \bar{u}_2] \\+ \lambda_x[f(l_x,E) - x_1 - x_2] \\+ \lambda_z[g(l_z) - z_1-z_2] \\+ \lambda_l[l - l_x - l_z]$$
   
 ]
   
@@ -522,7 +522,7 @@ If we move 1 unit of labor from $x$ to $z$, we give up 1 unit of $x$, but get 3 
 # Emissions Efficiency
 
 
-Suppose $\text{MRS}_1$ + $\text{MRS}_2 = 3$ and $\text{MP}_E = 4$, these conditions tell us that:
+Suppose $\text{MRS}^{Ex}_1$ + $\text{MRS}^{Ex}_2 = 3$ and ${\partial f \over \partial E} = 4$, these conditions tell us that:
 
 --
 
@@ -597,7 +597,7 @@ $${\partial U_i \over \partial x_i} = \lambda_i p_x, \qquad {\partial U_i \over 
 # Competitive markets
 
 The profit maximization problems for firms producing $z$ and $x$ are:
-$$\max_{l_z} p_z g(l_z) - w l_z, \qquad  \max_{l_x, E} p_xf(l_x, E) - w l_z$$
+$$\max_{l_z} p_z g(l_z) - w l_z, \qquad  \max_{l_x, E} p_xf(l_x, E) - w l_x$$
 
 --
 
