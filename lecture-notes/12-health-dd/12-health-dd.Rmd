@@ -1,0 +1,306 @@
+---
+title: "Lecture 12"
+subtitle: "Health // Difference-in-differences"
+author: Ivan Rudik
+date: AEM 6510
+output:
+  xaringan::moon_reader:
+    css: ['default', 'metropolis', 'metropolis-fonts', 'my-css.css']
+    # self_contained: true
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: '16:9'
+
+
+---
+exclude: true
+```{r setup}
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(
+  tidyverse, xaringanExtra, rlang, patchwork, nycflights13
+)
+options(htmltools.dir.version = FALSE)
+knitr::opts_hooks$set(fig.callout = function(options) {
+  if (options$fig.callout) {
+    options$echo <- FALSE
+  }
+knitr::opts_chunk$set(echo = TRUE, fig.align="center")
+  options
+})
+```
+```{r xaringanExtra, echo = FALSE}
+xaringanExtra::use_xaringan_extra(c("tile_view", "panelset", "webcam"))
+
+```
+```{r echo=FALSE}
+xaringanExtra::style_panelset(panel_tab_color_active = "red")
+```
+
+---
+
+# Roadmap
+
+- How do we estimate a treatment effect when the treated and control groups do not (counterfactually) look the same in the cross-section?
+- What is the mortality cost of lead?
+
+
+---
+
+class: inverse, center, middle
+name: dd
+
+# Difference-in-differences
+
+<html><div style='float:left'></div><hr color='#EB811B' size=1px width=796px></html>
+
+---
+
+# Our comparisons so far
+
+So far we've made two kinds of comparisons to estimate treatment effects:
+
+1. Comparing two groups with random assignment to treatment .hi[(RCT)]
+--
+
+2. Comparing two groups where there is a local discontinuity (i.e. discrete change) in policy .hi[(regression discontinuity)]
+
+--
+
+In both of these were are comparing groups in the .hi-blue[cross-section]: there is no concept or time, before and after a policy was enacted, etc
+
+---
+
+# Our comparisons so far
+
+The key assumption for these comparisons is that the treated group would have looked the same as the control group (i.e. had the same outcomes) in the absense of treatment
+
+--
+
+This assumption is often hard to defend<sup>1</sup>
+
+.footnote[
+One way people show that this tends to not be true is to throw in a bunch of extra controls into the regression, if this affects your estimates it indicates there's likely a problem with the assumption.
+]
+
+--
+
+Let's try to relax this assumption by exploiting .hi-blue[temporal comparisons] in addition to the cross-sectional comparison
+
+---
+
+# Difference-in-differences
+
+One way to describe our comparisons thus far is as .hi-red[differences]
+
+--
+
+The estimated effect of a policy is simply the difference in mean outcomes between treated and control groups:
+$$math here$$
+
+--
+
+figure here
+
+---
+
+# Difference-in-differences
+
+Our next method is called .hi-blue[difference-in-differences] (DD)
+
+--
+
+What DD does is take the difference of two comparisons in three steps:
+--
+
+1. Take the difference in mean outcomes between treated and control .hi-red[before] treatment
+--
+
+2. Take the difference in mean outcomes between treated and control .hi-red[after] treatment
+--
+
+3. Take the difference between 1 and 2
+
+--
+
+The name comes from the fact that we are taking the difference (3) between two differences (1 and 2)
+
+---
+
+# Difference-in-differences
+
+Why do we use DD?
+
+--
+
+The identifying assumption required is less strict than for difference approaches
+
+--
+
+.hi[**DD assumption:**] the treatment and control group would have followed .hi-blue[parallel trends] in the absence of treatment
+- i.e. the difference in outcomes would have remained constant
+
+--
+
+This is much less stringent than requiring the outcomes to have been the same in the absence of treatment
+
+---
+
+# Difference-in-differences
+
+.hi-red[Example:] Suppose we want to understand the effect of a conservation policy passed in New York on biodiversity
+
+--
+
+Suppose also that:
+- The effect of the New York policy is given by .hi[B]
+- Each state has it's own fixed determinants of biodiversity (e.g. land cover, average temperature, etc) given by .hi[NY, PA, MA, etc]
+- Each period has it's own determinants of biodiversity, common across all states (e.g. federal policy, global climate change) given by .hi[T<sub>0</sub>, T<sub>1</sub>], where 0 is years before the policy is passed, and 1 is after
+
+---
+
+# Difference-in-differences
+
+When we observe data on biodiversity we see the combination of all determinants: .hi[B + NY + T], not just .hi[B]
+
+--
+
+We want to find a way to recover **only** .hi[E[B]]
+
+--
+
+There are two ways you could think about trying to estimate .hi[B] using differences:
+
+1. Compare New York to another state after the policy is passed
+--
+
+2. Compare New York to itself, before and after the policy is passed
+
+---
+
+# The cross-sectional difference
+
+Let's compare New York to another state, Pennsylvania
+
+--
+
+If we were to do this with differences we would get an estimate of .hi[B] given by: 
+<center>
+  .hi[(B + NY + T<sub>1</sub>) - (PA + T<sub>1</sub>) = B + NY - PA]
+</center>
+
+--
+
+This is not .hi[B]!
+
+--
+
+Why?
+
+---
+
+# The cross-sectional difference
+
+<center>
+  .hi[(B + NY + T<sub>1</sub>) - (PA + T<sub>1</sub>) = B + NY - PA]
+</center>
+
+There are other determinants of biodiversity that are different across New York and Pennsylvania that are .hi-blue[not] the policy: landcover, urbanization, pollution, etc
+
+--
+
+If we take a simple difference across states, we can't disentangle whether the difference is due to the policy .hi[B] or differences in these other factors .hi[NY - PA]
+
+
+---
+
+# The time series difference
+
+The next logical thing to try to circumvent this problem is to compare New York to itself, before .hi[NY + T<sub>0</sub>] and after .hi[B + NY + T<sub>1</sub>] the policy
+
+--
+
+<center>
+  .hi[(B + NY + T<sub>1</sub>) - (NY + T<sub>0</sub>) = B + T<sub>1</sub> - T<sub>0</sub>]
+</center>
+
+--
+
+This is not .hi[B]!
+
+--
+
+Why?
+
+
+---
+
+# The time series difference
+
+<center>
+  .hi[(B + NY + T<sub>1</sub>) - (NY + T<sub>0</sub>) = B + T<sub>1</sub> - T<sub>0</sub>]
+</center>
+
+There are other determinants of biodiversity that are different before and after the policy that are .hi-blue[not] the New York policy: federal policy changes, trends in urbanization and pollution
+
+--
+
+If we take a simple difference over time, we can't disentangle whether the difference is due to the policy .hi[B] or differences in other factors that are changing over time .hi[T<sub>1</sub> - T<sub>0</sub>]
+
+---
+
+# Difference-in-differences
+
+With DD we .hi-blue[combine] these two differences
+
+--
+
+We take the time series differences for NY and PA, and then difference them:
+
+
+|              |        After        |           Before           |                                Time Series Difference                               |
+|:------------:|:-------------------:|:--------------------------:|:-----------------------------------------------------------------------------------:|
+|   New York   | NY + T<sub>1</sub> |   B + NY + T<sub>0</sub>   | (B + NY + T<sub>1</sub>) - (B + NY + T<sub>1</sub>) = .hi[B + T<sub>1</sub> - T<sub>0</sub>] |
+| Pennsylvania |  PA + T<sub>1</sub> |     PA + T<sub>0</sub>     |  (PA + T<sub>1</sub>) - (PA + T<sub>0</sub>) = .hi[T<sub>1</sub> - T<sub>0</sub>]  |
+|              |                     | Difference-in-differences: |                .hi[(B + NY + T<sub>1</sub>) - (T<sub>1</sub> - T<sub>0</sub>) = B      ]                                    |
+|              |                     |                            |                                                                                     |
+
+---
+
+# Difference-in-differences
+
+
+|              |        After        |           Before           |                                Time Series Difference                               |
+|:------------:|:-------------------:|:--------------------------:|:-----------------------------------------------------------------------------------:|
+|   New York   | NY + T<sub>1</sub> |   B + NY + T<sub>0</sub>   | (B + NY + T<sub>1</sub>) - (B + NY + T<sub>1</sub>) = .hi[B + T<sub>1</sub> - T<sub>0</sub>] |
+| Pennsylvania |  PA + T<sub>1</sub> |     PA + T<sub>0</sub>     |  (PA + T<sub>1</sub>) - (PA + T<sub>0</sub>) = .hi[T<sub>1</sub> - T<sub>0</sub>]  |
+|              |                     | Difference-in-differences: |                .hi[(B + NY + T<sub>1</sub>) - (T<sub>1</sub> - T<sub>0</sub>) = B      ]                                    |
+|              |                     |                            |                                                                                     |
+
+--
+
+The time series differences lets us control for all fixed determinants (.hi[NY])
+
+--
+
+The cross-sectional difference lets us control for all period-specific determinants common across all states (.hi[T<sub>1</sub>])
+
+--
+
+Combining these two differences addresses both and lets us recover .hi[B], the true effect of the policy!
+
+---
+
+# Difference-in-differences: to the data
+
+Now lets see how this works in practice
+
+---
+
+class: inverse, center, middle
+name: hr2021
+
+# The effect of leaded gasoline on elderly mortality
+
+<html><div style='float:left'></div><hr color='#EB811B' size=1px width=796px></html>
