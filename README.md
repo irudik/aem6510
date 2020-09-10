@@ -80,11 +80,11 @@ Some sections of the course have readings (available on Canvas if not in the boo
 
 **Reading**: None
 
-### [Sep 8: Theory of externalities](https://rawcdn.githack.com/irudik/aem6510/55362adb89991e12077312cc5e409d4452ec2fbd/lecture-notes/2-theory-of-externalities/2-theory-of-externalities.html)
+### [Sep 8: Theory of externalities](https://rawcdn.githack.com/irudik/aem6510/dce48a303c008ec370ec37fa7ae15d2d4af90d6d/lecture-notes/2-theory-of-externalities/2-theory-of-externalities.html)
 
 **Reading**: PR Chapter 1
 
-### [Sep 10: Introduction to the theory of environmental policy](https://ivanrudik.com)
+### [Sep 10: Introduction to the theory of environmental policy](https://rawcdn.githack.com/irudik/aem6510/dce48a303c008ec370ec37fa7ae15d2d4af90d6d/lecture-notes/3-theory-of-environmental-policy/3-theory-of-environmental-policy.html)
 
 **Reading**: PR Chapter 3
 
