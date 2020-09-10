@@ -31,6 +31,13 @@ exclude: true
 
 ```r
 if (!require("pacman")) install.packages("pacman")
+```
+
+```
+## Loading required package: pacman
+```
+
+```r
 pacman::p_load(
   tidyverse, tidylog, xaringanExtra, Ryacas, rlang
 )
@@ -366,7 +373,7 @@ The Lagrangian is given by:
   \mathcal{L} = \max_{x_1,x_2,z_1,z_2,l_x,l_z,E}&amp; U_1(x_1,z_1,E) \\
     &amp;+ \lambda_u[U_2(x_2,z_2,E) - \bar{u}_2] \\ 
     &amp;+ \lambda_x[f(l_x,E) - x_1 - x_2] \\
-    &amp;+ \lambda_z[g(l_x) - z_1-z_2] \\
+    &amp;+ \lambda_z[g(l_z) - z_1-z_2] \\
     &amp;+ \lambda_l[l - l_x - l_z]
 \end{align}`
 

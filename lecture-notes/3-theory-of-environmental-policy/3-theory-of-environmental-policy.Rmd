@@ -51,6 +51,16 @@ This will guide us in
   - Describing the set of policy instruments and their properties
   - Information needs for using each kind of policy
 
+
+---
+
+class: inverse, center, middle
+name: base_model
+
+# The base model
+
+<html><div style='float:left'></div><hr color='#EB811B' size=1px width=796px></html>
+
 ---
 
 # A model of damages and costs
@@ -99,7 +109,7 @@ where $y_i$ is income spent on market goods and $D_i(E)$ is the household-specif
 
 --
 
-Since utility is quasi-linear in income and the marginal utility of income is 1, we can interpret $D_i(E)$ as the *dollar value of lost utility for household $i$ from aggregate emissions*
+With this utility function, we can interpret $D_i(E)$ as the *dollar value of lost utility for household $i$ from aggregate emissions*
 
 ---
 
@@ -116,7 +126,7 @@ $$D_i'(E) > 0, \,\, D_i''(E) > 0$$
 
 Aggregate damages are then
 $$D(E) = \sum_{i=1}^N D_i(E)$$
-where $I$ is the number of households
+where $N$ is the number of households
 
 ---
 
@@ -130,7 +140,8 @@ There are also costs of reducing emissions of $SO_2$
 
 --
 
-For now we assume that these costs are separable (i.e. don't depend on other stuff) so we can focus solely on costs of abating pollution
+For now we assume that these costs are separable (i.e. don't depend on each other) so we can focus solely on costs of abating pollution
+- A separable abatement cost would be for something like an $SO_2$ scrubber that does not affect electricity generation
 
 --
 
@@ -140,7 +151,7 @@ Define the .hi-blue[abatement cost function] for firm $j$ by $C_j(e_j)$
 
 # Abatement costs
 
-Let $\hat{e}_j$ be the firm's freely chosen abatement level, so that $C_j(\hat{e}_j) = 0$
+Let $\hat{e}_j$ be the firm's freely chosen abatement level, this means that $C_j(\hat{e}_j) = 0$ because they will not incur abatement cost unless they have to
 
 --
 
@@ -148,7 +159,17 @@ $C_j(e_j) > 0$ for any $e_j < \hat{e}_j$ so that $C_j'(e_j) < 0$ for $e_j < \hat
 
 --
 
-Define the .hi-blue[marginal abatement cost] as:
+Abatement cost is positive for any emission level below $\hat{e}_j$
+
+--
+
+Abatement costs are decreasing in emissions (increasing in abatement)
+
+---
+
+# Abatement costs
+
+Define the .hi-blue[marginal abatement cost] (MAC) as:
 $$MAC_j(e) \equiv -C_j'(e_j) > 0, e_j < \hat{e}_j$$
 
 --
@@ -156,22 +177,32 @@ $$MAC_j(e) \equiv -C_j'(e_j) > 0, e_j < \hat{e}_j$$
 We will also assume that the MAC weakly increases as we reduce emissions, i.e. $C$ is weakly convex:
 $$MAC_j'(e) = -C_j''(e_j) \leq 0, e_j < \hat{e}_j$$
 
+--
+
+As you reduce emissions, the cost of reducing the next unit is higher than the previous<sup>1</sup>
+
+.footnote[
+<sup>1</sup> Written another way, if $\mathcal{C}(A)$ is the cost of abatement, we are assuming $\mathcal{C}'(A), \mathcal{C}''(A) > 0$ 
+]
+
 ---
 
 # Abatement costs assumptions
 
 These assumptions on marginal abatement cost are pretty reasonable:
 
+--
+
 1. MACs are increasing because firms will choose among different abatement technologies in order of their marginal cost if they are profit-maximizing or cost-minimizing
 --
 
-2. Weak abatement cost convexity / weakly increasing MACs is a reasonable approximation of piecewise constant MAC functions, which is what many MACs look like empirically
+2. *Weakly* increasing MACs is a reasonable approximation of piecewise constant MAC functions, which is what many MACs look like empirically
 
 ---
 
 # Efficient allocation of emissions
 
-In our setting emissions negatively affects households and controlling emissions imposes a cost on firms
+In our setting emissions negatively affects households, and controlling emissions imposes a cost on firms
 
 An efficient outcome optimally balances these two different costs to the economy
 
@@ -184,9 +215,15 @@ $$SC(e_1,\dots,e_J) = \sum_{j=1}^J C_j(e_j) + D(E)$$
 
 # Efficient allocation of emissions
 
-The first-order conditions for minimizing SC are:
+The first-order conditions for minimizing social costs are:
+
+--
+
 $$-C_j'(e_j) = D'(E), \,\, \forall j=1,\dots,J$$
 and also that
+
+--
+
 $$-C_j'(e_j) = -C_k'(e_k), \,\, \forall k,j$$
 
 These are the two fundamental characteristics of the efficient allocation of pollution
@@ -530,11 +567,17 @@ What contract does the firm offer in equilibrium?
 
 The firm will choose to offer $\theta = D(E)$, the least amount required for the household to accept
 
+This means we can write the firm's total cost as:
 --
 
-This means we can write the firm's total cost as:
 $$TC(E) = C(E) + D(E) + tr$$
+
+--
+
 It's optimal choice of $E$ (and therefore $\theta$) is given by the first-order condition:
+
+--
+
 $$-C'(E) = D'(E)$$
 which matches our condition for efficiency in pollution
 
@@ -566,8 +609,14 @@ The household will then offer the minimum required: $\theta = C(E)$
 
 The household's utility maximization problem is then:
 $$\max_{E} y - (D(E) + C(E) + tr)$$
+
+--
+
 giving the first-order condition:
 $$-C'(E) = D'(E)$$
+
+--
+
 where we again reach the social optimum, as long as:
 $$tr \leq D(\hat{E}) - (D(E^*) + C(E^*))$$
 where $\hat{E}$ is the firms initial emission level
@@ -602,32 +651,46 @@ With small enough transactions costs, the party that does not own the property r
 
 The Coase theorem is not just a useful theoretical exercise:
 
+.footnote[
+Depres, Christophe, Gilles Grolleau, and Naoufel Mzoughi. "Contracting for Environmental Property Rights: The Case of Vittel." Economica, New Series, 75, no. 299 (2008)
+]
+
+--
+
 Vittel sells luxury mineral water
+
+--
 
 In 1988 nitrates from farm runoff was polluting their water supply
 
+
+--
+
 Vittel contacted all upstream farmers and negotiated contracts for reducing nitrogen runoff
-
-.footnote[Depres, Christophe, Gilles Grolleau, and Naoufel Mzoughi. "Contracting for Environmental Property Rights: The Case of Vittel." Economica, New Series, 75, no. 299 (2008)]
-
 
 ---
 
 # The Coase theorem: real world
 
+.footnote[
+Dieperink, C. International water negotiations under asymmetry, Lessons from the Rhine chlorides dispute settlement (1931–2004). Int Environ Agreements 11, 139–157 (2011).
+]
+
 Mines de Potasse d'Alsace heavily polluted the Rhine river with chlorides in potash production
+
+--
 
 MdPA was thought to have low abatement costs because filtering out chlorides is cheap
 
-In 1972 Switzerland, France, Germany, and the Netherlands contracted to pay MdPA 532 million francs to reduce emissions
+--
 
-.footnote[Dieperink, C. International water negotiations under asymmetry, Lessons from the Rhine chlorides dispute settlement (1931–2004). Int Environ Agreements 11, 139–157 (2011).]
+In 1972 Switzerland, France, Germany, and the Netherlands contracted to pay MdPA 532 million francs to reduce emissions
 
 ---
 
 # Policy instruments
 
-The Coase theorem is applicable for local environmental with few and easily identifiable parties
+The Coase theorem is applicable for local environmental problems with few and easily identifiable parties
 
 --
 
@@ -646,6 +709,9 @@ This is where there is a role for public intervention
 --
 
 The most common CC policies are emissions limits and technology standards
+
+--
+
   - Standard on absolute amount of emissions
   - Standard on emissions per unit of output, input, etc
   - Must install $SO_2$ scrubber
@@ -680,10 +746,22 @@ Firm-specific emission standards aren't very realistic
 --
 
 The regulator needs to know:
-  - The social damage function
-  - Each firm's abatement cost function
 
-And the regulator needs to be able to impose a policy that is differential across firms and is unlikely to be politically feasible
+--
+
+- The social damage function
+
+--
+
+- Each firm's abatement cost function
+
+--
+
+And the regulator needs to be able to:
+
+--
+
+- Impose a policy that is different across firms and is unlikely to be politically feasible
 
 ---
 
@@ -962,7 +1040,7 @@ We want low MAC firms to abate more than high MAC firms
 
 # Emission taxes
 
-An emission tax is a fee that the pollution firm must pay per unit of effluent
+An emission tax is a fee that the pollution firm must pay per unit of emissions
 
 These aren't very common in the US but are more widespread in Europe
 
