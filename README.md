@@ -170,7 +170,9 @@ We will be using [RStudio Cloud](https://rstudio.cloud/) for computing.
 
 ### [Nov 10: Climate change and the Ricardian model](https://ivanrudik.com)
 
-**Reading**: Mendelsohn, R., Nordhaus, W.D. and Shaw, D., 1994. The impact of global warming on agriculture: a Ricardian analysis. The American economic review, pp.753-771.
+**Reading**: 
+  - Mendelsohn, R., Nordhaus, W.D. and Shaw, D., 1994. The impact of global warming on agriculture: a Ricardian analysis. The American economic review, pp.753-771.
+  - Ortiz‐Bobea, A., 2020. The role of nonfarm influences in Ricardian estimates of climate change impacts on US agriculture. American Journal of Agricultural Economics, 102(3), pp.934-959.
 
 ### [Nov 12: Climate change and two way fixed effects](https://ivanrudik.com)
 
