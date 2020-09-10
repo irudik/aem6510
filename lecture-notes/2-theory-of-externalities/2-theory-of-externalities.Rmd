@@ -726,7 +726,7 @@ There are two parts to the intuition for the tax:
 
 --
 
-1. $-\left[{\partial U_1 \over \partial E}\bigg/{\partial U_1 \over \partial x_1} - {\partial U_2 \over \partial E}\bigg/{\partial U_2 \over \partial x_2}\right]$ tells us how much total $x$ we need in order to compensate both consumers for an additional unit of $E$ and keep their utilities constant
+1. $-\left[{\partial U_1 \over \partial E}\bigg/{\partial U_1 \over \partial x_1} + {\partial U_2 \over \partial E}\bigg/{\partial U_2 \over \partial x_2}\right]$ tells us how much total $x$ we need in order to compensate both consumers for an additional unit of $E$ and keep their utilities constant
 --
 
 2. $p_x$ tells us the dollar value of this much $x$  
