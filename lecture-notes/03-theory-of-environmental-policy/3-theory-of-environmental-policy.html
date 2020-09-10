@@ -31,6 +31,13 @@ exclude: true
 
 ```r
 if (!require("pacman")) install.packages("pacman")
+```
+
+```
+## Loading required package: pacman
+```
+
+```r
 pacman::p_load(
   tidyverse, tidylog, xaringanExtra, rlang, patchwork
 )
@@ -229,8 +236,8 @@ The first-order conditions for minimizing social costs are:
 
 --
 
-`$$-C_j'(e_j) = D'(E), \,\, \forall j=1,\dots,J$$`
-and also that
+`$$-C_j'(e_j) = D'(E){\partial E \over \partial e_j}, \,\, \forall j=1,\dots,J$$`
+where `\({\partial E \over \partial e_j} = 1\)` and also that
 
 --
 
