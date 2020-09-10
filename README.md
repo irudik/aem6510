@@ -76,15 +76,15 @@ Some sections of the course have readings (available on Canvas if not in the boo
 
 ## Course outline and readings
 
-### [Sep 3: Micro and math recap](https://rawcdn.githack.com/irudik/aem6510/68e8dbc30f2cacaf49bdcfd4fafdba730656902d/lecture-notes/1-micro-and-math/1-micro-math.html)
+### [Sep 3: Micro and math recap](https://raw.githack.com/irudik/aem6510/master/lecture-notes/01-micro-and-math/1-micro-math.html) [slides posted]
 
 **Reading**: None
 
-### [Sep 8: Theory of externalities](https://rawcdn.githack.com/irudik/aem6510/dce48a303c008ec370ec37fa7ae15d2d4af90d6d/lecture-notes/2-theory-of-externalities/2-theory-of-externalities.html)
+### [Sep 8: Theory of externalities](https://raw.githack.com/irudik/aem6510/master/lecture-notes/02-theory-of-externalities/2-theory-of-externalities.html) [slides posted]
 
 **Reading**: PR Chapter 1
 
-### [Sep 10: Introduction to the theory of environmental policy](https://rawcdn.githack.com/irudik/aem6510/dce48a303c008ec370ec37fa7ae15d2d4af90d6d/lecture-notes/3-theory-of-environmental-policy/3-theory-of-environmental-policy.html)
+### [Sep 10: Introduction to the theory of environmental policy](https://raw.githack.com/irudik/aem6510/master/lecture-notes/03-theory-of-environmental-policy/3-theory-of-environmental-policy.html) [slides posted]
 
 **Reading**: PR Chapter 3
 
