@@ -176,7 +176,7 @@ When we observe data on biodiversity we see the combination of all determinants:
 
 --
 
-We want to find a way to recover **only** .hi[B]
+We want to find a way to recover **only** .hi[E[B]]
 
 --
 
@@ -266,15 +266,22 @@ With DD we .hi-blue[combine] these two differences
 
 --
 
-We take the time series differences for NY and PA, and then difference them:
+We take the time series differences for NY and PA:
 
 
 |              |        After        |           Before           |                                Time Series Difference                               |
 |:------------:|:-------------------:|:--------------------------:|:-----------------------------------------------------------------------------------:|
-|   New York   | NY + T&lt;sub&gt;1&lt;/sub&gt; |   B + NY + T&lt;sub&gt;0&lt;/sub&gt;   | (B + NY + T&lt;sub&gt;1&lt;/sub&gt;) - (B + NY + T&lt;sub&gt;1&lt;/sub&gt;) = .hi[B + T&lt;sub&gt;1&lt;/sub&gt; - T&lt;sub&gt;0&lt;/sub&gt;] |
+|   New York   | B + NY + T&lt;sub&gt;1&lt;/sub&gt; |   NY + T&lt;sub&gt;0&lt;/sub&gt;   | (B + NY + T&lt;sub&gt;1&lt;/sub&gt;) - (B + NY + T&lt;sub&gt;1&lt;/sub&gt;) = .hi[B + T&lt;sub&gt;1&lt;/sub&gt; - T&lt;sub&gt;0&lt;/sub&gt;] |
 | Pennsylvania |  PA + T&lt;sub&gt;1&lt;/sub&gt; |     PA + T&lt;sub&gt;0&lt;/sub&gt;     |  (PA + T&lt;sub&gt;1&lt;/sub&gt;) - (PA + T&lt;sub&gt;0&lt;/sub&gt;) = .hi[T&lt;sub&gt;1&lt;/sub&gt; - T&lt;sub&gt;0&lt;/sub&gt;]  |
-|              |                     | Difference-in-differences: |                .hi[(B + NY + T&lt;sub&gt;1&lt;/sub&gt;) - (T&lt;sub&gt;1&lt;/sub&gt; - T&lt;sub&gt;0&lt;/sub&gt;) = B      ]                                    |
-|              |                     |                            |                                                                                     |
+
+--
+
+Next,  difference the time series differences to get the DD&lt;sup&gt;1&lt;/sup&gt;
+
+.footnote[
+&lt;sup&gt;1&lt;/sup&gt;You can also difference in the opposite order and end up with the same result
+]
+
 
 ---
 
@@ -283,14 +290,15 @@ We take the time series differences for NY and PA, and then difference them:
 
 |              |        After        |           Before           |                                Time Series Difference                               |
 |:------------:|:-------------------:|:--------------------------:|:-----------------------------------------------------------------------------------:|
-|   New York   | NY + T&lt;sub&gt;1&lt;/sub&gt; |   B + NY + T&lt;sub&gt;0&lt;/sub&gt;   | (B + NY + T&lt;sub&gt;1&lt;/sub&gt;) - (B + NY + T&lt;sub&gt;1&lt;/sub&gt;) = .hi[B + T&lt;sub&gt;1&lt;/sub&gt; - T&lt;sub&gt;0&lt;/sub&gt;] |
+|   New York   | B + NY + T&lt;sub&gt;1&lt;/sub&gt; |  NY + T&lt;sub&gt;0&lt;/sub&gt;   | (B + NY + T&lt;sub&gt;1&lt;/sub&gt;) - (B + NY + T&lt;sub&gt;1&lt;/sub&gt;) = .hi[B + T&lt;sub&gt;1&lt;/sub&gt; - T&lt;sub&gt;0&lt;/sub&gt;] |
 | Pennsylvania |  PA + T&lt;sub&gt;1&lt;/sub&gt; |     PA + T&lt;sub&gt;0&lt;/sub&gt;     |  (PA + T&lt;sub&gt;1&lt;/sub&gt;) - (PA + T&lt;sub&gt;0&lt;/sub&gt;) = .hi[T&lt;sub&gt;1&lt;/sub&gt; - T&lt;sub&gt;0&lt;/sub&gt;]  |
-|              |                     | Difference-in-differences: |                .hi[(B + NY + T&lt;sub&gt;1&lt;/sub&gt;) - (T&lt;sub&gt;1&lt;/sub&gt; - T&lt;sub&gt;0&lt;/sub&gt;) = B      ]                                    |
 |              |                     |                            |                                                                                     |
+|              |                     |                            |                                                                                     |
+|              |                     | Difference-in-differences: |                .hi[(B + T&lt;sub&gt;1&lt;/sub&gt; - T&lt;sub&gt;0&lt;/sub&gt;) - (T&lt;sub&gt;1&lt;/sub&gt; - T&lt;sub&gt;0&lt;/sub&gt;) = B      ]                                    |
 
 --
 
-The time series differences lets us control for all fixed determinants (.hi[NY])
+The time series differences lets us control for all fixed determinants within a state (.hi[NY])
 
 --
 
@@ -298,7 +306,30 @@ The cross-sectional difference lets us control for all period-specific determina
 
 --
 
-Combining these two differences addresses both and lets us recover .hi[B]
+Combining these two differences addresses both and lets us recover .hi[B], the true effect of the policy!
+
+---
+
+# Difference-in-differences
+
+Note that DD is not magic
+
+--
+
+It only can address determinants of biodiversity that are either:
+1. Time-invariant
+2. Time-varying, but common across all states
+
+--
+
+If there is a determinant of biodiversity that is varying over time, and differentially across states, DD will fail to correctly estimate .hi[B]
+- State climate trends, state pollution trends, etc
+
+---
+
+# Difference-in-differences
+
+Math with time-varying confounder here
 
 ---
 
@@ -311,9 +342,116 @@ Now lets see how this works in practice
 class: inverse, center, middle
 name: hr2021
 
-# The effect of leaded gasoline on elderly mortality
+# The effect of leaded gasoline on elderly mortality: Evidence from regulatory exemptions
 
 &lt;html&gt;&lt;div style='float:left'&gt;&lt;/div&gt;&lt;hr color='#EB811B' size=1px width=796px&gt;&lt;/html&gt;
+
+---
+
+# What is the paper about?
+
+What is Hollingsworth and Rudik (2021) (.blue[HR]) about?
+
+--
+
+HR aims to estimate the .hi-red[causal] effect of lead on mortality
+
+--
+
+Why is this important? We know lead is bad
+
+--
+
+1. There is little causal evidence for any effects of lead
+2. Almost zero causal evidence for effects of lead on adults in any way
+3. Having an accurate measure of effects/costs is vital for policymaking
+
+---
+
+# What is the paper about?
+
+![federal_register](figures/federal_register.png)
+
+---
+
+# How does the paper do it?
+
+HR estimates the causal effect of lead by exploiting a .hi-blue[quasi-experiment]
+
+--
+
+&gt; a quasi-experiment is a real world occurance that approximates an actual RCT; quasi-experiments are also called natural experiments
+
+--
+
+The quasi-experiment HR exploits is the sudden removal of lead from racing gasoline in 2007
+
+--
+
+Places that happened to have racetracks in 2007 had a significant decrease in lead emissions relative to places without racetracks
+
+---
+
+# How does the paper do it?
+
+Here's the 2x2 DD table
+
+|         	|                    Before                    	|                    After                    	|
+|:-------:	|:--------------------------------------------:	|:-------------------------------------------:	|
+| .hi[Treated] 	|   .hi[Areas Near NASCAR racetracks before 2007]   	|   .hi[Areas Near NASCAR racetracks after 2007 ]  	|
+| Control 	| Areas far from NASCAR racetracks before 2007 	| Areas far from NASCAR racetracks after 2007 	|
+
+
+We are comparing areas .hi[close] vs far from racetracks, before vs after deleading in 2007
+
+---
+
+# How does the paper do it?
+
+Here's the 2x2 DD table
+
+|         	|                    Before                    	|                    After                    	|
+|:-------:	|:--------------------------------------------:	|:-------------------------------------------:	|
+| Treated 	|   Areas Near NASCAR racetracks before 2007   	|   Areas Near NASCAR racetracks after 2007   	|
+| .hi[Control] 	| .hi[Areas far from NASCAR racetracks before 2007] 	| .hi[Areas far from NASCAR racetracks after 2007] 	|
+
+
+We are comparing areas close vs .hi[far] from racetracks, before vs after deleading in 2007
+
+---
+
+# How does the paper do it?
+
+Here's the 2x2 DD table
+
+|         	|                    .hi[Before]                    	|                    After                    	|
+|:-------:	|:--------------------------------------------:	|:-------------------------------------------:	|
+| Treated 	|   .hi[Areas Near NASCAR racetracks before 2007]   	|   Areas Near NASCAR racetracks after 2007   	|
+| Control 	| .hi[Areas far from NASCAR racetracks before 2007] 	| Areas far from NASCAR racetracks after 2007 	|
+
+
+We are comparing areas close vs far from racetracks, .hi[before] vs after deleading in 2007
+
+---
+
+# How does the paper do it?
+
+Here's the 2x2 DD table
+
+|         	|                    Before                    	|                    .hi[After]                    	|
+|:-------:	|:--------------------------------------------:	|:-------------------------------------------:	|
+| Treated 	|   Areas Near NASCAR racetracks before 2007   	|   .hi[Areas Near NASCAR racetracks after 2007]   	|
+| Control 	| Areas far from NASCAR racetracks before 2007 	| .hi[Areas far from NASCAR racetracks after 2007] 	|
+
+
+We are comparing areas close vs far from racetracks, before vs .hi[after] deleading in 2007
+
+
+---
+
+# How does the paper do it?
+
+![county map](figures/figure_a3_county_type.png)
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
