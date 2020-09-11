@@ -441,4 +441,10 @@ We are comparing areas close vs far from racetracks, before vs .hi[after] delead
 
 # How does the paper do it?
 
+.blue[track/treated counties], .green[border/weak treated counties], white control counties
+
 ![county map](figures/figure_a3_county_type.png)
+
+---
+
+# Let's look at the data

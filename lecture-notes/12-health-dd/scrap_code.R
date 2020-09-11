@@ -322,3 +322,55 @@ ggplot(data = event_study, aes(x = year, y = estimate)) +
     plot.background = element_rect(fill = "#eeeeee", colour = NA),
     axis.line = element_line(colour = "black")
   )
+
+
+########################################
+## Read in blood lead data
+mortality_df <- read_csv("data/hr_2021_mortality.csv")
+
+mortality_df
+
+
+
+# Need to factor year so we can omit 2007
+mortality_df$year <- factor(mortality_df$year, ordered = FALSE)
+mortality_df$year <- relevel(mortality_df$year, 9)
+
+# Estimate event study
+event_study <- fixest::feols(age_adjusted_rate ~ as.factor(race)*year + as.factor(state_fips)*year | county_fips + year, 
+                             weights = ~weight,
+                             data = mortality_df) %>% 
+  tidy(cluster = "state_fips") %>% 
+  filter(str_detect(term, "^as.factor\\(race\\)2:year")) %>% 
+  add_row(estimate = 0, std.error = 0, .after = 8) %>% 
+  mutate(year = row_number() + 1998)
+
+# Plot event study
+ggplot(data = event_study, aes(x = year, y = estimate)) +
+  geom_hline(yintercept = 0, size = 0.5) +
+  geom_vline(xintercept = 2006.5, color = "grey55", linetype = "dashed") +
+  geom_ribbon(aes(ymin = estimate - 1.96*std.error, ymax = estimate + 1.96*std.error), 
+              fill = "darkslateblue", alpha = 0.4) +
+  geom_line(size = 1) +
+  geom_point(size = 5) +
+  annotate("text", size = 8, label = "Leaded Fuel", x = 2002, y = -200) +
+  annotate("text", size = 8, label = "Unleaded Fuel", x = 2012, y = -200) +
+  theme_minimal() +
+  scale_color_colorblind() +
+  scale_x_continuous(breaks = seq(1999, 2015, 2)) +
+  labs(
+    x = "Year",
+    y = "Age-Adjusted Mortality Rate (deaths per 100,000)",
+    title = "Mortality rate relative to 2007 (first unleaded year)"
+  ) +
+  theme(
+    legend.position = "none",
+    title = element_text(size = 24),
+    axis.text.x = element_text(size = 24), axis.text.y = element_text(size = 24),
+    axis.title.x = element_text(size = 24), axis.title.y = element_text(size = 24),
+    panel.grid.minor.x = element_blank(), panel.grid.minor.y = element_blank(),
+    panel.grid.major.x = element_blank(),
+    panel.background = element_rect(fill = "#eeeeee", colour = NA),
+    plot.background = element_rect(fill = "#eeeeee", colour = NA),
+    axis.line = element_line(colour = "black")
+  )
