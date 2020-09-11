@@ -74,7 +74,7 @@ In both of these were are comparing groups in the .hi-blue[cross-section]: there
 
 # Our comparisons so far
 
-The key assumption for these comparisons is that the treated group would have looked the same as the control group (i.e. had the same outcomes) in the absense of treatment
+The key assumption for these comparisons is that the treated group would have looked the same as the control group (i.e. had the same outcomes) in the absence of treatment
 
 --
 
@@ -319,13 +319,346 @@ If there is a determinant of biodiversity that is varying over time, and differe
 
 # Difference-in-differences
 
-Math with time-varying confounder here
+Suppose that there is another determinant of biodiversity .hi[C<sup>NY</sup><sub>1</sub>, C<sup>NY</sup><sub>0</sub>] that only occurs in New York and varies over time
+- e.g. climate in New York relative to Pennsylvania
+
+Our DD is then
+
+|              |        After        |           Before           |                                Time Series Difference                               |
+|:------------:|:-------------------:|:--------------------------:|:-----------------------------------------------------------------------------------:|
+|   New York   | B + NY + T<sub>1</sub> + C<sup>NY</sup><sub>1</sub> + C<sup>NY</sup><sub>0</sub> |  NY + T<sub>0</sub>   | (B + NY + T<sub>1</sub>) - (B + NY + T<sub>1</sub>) = .hi[B + T<sub>1</sub> - T<sub>0</sub> + C<sup>NY</sup><sub>1</sub>- C<sup>NY</sup><sub>0</sub>] |
+| Pennsylvania |  PA + T<sub>1</sub> |     PA + T<sub>0</sub>     |  (PA + T<sub>1</sub>) - (PA + T<sub>0</sub>) = .hi[T<sub>1</sub> - T<sub>0</sub>]  |
+|              |                     |                            |                                                                                     |
+|              |                     |                            |                                                                                     |
+|              |                     | Difference-in-differences: |                .hi[(B + T<sub>1</sub> - T<sub>0</sub>) - (T<sub>1</sub> - T<sub>0</sub>) = B + C<sup>NY</sup><sub>1</sub>- C<sup>NY</sup><sub>0</sub>      ]                                    |
+
+---
+
+# Difference-in-differences
+
+|              |        After        |           Before           |                                Time Series Difference                               |
+|:------------:|:-------------------:|:--------------------------:|:-----------------------------------------------------------------------------------:|
+|   New York   | B + NY + T<sub>1</sub> + C<sup>NY</sup><sub>1</sub> + C<sup>NY</sup><sub>0</sub> |  NY + T<sub>0</sub>   | (B + NY + T<sub>1</sub>) - (B + NY + T<sub>1</sub>) = .hi[B + T<sub>1</sub> - T<sub>0</sub> + C<sup>NY</sup><sub>1</sub>- C<sup>NY</sup><sub>0</sub>] |
+| Pennsylvania |  PA + T<sub>1</sub> |     PA + T<sub>0</sub>     |  (PA + T<sub>1</sub>) - (PA + T<sub>0</sub>) = .hi[T<sub>1</sub> - T<sub>0</sub>]  |
+|              |                     |                            |                                                                                     |
+|              |                     |                            |                                                                                     |
+|              |                     | Difference-in-differences: |                .hi[(B + T<sub>1</sub> - T<sub>0</sub>) - (T<sub>1</sub> - T<sub>0</sub>) = B + C<sup>NY</sup><sub>1</sub>- C<sup>NY</sup><sub>0</sub>      ]                                    |
+
+DD cannot isolate the effect of .hi[B] versus .hi[C<sup>NY</sup><sub>1</sub>- C<sup>NY</sup><sub>0</sub>]
+
+There cannot be any (uncontrolled for) time varying differences between NY and PA if we want to correctly estimate .hi[B]
 
 ---
 
 # Difference-in-differences: to the data
 
-Now lets see how this works in practice
+Now lets see how this works in practice: [notebook here](notebooklink)
+
+--
+
+What we are going to do is create a fake dataset where we .hi-blue[know the true value of what we want to estimate]
+
+--
+
+This is a good skill to practice to make sure you understand methods and that your code works correctly
+
+
+---
+exclude: true
+```{r, echo = FALSE, results = 'hide'}
+# load required packages
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(
+  ggthemes, fixest, broom, tidyverse
+)
+
+########################################
+# Initialize RNG
+set.seed(12345)
+
+########################################
+## Initialize data generating parameters
+
+# Fixed state characteristics: ny has more biodiversity
+state_fes <- tribble(~state, ~state_fe,
+                     "NY", 88,
+                     "PA", 44)
+
+# Period characteristics: biodiversity is declining
+period_fes <- tribble(~period, ~period_fe,
+                     "before", 341,
+                     "after", 207)
+
+# True effect of the policy: how many additional species are saved?
+treatment_effect <- 55
+
+########################################
+## Generate fake data
+
+# Create data frame
+bio_df <- crossing(
+  state = c("NY", "PA"),
+  period = c("before", "after"),
+  obs = 1:1000
+) %>%
+  left_join(period_fes) %>% 
+  left_join(state_fes) %>% 
+  mutate(treated = state == "NY" & period == "after",
+         period = factor(period, levels = c("before", "after"))) %>% 
+  arrange(state, period) %>% 
+  mutate(
+    biodiversity = ifelse(
+      treated,
+      period_fe + state_fe + treatment_effect + 50*rnorm(n()),
+      period_fe + state_fe  + 50*rnorm(n())
+    )
+  ) %>% 
+  group_by(state, period) %>% 
+  mutate(mean_biodiversity = mean(biodiversity)) %>% 
+  ungroup()
+
+bio_df$period = factor(bio_df$period, levels = c("before", "after"))
+
+seg_df <- bio_df %>% 
+  group_by(state, period) %>% 
+  summarise(mean_biodiversity = mean(biodiversity))
+
+diff <- 
+  filter(seg_df, 
+         period == 'after',
+         state =='PA')$mean_biodiversity[1] - 
+  filter(seg_df, 
+         period =='before', 
+         state =='PA')$mean_biodiversity[1]
+
+
+dffull <- rbind(
+  #Step 1: Raw data only
+  bio_df %>% mutate(msg = '1. Start with raw data.', msg_idx = 1),
+  #Step 2: Add Y-lines
+  bio_df %>% mutate(msg = '2. Figure out what differences in Y are explained by Treatment and/or Time.', msg_idx = 2),
+  #Step 3: Collapse to means
+  bio_df %>% mutate(biodiversity = mean_biodiversity, msg = "3. Keep only what's explained by Treatment and/or Time.", msg_idx = 3),
+  #Step 4: Display time effect
+  bio_df %>% mutate(biodiversity = mean_biodiversity, msg = "4. See how Control changed over Time.", msg_idx = 4),
+  #Step 5: Shift to remove time effect
+  bio_df %>% mutate(biodiversity = mean_biodiversity - (period == 'after')*diff,
+                    biodiversity = biodiversity - min(biodiversity),
+                msg = "5. Remove the Before/After Control difference for both groups.", msg_idx = 5),
+  #Step 6: Raw demeaned data only
+  bio_df %>% mutate(biodiversity = mean_biodiversity - (period == 'after')*diff,
+                    biodiversity = biodiversity - min(biodiversity),
+                msg = '6. The remaining Before/After Treatment difference is the effect.', msg_idx = 6) %>% 
+    filter(state == "NY") %>% 
+    mutate(biodiversity = biodiversity - min(biodiversity)))
+
+dffull$period <- factor(dffull$period,
+                        levels = c("before", "after"))
+
+
+
+```
+
+
+
+---
+
+# DD step 1
+
+```{r dd1, echo = FALSE, fig.show = 'hide', warning = F, fig.height = 8, fig.width = 12}
+ggplot(bio_df, group = interaction(state, period)) +
+  geom_jitter(aes(x = period, y = biodiversity, color = interaction(state), shape = interaction(state)), size = 3) +
+  annotate("text", size = 8, label = "NY", x = 1, y = 500) +
+  annotate("text", size = 8, label = "PA", x = 1, y = 100, color = "orange") +
+  scale_color_colorblind() +
+  theme_minimal() +
+  scale_x_discrete(labels = c("Before Treatment", "After Treatment")) +
+  scale_y_continuous(limits = c(50, 500)) +
+  labs(
+    x = "Time",
+    y = "Biodiversity",
+    title = "Start with the raw data"
+  ) +
+  theme(
+    legend.position = "none",
+    title = element_text(size = 24),
+    axis.text.x = element_text(size = 24), axis.text.y = element_text(size = 24),
+    axis.title.x = element_text(size = 24), axis.title.y = element_text(size = 24),
+    panel.grid.minor.x = element_blank(), panel.grid.minor.y = element_blank(),
+    panel.grid.major.x = element_blank(),
+    panel.background = element_rect(fill = "#eeeeee", colour = NA),
+    plot.background = element_rect(fill = "#eeeeee", colour = NA),
+    axis.line = element_line(colour = "black")
+  )
+
+```
+
+![](`r knitr::fig_chunk("dd1", "png")`)
+
+---
+
+# DD step 2
+
+```{r dd2, echo = FALSE, fig.show = 'hide', warning = F, fig.height = 8, fig.width = 12}
+ggplot(dffull, group = interaction(state, period)) +
+  geom_jitter(aes(x = period, y = mean_biodiversity, color = interaction(state), shape = interaction(state)), size = 3, height = 0) +
+  scale_color_colorblind() +
+  theme_minimal() +
+  scale_x_discrete(labels = c("Before Treatment", "After Treatment")) +
+  scale_y_continuous(limits = c(50, 500)) +
+  labs(
+    x = "Time",
+    y = "Biodiversity",
+    title = "Take the mean of each state-period"
+  ) +
+  theme(
+    legend.position = "none",
+    title = element_text(size = 24),
+    axis.text.x = element_text(size = 24), axis.text.y = element_text(size = 24),
+    axis.title.x = element_text(size = 24), axis.title.y = element_text(size = 24),
+    panel.grid.minor.x = element_blank(), panel.grid.minor.y = element_blank(),
+    panel.background = element_rect(fill = "#eeeeee", colour = NA),
+    plot.background = element_rect(fill = "#eeeeee", colour = NA),
+    panel.grid.major.x = element_blank(),
+    axis.line = element_line(colour = "black")
+  )
+
+```
+
+![](`r knitr::fig_chunk("dd2", "png")`)
+
+
+---
+
+# DD step 3
+
+```{r dd3, echo = FALSE, fig.show = 'hide', warning = F, fig.height = 8, fig.width = 12}
+
+ggplot(dffull %>% filter(msg_idx == 4), group = interaction(state, period)) +
+  geom_jitter(aes(x = period, y = biodiversity, color = interaction(state), shape = interaction(state)), size = 3, height = 0) +
+  annotate("segment", x = 1.45, xend = 1.45, y = seg_df$mean_biodiversity[1], yend = seg_df$mean_biodiversity[2],
+           size = 1, color = "black") +
+  annotate("segment", x = 1.55, xend = 1.55, y = seg_df$mean_biodiversity[3], yend = seg_df$mean_biodiversity[4],
+           size = 1, color = "orange") +
+  scale_color_colorblind() +
+  theme_minimal() +
+  scale_x_discrete(labels = c("Before Treatment", "After Treatment")) +
+  scale_y_continuous(limits = c(50, 500)) +
+  labs(
+    x = "Time",
+    y = "Biodiversity",
+    title = "Here are the differences in means for NY and PA"
+  ) +
+  theme(
+    legend.position = "none",
+    title = element_text(size = 24),
+    axis.text.x = element_text(size = 24), axis.text.y = element_text(size = 24),
+    axis.title.x = element_text(size = 24), axis.title.y = element_text(size = 24),
+    panel.grid.minor.x = element_blank(), panel.grid.minor.y = element_blank(),
+    panel.background = element_rect(fill = "#eeeeee", colour = NA),
+    plot.background = element_rect(fill = "#eeeeee", colour = NA),
+    panel.grid.major.x = element_blank(),
+    axis.line = element_line(colour = "black")
+  )
+```
+
+![](`r knitr::fig_chunk("dd3", "png")`)
+
+
+---
+
+# DD step 4
+
+```{r dd4, echo = FALSE, fig.show = 'hide', warning = F, fig.height = 8, fig.width = 12}
+ggplot(dffull %>% filter(msg_idx == 5), group = interaction(state, period)) +
+  geom_jitter(aes(x = period, y = biodiversity, color = interaction(state), shape = interaction(state)), size = 3, height = 0) +
+  scale_color_colorblind() +
+  theme_minimal() +
+  scale_x_discrete(labels = c("Before Treatment", "After Treatment")) +
+  labs(
+    x = "Time",
+    y = "Biodiversity",
+    title = "Difference out how the control changed over time (first diff)"
+  ) +
+  theme(
+    legend.position = "none",
+    title = element_text(size = 24),
+    axis.text.x = element_text(size = 24), axis.text.y = element_text(size = 24),
+    axis.title.x = element_text(size = 24), axis.title.y = element_text(size = 24),
+    panel.grid.minor.x = element_blank(), panel.grid.minor.y = element_blank(),
+    panel.background = element_rect(fill = "#eeeeee", colour = NA),
+    plot.background = element_rect(fill = "#eeeeee", colour = NA),
+    panel.grid.major.x = element_blank(),
+    axis.line = element_line(colour = "black")
+  )
+```
+
+![](`r knitr::fig_chunk("dd4", "png")`)
+
+
+---
+
+# DD step 5
+
+```{r dd5, echo = FALSE, fig.show = 'hide', warning = F, fig.height = 8, fig.width = 12}
+ggplot(dffull %>% filter(msg_idx == 5), group = interaction(state, period)) +
+  geom_jitter(aes(x = period, y = biodiversity, color = interaction(state), shape = interaction(state)), size = 3, height = 0) +
+  scale_color_colorblind() +
+  theme_minimal() +
+  scale_x_discrete(labels = c("Before Treatment", "After Treatment")) +
+  labs(
+    x = "Time",
+    y = "Biodiversity",
+    title = "The black lines each represent a difference"
+  ) +
+  theme(
+    legend.position = "none",
+    title = element_text(size = 24),
+    axis.text.x = element_text(size = 24), axis.text.y = element_text(size = 24),
+    axis.title.x = element_text(size = 24), axis.title.y = element_text(size = 24),
+    panel.grid.minor.x = element_blank(), panel.grid.minor.y = element_blank(),
+    panel.background = element_rect(fill = "#eeeeee", colour = NA),
+    plot.background = element_rect(fill = "#eeeeee", colour = NA),
+    panel.grid.major.x = element_blank(),
+    axis.line = element_line(colour = "black")
+  )
+```
+
+![](`r knitr::fig_chunk("dd5", "png")`)
+
+
+---
+
+# DD step 6
+
+```{r dd6, echo = FALSE, fig.show = 'hide', warning = F, fig.height = 8, fig.width = 12}
+ggplot(dffull %>% filter(msg_idx == 6), group = interaction(state, period)) +
+  geom_jitter(aes(x = period, y = biodiversity, color = interaction(state), shape = interaction(state)), size = 3, height = 0) +
+  annotate("segment", x = 1.5, xend = 1.5, y = 0, yend = treatment_effect,
+           size = 1, color = "red") +
+  annotate("text", size = 8, label = paste0("True treatment effect size = ", treatment_effect), x = 1, y = treatment_effect/2, color = "red") +
+  scale_color_colorblind() +
+  theme_minimal() +
+  scale_x_discrete(labels = c("Before Treatment", "After Treatment")) +
+  labs(
+    x = "Time",
+    y = "Biodiversity",
+    title = "The remaining difference in the treatment group\nis the difference-in-differences"
+  ) +
+  theme(
+    legend.position = "none",
+    title = element_text(size = 24),
+    axis.text.x = element_text(size = 24), axis.text.y = element_text(size = 24),
+    axis.title.x = element_text(size = 24), axis.title.y = element_text(size = 24),
+    panel.grid.minor.x = element_blank(), panel.grid.minor.y = element_blank(),
+    panel.background = element_rect(fill = "#eeeeee", colour = NA),
+    plot.background = element_rect(fill = "#eeeeee", colour = NA),
+    panel.grid.major.x = element_blank(),
+    axis.line = element_line(colour = "black")
+  )
+```
+
+![](`r knitr::fig_chunk("dd6", "png")`)
 
 ---
 
@@ -353,12 +686,16 @@ Why is this important? We know lead is bad
 --
 
 1. There is little causal evidence for any effects of lead
+--
+
 2. Almost zero causal evidence for effects of lead on adults in any way
+--
+
 3. Having an accurate measure of effects/costs is vital for policymaking
 
 ---
 
-# What is the paper about?
+# Environmental research directly affects policy!
 
 ![federal_register](figures/federal_register.png)
 
@@ -371,6 +708,10 @@ HR estimates the causal effect of lead by exploiting a .hi-blue[quasi-experiment
 --
 
 > a quasi-experiment is a real world occurance that approximates an actual RCT; quasi-experiments are also called natural experiments
+
+--
+
+Randomly assigning lead exposure to different groups is unethical, but we can learn from situations where real world exposure was *as good as random*
 
 --
 
@@ -388,7 +729,7 @@ Here's the 2x2 DD table
 
 |         	|                    Before                    	|                    After                    	|
 |:-------:	|:--------------------------------------------:	|:-------------------------------------------:	|
-| .hi[Treated] 	|   .hi[Areas Near NASCAR racetracks before 2007]   	|   .hi[Areas Near NASCAR racetracks after 2007 ]  	|
+| .hi[Treated] 	|   .hi[Areas near NASCAR racetracks before 2007]   	|   .hi[Areas near NASCAR racetracks after 2007 ]  	|
 | Control 	| Areas far from NASCAR racetracks before 2007 	| Areas far from NASCAR racetracks after 2007 	|
 
 
@@ -402,7 +743,7 @@ Here's the 2x2 DD table
 
 |         	|                    Before                    	|                    After                    	|
 |:-------:	|:--------------------------------------------:	|:-------------------------------------------:	|
-| Treated 	|   Areas Near NASCAR racetracks before 2007   	|   Areas Near NASCAR racetracks after 2007   	|
+| Treated 	|   Areas near NASCAR racetracks before 2007   	|   Areas near NASCAR racetracks after 2007   	|
 | .hi[Control] 	| .hi[Areas far from NASCAR racetracks before 2007] 	| .hi[Areas far from NASCAR racetracks after 2007] 	|
 
 
@@ -416,7 +757,7 @@ Here's the 2x2 DD table
 
 |         	|                    .hi[Before]                    	|                    After                    	|
 |:-------:	|:--------------------------------------------:	|:-------------------------------------------:	|
-| Treated 	|   .hi[Areas Near NASCAR racetracks before 2007]   	|   Areas Near NASCAR racetracks after 2007   	|
+| Treated 	|   .hi[Areas near NASCAR racetracks before 2007]   	|   Areas near NASCAR racetracks after 2007   	|
 | Control 	| .hi[Areas far from NASCAR racetracks before 2007] 	| Areas far from NASCAR racetracks after 2007 	|
 
 
@@ -430,7 +771,7 @@ Here's the 2x2 DD table
 
 |         	|                    Before                    	|                    .hi[After]                    	|
 |:-------:	|:--------------------------------------------:	|:-------------------------------------------:	|
-| Treated 	|   Areas Near NASCAR racetracks before 2007   	|   .hi[Areas Near NASCAR racetracks after 2007]   	|
+| Treated 	|   Areas near NASCAR racetracks before 2007   	|   .hi[Areas near NASCAR racetracks after 2007]   	|
 | Control 	| Areas far from NASCAR racetracks before 2007 	| .hi[Areas far from NASCAR racetracks after 2007] 	|
 
 

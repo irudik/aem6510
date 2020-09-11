@@ -1,0 +1,377 @@
+---
+title: "Lecture 12"
+subtitle: "Health // Difference-in-differences"
+author: Ivan Rudik
+date: AEM 6510
+output: 
+  html_document:
+  theme: flatly
+  highlight: haddock
+  code_folding: show
+  toc: yes
+  toc_depth: 4
+  toc_float: yes
+  keep_md: true
+---
+  
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, cache = TRUE, dpi = 300)
+```
+
+## R packages 
+
+Required packages: `ggthemes, fixest, broom, tidyverse`
+
+```{r libs}
+# load required packages
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(
+  ggthemes, fixest, broom, tidyverse
+)
+```
+
+```{r, echo = FALSE}
+options(dplyr.summarise.inform = FALSE)
+```
+
+# Hands on: Intro to difference-in-differences
+
+## Generating fake data
+
+To see how DD works in practice we will first generate a fake dataset where **we know the true value of what we want to estimate.** 
+This is a good skill to have in order to make sure you understand how methods work, and that your code does what you want it to do.
+If you know what the result is and your code produces something different, your code is wrong.
+
+To generate fake data we need to model the **true data generating process.** 
+We will make this exactly the DD model, but with some added noise.
+
+### Random numbers
+Any time you introduce randomness into your code, you will want to set a random number generator seed so it is reproducible.
+
+```{r}
+# Initialize RNG
+set.seed(123456)
+```
+
+Every time you run this notebook you will get the exact same results even though we are drawing "random" numbers.
+
+### The model parameters
+
+The model generating our data will be very simple:
+1. A time-invariant factor specific to both NY and PA
+2. A period-specific factor common across both NY and PA
+3. A treatment effect in NY after the fake policy is implemented
+4. Some added random noise in outcomes
+
+First we need to define the time-invariant factors.
+
+```{r}
+# Fixed state characteristics: ny has more biodiversity
+state_fes <- tribble(~state, ~state_fe,
+                     "NY", 88,
+                     "PA", 44)
+```
+
+Here we used a `tribble`, which is just a `tibble` but where we can write it out element-by-element.
+This is helpful when you need to initialize small data frames.
+
+Next we need the common, period-specific factors.
+
+```{r}
+# Period characteristics: biodiversity is declining
+period_fes <- tribble(~period, ~period_fe,
+                     "before", 341,
+                     "after", 207)
+```
+
+Last, we need to define the size of the treatment effect.
+
+```{r}
+# True effect of the policy: how many additional species are saved?
+treatment_effect <- 55
+```
+
+Now we have defined all the parameters required to generate our data. 
+Next, we need to *actually* generate the data.
+This takes a few steps.
+
+### Generating the data
+
+First, we need to generate N observations for each combination of before/after and NY/PA. We can do this with `crossing`.
+
+```{r}
+# All combos of states, periods, and observation numbers
+bio_df <- crossing(
+  state = c("NY", "PA"),
+  period = c("before", "after"),
+  obs = 1:500
+)
+bio_df
+```
+
+Second, we need to bring in the time-invariant, and period-specific factors with `join` functions.
+
+```{r}
+bio_df <- bio_df %>%
+  inner_join(period_fes) %>% 
+  inner_join(state_fes)
+bio_df
+```
+
+Third, it will be helpful to define a variable for units that are treated: New York and after.
+
+```{r}
+bio_df <- bio_df %>% 
+  mutate(treated = state == "NY" & period == "after",
+         period = factor(period, levels = c("before", "after")),
+         period = relevel(period, "before"))
+bio_df
+```
+
+Now we need to generate our data by adding the time-invariant effect `state_fe`, the period-specific effect `period_fe`, and some random noise given by `rnorm`. If the observation is New York after the policy we will also add `treatment_effect`.
+
+```{r}
+bio_df <- bio_df %>% 
+  mutate(
+    biodiversity = ifelse(
+      treated,
+      period_fe + state_fe + treatment_effect + 100*rnorm(n()),
+      period_fe + state_fe  + 100*rnorm(n())
+    )
+  )
+bio_df
+```
+
+Let's plot the data. New York is in black, Pennsylvania is in orange.
+
+```{r}
+
+# Switch the order of the period variables so before comes first
+bio_df$period = factor(bio_df$period, levels = c("before", "after"))
+
+ggplot(bio_df, group = interaction(state, period)) +
+  geom_jitter(aes(x = period, y = biodiversity, color = interaction(state), shape = interaction(state)), size = 3) +
+  annotate("text", size = 8, label = "NY", x = 1, y = 700) +
+  annotate("text", size = 8, label = "PA", x = 1, y = 100, color = "orange") +
+  scale_color_colorblind() +
+  theme_minimal() +
+  scale_x_discrete(labels = c("Before Treatment", "After Treatment")) + 
+  scale_y_continuous(limits = c(50, 700)) +
+  labs(
+    x = "Time",
+    y = "Biodiversity",
+    title = "The raw fake data"
+  ) +
+  theme(
+    legend.position = "none",
+    title = element_text(size = 24),
+    axis.text.x = element_text(size = 24), axis.text.y = element_text(size = 24),
+    axis.title.x = element_text(size = 24), axis.title.y = element_text(size = 24),
+    panel.grid.minor.x = element_blank(), panel.grid.minor.y = element_blank(),
+    panel.grid.major.x = element_blank(),
+    axis.line = element_line(colour = "black")
+  ) 
+```
+
+Next we can estimate the effect using DD.
+
+```{r}
+# Outcome ~ treatment + period fixed effect + state fixed effect, data
+estimates <- fixest::feols(
+  biodiversity ~ treated + period + state, 
+  data = bio_df
+  ) %>% 
+  broom::tidy()
+estimates
+```
+
+Compare the true values (left) versus the estimates (right). **DD correctly recovers the true treatment effect!**
+
+```{r}
+c(treatment_effect, estimates$estimate[2]) # treatment_effect
+c(period_fes$period_fe[period_fes$period == "after"] - period_fes$period_fe[period_fes$period == "before"], estimates$estimate[3]) # period_after
+c(state_fes$state_fe[state_fes$state == "PA"] - state_fes$state_fe[state_fes$state == "NY"], estimates$estimate[4]) # statePA
+
+```
+
+### DD addresses time-invariant and common period-specific factors
+
+Now let's look at what happens if take more naive approaches that do not address time-invariant factors, or common-period specific factors.
+We will look at how the failure to address these things biases our results in predictible ways.
+
+Suppose we just regressed biodiversity on the existence of the conservation policy.
+
+```{r}
+# Outcome ~ treatment, data
+fixest::feols(
+  biodiversity ~ treated, 
+  data = bio_df
+  ) %>% 
+  broom::tidy()
+```
+
+We **underestimate the true effect** because we did not difference out the common decline in biodiversity over time.
+The estimated effect of the policy in NY is confounded by the common decline in biodiversity across both states.
+
+What if we controlled for these common, period-specific factors?
+
+```{r}
+# Outcome ~ treatment + period fixed effects, data
+fixest::feols(
+  biodiversity ~ treated + period, 
+  data = bio_df
+  ) %>% 
+  broom::tidy()
+```
+
+Now we **overestimate the true effect**.
+We (still) did not difference out the fact that NY tends to have higher levels of biodiversity.
+The estimated treatment effect is biased upward because NY is just more biodiverse even without the policy.
+
+
+# Hands on: Hollingsworth and Rudik (2021)
+
+```{r}
+########################################
+## Read in blood lead data
+bll_df <- read_csv("data/hr_2021_bll.csv")
+
+########################################
+## Look at data
+bll_df
+
+########################################
+## Plot raw data trends
+bll_df %>% 
+  group_by(race, year) %>% 
+  summarise(percent_high_conditional_tested = weighted.mean(percent_high_conditional_tested, weight, na.rm = T)) %>% 
+  filter(year >= 2005 & year <= 2009) %>% 
+  ggplot(aes(x = year, y = percent_high_conditional_tested)) +
+    geom_vline(xintercept = 2006.5, color = "grey55", linetype = "dashed") +
+    geom_point(aes(shape = as.factor(race), color = as.factor(race)), size = 5) +
+    annotate("text", size = 4, label = "Treated", x = 2005.25, y = 2.85) +
+    annotate("text", size = 4, label = "Border", x = 2005.25, y = 2.5) +
+    annotate("text", size = 4, label = "Control", x = 2005.25, y = 1.4) +
+    annotate("text", size = 6, label = "Leaded Fuel", x = 2005.50, y = 0.25) +
+    annotate("text", size = 6, label = "Unleaded Fuel", x = 2008, y = 0.25) +
+    theme_minimal() +
+    scale_color_colorblind() +
+    labs(
+      x = "Year",
+      y = "Percent Lead Poisoned",
+      title = "Average lead poisoning rates by type (balanced panel)"
+    ) +
+    theme(
+      legend.position = "none",
+      title = element_text(size = 14),
+      axis.text.x = element_text(size = 14), axis.text.y = element_text(size = 14),
+      axis.title.x = element_text(size = 14), axis.title.y = element_text(size = 14),
+      panel.grid.minor.x = element_blank(), panel.grid.minor.y = element_blank(),
+      panel.grid.major.x = element_blank(),
+      axis.line = element_line(colour = "black")
+    ) 
+
+
+
+########################################
+## Difference-in-differences estimate
+fixest::feols(ihs_bll ~ as.factor(race)*I(year > 2007) | county_fips + year, 
+              weights = ~weight,
+              data = bll_df) %>% 
+  broom::tidy(cluster = "state_fips")
+
+
+########################################
+## Event study
+
+# Need to factor year so we can omit 2007
+bll_df$year <- factor(bll_df$year, ordered = FALSE)
+bll_df$year <- relevel(bll_df$year, 3)
+
+# Estimate event study
+event_study <- fixest::feols(ihs_bll ~ as.factor(race)*year + as.factor(state_fips)*year | county_fips + year, 
+              weights = ~weight,
+              data = bll_df) %>% 
+  tidy(cluster = "state_fips") %>% 
+  filter(str_detect(term, "^as.factor\\(race\\)2:year")) %>% 
+  add_row(estimate = 0, std.error = 0, .after = 2) %>% 
+  mutate(year = row_number() + 2004)
+
+# Plot event study
+ggplot(data = event_study, aes(x = year, y = estimate)) +
+  geom_hline(yintercept = 0, size = 0.5) +
+  geom_vline(xintercept = 2006.5, color = "grey55", linetype = "dashed") +
+  geom_ribbon(aes(ymin = estimate - 1.96*std.error, ymax = estimate + 1.96*std.error), 
+              fill = "darkslateblue", alpha = 0.4) +
+  geom_line(size = 1) +
+  geom_point(size = 5) +
+  annotate("text", size = 4, label = "Leaded Fuel", x = 2005.50, y = -0.26) +
+  annotate("text", size = 4, label = "Unleaded Fuel", x = 2012, y = -0.26) +
+  theme_minimal() +
+  scale_color_colorblind() +
+  scale_x_continuous(breaks = seq(2005, 2015, 2)) +
+  labs(
+    x = "Year",
+    y = "Percent Lead Poisoned",
+    title = "Percent lead poisoned relative to 2007 (first unleaded year)"
+  ) +
+  theme(
+    legend.position = "none",
+    title = element_text(size = 14),
+    axis.text.x = element_text(size = 14), axis.text.y = element_text(size = 14),
+    axis.title.x = element_text(size = 14), axis.title.y = element_text(size = 14),
+    panel.grid.minor.x = element_blank(), panel.grid.minor.y = element_blank(),
+    panel.grid.major.x = element_blank(),
+    axis.line = element_line(colour = "black")
+  )
+
+
+########################################
+## Read in blood lead data
+mortality_df <- read_csv("data/hr_2021_mortality.csv")
+
+mortality_df
+
+
+
+# Need to factor year so we can omit 2007
+mortality_df$year <- factor(mortality_df$year, ordered = FALSE)
+mortality_df$year <- relevel(mortality_df$year, 9)
+
+# Estimate event study
+event_study <- fixest::feols(age_adjusted_rate ~ as.factor(race)*year + as.factor(state_fips)*year | county_fips + year, 
+                             weights = ~weight,
+                             data = mortality_df) %>% 
+  broom::tidy(cluster = "state_fips") %>% 
+  filter(str_detect(term, "^as.factor\\(race\\)2:year")) %>% 
+  add_row(estimate = 0, std.error = 0, .after = 8) %>% 
+  mutate(year = row_number() + 1998)
+
+# Plot event study
+ggplot(data = event_study, aes(x = year, y = estimate)) +
+  geom_hline(yintercept = 0, size = 0.5) +
+  geom_vline(xintercept = 2006.5, color = "grey55", linetype = "dashed") +
+  geom_ribbon(aes(ymin = estimate - 1.96*std.error, ymax = estimate + 1.96*std.error), 
+              fill = "darkslateblue", alpha = 0.4) +
+  geom_line(size = 1) +
+  geom_point(size = 5) +
+  annotate("text", size = 4, label = "Leaded Fuel", x = 2002, y = -200) +
+  annotate("text", size = 4, label = "Unleaded Fuel", x = 2012, y = -200) +
+  theme_minimal() +
+  scale_color_colorblind() +
+  scale_x_continuous(breaks = seq(1999, 2015, 2)) +
+  labs(
+    x = "Year",
+    y = "Age-Adjusted Mortality Rate (deaths per 100,000)",
+    title = "Mortality rate relative to 2007 (first unleaded year)"
+  ) +
+  theme(
+    legend.position = "none",
+    title = element_text(size = 14),
+    axis.text.x = element_text(size = 14), axis.text.y = element_text(size = 14),
+    axis.title.x = element_text(size = 14), axis.title.y = element_text(size = 14),
+    panel.grid.minor.x = element_blank(), panel.grid.minor.y = element_blank(),
+    panel.grid.major.x = element_blank(),
+    axis.line = element_line(colour = "black")
+  )
+```

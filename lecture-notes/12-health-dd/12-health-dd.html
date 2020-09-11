@@ -84,7 +84,7 @@ In both of these were are comparing groups in the .hi-blue[cross-section]: there
 
 # Our comparisons so far
 
-The key assumption for these comparisons is that the treated group would have looked the same as the control group (i.e. had the same outcomes) in the absense of treatment
+The key assumption for these comparisons is that the treated group would have looked the same as the control group (i.e. had the same outcomes) in the absence of treatment
 
 --
 
@@ -329,13 +329,118 @@ If there is a determinant of biodiversity that is varying over time, and differe
 
 # Difference-in-differences
 
-Math with time-varying confounder here
+Suppose that there is another determinant of biodiversity .hi[C&lt;sup&gt;NY&lt;/sup&gt;&lt;sub&gt;1&lt;/sub&gt;, C&lt;sup&gt;NY&lt;/sup&gt;&lt;sub&gt;0&lt;/sub&gt;] that only occurs in New York and varies over time
+- e.g. climate in New York relative to Pennsylvania
+
+Our DD is then
+
+|              |        After        |           Before           |                                Time Series Difference                               |
+|:------------:|:-------------------:|:--------------------------:|:-----------------------------------------------------------------------------------:|
+|   New York   | B + NY + T&lt;sub&gt;1&lt;/sub&gt; + C&lt;sup&gt;NY&lt;/sup&gt;&lt;sub&gt;1&lt;/sub&gt; + C&lt;sup&gt;NY&lt;/sup&gt;&lt;sub&gt;0&lt;/sub&gt; |  NY + T&lt;sub&gt;0&lt;/sub&gt;   | (B + NY + T&lt;sub&gt;1&lt;/sub&gt;) - (B + NY + T&lt;sub&gt;1&lt;/sub&gt;) = .hi[B + T&lt;sub&gt;1&lt;/sub&gt; - T&lt;sub&gt;0&lt;/sub&gt; + C&lt;sup&gt;NY&lt;/sup&gt;&lt;sub&gt;1&lt;/sub&gt;- C&lt;sup&gt;NY&lt;/sup&gt;&lt;sub&gt;0&lt;/sub&gt;] |
+| Pennsylvania |  PA + T&lt;sub&gt;1&lt;/sub&gt; |     PA + T&lt;sub&gt;0&lt;/sub&gt;     |  (PA + T&lt;sub&gt;1&lt;/sub&gt;) - (PA + T&lt;sub&gt;0&lt;/sub&gt;) = .hi[T&lt;sub&gt;1&lt;/sub&gt; - T&lt;sub&gt;0&lt;/sub&gt;]  |
+|              |                     |                            |                                                                                     |
+|              |                     |                            |                                                                                     |
+|              |                     | Difference-in-differences: |                .hi[(B + T&lt;sub&gt;1&lt;/sub&gt; - T&lt;sub&gt;0&lt;/sub&gt;) - (T&lt;sub&gt;1&lt;/sub&gt; - T&lt;sub&gt;0&lt;/sub&gt;) = B + C&lt;sup&gt;NY&lt;/sup&gt;&lt;sub&gt;1&lt;/sub&gt;- C&lt;sup&gt;NY&lt;/sup&gt;&lt;sub&gt;0&lt;/sub&gt;      ]                                    |
+
+---
+
+# Difference-in-differences
+
+|              |        After        |           Before           |                                Time Series Difference                               |
+|:------------:|:-------------------:|:--------------------------:|:-----------------------------------------------------------------------------------:|
+|   New York   | B + NY + T&lt;sub&gt;1&lt;/sub&gt; + C&lt;sup&gt;NY&lt;/sup&gt;&lt;sub&gt;1&lt;/sub&gt; + C&lt;sup&gt;NY&lt;/sup&gt;&lt;sub&gt;0&lt;/sub&gt; |  NY + T&lt;sub&gt;0&lt;/sub&gt;   | (B + NY + T&lt;sub&gt;1&lt;/sub&gt;) - (B + NY + T&lt;sub&gt;1&lt;/sub&gt;) = .hi[B + T&lt;sub&gt;1&lt;/sub&gt; - T&lt;sub&gt;0&lt;/sub&gt; + C&lt;sup&gt;NY&lt;/sup&gt;&lt;sub&gt;1&lt;/sub&gt;- C&lt;sup&gt;NY&lt;/sup&gt;&lt;sub&gt;0&lt;/sub&gt;] |
+| Pennsylvania |  PA + T&lt;sub&gt;1&lt;/sub&gt; |     PA + T&lt;sub&gt;0&lt;/sub&gt;     |  (PA + T&lt;sub&gt;1&lt;/sub&gt;) - (PA + T&lt;sub&gt;0&lt;/sub&gt;) = .hi[T&lt;sub&gt;1&lt;/sub&gt; - T&lt;sub&gt;0&lt;/sub&gt;]  |
+|              |                     |                            |                                                                                     |
+|              |                     |                            |                                                                                     |
+|              |                     | Difference-in-differences: |                .hi[(B + T&lt;sub&gt;1&lt;/sub&gt; - T&lt;sub&gt;0&lt;/sub&gt;) - (T&lt;sub&gt;1&lt;/sub&gt; - T&lt;sub&gt;0&lt;/sub&gt;) = B + C&lt;sup&gt;NY&lt;/sup&gt;&lt;sub&gt;1&lt;/sub&gt;- C&lt;sup&gt;NY&lt;/sup&gt;&lt;sub&gt;0&lt;/sub&gt;      ]                                    |
+
+DD cannot isolate the effect of .hi[B] versus .hi[C&lt;sup&gt;NY&lt;/sup&gt;&lt;sub&gt;1&lt;/sub&gt;- C&lt;sup&gt;NY&lt;/sup&gt;&lt;sub&gt;0&lt;/sub&gt;]
+
+There cannot be any (uncontrolled for) time varying differences between NY and PA if we want to correctly estimate .hi[B]
 
 ---
 
 # Difference-in-differences: to the data
 
-Now lets see how this works in practice
+Now lets see how this works in practice: [notebook here](notebooklink)
+
+--
+
+What we are going to do is create a fake dataset where we .hi-blue[know the true value of what we want to estimate]
+
+--
+
+This is a good skill to practice to make sure you understand methods and that your code works correctly
+
+
+---
+exclude: true
+
+```
+## Joining, by = "period"
+```
+
+```
+## Joining, by = "state"
+```
+
+```
+## `summarise()` regrouping output by 'state' (override with `.groups` argument)
+```
+
+
+
+---
+
+# DD step 1
+
+
+
+![](12-health-dd_files/figure-html/dd1-1.png)
+
+---
+
+# DD step 2
+
+
+
+![](12-health-dd_files/figure-html/dd2-1.png)
+
+
+---
+
+# DD step 3
+
+
+
+![](12-health-dd_files/figure-html/dd3-1.png)
+
+
+---
+
+# DD step 4
+
+
+
+![](12-health-dd_files/figure-html/dd4-1.png)
+
+
+---
+
+# DD step 5
+
+
+
+![](12-health-dd_files/figure-html/dd5-1.png)
+
+
+---
+
+# DD step 6
+
+
+
+![](12-health-dd_files/figure-html/dd6-1.png)
 
 ---
 
@@ -363,12 +468,16 @@ Why is this important? We know lead is bad
 --
 
 1. There is little causal evidence for any effects of lead
+--
+
 2. Almost zero causal evidence for effects of lead on adults in any way
+--
+
 3. Having an accurate measure of effects/costs is vital for policymaking
 
 ---
 
-# What is the paper about?
+# Environmental research directly affects policy!
 
 ![federal_register](figures/federal_register.png)
 
@@ -381,6 +490,10 @@ HR estimates the causal effect of lead by exploiting a .hi-blue[quasi-experiment
 --
 
 &gt; a quasi-experiment is a real world occurance that approximates an actual RCT; quasi-experiments are also called natural experiments
+
+--
+
+Randomly assigning lead exposure to different groups is unethical, but we can learn from situations where real world exposure was *as good as random*
 
 --
 
@@ -398,7 +511,7 @@ Here's the 2x2 DD table
 
 |         	|                    Before                    	|                    After                    	|
 |:-------:	|:--------------------------------------------:	|:-------------------------------------------:	|
-| .hi[Treated] 	|   .hi[Areas Near NASCAR racetracks before 2007]   	|   .hi[Areas Near NASCAR racetracks after 2007 ]  	|
+| .hi[Treated] 	|   .hi[Areas near NASCAR racetracks before 2007]   	|   .hi[Areas near NASCAR racetracks after 2007 ]  	|
 | Control 	| Areas far from NASCAR racetracks before 2007 	| Areas far from NASCAR racetracks after 2007 	|
 
 
@@ -412,7 +525,7 @@ Here's the 2x2 DD table
 
 |         	|                    Before                    	|                    After                    	|
 |:-------:	|:--------------------------------------------:	|:-------------------------------------------:	|
-| Treated 	|   Areas Near NASCAR racetracks before 2007   	|   Areas Near NASCAR racetracks after 2007   	|
+| Treated 	|   Areas near NASCAR racetracks before 2007   	|   Areas near NASCAR racetracks after 2007   	|
 | .hi[Control] 	| .hi[Areas far from NASCAR racetracks before 2007] 	| .hi[Areas far from NASCAR racetracks after 2007] 	|
 
 
@@ -426,7 +539,7 @@ Here's the 2x2 DD table
 
 |         	|                    .hi[Before]                    	|                    After                    	|
 |:-------:	|:--------------------------------------------:	|:-------------------------------------------:	|
-| Treated 	|   .hi[Areas Near NASCAR racetracks before 2007]   	|   Areas Near NASCAR racetracks after 2007   	|
+| Treated 	|   .hi[Areas near NASCAR racetracks before 2007]   	|   Areas near NASCAR racetracks after 2007   	|
 | Control 	| .hi[Areas far from NASCAR racetracks before 2007] 	| Areas far from NASCAR racetracks after 2007 	|
 
 
@@ -440,7 +553,7 @@ Here's the 2x2 DD table
 
 |         	|                    Before                    	|                    .hi[After]                    	|
 |:-------:	|:--------------------------------------------:	|:-------------------------------------------:	|
-| Treated 	|   Areas Near NASCAR racetracks before 2007   	|   .hi[Areas Near NASCAR racetracks after 2007]   	|
+| Treated 	|   Areas near NASCAR racetracks before 2007   	|   .hi[Areas near NASCAR racetracks after 2007]   	|
 | Control 	| Areas far from NASCAR racetracks before 2007 	| .hi[Areas far from NASCAR racetracks after 2007] 	|
 
 
@@ -451,7 +564,13 @@ We are comparing areas close vs far from racetracks, before vs .hi[after] delead
 
 # How does the paper do it?
 
+.blue[track/treated counties], .green[border/weak treated counties], white control counties
+
 ![county map](figures/figure_a3_county_type.png)
+
+---
+
+# Let's look at the data
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
