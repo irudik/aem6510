@@ -402,7 +402,7 @@ Marginal utility equals the shadow price of the good
 
   
 $$\lambda_x{\partial f \over \partial l_x} 
-= \lambda_l, \qquad \lambda_x{\partial g \over \partial l_z} 
+= \lambda_l, \qquad \lambda_z{\partial g \over \partial l_z} 
 = \lambda_l$$
   
 The marginal product of labor equals the shadow price of labor
