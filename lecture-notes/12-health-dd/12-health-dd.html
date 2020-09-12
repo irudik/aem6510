@@ -31,6 +31,13 @@ exclude: true
 
 ```r
 if (!require("pacman")) install.packages("pacman")
+```
+
+```
+## Loading required package: pacman
+```
+
+```r
 pacman::p_load(
   tidyverse, xaringanExtra, rlang, patchwork, nycflights13
 )
@@ -362,7 +369,7 @@ There cannot be any (uncontrolled for) time varying differences between NY and P
 
 # Difference-in-differences: to the data
 
-Now lets see how this works in practice: [notebook here](notebooklink)
+Now lets see how this works in practice: [notebook here](https://raw.githack.com/irudik/aem6510/master/lecture-notes/12-health-dd/12-health-dd-notebook.html)
 
 --
 
@@ -570,7 +577,75 @@ We are comparing areas close vs far from racetracks, before vs .hi[after] delead
 
 ---
 
-# Let's look at the data
+# Event studies
+
+What HR do is actually a generalization of DD: an .hi-blue[event study]
+
+--
+
+An event study is basically just a DD with multiple time periods before and after the treatment
+
+--
+
+Here we estimate the effect of being in the treated group, relative to some baseline period
+- In the 2x2 DD this baseline period was "before"
+
+--
+
+This is nice for a few reasons:
+--
+
+1. We can look at dynamic effects
+--
+
+2. It provides supporting evidence for the parallel trends assumption
+
+---
+
+# Event studies: dynamic effects
+
+With an event study we can see how the effect changes *over time*
+
+---
+
+# Event studies: parallel pre-trends
+
+In an event study we may have multiple periods before treatment
+
+--
+
+We can estimate the effect of being in the treatment group in each of these (pre-)periods
+
+--
+
+If there is no trend in the effect, the .hi-blue[pre-]trends are parallel
+
+--
+
+This gives us some comfort that the trends were likely to be parallel in the post-period in the absence of treatment
+
+--
+
+We never observe what would have .hi-red[actually] happened though, parallel pre-trends is just supporting evidence that the parallel trends assumption holds
+
+---
+
+# HR (2021): to the data
+
+Now lets use the actual HR (2021) data to get some practice: [notebook here](https://raw.githack.com/irudik/aem6510/master/lecture-notes/12-health-dd/12-health-dd-notebook.html)
+
+---
+
+# HR (2021): takeaways
+
+What can we take away from HR (2021)
+
+1. Lead has a causal effect on elderly mortality
+  - It appears to be through cardiovascular channels, perhaps *deaths of despair* as well (Case and Deaton, 2015)
+2. The mortality costs are large
+  - The external mortality costs imposed by NASCAR are larger than the value of all NASCAR teams combined
+  - The social cost of lead is .hi-red[at least $1,000 per gram]
+    - This is very, very, very big
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
