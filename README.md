@@ -174,7 +174,7 @@ We will be using [RStudio Cloud](https://rstudio.cloud/) for computing.
   - Mendelsohn, R., Nordhaus, W.D. and Shaw, D., 1994. The impact of global warming on agriculture: a Ricardian analysis. The American economic review, pp.753-771.
   - Ortiz‐Bobea, A., 2020. The role of nonfarm influences in Ricardian estimates of climate change impacts on US agriculture. American Journal of Agricultural Economics, 102(3), pp.934-959.
 
-### [Nov 12: Climate change and two way fixed effects](https://ivanrudik.com)
+### [Nov 12: Climate change and two way fixed effects, integrated assessment](https://ivanrudik.com)
 
 **Reading**: Deschênes, O. and Greenstone, M., 2007. The economic impacts of climate change: evidence from agricultural output and random fluctuations in weather. American Economic Review, 97(1), pp.354-385.
 
