@@ -13,6 +13,14 @@ output:
   toc_float: yes
   keep_md: true
 ---
+
+<style type="text/css">
+.main-container {
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
   
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, cache = TRUE, dpi = 300)
@@ -231,6 +239,11 @@ The estimated treatment effect is biased upward because NY is just more biodiver
 
 # Hands on: Hollingsworth and Rudik (2021)
 
+Now lets work through the HR data to see how they got their results.
+We will just start with the cleaned data instead of raw.
+Cleaning the data is a huge chunk of the actual work of doing research, but takes a lot of code/time.
+
+First, load the data and look at it.
 ```{r}
 ########################################
 ## Read in blood lead data
@@ -239,9 +252,26 @@ bll_df <- read_csv("data/hr_2021_bll.csv")
 ########################################
 ## Look at data
 bll_df
+```
 
-########################################
-## Plot raw data trends
+What are the variables?
+
+- `state`: state fips code
+- `county`: county fips code
+- `state_county`: full fips code
+
+### The raw data
+
+First, let's plot the raw data.
+This is something you should generally always do.
+It lets you see what is actually happening, whether you made data cleaning errors, etc.
+If what you're trying to estimate pops up in the raw data that's a good sign.
+
+Here we will be plotting the raw data with two changes:
+1. Only plot for 2005-2009. After 2009 some counties stop reporting lead poisoning, so the composition of the sample changes, making the comparison tricky.
+2. Plot the *weighted mean* lead poisoning rate where we weight by the number of children tested. The idea here is that counties with more testing report estimated rates that less noisy measures of the true rate. We want these counties to count more toward our nationwide average.
+
+```{r}
 bll_df %>% 
   group_by(race, year) %>% 
   summarise(percent_high_conditional_tested = weighted.mean(percent_high_conditional_tested, weight, na.rm = T)) %>% 
@@ -270,17 +300,25 @@ bll_df %>%
       panel.grid.major.x = element_blank(),
       axis.line = element_line(colour = "black")
     ) 
+```
 
+### Difference-in-differences
 
-
+```{r}
 ########################################
 ## Difference-in-differences estimate
-fixest::feols(ihs_bll ~ as.factor(race)*I(year > 2007) | county_fips + year, 
-              weights = ~weight,
-              data = bll_df) %>% 
-  broom::tidy(cluster = "state_fips")
+fixest::feols(
+  ihs_bll ~ as.factor(race)*I(year > 2007) + 
+    as.factor(state)*year + 
+    unemp_rate + median_income + percent_non_white + lead_emitted + ap | state_county + year, 
+  weights = ~weight,
+  data = bll_df) %>% 
+  broom::tidy(cluster = "state")
+```
 
+### Event study
 
+```{r}
 ########################################
 ## Event study
 
@@ -289,10 +327,13 @@ bll_df$year <- factor(bll_df$year, ordered = FALSE)
 bll_df$year <- relevel(bll_df$year, 3)
 
 # Estimate event study
-event_study <- fixest::feols(ihs_bll ~ as.factor(race)*year + as.factor(state_fips)*year | county_fips + year, 
-              weights = ~weight,
-              data = bll_df) %>% 
-  tidy(cluster = "state_fips") %>% 
+event_study <- fixest::feols(
+  ihs_bll ~ as.factor(race)*year + 
+    as.factor(state)*year + 
+    unemp_rate + median_income + percent_non_white + lead_emitted + ap | state_county + year, 
+  weights = ~weight,
+  data = bll_df) %>% 
+  tidy(cluster = "state") %>% 
   filter(str_detect(term, "^as.factor\\(race\\)2:year")) %>% 
   add_row(estimate = 0, std.error = 0, .after = 2) %>% 
   mutate(year = row_number() + 2004)
@@ -327,7 +368,7 @@ ggplot(data = event_study, aes(x = year, y = estimate)) +
 
 
 ########################################
-## Read in blood lead data
+## Read in mortality data
 mortality_df <- read_csv("data/hr_2021_mortality.csv")
 
 mortality_df
@@ -339,10 +380,13 @@ mortality_df$year <- factor(mortality_df$year, ordered = FALSE)
 mortality_df$year <- relevel(mortality_df$year, 9)
 
 # Estimate event study
-event_study <- fixest::feols(age_adjusted_rate ~ as.factor(race)*year + as.factor(state_fips)*year | county_fips + year, 
-                             weights = ~weight,
-                             data = mortality_df) %>% 
-  broom::tidy(cluster = "state_fips") %>% 
+event_study <- fixest::feols(
+  age_adjusted_rate ~ as.factor(race)*year + 
+    as.factor(state)*year + 
+    unemp_rate + median_income + percent_non_white + lead_emitted + ap | state_county + year, 
+  weights = ~weight,
+  data = mortality_df) %>% 
+  broom::tidy(cluster = "state") %>% 
   filter(str_detect(term, "^as.factor\\(race\\)2:year")) %>% 
   add_row(estimate = 0, std.error = 0, .after = 8) %>% 
   mutate(year = row_number() + 1998)

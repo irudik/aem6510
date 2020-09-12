@@ -788,4 +788,28 @@ We are comparing areas close vs far from racetracks, before vs .hi[after] delead
 
 ---
 
-# Let's look at the data
+# Event studies
+
+What HR do is actually a generalization of DD: an .hi-blue[event study]
+
+--
+
+An event study is basically just a DD with multiple time periods before and after the treatment
+
+--
+
+This is nice for a few reasons:
+--
+
+1. Dynamic effects
+--
+
+2. Supporting evidence for parallel trends
+
+---
+
+# Event studies: dynamic effects
+
+---
+
+# Event studies: parallel pre-trends
