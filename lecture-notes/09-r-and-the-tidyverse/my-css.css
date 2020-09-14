@@ -191,7 +191,7 @@ td.mid-table-header {
   color: #8AA19E !important;
 }
 .blue {
-  color: #3b3b9a !important;
+  color: #3C93DC !important;
 }
 .red {
   color: #fb6107 !important;
@@ -479,11 +479,11 @@ table {
   color: #000000;
   font-size: 14pt;
   line-height: 100%;
-  border-top: 1px solid #ffffff !important;
-  border-bottom: 1px solid #ffffff !important;
+  border-top: 1px solid #000000 !important;
+  border-bottom: 1px solid #000000 !important;
 }
 th, td {
-  background-color: #ffffff;
+  background-color: #eeeeee;
 }
 table th {
   font-weight: 400;

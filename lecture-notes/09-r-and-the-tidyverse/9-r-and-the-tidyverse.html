@@ -21,7 +21,7 @@
 class: center, middle, inverse, title-slide
 
 # Lecture 9
-## R and the tidyverse
+## R and the tidyverse // randomization
 ### Ivan Rudik
 ### AEM 6510
 
@@ -59,6 +59,15 @@ knitr::opts_chunk$set(echo = TRUE, fig.align="center")
 Our goal is to take a hands on approach to learning how we do environmental economics research
 
 A good chunk of this lecture comes from Grant Mcdermott's [data science for economists](https://github.com/uo-ec607/lectures) notes, and [RStudio education](https://education.rstudio.com/)
+
+---
+
+class: inverse, center, middle
+name: r
+
+# Quick intro to R
+
+&lt;html&gt;&lt;div style='float:left'&gt;&lt;/div&gt;&lt;hr color='#EB811B' size=1px width=796px&gt;&lt;/html&gt;
 
 ---
 
@@ -483,16 +492,16 @@ df2
 
 ```
 ##             x         y
-## 1  -0.1260555 0.9472172
-## 2   1.4401173 0.8650566
-## 3  -2.0417776 0.7352930
-## 4   0.1496907 0.4508847
-## 5  -2.4256899 0.9039495
-## 6  -0.5853061 0.4757270
-## 7  -0.1631966 0.9814794
-## 8  -1.0772432 0.3189222
-## 9  -0.5342846 0.5348708
-## 10  0.7335354 0.7153818
+## 1  -0.2841597 0.8687949
+## 2  -0.9193220 0.9041547
+## 3  -0.1162478 0.6174246
+## 4   1.8173120 0.1340316
+## 5   0.3706279 0.7821933
+## 6   0.5202165 0.4291988
+## 7  -0.7505320 0.9272740
+## 8   0.8168998 0.7732432
+## 9  -0.8863575 0.2596812
+## 10 -0.3315776 0.3212247
 ```
 
 ---
@@ -670,19 +679,19 @@ rnorm(n = 100, mean = 0, sd = 1)
 ```
 
 ```
-##   [1]  1.55931513 -0.69755120  1.72290194  0.47237545  1.71091789  1.45510903 -0.27260302  2.12897596
-##   [9] -2.09763518 -0.45147340  0.06819197 -1.25724303  0.26174454  0.57148578 -0.96488343  0.68364118
-##  [17]  0.06759279 -0.72621923  0.75929473  0.95984731 -0.12140078  0.42104980  0.98103580  0.55939844
-##  [25]  0.91096072  0.08091058  0.58802471  0.37341052 -1.18614813 -0.38512287 -0.51366928  0.65541881
-##  [33]  1.16286512 -1.11075993  0.32862593  0.97253480 -0.30822072 -1.03258982  0.59644697 -0.18993986
-##  [41] -1.03095668  0.50211060 -0.53202374 -0.51316764  0.06691642 -1.03941647  0.65040434 -0.09678585
-##  [49] -2.26922254  1.37131740  0.13341456  1.78300682  1.32071494  1.74697495  1.07065345 -1.25065645
-##  [57] -2.10766423 -0.31640136  0.46804641 -1.30920451  0.74057939  0.18201149 -0.01548990 -0.28251391
-##  [65]  0.41625851 -0.50465168  0.28551311 -0.56287510 -1.18458660 -0.27819735 -2.06231770 -1.05975252
-##  [73]  1.07547779 -0.58879165  0.64271990  0.40254221  0.98343641  0.79779799  0.80143316 -0.94797321
-##  [81]  1.50283884  0.76517011 -1.41746538 -0.28158611 -1.41234365 -0.67814596 -2.37995395 -0.02024451
-##  [89]  0.11326558 -1.24073712 -0.67684178 -0.17174245 -0.97867785 -0.75580087 -1.15141118  0.78169748
-##  [97] -0.28008348  0.25772271 -1.16500189 -1.41307552
+##   [1] -1.55313741 -1.59770952  1.80509752 -0.48164736  0.62037980  0.61212349 -0.16231098  0.81187318
+##   [9]  2.19683355  2.04919034  1.63244564  0.25427119  0.49118828 -0.32408658 -1.66205024  1.76773385
+##  [17]  0.02580105  1.12851083 -2.38035806 -1.06026555  0.93714054  0.85445172  1.46072940 -1.41309878
+##  [25]  0.56740325  0.58318765 -1.30679883 -0.54038607  1.94769266  0.05359027  0.35166284 -0.67097654
+##  [33]  0.27795369  0.69117127  0.82379533  2.14506502 -2.34694398  0.14959198 -1.34253148  0.55330308
+##  [41]  1.58996284 -0.58687959 -1.83237731  0.88813943  1.59348847  0.51685467 -1.29567168  0.05461558
+##  [49] -0.78464937 -1.04935282  2.33051196  1.40270538  0.94260085  0.82625829 -0.81154049  0.47624828
+##  [57]  1.02125841  0.64538307  1.04314355 -0.30436911  2.47711092  0.97122067  1.86709918  0.67204247
+##  [65] -0.30795338  0.53652372  0.82487007 -0.96390148 -0.85508251  1.88694694 -0.39181937 -0.98063295
+##  [73]  0.68733210 -0.50504352  2.15771982 -0.59979756 -0.69454669  0.22392541 -1.15622333  0.42241853
+##  [81] -1.32475526  0.14108431 -0.53604800 -0.31160608  1.55610964 -0.44803329  0.32112354 -1.23017225
+##  [89] -1.32405869  1.26124227  1.31923172 -0.08075376 -0.50508981 -0.05215359  0.62886063  2.18000240
+##  [97] -0.06901731  1.54486360  1.32145202  0.32215158
 ```
 
 ---
@@ -931,6 +940,7 @@ You can also use `rm(list = ls())` to remove all objects in your working environ
 Just start a new R session instead
 
 ---
+
 class: inverse, center, middle
 name: tidyverse
 
@@ -2278,6 +2288,410 @@ crossing(side=c("left", "right"), height=c("top", "bottom"))
 --
 
 See `?expand` and `?complete` for more specialized functions that allow you to fill in (implicit) missing data or variable combinations in existing data frames
+
+---
+
+class: inverse, center, middle
+name: tidyverse
+
+# Randomization and inference
+
+&lt;html&gt;&lt;div style='float:left'&gt;&lt;/div&gt;&lt;hr color='#EB811B' size=1px width=796px&gt;&lt;/html&gt;
+
+---
+
+# The Rubin causal model
+
+.hi-blue[What is a causal effect?]
+
+--
+
+A starting point is that a causal effect is a .hi[comparison between two potential outcomes]
+
+--
+
+What the difference in some outcome in the presence vs the absence of a given treatment?
+
+--
+
+e.g. what is the difference in health between high and low levels of air pollution?
+
+--
+
+Let's begin formalizing this idea
+
+---
+
+# The Rubin causal model: potential outcomes
+
+Suppose we have a set of .hi-blue[observational units]
+  - These can be people, states, animals, air quality monitors, etc
+  
+Each unit has two .hi[potential outcomes], but only one is observed
+
+--
+
+The potential outcome is `\(Y^1_i\)` if unit `\(i\)` received some treatment, and `\(Y^0_i\)` if the unit did not
+
+--
+
+`\(Y^0_i\)` corresponds to the control state of the world for `\(i\)`
+
+---
+
+# The Rubin causal model: observable outcomes
+
+Note that these potential outcomes are not the same as observable outcomes
+
+--
+
+Observable outcomes are outcomes that actually show up in the data (i.e. the *factual* outcome)&lt;sup&gt;1&lt;/sup&gt;
+
+.footnote[
+&lt;sup&gt;1&lt;/sup&gt;The potential outcome that did not happen is called the *counterfactual outcome.*
+]
+
+--
+
+We can write the observable outcome `\(Y_i\)` as a simple equation:
+`$$Y_i = D_i Y^1_i (1-D_i)Y^0_i$$`
+where `\(D_i = 1\)` if `\(i\)` received treatment and 0 otherwise
+
+---
+
+# The Rubin causal model: treatment effects
+
+`$$Y_i = D_i Y^1_i (1-D_i)Y^0_i$$`
+
+This is the basis of the *Rubin causal model*
+
+--
+
+Rubin defines a treatment/causal effect `\(\delta_i\)` as the difference between the two potential outcomes:
+`$$\delta_i = Y^1_i - Y^0_i$$`
+
+--
+
+This leads to an obvious problem: we only observe one of these two states for each unit `\(i\)` but we need to know both to recover `\(\delta_i\)`
+
+---
+
+# The Rubin causal model: average treatment effect
+
+We can derive three parameters of interested from the definition of a treatment effect:
+
+.hi-blue[Average treatment effect (ATE):] `$$E[\delta_i] = E[Y^1_i - Y^0_i] = E[Y^1_i] - E[Y^0_i]$$`
+
+--
+
+This is the average of the individual treatment effects
+
+--
+
+It is also unknowable
+
+
+---
+
+# Rubin: average treatment on the treated
+
+.hi-blue[Average treatment on the treated (ATT):] `$$E[\delta_i|D_i=1] = E[Y^1_i - Y^0_i |D_i=1] = E[Y^1_i|D_i=1] - E[Y^0_i|D_i=1]$$`
+
+--
+
+This is the average of the individual treatment effects only for the `\(i\)` in the treated group
+
+--
+
+It is also unknowable since we never observe `\(E[Y^0_i|D_i=1]\)`
+
+--
+
+If the treatment effect differs across `\(i\)` then `\(ATE \neq ATT\)`
+
+---
+
+# Rubin: average treatment on the untreated
+
+.hi-blue[Average treatment on the untreated (ATU):] `$$E[\delta_i|D_i=0] = E[Y^1_i - Y^0_i |D_i=0] = E[Y^1_i|D_i=0] - E[Y^0_i|D_i=0]$$`
+
+--
+
+This is the average of the individual treatment effects only for the `\(i\)` in the untreated group
+
+--
+
+It is also unknowable since we never observe `\(E[Y^1_i|D_i=0]\)`
+
+--
+
+If the treatment effect differs across `\(i\)` then `\(ATE \neq ATU\)`
+
+---
+
+# Hands on: understanding treatment effects
+
+We've got our definitions, now lets be a bit more clear as to what we are doing with some empirical examples putting our new R tools to work
+
+--
+
+Suppose treatment `\(D\)` is whether a state has a conservation policy
+
+--
+
+The outcome `\(Y\)` is the number of bird species in that state
+
+--
+
+We want to understand the causal effect of conservation policy on the number of species
+
+---
+
+# Hands on: understanding treatment effects
+
+Here's our dataset of both potential outcomes:
+
+
+```r
+cons_df # data frame of conservation treatment, outcomes
+```
+
+```
+## # A tibble: 8 x 4
+##   state    Y1    Y0 delta
+##   &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1     1     4     7    -3
+## 2     2     7     9    -2
+## 3     3     7     0     7
+## 4     4    10     1     9
+## 5     5     7     7     0
+## 6     6     6     0     6
+## 7     7     9     3     6
+## 8     8    13     4     9
+```
+
+Calculate the average treatment effect
+
+---
+
+# Hands on: understanding treatment effects
+
+ATE = `\(E[\delta_i]\)` which we can compute with `dplyr::summarise`:
+
+```r
+cons_df %&gt;% 
+  dplyr::summarise(mean(delta))
+```
+
+```
+## # A tibble: 1 x 1
+##   `mean(delta)`
+##           &lt;dbl&gt;
+## 1             4
+```
+The average treatment effect is 4: a conservation policy increases the number of bird species in a state by 4
+
+---
+
+# Hands on: understanding treatment effects
+
+Notice that not all states benefit from conservation policies, and it even backfires in one state  
+The ATE is just the average over all the different treatment effects
+
+
+```r
+cons_df
+```
+
+```
+## # A tibble: 8 x 4
+##   state    Y1    Y0 delta
+##   &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1     1     4     7    -3
+## 2     2     7     9    -2
+## 3     3     7     0     7
+## 4     4    10     1     9
+## 5     5     7     7     0
+## 6     6     6     0     6
+## 7     7     9     3     6
+## 8     8    13     4     9
+```
+
+---
+
+# Hands on: understanding treatment effects
+
+Suppose we have a perfect policymaker who knows each states potential outcomes and can perfectly decide whether each state should have a conservation policy
+
+--
+
+The policymaker assigns treatment and then observes the actual outcome according to `\(Y_i = D_i Y^1_i + (1-D_i)Y^0_i\)`
+
+--
+
+What does the dataset look like for the observed outcomes?
+
+---
+
+# Hands on: understanding treatment effects
+
+
+```r
+observed_df &lt;- cons_df %&gt;% 
+  mutate(
+    Y = ifelse(delta &gt; 0, Y1, Y0),
+    D = as.numeric(delta &gt; 0)
+    ) %&gt;% 
+  select(state, Y, D)
+observed_df
+```
+
+```
+## # A tibble: 8 x 3
+##   state     Y     D
+##   &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1     1     7     0
+## 2     2     9     0
+## 3     3     7     1
+## 4     4    10     1
+## 5     5     7     0
+## 6     6     6     1
+## 7     7     9     1
+## 8     8    13     1
+```
+
+---
+
+# Hands on: estimating ATEs
+
+Given the .hi-blue[observed] data, what if we tried to *estimate* the ATE by comparing mean outcomes of treated `\((D_i=1)\)` vs untreated units `\((D_i=0)\)`
+
+This is the simple difference in mean outcomes (SDO):
+`\begin{align}
+  SDO &amp;= E[Y^1|D=1] - E[Y^0|D=0] \\
+    &amp;= {1 \over N_T}\sum_{i=1}^{N_T} (y_i | d_i = 1) + {1 \over N_U}\sum_{i=1}^{N_U} (y_i | d_i = 0)
+\end{align}`
+
+where `\(N_T\)` is the number of treated units and `\(N_U\)` is the number of untreated units
+
+---
+
+# Hands on: estimating ATEs
+
+We can compute the SDO using `dplyr::summarise` in conjunction with `dplyr::group_by` on treatment status `\(D\)`:
+
+```r
+observed_df %&gt;% 
+  dplyr::group_by(D) %&gt;% 
+  dplyr::summarise(meanY = mean(Y))
+```
+
+```
+## # A tibble: 2 x 2
+##       D meanY
+##   &lt;dbl&gt; &lt;dbl&gt;
+## 1     0  7.67
+## 2     1  9
+```
+
+The SDO is 9 - 7.67 = 1.33 &lt; 4!
+
+---
+
+# Hands on: estimating ATEs
+
+We know the ATE is 4, why is the SDO giving us a much smaller estimate of the effect of the conservation policy?
+
+--
+
+Because the SDO is actually composed of three pieces, only one of which is the ATE:&lt;sup&gt;1&lt;/sup&gt;
+
+&lt;center&gt;
+SDO = ATE + Selection Bias + Heterogeneous Treatment Effect Bias
+&lt;/center&gt;
+
+--
+
+What are these mathematically and intuitively?
+
+.footnote[
+  See Mixtape pages 89-91 for the derivation.
+]
+
+---
+
+# Hands on: decomposing the SDO
+
+`\begin{align}
+  \underbrace{E[Y^1|D=1] - E[Y^0|D=0]}_{\text{SDO}} =&amp; \underbrace{{1 \over N_T}\sum_{i=1}^{N_T} (y_i | d_i = 1) + {1 \over N_U}\sum_{i=1}^{N_U} (y_i | d_i = 0)}_{\text{SDO}}  \\
+    =&amp;\underbrace{E[Y^1] - E[Y^0]}_{\text{ATE}} \\
+    &amp;+\underbrace{E[Y^0 | D = 1] - E[Y^0 | D= 0]}_{\text{Selection bias}} \\
+    &amp;+\underbrace{(1-\pi)(ATT - ATU)}_{\text{Het. Treat. Eff. Bias}}
+\end{align}`
+where `\(\pi\)` is the share of treated units
+
+---
+
+# Hands on: decomposing the SDO
+
+The LHS we know sums to 1.33 so the RHS must as well
+
+--
+
+The first term is the ATE, what we actually want to estimate
+
+--
+
+We .hi-blue[know] ATE = 4 so the last two terms are why SDO &lt; ATE
+
+--
+
+Let's work through these two in more detail
+
+---
+
+# Hands on: Selection bias
+
+The second term is selection bias:
+`$$E[Y^0 | D = 1] - E[Y^0 | D= 0]$$`
+
+It is the inherent differences between the two groups if they did not *actually* get the conservation policy
+
+--
+
+Basically: how are the two groups different?
+
+--
+
+The problem is we don't observe `\(E[Y^0 | D = 1]\)`: what the treated group `\((D=1)\)` would have looked like without treatment `\((Y^0)\)`
+
+--
+
+We can calculate this with the `cons_df` data frame
+
+---
+
+# Hands on: Selection bias
+
+
+```r
+cons_df %&gt;% 
+  mutate(
+    D = as.numeric(delta &gt; 0) 
+    ) %&gt;% 
+  group_by(D) %&gt;% 
+  summarise(mean(Y0)) # Difference in potential control outcomes across the two groups
+```
+
+```
+## # A tibble: 2 x 2
+##       D `mean(Y0)`
+##   &lt;dbl&gt;      &lt;dbl&gt;
+## 1     0       7.67
+## 2     1       1.6
+```
+
+Selection bias is thus 1.6 - 7.67 = -6.07
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

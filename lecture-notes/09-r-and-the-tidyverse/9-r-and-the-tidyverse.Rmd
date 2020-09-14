@@ -1,6 +1,6 @@
 ---
 title: "Lecture 9"
-subtitle: "R and the tidyverse"
+subtitle: "R and the tidyverse // randomization"
 author: Ivan Rudik
 date: AEM 6510
 output:
@@ -49,6 +49,15 @@ xaringanExtra::style_panelset(panel_tab_color_active = "red")
 Our goal is to take a hands on approach to learning how we do environmental economics research
 
 A good chunk of this lecture comes from Grant Mcdermott's [data science for economists](https://github.com/uo-ec607/lectures) notes, and [RStudio education](https://education.rstudio.com/)
+
+---
+
+class: inverse, center, middle
+name: r
+
+# Quick intro to R
+
+<html><div style='float:left'></div><hr color='#EB811B' size=1px width=796px></html>
 
 ---
 
@@ -638,6 +647,7 @@ You can also use `rm(list = ls())` to remove all objects in your working environ
 Just start a new R session instead
 
 ---
+
 class: inverse, center, middle
 name: tidyverse
 
@@ -1399,3 +1409,344 @@ crossing(side=c("left", "right"), height=c("top", "bottom"))
 --
 
 See `?expand` and `?complete` for more specialized functions that allow you to fill in (implicit) missing data or variable combinations in existing data frames
+
+---
+
+class: inverse, center, middle
+name: tidyverse
+
+# Randomization and inference
+
+<html><div style='float:left'></div><hr color='#EB811B' size=1px width=796px></html>
+
+---
+
+# The Rubin causal model
+
+.hi-blue[What is a causal effect?]
+
+--
+
+A starting point is that a causal effect is a .hi[comparison between two potential outcomes]
+
+--
+
+What the difference in some outcome in the presence vs the absence of a given treatment?
+
+--
+
+e.g. what is the difference in health between high and low levels of air pollution?
+
+--
+
+Let's begin formalizing this idea
+
+---
+
+# The Rubin causal model: potential outcomes
+
+Suppose we have a set of .hi-blue[observational units]
+  - These can be people, states, animals, air quality monitors, etc
+  
+Each unit has two .hi[potential outcomes], but only one is observed
+
+--
+
+The potential outcome is $Y^1_i$ if unit $i$ received some treatment, and $Y^0_i$ if the unit did not
+
+--
+
+$Y^0_i$ corresponds to the control state of the world for $i$
+
+---
+
+# The Rubin causal model: observable outcomes
+
+Note that these potential outcomes are not the same as observable outcomes
+
+--
+
+Observable outcomes are outcomes that actually show up in the data (i.e. the *factual* outcome)<sup>1</sup>
+
+.footnote[
+<sup>1</sup>The potential outcome that did not happen is called the *counterfactual outcome.*
+]
+
+--
+
+We can write the observable outcome $Y_i$ as a simple equation:
+$$Y_i = D_i Y^1_i (1-D_i)Y^0_i$$
+where $D_i = 1$ if $i$ received treatment and 0 otherwise
+
+---
+
+# The Rubin causal model: treatment effects
+
+$$Y_i = D_i Y^1_i (1-D_i)Y^0_i$$
+
+This is the basis of the *Rubin causal model*
+
+--
+
+Rubin defines a treatment/causal effect $\delta_i$ as the difference between the two potential outcomes:
+$$\delta_i = Y^1_i - Y^0_i$$
+
+--
+
+This leads to an obvious problem: we only observe one of these two states for each unit $i$ but we need to know both to recover $\delta_i$
+
+---
+
+# The Rubin causal model: average treatment effect
+
+We can derive three parameters of interested from the definition of a treatment effect:
+
+.hi-blue[Average treatment effect (ATE):] $$E[\delta_i] = E[Y^1_i - Y^0_i] = E[Y^1_i] - E[Y^0_i]$$
+
+--
+
+This is the average of the individual treatment effects
+
+--
+
+It is also unknowable
+
+
+---
+
+# Rubin: average treatment on the treated
+
+.hi-blue[Average treatment on the treated (ATT):] $$E[\delta_i|D_i=1] = E[Y^1_i - Y^0_i |D_i=1] = E[Y^1_i|D_i=1] - E[Y^0_i|D_i=1]$$
+
+--
+
+This is the average of the individual treatment effects only for the $i$ in the treated group
+
+--
+
+It is also unknowable since we never observe $E[Y^0_i|D_i=1]$
+
+--
+
+If the treatment effect differs across $i$ then $ATE \neq ATT$
+
+---
+
+# Rubin: average treatment on the untreated
+
+.hi-blue[Average treatment on the untreated (ATU):] $$E[\delta_i|D_i=0] = E[Y^1_i - Y^0_i |D_i=0] = E[Y^1_i|D_i=0] - E[Y^0_i|D_i=0]$$
+
+--
+
+This is the average of the individual treatment effects only for the $i$ in the untreated group
+
+--
+
+It is also unknowable since we never observe $E[Y^1_i|D_i=0]$
+
+--
+
+If the treatment effect differs across $i$ then $ATE \neq ATU$
+
+---
+
+# Hands on: understanding treatment effects
+
+We've got our definitions, now lets be a bit more clear as to what we are doing with some empirical examples putting our new R tools to work
+
+--
+
+Suppose treatment $D$ is whether a state has a conservation policy
+
+--
+
+The outcome $Y$ is the number of bird species in that state
+
+--
+
+We want to understand the causal effect of conservation policy on the number of species
+
+---
+
+# Hands on: understanding treatment effects
+
+Here's our dataset of both potential outcomes:
+```{r, echo = F}
+set.seed(12345)
+cons_df <- tibble(
+  state = seq(1, 8), # state identifier
+  Y1 = floor(state/2) + -3:4 + floor(runif(8)*10), # treatment potential outcome
+  Y0 = floor(runif(8)*10), # control potential outcome
+  delta = Y1 - Y0
+)
+```
+```{r}
+cons_df # data frame of conservation treatment, outcomes
+```
+
+Calculate the average treatment effect
+
+---
+
+# Hands on: understanding treatment effects
+
+ATE = $E[\delta_i]$ which we can compute with `dplyr::summarise`:
+```{r}
+cons_df %>% 
+  dplyr::summarise(mean(delta))
+```
+The average treatment effect is 4: a conservation policy increases the number of bird species in a state by 4
+
+---
+
+# Hands on: understanding treatment effects
+
+Notice that not all states benefit from conservation policies, and it even backfires in one state  
+The ATE is just the average over all the different treatment effects
+
+```{r}
+cons_df
+```
+
+---
+
+# Hands on: understanding treatment effects
+
+Suppose we have a perfect policymaker who knows each states potential outcomes and can perfectly decide whether each state should have a conservation policy
+
+--
+
+The policymaker assigns treatment and then observes the actual outcome according to $Y_i = D_i Y^1_i + (1-D_i)Y^0_i$
+
+--
+
+What does the dataset look like for the observed outcomes?
+
+---
+
+# Hands on: understanding treatment effects
+
+```{r}
+observed_df <- cons_df %>% 
+  mutate(
+    Y = ifelse(delta > 0, Y1, Y0),
+    D = as.numeric(delta > 0)
+    ) %>% 
+  select(state, Y, D)
+observed_df
+```
+
+---
+
+# Hands on: estimating ATEs
+
+Given the .hi-blue[observed] data, what if we tried to *estimate* the ATE by comparing mean outcomes of treated $(D_i=1)$ vs untreated units $(D_i=0)$
+
+This is the simple difference in mean outcomes (SDO):
+\begin{align}
+  SDO &= E[Y^1|D=1] - E[Y^0|D=0] \\
+    &= {1 \over N_T}\sum_{i=1}^{N_T} (y_i | d_i = 1) + {1 \over N_U}\sum_{i=1}^{N_U} (y_i | d_i = 0)
+\end{align}
+
+where $N_T$ is the number of treated units and $N_U$ is the number of untreated units
+
+---
+
+# Hands on: estimating ATEs
+
+We can compute the SDO using `dplyr::summarise` in conjunction with `dplyr::group_by` on treatment status $D$:
+```{r}
+observed_df %>% 
+  dplyr::group_by(D) %>% 
+  dplyr::summarise(meanY = mean(Y))
+```
+
+The SDO is 9 - 7.67 = 1.33 < 4!
+
+---
+
+# Hands on: estimating ATEs
+
+We know the ATE is 4, why is the SDO giving us a much smaller estimate of the effect of the conservation policy?
+
+--
+
+Because the SDO is actually composed of three pieces, only one of which is the ATE:<sup>1</sup>
+
+<center>
+SDO = ATE + Selection Bias + Heterogeneous Treatment Effect Bias
+</center>
+
+--
+
+What are these mathematically and intuitively?
+
+.footnote[
+  See Mixtape pages 89-91 for the derivation.
+]
+
+---
+
+# Hands on: decomposing the SDO
+
+\begin{align}
+  \underbrace{E[Y^1|D=1] - E[Y^0|D=0]}_{\text{SDO}} =& \underbrace{{1 \over N_T}\sum_{i=1}^{N_T} (y_i | d_i = 1) + {1 \over N_U}\sum_{i=1}^{N_U} (y_i | d_i = 0)}_{\text{SDO}}  \\
+    =&\underbrace{E[Y^1] - E[Y^0]}_{\text{ATE}} \\
+    &+\underbrace{E[Y^0 | D = 1] - E[Y^0 | D= 0]}_{\text{Selection bias}} \\
+    &+\underbrace{(1-\pi)(ATT - ATU)}_{\text{Het. Treat. Eff. Bias}}
+\end{align}
+where $\pi$ is the share of treated units
+
+---
+
+# Hands on: decomposing the SDO
+
+The LHS we know sums to 1.33 so the RHS must as well
+
+--
+
+The first term is the ATE, what we actually want to estimate
+
+--
+
+We .hi-blue[know] ATE = 4 so the last two terms are why SDO < ATE
+
+--
+
+Let's work through these two in more detail
+
+---
+
+# Hands on: Selection bias
+
+The second term is selection bias:
+$$E[Y^0 | D = 1] - E[Y^0 | D= 0]$$
+
+It is the inherent differences between the two groups if they did not *actually* get the conservation policy
+
+--
+
+Basically: how are the two groups different?
+
+--
+
+The problem is we don't observe $E[Y^0 | D = 1]$: what the treated group $(D=1)$ would have looked like without treatment $(Y^0)$
+
+--
+
+We can calculate this with the `cons_df` data frame
+
+---
+
+# Hands on: Selection bias
+
+```{r}
+cons_df %>% 
+  mutate(
+    D = as.numeric(delta > 0) 
+    ) %>% 
+  group_by(D) %>% 
+  summarise(mean(Y0)) # Difference in potential control outcomes across the two groups
+```
+
+Selection bias is thus 1.6 - 7.67 = -6.07
