@@ -581,7 +581,7 @@ It's optimal choice of $E$ (and therefore $\theta$) is given by the first-order 
 $$-C'(E) = D'(E)$$
 which matches our condition for efficiency in pollution
 
-Note that this still requires $tr \leq C(0) - [C(E^*) + D(E^*)]$
+Note that this still requires $tr \leq \underbrace{C(0) - [C(E^*) + D(E^*)]}_{\text{total welfare gain}}$
 
 ---
 
@@ -618,7 +618,7 @@ $$-C'(E) = D'(E)$$
 --
 
 where we again reach the social optimum, as long as:
-$$tr \leq D(\hat{E}) - (D(E^*) + C(E^*))$$
+$$tr \leq \underbrace{D(\hat{E}) - (D(E^*) + C(E^*))}_{\text{total welfare gain}}$$
 where $\hat{E}$ is the firms initial emission level
 
 ---
@@ -694,11 +694,11 @@ The Coase theorem is applicable for local environmental problems with few and ea
 
 --
 
-Many of the largest environmental pollution problems have many parties, households and polluters, making transactions costs likely to be very high
+.hi-red[Many] of the largest environmental pollution problems have many parties, households and polluters, making transactions costs likely to be very high
 
 --
 
-This is where there is a role for public intervention
+This, i.e. most settings we think about, is where there is a role for public intervention
 
 ---
 
@@ -1124,7 +1124,7 @@ Under a tax $\tau$, the emission choice is a function of the tax: $e_j(\tau)$
 
 The firm pays total tax $A$ and incurs abatement cost $B$
 
-Now the government has revenue $\tau \times e_j(\tau)$ that it can use for different purposes
+Now the government has revenue $\tau \times e_j(\tau)$ that it can use for different purposes, we will look at this more closely in a few classes
 
 
 ]
@@ -1189,6 +1189,8 @@ $$TC_j(e_j) = C_j(e_j) + \sigma e_j$$
 
 The second term is the permit purchase cost, the first term is the abatement cost
 
+--
+
 Cost-minimization gives us:
 $$-C'_j(e_j) = \sigma$$
 
@@ -1249,7 +1251,7 @@ ggplot() +
 
 Under a permit price $\sigma$, the emission choice is a function of the price: $e_j(\sigma)$
 
-The firm pays total tax $A$ and incurs abatement cost $B$
+The firm pays permit costs $A$ and incurs abatement cost $B$
 
 This is .hi-blue[identical] to an emission tax if $\sigma = \tau$
 
@@ -1268,20 +1270,21 @@ What is this expression?
 
 --
 
-It's just firm $j$'s .hi-blue[permit demand]
+$e_j(\sigma)$ is just firm $j$'s .hi-blue[permit demand] as a function of permit price $\sigma$
 
 --
 
-Aggregate demand for permits is then:
+Aggregate demand for permits is then the sum of the individual demands:
 $$E(\sigma) = \sum_{j=1}^J e_j(\sigma)$$
+
 ---
 
 # Auctioned pollution permits
 
-and the price $\sigma$ that clears the market equates supply of permits $L$ and demand for permits:
+The price $\sigma$ that clears the market equates supply of permits $L$ and demand for permits:
 $$L = \sum_{j=1}^J e_j(\sigma)$$
 
-This equation (supply = demand) defines the market equilibrium
+This equation (supply = demand) defines the market equilibrium like the market for any product
 
 ---
 
@@ -1291,7 +1294,7 @@ Both taxes and permits achieve $MAC_j = MAC_k$ $\forall j,k$, so both achieve an
 
 --
 
-With knowledge of the damage function $D(E)$, both can also be used by a regulator to achieve the socially optimal emission level $E*$
+With knowledge of the damage function $D(E)$, both can also be used by a regulator to achieve the socially optimal emission level $E^*$
 
 ---
 
@@ -1301,7 +1304,7 @@ Most permits aren't auctioned but freely distributed to firms based on historica
 
 --
 
-This is a de facto subsidy to firms so there are long run and distributional consequences from allocation choices
+This is a *de facto* subsidy to firms so there are long run and distributional consequences from allocation choices
 
 --
 
@@ -1317,7 +1320,7 @@ How does this system work?
 
 --
 
-Suppose firm $j$ is given $\bar{e}_j$ permits, their total cost is:
+Suppose firm $j$ is given an allocation of $\bar{e}_j$ permits, their total cost is:
 $$TC_j(e_j) = C_j(e_j) + \sigma(e_j - \bar{e}_j)$$
 
 --
@@ -1460,7 +1463,7 @@ How does this different from taxation and permits?
 
 # Subsidies
 
-Suppose we subsidize a firm $\xi$ for each unit pollution is below some baseline level $\hat{e}_j$, its total costs are now
+Suppose we subsidize a firm $\xi$ for each unit their emissions are below some baseline level $\hat{e}_j$, its total costs are now
 $$TC_j(e_j) = C_j(e_j) + \xi(e_j - \hat{e}_j)$$
 
 --
@@ -1469,10 +1472,10 @@ $\xi \hat{e}_j$ is just a lump sum transfer to firms with no effect on its decis
 
 --
 
-The firm's FOC condition is then:
+The firm's FOC is then:
 $$-C'_j(e_j) = \xi$$
 
-The per-unit abatement subsidy has the same behavioral effect as a per-unit emission tax: firms set MAC equal to the subsidy
+The per-unit abatement subsidy $\xi$ has the same behavioral effect as a per-unit emission tax $\tau$: firms set MAC equal to the subsidy
 
 ---
 
@@ -1657,7 +1660,9 @@ This allows us to characterize socially optimal emissions in a more direct way
 
 # Aggregate marginal abatement cost
 
-How do you horizontally sum?
+We can do this with simple linear MACs by horizontally summing
+
+--
 
 Suppose our two MACs are: $MAC_1 = 4-e, MAC_2 = 2-e$
 
