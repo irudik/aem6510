@@ -1,0 +1,56 @@
+---
+title: "Lecture 10"
+subtitle: "Deforestation // Regression discontinuity"
+author: Ivan Rudik
+date: AEM 6510
+output:
+  xaringan::moon_reader:
+    css: ['default', 'metropolis', 'metropolis-fonts', 'my-css.css']
+    # self_contained: true
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: '16:9'
+
+
+---
+exclude: true
+```{r setup}
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(
+  tidyverse, xaringanExtra, rlang, patchwork, nycflights13
+)
+options(htmltools.dir.version = FALSE)
+knitr::opts_hooks$set(fig.callout = function(options) {
+  if (options$fig.callout) {
+    options$echo <- FALSE
+  }
+knitr::opts_chunk$set(echo = TRUE, fig.align="center")
+  options
+})
+```
+```{r xaringanExtra, echo = FALSE}
+xaringanExtra::use_xaringan_extra(c("tile_view", "panelset", "webcam"))
+
+```
+```{r echo=FALSE}
+xaringanExtra::style_panelset(panel_tab_color_active = "red")
+```
+
+---
+
+# Roadmap
+
+- Can we exploit situations when we know the mechanism for treatment assignment?
+- Can exploit situations where some units are just above some threshold to get treatment, and others are just below the threshold?
+- Do deforestation policies work?
+
+---
+
+class: inverse, center, middle
+name: hr2021
+
+# Regression discontinuity
+
+<html><div style='float:left'></div><hr color='#EB811B' size=1px width=796px></html>
