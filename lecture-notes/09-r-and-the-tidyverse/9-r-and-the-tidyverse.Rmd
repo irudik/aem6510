@@ -1900,6 +1900,198 @@ What's a simple way to deal with this?
 
 If we randomize treatment across observational units then SDO = ATE
 
+-- 
+
+Randomization drives selection bias and HTEB to zero
+
 --
 
 Let's see why
+
+---
+
+# Randomization
+
+Randomization means that treatment will be .hi-blue[independent] of the potential outcomes
+
+--
+
+Mathematically:
+
+$$Y^1,Y^0 \perp D$$
+
+--
+
+In our example we know independence is violated because we assigned the conservation policy to states that had $Y^1 > Y^0$
+
+--
+
+What if we randomized conservation policy?
+
+---
+
+# Randomization
+
+Randomization of treatment / policy means that:
+$$E[Y^1 | D = 1] - E[Y^1 | D = 0] = 0 \qquad E[Y^0 | D = 1] - E[Y^0 | D = 0] = 0$$
+
+--
+
+If we randomized treatment across units, then on average, the potential outcomes should be the same across units in both groups 
+
+$$E[Y^1 | D = 1] = E[Y^1 | D = 0] \qquad E[Y^0 | D = 1] = E[Y^0 | D = 0]$$
+
+--
+
+The second equation $E[Y^0 | D = 1] - E[Y^0 | D = 0] = 0$ directly gives us that selection bias is zero with the SDO
+
+---
+
+# Randomization
+
+What does randomization do to HTEB?
+
+--
+
+\begin{align}
+  &ATT - ATU \\
+  & = (E[Y^1 | D = 1] - E[Y^0 | D = 1]) - (E[Y^1 | D = 0] - E[Y^0 | D = 0]) \\
+  & = (E[Y^1 | D = 1] - E[Y^1 | D = 0]) - (E[Y^0 | D = 1] - E[Y^0 | D = 0]) \\
+  & = (0) - (0) = 0
+\end{align}
+
+--
+
+HTEB goes to zero
+
+---
+
+# Randomization and SDO
+
+Randomization means that SDO = ATE:
+$$\underbrace{{1 \over N_T} \sum_{i=1}^{N_T} (y_i | d_i = 1) - {1 \over N_C} \sum_{i=1}^{N_C} (y_i | d_i = 0)}_{\text{SDO}} = \underbrace{E[Y^1] - E[Y^0]}_{\text{ATE}}$$
+
+--
+
+All we need to estimate the average treatment effect of a policy is:
+--
+
+1. Data on treatment assignment
+--
+
+2. Data on observable outcomes
+--
+
+3. The independence assumption: $Y^1,Y^0 \perp D$
+
+---
+
+# Hands on: randomization and SDO
+
+Let's see how this works in practice by re-constructing our dataset and then randomizing treatment
+
+--
+
+```{r}
+set.seed(12345)
+ate <- 4 # average treatment effect
+n_obs <- 100 # number of observations
+cons_rand_df <- tibble(
+  state = seq(1, n_obs), # state identifier
+  Y0 = floor(runif(n_obs)*10)) %>%  # control/untreated potential outcome
+  mutate(
+    D = as.numeric(runif(n()) > 0.5), # randomized treatment
+    Y1 = Y0 + ate + round(rnorm(n())), # generate treatment potential outcome
+    Y = D*Y1 + (1-D)*Y0 # generate observed outcome
+  ) %>% 
+  select(
+    state, D, Y # keep only observable variables
+  )
+```
+
+---
+
+# Hands on: randomization and SDO
+
+```{r}
+cons_rand_df # data frame of randomized treatment, observable outcome
+```
+
+---
+
+# Hands on: randomization and SDO
+
+Now take the SDO:
+
+```{r}
+cons_rand_df %>% 
+  dplyr::group_by(D) %>% 
+  dplyr::summarise(meanY = mean(Y))
+```
+
+The SDO is 8.82 - 4.42 = 4.40, a very close estimate of the ATE!
+
+--
+
+As `n_obs` $\rightarrow \infty$, we will have that $SDO \rightarrow ATE$
+
+---
+
+# Randomization: what it does and doesn't do
+
+What does independence imply? That:
+$$E[Y^1|D = 1] - E[Y^1 | D = 0] = 0 \qquad E[Y^0|D = 1] - E[Y^0 | D = 0] = 0$$
+
+The two groups have the same potential outcomes, .hi-blue[*on average*]
+
+--
+
+What does independence .hi-red[not] imply? That:
+$$E[Y^1 | D = 1] - E[Y^0 | D = 0] = 0 \qquad E[Y^1 | D = 1] - E[Y^0 | D = 1] = 0$$
+
+It does not imply that the observed outcomes are the same across the two groups, nor does it imply that the two potential outcomes of a single group are the same
+
+---
+
+# Independence
+
+Is independence is a reasonable assumption in .hi[observational data]?
+
+--
+
+Observational data are just data that we collect from the real world
+  - e.g. observed state policy choices and outcomes, observed pollution levels and outcomes
+  
+--
+
+Independence is .hi-red[unlikely] to hold in these scenarios
+
+--
+
+So what can we do?
+
+---
+
+# Conditional independence
+
+Often we will instead rely on .hi-red[conditional independence:]
+$$(Y^1,Y^0 \perp D) | X$$
+
+--
+
+After controlling for some other variables $X$, the potential outcomes are independent of treatment $(Y^1,Y^0 \perp D)$
+
+--
+
+This is much weaker than (unconditional) independence: we only need independence to hold for units that share the same $X$ values, not for all units
+
+---
+
+# Conditional independence
+
+Many of the estimation tools used in economics rely on (variants of) the conditional independence assumption
+
+--
+
+We will often explain intuition behind the assumption in different ways depending on the methods
+  - e.g. parallel trends, no omitted variables

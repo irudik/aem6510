@@ -491,17 +491,17 @@ df2
 ```
 
 ```
-##             x         y
-## 1  -0.2841597 0.8687949
-## 2  -0.9193220 0.9041547
-## 3  -0.1162478 0.6174246
-## 4   1.8173120 0.1340316
-## 5   0.3706279 0.7821933
-## 6   0.5202165 0.4291988
-## 7  -0.7505320 0.9272740
-## 8   0.8168998 0.7732432
-## 9  -0.8863575 0.2596812
-## 10 -0.3315776 0.3212247
+##              x         y
+## 1  -1.43614571 0.8393892
+## 2  -0.62925965 0.2673705
+## 3   0.24352177 0.1951011
+## 4   1.05836223 0.2513002
+## 5   0.83134882 0.3891329
+## 6   0.10521182 0.8435996
+## 7  -1.74171309 0.9805974
+## 8   0.64524699 0.3063197
+## 9   0.09710422 0.2704168
+## 10 -0.07673369 0.6229376
 ```
 
 ---
@@ -679,19 +679,19 @@ rnorm(n = 100, mean = 0, sd = 1)
 ```
 
 ```
-##   [1] -1.55313741 -1.59770952  1.80509752 -0.48164736  0.62037980  0.61212349 -0.16231098  0.81187318
-##   [9]  2.19683355  2.04919034  1.63244564  0.25427119  0.49118828 -0.32408658 -1.66205024  1.76773385
-##  [17]  0.02580105  1.12851083 -2.38035806 -1.06026555  0.93714054  0.85445172  1.46072940 -1.41309878
-##  [25]  0.56740325  0.58318765 -1.30679883 -0.54038607  1.94769266  0.05359027  0.35166284 -0.67097654
-##  [33]  0.27795369  0.69117127  0.82379533  2.14506502 -2.34694398  0.14959198 -1.34253148  0.55330308
-##  [41]  1.58996284 -0.58687959 -1.83237731  0.88813943  1.59348847  0.51685467 -1.29567168  0.05461558
-##  [49] -0.78464937 -1.04935282  2.33051196  1.40270538  0.94260085  0.82625829 -0.81154049  0.47624828
-##  [57]  1.02125841  0.64538307  1.04314355 -0.30436911  2.47711092  0.97122067  1.86709918  0.67204247
-##  [65] -0.30795338  0.53652372  0.82487007 -0.96390148 -0.85508251  1.88694694 -0.39181937 -0.98063295
-##  [73]  0.68733210 -0.50504352  2.15771982 -0.59979756 -0.69454669  0.22392541 -1.15622333  0.42241853
-##  [81] -1.32475526  0.14108431 -0.53604800 -0.31160608  1.55610964 -0.44803329  0.32112354 -1.23017225
-##  [89] -1.32405869  1.26124227  1.31923172 -0.08075376 -0.50508981 -0.05215359  0.62886063  2.18000240
-##  [97] -0.06901731  1.54486360  1.32145202  0.32215158
+##   [1]  0.31561282  0.66029338 -1.72220241 -2.13462605  0.06894560  0.86782174 -2.29004418 -0.15019029
+##   [9] -0.26878179  1.79133204  0.67226804 -0.20930114  0.01218251  1.53411686  0.07729182  0.07843753
+##  [17] -0.77926107  0.16655967  0.26532457  0.89078071 -0.46788837  0.75837456 -0.64173636  0.62767182
+##  [25]  0.24833013 -0.70007582 -0.56740159 -0.26139393 -1.06388504 -0.10636865  0.77110374  2.74740354
+##  [33] -0.08393476  0.54356763  0.75286121 -0.80867413  1.00111985  0.45605250 -1.43425031 -0.26530482
+##  [41]  0.64176916 -0.41502103 -0.45957568 -0.79249402 -1.15853913  0.71089000  1.26760175 -0.14315106
+##  [49] -0.51502891  1.48289118 -0.16258891  0.04170917  0.48303990 -1.18012717 -0.66357374 -0.63464989
+##  [57] -0.70196303  0.57685038 -2.11308037  0.26090968  1.14712719  0.01479365 -0.31173924 -0.95619611
+##  [65]  0.47341376 -1.51386408  0.16428100 -0.87086522  1.59332899  0.64659752  0.35736969  0.10239306
+##  [73] -0.67526683  0.97208502  0.75586993 -0.42828562 -0.71392476 -0.19038407  0.39986481 -0.97784491
+##  [81]  0.18373691 -2.15031053 -0.62296653 -0.76543932  0.46430942  0.52228217  0.00979376 -0.44052620
+##  [89]  1.19948953 -0.11746849  0.03820979  1.19480563  0.34395835 -0.32907297  1.67085792 -0.91805820
+##  [97] -0.08780733  1.32029372  1.73078613  2.16259608
 ```
 
 ---
@@ -2851,9 +2851,229 @@ What's a simple way to deal with this?
 
 If we randomize treatment across observational units then SDO = ATE
 
+-- 
+
+Randomization drives selection bias and HTEB to zero
+
 --
 
 Let's see why
+
+---
+
+# Randomization
+
+Randomization means that treatment will be .hi-blue[independent] of the potential outcomes
+
+--
+
+Mathematically:
+
+`$$Y^1,Y^0 \perp D$$`
+
+--
+
+In our example we know independence is violated because we assigned the conservation policy to states that had `\(Y^1 &gt; Y^0\)`
+
+--
+
+What if we randomized conservation policy?
+
+---
+
+# Randomization
+
+Randomization of treatment / policy means that:
+`$$E[Y^1 | D = 1] - E[Y^1 | D = 0] = 0 \qquad E[Y^0 | D = 1] - E[Y^0 | D = 0] = 0$$`
+
+--
+
+If we randomized treatment across units, then on average, the potential outcomes should be the same across units in both groups 
+
+`$$E[Y^1 | D = 1] = E[Y^1 | D = 0] \qquad E[Y^0 | D = 1] = E[Y^0 | D = 0]$$`
+
+--
+
+The second equation `\(E[Y^0 | D = 1] - E[Y^0 | D = 0] = 0\)` directly gives us that selection bias is zero with the SDO
+
+---
+
+# Randomization
+
+What does randomization do to HTEB?
+
+--
+
+`\begin{align}
+  &amp;ATT - ATU \\
+  &amp; = (E[Y^1 | D = 1] - E[Y^0 | D = 1]) - (E[Y^1 | D = 0] - E[Y^0 | D = 0]) \\
+  &amp; = (E[Y^1 | D = 1] - E[Y^1 | D = 0]) - (E[Y^0 | D = 1] - E[Y^0 | D = 0]) \\
+  &amp; = (0) - (0) = 0
+\end{align}`
+
+--
+
+HTEB goes to zero
+
+---
+
+# Randomization and SDO
+
+Randomization means that SDO = ATE:
+`$$\underbrace{{1 \over N_T} \sum_{i=1}^{N_T} (y_i | d_i = 1) - {1 \over N_C} \sum_{i=1}^{N_C} (y_i | d_i = 0)}_{\text{SDO}} = \underbrace{E[Y^1] - E[Y^0]}_{\text{ATE}}$$`
+
+--
+
+All we need to estimate the average treatment effect of a policy is:
+--
+
+1. Data on treatment assignment
+--
+
+2. Data on observable outcomes
+--
+
+3. The independence assumption: `\(Y^1,Y^0 \perp D\)`
+
+---
+
+# Hands on: randomization and SDO
+
+Let's see how this works in practice by re-constructing our dataset and then randomizing treatment
+
+--
+
+
+```r
+set.seed(12345)
+ate &lt;- 4 # average treatment effect
+n_obs &lt;- 100 # number of observations
+cons_rand_df &lt;- tibble(
+  state = seq(1, n_obs), # state identifier
+  Y0 = floor(runif(n_obs)*10)) %&gt;%  # control/untreated potential outcome
+  mutate(
+    D = as.numeric(runif(n()) &gt; 0.5), # randomized treatment
+    Y1 = Y0 + ate + round(rnorm(n())), # generate treatment potential outcome
+    Y = D*Y1 + (1-D)*Y0 # generate observed outcome
+  ) %&gt;% 
+  select(
+    state, D, Y # keep only observable variables
+  )
+```
+
+---
+
+# Hands on: randomization and SDO
+
+
+```r
+cons_rand_df # data frame of randomized treatment, observable outcome
+```
+
+```
+## # A tibble: 100 x 3
+##    state     D     Y
+##    &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1     1     0     7
+##  2     2     1    11
+##  3     3     1    11
+##  4     4     1    11
+##  5     5     1     8
+##  6     6     1     4
+##  7     7     1     7
+##  8     8     1    11
+##  9     9     0     7
+## 10    10     0     9
+## # … with 90 more rows
+```
+
+---
+
+# Hands on: randomization and SDO
+
+Now take the SDO:
+
+
+```r
+cons_rand_df %&gt;% 
+  dplyr::group_by(D) %&gt;% 
+  dplyr::summarise(meanY = mean(Y))
+```
+
+```
+## # A tibble: 2 x 2
+##       D meanY
+##   &lt;dbl&gt; &lt;dbl&gt;
+## 1     0  4.42
+## 2     1  8.82
+```
+
+The SDO is 8.82 - 4.42 = 4.40, a very close estimate of the ATE!
+
+--
+
+As `n_obs` `\(\rightarrow \infty\)`, we will have that `\(SDO \rightarrow ATE\)`
+
+---
+
+# Randomization: what it does and doesn't do
+
+What does independence imply? That:
+`$$E[Y^1|D = 1] - E[Y^1 | D = 0] = 0 \qquad E[Y^0|D = 1] - E[Y^0 | D = 0] = 0$$`
+
+The two groups have the same potential outcomes, .hi-blue[*on average*]
+
+--
+
+What does independence .hi-red[not] imply? That:
+`$$E[Y^1 | D = 1] - E[Y^0 | D = 0] = 0 \qquad E[Y^1 | D = 1] - E[Y^0 | D = 1] = 0$$`
+
+It does not imply that the observed outcomes are the same across the two groups, nor does it imply that the two potential outcomes of a single group are the same
+
+---
+
+# Independence
+
+Is independence is a reasonable assumption in .hi[observational data]?
+
+--
+
+Observational data are just data that we collect from the real world
+  - e.g. observed state policy choices and outcomes, observed pollution levels and outcomes
+  
+--
+
+Independence is .hi-red[unlikely] to hold in these scenarios
+
+--
+
+So what can we do?
+
+---
+
+# Conditional independence
+
+Often we will instead rely on .hi-red[conditional independence:]
+`$$(Y^1,Y^0 \perp D) | X$$`
+
+--
+
+After controlling for some other variables `\(X\)`, the potential outcomes are independent of treatment `\((Y^1,Y^0 \perp D)\)`
+
+--
+
+This is much weaker than (unconditional) independence: we only need independence to hold for units that share the same `\(X\)` values, not for all units
+
+---
+
+# Conditional independence
+
+Many of the estimation tools used in economics rely on (variants of) the conditional independence assumption
+
+--
+
+We will often explain intuition behind the assumption in different ways depending on the methods
+  - e.g. parallel trends, no omitted variables
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
