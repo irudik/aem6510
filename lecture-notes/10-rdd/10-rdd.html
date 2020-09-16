@@ -317,13 +317,271 @@ We will need to be focused on the area right around this hair trigger threshold:
 
 There are two classes of RDD: sharp and fuzzy
 
+--
+
 .hi-blue[Sharp designs] are where the probability of treatment increases from 0 to 1 at the threshold `\(c_0\)`
+
+--
 
 .hi-red[Fuzzy designs] are where the probability of treatment increases discontinuously at `\(c_0\)`, but not necessarily from 0 to 1
 
 --
 
 We will be focusing on sharp designs to keep it simple
+
+---
+
+# Sharp RDD: set up
+
+A sharp RDD has treatment `\(D\)` being a deterministic function of the running variable `\(X\)`
+  - e.g. deforestation policy is a deterministic function of distance from the Bolivia-Brazil border
+  
+--
+
+In a sharp RDD treatment is given by:
+`\begin{align}
+D_i = 
+\begin{cases} 
+      1 &amp; X_i \geq c_0 \\
+      0 &amp; X_i &lt; c_0
+   \end{cases}
+\end{align}`
+
+If we know `\(X_i\)` we know treatment with certainty
+
+---
+
+# Sharp RDD: set up
+
+
+In potential outcomes terms we then have:
+`$$Y^0_i = \alpha + \beta X_i \\
+Y^1_i = Y^0_i + \delta$$`
+
+--
+
+Which gives us our regression is:
+`\begin{align}
+  Y_i &amp;= Y^0_i + (Y^1_i - Y^0_i)D_i \\
+  &amp;= \alpha + \beta X_i + \delta D_i + \varepsilon_i
+\end{align}`
+
+--
+
+What is the mathematical definition of `\(\delta\)`?
+
+---
+
+# Sharp RDD: treatment effects
+
+`\(\delta\)` is the discontinuity in the conditional expectation function:
+`\begin{align}
+  \delta =&amp; \lim_{X_i \rightarrow c_0} E[Y^1_i | X_i = c_0] - \lim_{c_0 \leftarrow X_i} E[Y^0_i | X_i = c_0] \\
+  =&amp; \lim_{X_i \rightarrow c_0} E[Y_i | X_i = c_0] - \lim_{c_0 \leftarrow X_i} E[Y_i | X_i = c_0]
+\end{align}`
+
+--
+
+The sharp RDD gives us an average causal effect of treatment *at the discontinuity*, which is why it is called a local average treatment effect (LATE):
+`$$\delta_{SRDD} = E[Y_i^1 - Y^0_i | X_i = c_0]$$`
+
+---
+
+# Sharp RDD: treatment effects
+
+.pull-left[
+
+
+![](10-rdd_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
+
+]
+
+
+.pull-right[
+Notice that .hi[extrapolation] plays a key role: there is no `\(X\)` where we have some units with `\(D_i = 1\)` and others with `\(D_i = 0\)`
+
+We are extrapolating (locally around `\(c_0\)`) using the dashed lines to estimate the difference in the two means
+
+]
+
+---
+
+# Sharp RDD: identifying assumption
+
+The identifying assumption for RDD is called the .hi-blue[continuity assumption:]
+&gt; `\(E[Y^0_i|X = c_0]\)` and `\(E[Y^1_i|X = c_0]\)` are continuous (smooth) in `\(X\)` at `\(c_0\)`
+
+It means that the expected potential outcomes should remain continuous at the threshold in the absence of treatment: they would not have jumped
+
+--
+
+If this is true, then all other determinants of `\(Y\)` are thus continuously related to `\(X\)` and the jump is completely due to treatment
+
+---
+
+class: inverse, center, middle
+name: hr2021
+
+# The Brazilian Amazon’s Double Reversal of Fortune
+
+&lt;html&gt;&lt;div style='float:left'&gt;&lt;/div&gt;&lt;hr color='#EB811B' size=1px width=796px&gt;&lt;/html&gt;
+
+
+---
+
+# What is the paper about?
+
+What is Burgess et al. (2019) (.hi[BCO]) about?
+
+--
+
+BCO aims to estimate the .hi-red[causal] effect of deforestation regulation in Brazil
+
+--
+
+Why is this important?
+
+--
+
+1. The Amazon rainforest is incredibly important
+--
+
+2. The Amazon is largely undeveloped, unclear if deforestation regulation can be adequately enforced to matter
+--
+
+3. Understanding whether the regulation works is important for future policy
+
+---
+
+# How does the paper do it?
+
+BCO estimate the causal effect of Brazil's deforestation policy by exploiting a spatial discontinuity
+
+--
+
+BCO does this using a RDD variant called .hi-blue[spatial RDD]
+
+--
+
+They compare deforestation outcomes in Brazil, to those in other countries, close to the country border
+
+---
+
+# How does the paper do it?
+
+&lt;div style= "float:right;position: relative;"&gt;
+&lt;img src="figures/border.png" width="575px" /&gt;
+&lt;/div&gt;
+
+Bolivia is on the left, Brazil is on the right
+
+--
+
+Darker green is more forested
+
+--
+
+Red is protected, blue is private
+
+--
+
+Sharp discontinuities in forest cover are very clear all along the border (black)
+
+---
+
+# How does the paper do it?
+
+In the spatial RDD the running variable `\(X\)` is distance from the border
+  - Negative values for other countries, positive values for Brazil
+
+--
+
+Their model is similar to what we just went over with sharp RDD:
+`$$Y_i = \delta \text{Brazil}_i + f(\text{distance to border}_i) + \text{controls} + \varepsilon_i$$`
+
+Here:
+- `\(\text{Brazil}_i \equiv D_i\)`
+- `\(f(\text{distance to border}_i) \equiv X_i\)`
+
+---
+
+# How does the paper do it?
+
+The paper also includes a set of controls for things that may be different/discontinuous across the border (e.g. national infrastructure, elevation, etc)
+
+--
+
+BCO's key assumption is that other factors that affect deforestation change smoothly across the border
+
+--
+
+This is likely reasonable: the borders were arbitrarily set in 1750 when the area was virtually unexplored: where the border is *locally* is almost random
+
+--
+
+They also find no discontinuities in other things that may be important for deforestation: roads, slope, distance to cities, etc
+
+---
+
+# What they get
+
+The forest data are very, very large (120 meter pixels!) so we won't be doing this hands on
+
+---
+
+# What they get
+
+&lt;div style= "float:right;position: relative;"&gt;
+&lt;img src="figures/linear_rdd.png" width="575px" /&gt;
+&lt;/div&gt;
+
+0 is the border, to the right is Brazil, to the left is other countries, the year is 2000
+
+--
+
+Other countries have greater forest cover than Brazil, but with a slight decline as you move to the Brazil border
+
+--
+
+Brazil has discontinuously lower forest cover near the border
+
+---
+
+# What they get
+
+
+&lt;div style= "float:right;position: relative;"&gt;
+&lt;img src="figures/rdd_by_year.png" width="575px" /&gt;
+&lt;/div&gt;
+
+BCO also runs the RDD year-by-year so we can see how the LATE changes over time
+
+--
+
+The effect of being in Brazil goes to zero for about 2006-2014
+
+--
+
+This is about when Brazil implemented tougher national deforestation policies: *Action Plan for the Prevention and Control of Deforestation in the Legal Amazon, Law on Public Forest Management, etc*
+
+---
+
+# What they get: LATE by year
+
+
+&lt;div style= "float:right;position: relative;"&gt;
+&lt;img src="figures/rdd_by_year.png" width="575px" /&gt;
+&lt;/div&gt;
+
+The effect of the tougher policies seems to have gone away after 2014
+
+--
+
+Why?
+
+--
+
+Economic crises decreased enforcement of environmental regulations, and lead to weakening of the regulations
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
