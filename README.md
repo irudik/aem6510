@@ -84,11 +84,11 @@ Some sections of the course have readings (available on Canvas if not in the boo
 
 **Reading**: PR Chapter 1
 
-### [Sep 10: Introduction to the theory of environmental policy](https://raw.githack.com/irudik/aem6510/master/lecture-notes/03-theory-of-environmental-policy/3-theory-of-environmental-policy.html) [slides posted] <!-- actually 10, 15 -->
+### [Sep 10: Introduction to the theory of environmental policy](https://raw.githack.com/irudik/aem6510/master/lecture-notes/03-theory-of-environmental-policy/3-theory-of-environmental-policy.html) [slides posted] <!-- actually 10, 15, 17 -->
 
 **Reading**: PR Chapter 3
 
-### [Sep 15: Imperfect information](https://ivanrudik.com)
+### [Sep 15: Imperfect information](https://ivanrudik.com) <!-- actually 17 -->
 
 **Reading**: PR Chapter 4
 
