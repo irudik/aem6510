@@ -31,13 +31,6 @@ exclude: true
 
 ```r
 if (!require("pacman")) install.packages("pacman")
-```
-
-```
-## Loading required package: pacman
-```
-
-```r
 pacman::p_load(
   tidyverse, tidylog, xaringanExtra, rlang, patchwork
 )
@@ -51,9 +44,16 @@ knitr::opts_chunk$set(echo = TRUE, fig.align="center")
 })
 ```
 
-<style>.panelset {
-  --panel-tab-color-active: red;
-}</style>
+
+```
+## Warning: 'xaringanExtra::style_panelset' is deprecated.
+## Use 'style_panelset_tabs' instead.
+## See help("Deprecated")
+```
+
+```
+## Warning in style_panelset_tabs(...): The arguments to `syle_panelset()` changed in xaringanExtra 0.1.0. Please refer to the documentation to update your slides.
+```
 
 ---
 
@@ -879,10 +879,10 @@ Aggregate demand for permits is then the sum of the individual demands:
 
 # Auctioned pollution permits
 
-and the price `\(\sigma\)` that clears the market equates supply of permits `\(L\)` and demand for permits:
+The price `\(\sigma\)` that clears the market equates supply of permits `\(L\)` and demand for permits:
 `$$L = \sum_{j=1}^J e_j(\sigma)$$`
 
-This equation (supply = demand) defines the market equilibrium
+This equation (supply = demand) defines the market equilibrium like the market for any product
 
 ---
 
@@ -902,7 +902,7 @@ Most permits aren't auctioned but freely distributed to firms based on historica
 
 --
 
-This is a de facto subsidy to firms so there are long run and distributional consequences from allocation choices
+This is a *de facto* subsidy to firms so there are long run and distributional consequences from allocation choices
 
 --
 
@@ -918,7 +918,7 @@ How does this system work?
 
 --
 
-Suppose firm `\(j\)` is given `\(\bar{e}_j\)` permits, their total cost is:
+Suppose firm `\(j\)` is given an allocation of `\(\bar{e}_j\)` permits, their total cost is:
 `$$TC_j(e_j) = C_j(e_j) + \sigma(e_j - \bar{e}_j)$$`
 
 --
@@ -981,19 +981,19 @@ How does this different from taxation and permits?
 
 # Subsidies
 
-Suppose we subsidize a firm `\(\xi\)` for each unit pollution is below some baseline level `\(\hat{e}_j\)`, its total costs are now
+Suppose we subsidize a firm `\(\xi\)` for each unit their emissions are below some baseline level `\(\hat{e}_j\)`, its total costs are now
 `$$TC_j(e_j) = C_j(e_j) + \xi(e_j - \hat{e}_j)$$`
 
 --
 
-`\(\xi \hat{e}_j\)` is just a lump sum transfer to firms with no effect on its decision making
-
---
-
-The firm's FOC condition is then:
+The firm's FOC is then:
 `$$-C'_j(e_j) = \xi$$`
 
-The per-unit abatement subsidy has the same behavioral effect as a per-unit emission tax: firms set MAC equal to the subsidy
+The per-unit abatement subsidy `\(\xi\)` has the same behavioral effect as a per-unit emission tax `\(\tau\)`: firms set MAC equal to the subsidy&lt;sup&gt;1&lt;/sup&gt;
+
+.footnote[
+This is conditional on the total subsidy payment being large enough to induce abatement.
+]
 
 ---
 
@@ -1009,7 +1009,9 @@ The per-unit abatement subsidy has the same behavioral effect as a per-unit emis
 
 Under a subsidy `\(\xi\)`, the emission choice is a function of the subsidy: `\(e_j(\xi)\)`
 
-The firm incurs abatement cost `\(A\)` and receives total subsidy `\(B+C\)` with a baseline level of emissions of `\(\hat{e}_j\)`
+The firm incurs abatement cost `\(A+B\)` and receives total subsidy `\(B+C\)` with a baseline level of emissions of `\(\hat{e}_j\)`
+
+Total benefits to the firm are `\(C-A\)` which needs to be positive for the firm to abate
 
 
 ]
@@ -1077,8 +1079,8 @@ Lets develop this formally
 # Aggregate marginal abatement cost
 
 Suppose firms pay a per-unit tax `\(\tau\)`, we know the firm's optimal emission decision is given by:
-`$$C'_j(e_j) = \tau$$`
-with a resulting emission response function `\(e_j(\tau)\)` which we can interpret as the firm's demand for emissions
+`$$-C'_j(e_j) = \tau$$`
+with a resulting emission response function `\(e_j(\tau) = C_j'^{-1}(-\tau)\)` which we can interpret as the firm's .hi-blue[demand for emissions]
 
 ---
 
@@ -1099,7 +1101,9 @@ This allows us to characterize socially optimal emissions in a more direct way
 
 # Aggregate marginal abatement cost
 
-How do you horizontally sum?
+We can do this with simple linear MACs by horizontally summing
+
+--
 
 Suppose our two MACs are: `\(MAC_1 = 4-e, MAC_2 = 2-e\)`
 

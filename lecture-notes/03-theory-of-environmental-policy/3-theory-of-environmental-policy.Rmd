@@ -1392,7 +1392,7 @@ firm1 <- ggplot() +
        y = "",
        title = "Firm 1") +
   scale_x_continuous(expand = c(0, 0), limits = c(0, 5),
-                     breaks = intersections$x[c(1,3)], labels = expression(e[2](sigma), bar(e)[1])) +
+                     breaks = intersections$x[c(1,3)], labels = expression(e[1](sigma), bar(e)[1])) +
   scale_y_continuous(expand = c(0, 0), limits = c(0, 5),
                      breaks = intersections$y[1], labels = expression(sigma))
 
@@ -1468,14 +1468,14 @@ $$TC_j(e_j) = C_j(e_j) + \xi(e_j - \hat{e}_j)$$
 
 --
 
-$\xi \hat{e}_j$ is just a lump sum transfer to firms with no effect on its decision making
-
---
-
 The firm's FOC is then:
 $$-C'_j(e_j) = \xi$$
 
-The per-unit abatement subsidy $\xi$ has the same behavioral effect as a per-unit emission tax $\tau$: firms set MAC equal to the subsidy
+The per-unit abatement subsidy $\xi$ has the same behavioral effect as a per-unit emission tax $\tau$: firms set MAC equal to the subsidy<sup>1</sup>
+
+.footnote[
+This is conditional on the total subsidy payment being large enough to induce abatement.
+]
 
 ---
 
@@ -1532,7 +1532,9 @@ ggplot() +
 
 Under a subsidy $\xi$, the emission choice is a function of the subsidy: $e_j(\xi)$
 
-The firm incurs abatement cost $A$ and receives total subsidy $B+C$ with a baseline level of emissions of $\hat{e}_j$
+The firm incurs abatement cost $A+B$ and receives total subsidy $B+C$ with a baseline level of emissions of $\hat{e}_j$
+
+Total benefits to the firm are $C-A$ which needs to be positive for the firm to abate
 
 
 ]
@@ -1638,8 +1640,8 @@ Lets develop this formally
 # Aggregate marginal abatement cost
 
 Suppose firms pay a per-unit tax $\tau$, we know the firm's optimal emission decision is given by:
-$$C'_j(e_j) = \tau$$
-with a resulting emission response function $e_j(\tau)$ which we can interpret as the firm's demand for emissions
+$$-C'_j(e_j) = \tau$$
+with a resulting emission response function $e_j(\tau) = C_j'^{-1}(-\tau)$ which we can interpret as the firm's .hi-blue[demand for emissions]
 
 ---
 
