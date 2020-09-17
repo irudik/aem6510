@@ -675,3 +675,23 @@ Why?
 --
 
 Economic crises decreased enforcement of environmental regulations, and lead to weakening of the regulations
+
+---
+
+class: inverse, center, middle
+name: hr2021
+
+# Geocomputation in R
+
+<html><div style='float:left'></div><hr color='#EB811B' size=1px width=796px></html>
+
+
+---
+
+# Geocomputation in R
+
+How do you even *do* something like this with data on forest cover?
+
+--
+
+Let's find out

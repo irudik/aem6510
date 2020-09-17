@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Lecture 4</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Ivan Rudik" />
+    <script src="4-imperfect-information_files/header-attrs/header-attrs.js"></script>
+    <link href="4-imperfect-information_files/remark-css/default.css" rel="stylesheet" />
+    <link href="4-imperfect-information_files/remark-css/metropolis.css" rel="stylesheet" />
+    <link href="4-imperfect-information_files/remark-css/metropolis-fonts.css" rel="stylesheet" />
+    <link href="4-imperfect-information_files/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="4-imperfect-information_files/tile-view/tile-view.js"></script>
+    <link href="4-imperfect-information_files/panelset/panelset.css" rel="stylesheet" />
+    <script src="4-imperfect-information_files/panelset/panelset.js"></script>
+    <script src="4-imperfect-information_files/xaringanExtra-webcam/webcam.js"></script>
+    <script id="xaringanExtra-webcam-options" type="application/json">{"width":"200","height":"200","margin":"1em"}</script>
+    <link rel="stylesheet" href="my-css.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Lecture 4
+## Imperfect information
+### Ivan Rudik
+### AEM 6510
+
+---
+
+exclude: true
+
+```r
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(
+  tidyverse, tidylog, xaringanExtra, rlang, patchwork
+)
+options(htmltools.dir.version = FALSE)
+knitr::opts_hooks$set(fig.callout = function(options) {
+  if (options$fig.callout) {
+    options$echo &lt;- FALSE
+  }
+knitr::opts_chunk$set(echo = TRUE, fig.align="center")
+  options
+})
+```
+
+
+```
+## Warning: 'xaringanExtra::style_panelset' is deprecated.
+## Use 'style_panelset_tabs' instead.
+## See help("Deprecated")
+```
+
+```
+## Warning in style_panelset_tabs(...): The arguments to `syle_panelset()` changed in xaringanExtra 0.1.0. Please refer to the documentation to update your slides.
+```
+
+---
+
+# Roadmap
+
+What happens when the regulator has imperfect information about:
+  - Marginal abatement costs?
+  - Marginal damages?
+
+So we far have assumed perfect information which is unlikely to be true
+
+--
+
+We will continue assuming that firms know their own marginal abatement cost
+
+And that regulators observe firm-level emissions
+
+---
+
+# Imperfect information
+
+How do we think about this?
+
+--
+
+Firms are unlikely to tell regulators exactly what their marginal abatement costs are
+
+--
+
+Therefore regulators will have to try to estimate it when designing policy
+
+--
+
+Estimation will naturally result in some error
+
+---
+
+# Price vs quantities (Weitzman 1974)
+
+Let's start by comparing emissions taxes and tradable permits
+
+--
+
+We'll start by looking at damage function uncertainty with known abatement costs
+
+--
+
+Then we look at abatement cost uncertainty with known damage functions
+
+--
+
+We will mainly be focused on efficiency outcomes and want to understand which policy delivers the highest welfare and why
+
+---
+
+# Damage function uncertainty
+
+- `\(D(E)\)` is the social damage function
+--
+
+- `\(C(E)\)` is the aggregate abatement cost function
+--
+
+- `\(E^*\)` is the optimal level of pollution
+  - This is defined by `\(-C'(E) = D'(E)\)`
+--
+  
+- Let `\(\tilde{D}(E)\)` and `\(\tilde{C}(E)\)` denote the estimated damage and abatement cost function
+
+--
+
+First suppose the regulator estimates `\(-C'(E)\)` correctly, but underestimates marginal damages: `\(\tilde{D}'(E) &lt; D'(E) \,\, \forall E\)`
+
+---
+
+# Damage function uncertainty
+
+The regulator chooses policy based on her estimate `\(\tilde{D}'(E)\)`
+
+--
+
+This means she sets:
+`$$-C'(E) = \tilde{D}'(E)$$`
+
+--
+
+which is solved by some `\(\tilde{E} &gt; E^*\)` because she underestimated marginal damages
+
+--
+
+What is the welfare loss from targeting `\(\tilde{E}\)` instead of `\(E^*\)`?
+
+Does the size of the loss depend on the policy instrument?
+
+---
+
+# Damage function uncertainty
+
+Define welfare loss as the difference in total social costs at `\(\tilde{E}\)` versus the efficient level `\(E^*\)`:
+`\begin{align}
+WL &amp;= [D(\tilde{E}) + C(\tilde{E})] - [D(E^*) - C(E^*)] \notag\\
+  &amp;= [D(\tilde{E}) -D(E^*)] - [ C(\tilde{E})- C(E^*)]
+\end{align}`
+
+This is equivalent to the area under the marginal damage and abatement cost curves between the two emission levels:
+`$$WL = \int_{E^*}^{\tilde{E}}D'(E) dE - \int_{E^*}^{\tilde{E}}C'(E)dE$$`
+
+
+---
+
+# Damage function uncertainty with permits
+
+
+.pull-left[
+
+
+![Uncertain MD with permits](4-imperfect-information_files/figure-html/uncertain_damages_permit_nodwl-1.png)
+]
+
+.pull-right[
+
+Here is the set up
+
+Solve for `\(\tilde{E}, E^*\)` and the welfare loss from setting the number of permits to be `\(L = \tilde{E}\)`
+
+]
+
+---
+
+# Damage function uncertainty with permits
+
+
+.pull-left[
+
+
+![Uncertain MD with permits](4-imperfect-information_files/figure-html/uncertain_damages_permit-1.png)
+]
+
+.pull-right[
+
+With a permit scheme the regulator fixes the total amount of emissions at `\(\tilde{E}\)`
+
+Since she underestimates `\(D'\)`, she lets firms emit too much
+
+She incurs welfare loss `\(A\)` from emissions where marginal damage `\(&gt;\)` marginal abatement cost
+
+]
+
+
+---
+
+# Damage function uncertainty with taxes
+
+
+.pull-left[
+
+
+![Uncertain MD with permits](4-imperfect-information_files/figure-html/uncertain_damages_permit_nodwl_tax-1.png)
+]
+
+.pull-right[
+
+Here is the set up
+
+Solve for `\(\tilde{E}, E^*\)` and `\(E(\tau)\)` which is the firm's choice of emissions given `\(\tau\)`, and the welfare loss from setting the tax to be `\(\tau(\tilde{E})\)` which achieves `\(E=\tilde{E}\)` given `\(-\tilde{C}'(E)\)`
+
+]
+
+---
+
+# Damage function uncertainty with taxes
+
+
+.pull-left[
+
+
+![Uncertain MD with taxes](4-imperfect-information_files/figure-html/uncertain_damages_tax-1.png)
+]
+
+.pull-right[
+
+The regulator sets the tax as a function of her target emissions `\(\tau(\tilde{E})\)`
+
+Since she underestimates `\(D'\)`, she sets `\(\tau(\tilde{E})\)` too low
+
+The firm then selects `\(E(\tau) = \tilde{E}\)`
+
+She incurs welfare loss `\(A\)` from emissions where marginal damage `\(&gt;\)` marginal abatement cost
+
+
+
+]
+
+
+---
+
+# Damage function uncertainty
+
+What did we learn?
+
+--
+
+With damage function uncertainty,  
+the regulator will set the incorrect level of policy
+
+--
+
+If she underestimates MD:
+--
+
+  - She sets the total number of permits too high
+  - She sets too low of a tax
+
+--
+
+Both lead to the exact same welfare loss  
+so both policies have the same efficiency
+
+---
+
+# Abatement cost function uncertainty
+
+Suppose the regulator estimates `\(D'(E)\)` correctly and underestimates marginal abatement cost: `\(-\tilde{C}'(E) &lt; -C'(E) \,\, \forall E\)`
+
+
+The regulator chooses policy based on her estimate `\(-\tilde{C}'(E)\)`
+
+--
+
+This means she sets:
+`$$-\tilde{C}'(E) = D'(E)$$`
+which is solved by some `\(\tilde{E} &lt; E^*\)` because she underestimated marginal costs
+
+--
+
+What is the welfare loss from targeting `\(\tilde{E}\)` instead of `\(E^*\)`?
+
+
+---
+
+# Abatement cost function uncertainty
+
+
+.pull-left[
+
+
+
+![Uncertain MAC breaks the equivalence between taxes and permits](4-imperfect-information_files/figure-html/uncertain_abatement_nodwl-1.png)
+]
+
+.pull-right[
+
+Here's the uncertain MAC problem
+
+Solve for `\(\tilde{E}, E^*, \sigma(\tilde{E}),\)` and the welfare loss from setting the number of permits to be `\(L = \tilde{E}\)`
+
+Solve for `\(\tilde{E}, E^*,\)` and `\(E(\tau)\)` which is the firm's choice of emissions given `\(\tau\)`, and the welfare loss from setting the tax to be `\(\tau(\tilde{E})\)`
+
+]
+
+
+
+---
+
+# Abatement cost function uncertainty
+
+
+.pull-left[
+
+
+
+![Uncertain MAC breaks the equivalence between taxes and permits](4-imperfect-information_files/figure-html/uncertain_abatement-1.png)
+]
+
+.pull-right[
+
+With permits, the regulator allows `\(\tilde{E}\)` permits which results in a permit price of `\(\sigma(\tilde{E})\)` where `\(\tilde{E}\)` intersects the true MAC
+
+This yields a welfare loss of `\(C\)`
+
+Firm behavior sets the price even though quantity is fixed by the regulator
+
+]
+
+
+---
+
+# Abatement cost function uncertainty
+
+
+.pull-left[
+![Uncertain MAC breaks the equivalence between taxes and permits](4-imperfect-information_files/figure-html/uncertain_abatement-1.png)
+]
+
+.pull-right[
+
+With a tax, the regulator sets a price `\(\tau(\tilde{E})\)` per unit of emissions, and the firms choose the quantity of emissions where `\(\tau{\tilde{E}} = C'(\tilde{E})\)` which causes total emissions to be `\(E(\tau)\)`
+
+This yields a welfare loss of `\(B\)`
+
+Firm behavior sets the quantity even though price is fixed by the regulator
+
+]
+
+---
+
+# Abatement cost function uncertainty
+
+
+.pull-left[
+![Uncertain MAC breaks the equivalence between taxes and permits](4-imperfect-information_files/figure-html/uncertain_abatement-1.png)
+]
+
+.pull-right[
+
+Since `\(E(\tau) \neq \tilde{E}\)`, abatement cost uncertainty matters: tradable permits and taxes give us different emission outcomes
+
+Is there any systematic difference in the efficiency properties of permits and taxes?
+
+]
+
+---
+
+# Abatement cost function uncertainty
+
+
+In general it seems like sometimes the welfare loss of taxes will be higher, and other times the welfare losses of permits will be higher
+
+--
+
+What we will do next is try to understand the characteristics of the MAC and MD curves that tend to drive one policy to be better than the other
+
+
+---
+
+# Steep versus flat MD
+
+
+
+![Initial distribution matters for how costs and benefits are spread out](4-imperfect-information_files/figure-html/prices_vs_quantities_nodwl-1.png)
+
+Solve for the permit and tax DWLs in both of these scenarios where the only difference is the steepness of the marginal damage curve
+
+
+---
+
+# Steep versus flat MD
+
+
+
+![Initial distribution matters for how costs and benefits are spread out](4-imperfect-information_files/figure-html/prices_vs_quantities-1.png)
+
+The only difference between the two plots is how steep the MD is, and subsequently the policy that the regulator sets
+
+Welfare loss for taxes is given by `\(A\)`, welfare loss for permits is given by `\(B\)`
+
+
+---
+
+# Steep versus flat MD
+
+
+![Initial distribution matters for how costs and benefits are spread out](4-imperfect-information_files/figure-html/prices_vs_quantities-1.png)
+
+Permits do better with steep MD, taxes do better with flat MD!
+
+Why?
+
+
+---
+
+# Steep versus flat MD
+
+With a steep (and known) MD:
+--
+
+- The difference between `\(E^*\)` and `\(\tilde{E}\)` is restricted: steeper curves are more inelastic, errors in estimating MAC lead to small errors in `\(\tilde{E}-E^*\)`
+- The difference between `\(E^*\)` and `\(E(\tau)\)` can be very large: errors in estimating the MAC lead to bigger errors in `\(\tau(\tilde{E}) - \tau(E^*)\)` because MD is very steep
+
+
+---
+
+# Steep versus flat MD
+
+With a flat (and known) MD:
+--
+
+- The difference between `\(E^*\)` and `\(\tilde{E}\)` is can be very large: flatter curves are more elastic, errors in estimating MAC lead to large errors in `\(\tilde{E}-E^*\)`
+- The difference between `\(E^*\)` and `\(E(\tau)\)` is restricted: errors in estimating the MAC lead to smaller errors in `\(\tau(\tilde{E}) - \tau(E^*)\)` because MD is very flat
+
+&lt;!-- --- --&gt;
+
+&lt;!-- # The Weitzman theorem --&gt;
+
+&lt;!-- So far we've focused on the intuition, now lets formalize the results --&gt;
+
+&lt;!-- -- --&gt;
+
+&lt;!-- Let the damage function be `\(D(E,\eta)\)` where `\(\eta\)` is a random variable representing the regulator's uncertainty about the damage function --&gt;
+
+&lt;!-- -- --&gt;
+
+&lt;!-- We assume `\(D_E, D_{EE} &gt; 0\)`, and that `\(D_\eta, D_{E\eta} &gt; 0\)` --&gt;
+
+&lt;!-- -- --&gt;
+
+&lt;!-- Increases in `\(\eta\)` shift up the damage and marginal damage curves --&gt;
+
+&lt;!-- --- --&gt;
+
+&lt;!-- # The Weitzman theorem --&gt;
+
+
+&lt;!-- Let the abatement cost function be `\(C(E,\epsilon)\)` where `\(\epsilon\)` is a random variable representing the regulator's uncertainty about the abatement cost function --&gt;
+
+&lt;!-- -- --&gt;
+
+&lt;!-- We assume `\(-C_E &gt; 0, -C_{EE} &gt; 0\)`, and that `\(-C_\epsilon, -C_{E\epsilon} &gt; 0\)` --&gt;
+
+&lt;!-- -- --&gt;
+
+&lt;!-- Increases in `\(\epsilon\)` shift up the total and marginal abatement cost curves --&gt;
+
+&lt;!-- --- --&gt;
+
+&lt;!-- # The Weitzman theorem: quantities --&gt;
+
+&lt;!-- Let's start with a quantity instrument like tradable permits --&gt;
+
+&lt;!-- -- --&gt;
+
+&lt;!-- The regulator's objective is to find the emission target that minimizes social cost: --&gt;
+&lt;!-- $$\min_{E} --&gt;
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

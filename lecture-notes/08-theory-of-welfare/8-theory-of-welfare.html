@@ -44,9 +44,16 @@ knitr::opts_chunk$set(echo = TRUE, fig.align="center")
 })
 ```
 
-<style>.panelset {
-  --panel-tab-color-active: red;
-}</style>
+
+```
+## Warning: 'xaringanExtra::style_panelset' is deprecated.
+## Use 'style_panelset_tabs' instead.
+## See help("Deprecated")
+```
+
+```
+## Warning in style_panelset_tabs(...): The arguments to `syle_panelset()` changed in xaringanExtra 0.1.0. Please refer to the documentation to update your slides.
+```
 
 ---
 
@@ -167,7 +174,7 @@ Utility is `\(U(x,z,q)\)`
 # The general model
 
 The consumer maximizes utility given some fixed level of `\(q\)`, vector of market prices `\(p = \{p_1,...,p_J\}\)`, and income `\(y\)`:
-`$$\max_{z,x} U(x,z,q) + \lambda[y - z - p\cdot x]$$`
+`$$\max_{z,x_1,\dots,x_J} U(x,z,q) + \lambda[y - z - \sum_{i=1}^J p_i x_i]$$`
 
 --
 
@@ -180,7 +187,7 @@ and
 
 # The general model
 
-With the FOCs we can solve for the ordinary demand functions `\(x_j(p,y,q)\)`, the Lagrange multiplier `\(\lambda(p,y,q)\)`, and `\(z\)`.
+With the FOCs we can solve for the .hi[*ordinary*] demand functions `\(x_j(p,y,q)\)`, the Lagrange multiplier `\(\lambda(p,y,q)\)`, and `\(z\)`
 
 --
 
@@ -188,11 +195,12 @@ Note we can directly estimate ordinary demand functions since they depend on obs
 
 --
 
-If we substitute `\(x_j\)` into `\(U\)` we get the .hi-blue[indirect utility function] `\(V(p,y,q)\)` which tells us the maximized level of utility given prices, income, and environmental quality
+If we substitute `\(x_j\)` into `\(U\)` we get the .hi-blue[indirect utility function] `\(V(p,y,q)\)`
+- `\(V(p,y,q)\)` tells us the maximized level of utility given prices, income, and environmental quality
 
 --
 
-Note that `\(\lambda\)` is interpreted as the marginal utility of income
+Note that `\(\lambda\)` can be interpreted as the marginal utility of income
 
 ---
 
@@ -296,7 +304,7 @@ What does this result show us?
 
 --
 
-- Utility is held constant for movements in price along the *compensated* demand curve, but not the ordinary demand curve
+- Utility is held constant for movements in price along the .hi[*compensated*] demand curve, but not the ordinary demand curve
   - Moving along the ordinary demand curve confounds the pure price effect, and an implicit income effect (i.e. the substitution and income effects)
   
 --
@@ -337,7 +345,7 @@ CV is the income offset that gives you the pre-change utility back following the
 
 # Compensating variation
 
-Given a change in price from `\(p^0 to p^1 &lt; p^0\)` the CV is:
+Given a change in price from `\(p^0 \text{ to } p^1 &lt; p^0\)` the CV is:
 `$$V(p^0,y,q) = V(p^1,y-CV,q)$$`
 where `\(V\)` is the indirect (maximized) utility function
 
@@ -381,9 +389,9 @@ EV uses the post-change level of utility as the reference, it's the income chang
 
 ---
 
-# Equvalent variation
+# Equivalent variation
 
-Given a change in price from `\(p^0 to p^1 &lt; p^0\)` the CV is:
+Given a change in price from `\(p^0 \text{ to } p^1 &lt; p^0\)` the CV is:
 `$$V(p^1,y,q) = V(p^0,y+CV,q)$$`
 --
 
@@ -395,19 +403,412 @@ Here `\(EV &gt; 0\)` since we are looking at a price decrease
 
 ---
 
-# Compensating variation
+# Equivalent variation
 
-CV can also be interpreted as WTP or WTA measures
+EV can also be interpreted as WTP or WTA measures
 
 --
 
-CV is the maximum someone is willing to pay to have a lower price
+EV is the minimum someone is willing to accept to forgo a price decrease
+- Anything more provides a utility improvement
+
+--
+
+EV is the maximum someone is willing to pay to prevent a price increase
 - Anything less provides a utility improvement
 
+---
+
+# WTP, WTA, CV, EV
+
+You can start to see that WTP, WTA, CV, and EV are all intertwined (but possibly in confusing ways thus far)
+
 --
 
-CV is the minimum someone is willing to accept to have a higher price
-- Anything more provides a utility improvement
+Our goal in applied welfare economics is to estimate the components of preferences that we need to calculate CV or EV
+
+--
+
+Once we have CV or EV we have defensible measures for a consumer's value of an exogenous change in some environmental variable
+
+---
+
+# Two additional formulations
+
+Before we continue, let's write down two additional expressions for CV and EV that will help us operationalize our theory:
+`\begin{align}
+  CV &amp;= E(p^0,u^0,q) - E(p^1,u^0,q) \\
+    &amp;= y - E(p^1, u^0,q)
+\end{align}`
+
+`\begin{align}
+  EV &amp;= E(p^0,u^1,q) - E(p^1,u^1,q) \\
+    &amp;= E(p^0,u^1,q) - y
+\end{align}`
+
+Where the second set of equalities come from the duality of the two problems: `\(E(\cdot)\)` gives the expenditure needs to achieve income `\(y\)` in the utility maximization problem
+
+---
+
+# From expenditure to demand
+
+Now, by the fundamental theorem of calculus we have:
+`\begin{align}
+  CV = E(p^0,u^0,q) - E(p^1,u^0,q) = \int_{p^1_j}^{p^0_j}{\partial E(p,u,q) dp_j \over \partial p_j} dp_j  \\
+  EV =  E(p^0,u^1,q) - E(p^1,u^1,q) = \int_{p^1_j}^{p^0_j}{\partial E(p,u,q) dp_j \over \partial p_j} dp_j 
+\end{align}`
+where `\(p_{-j}\)` is the set of prices without `\(p_j\)`
+
+---
+
+# CV and EV as compensated demand
+
+Remember that we found:
+`$$h_j(p,u,q) = {\partial E(p,u,q) \over \partial p_j}, \,\,\,\, j=1,\dots,J$$`
+using this we can re-write our CV and EV expressions as integrals
+
+`\begin{align}
+  CV = E(p^0,u^0,q) - E(p^1,u^0,q) =  \int_{p^1_j}^{p^0_j} h_j(p_j, p_{-j},u^0,q)dp_j  \\
+  EV =  E(p^0,u^1,q) - E(p^1,u^1,q) = \int_{p^1_j}^{p^0_j} h_j(p_j, p_{-j},u^1,q)dp_j
+\end{align}`
+
+--
+
+What does this say about how we interpret CV and EV?
+
+---
+
+# Value is area under the curve
+
+`\begin{align}
+  CV = E(p^0,u^0,q) - E(p^1,u^0,q) =  \int_{p^1_j}^{p^0_j} h_j(p_j, p_{-j},u^0,q)dp_j  \\
+  EV =  E(p^0,u^1,q) - E(p^1,u^1,q) = \int_{p^1_j}^{p^0_j} h_j(p_j, p_{-j},u^1,q)dp_j
+\end{align}`
+
+CV and EV are the area under the appropriate compensated demand curve, between two price levels
+
+--
+
+This is pretty straightforward, we know how to take integrals!
+
+--
+
+.hi-red[One problem:] we usually estimate .hi[*ordinary*] demand curves because we don't observe `\(u^0,u^1\)`, we will get to this in a bit
+
+---
+
+# WTP, WTA, CV, EV two ways
+
+Let's look at how we can see WTP, WTA, CV, and EV graphically
+
+--
+
+We will be looking in two different spaces:
+--
+
+1. Utility
+3. Demand
+
+--
+
+The book shows the intuition in indirect utility space if you're interested (Fig 14.1 Panel B)
+
+---
+
+# CV and EV in utility space
+
+
+
+.pull-left[
+
+The red solid budget line labeled `\(p^0\)` is the budget constraint under price `\(p^0\)`
+
+The blue solid budget line  labeled `\(p^1\)` is the budget constraint under price `\(p^1\)`
+
+`\(p_1\)` kicks out the budget constraint because `\(p_1 &lt; p_0\)`
+
+]
+
+.pull-right[
+
+![Tangent line at the optimum has 0 slope](8-theory-of-welfare_files/figure-html/utility_space-1.png)
+
+]
+
+---
+
+# CV and EV in utility space
+
+.pull-left[
+
+The consumer chooses consumption levels `\(x^0\)` and `\(x_1\)` to reach the highest indifference curves `\(u^0\)` (red) and `\(u^1\)` (blue)
+
+]
+
+.pull-right[
+
+![Tangent line at the optimum has 0 slope](8-theory-of-welfare_files/figure-html/utility_space-1.png)
+
+]
+
+---
+
+# CV and EV in utility space
+
+.pull-left[
+
+CV is given by the expenditure needed to reach `\(u^0\)` given the new price
+
+You can compute it by constructing a hypothetical budget line `\(\tilde{p}^1\)` (blue dashed) from price `\(p^1\)` but with reduced income so the consumer can only reach `\(u^0\)`
+
+This change in income is CV
+
+]
+
+.pull-right[
+
+![Tangent line at the optimum has 0 slope](8-theory-of-welfare_files/figure-html/utility_space-1.png)
+
+]
+
+
+---
+
+# CV and EV in utility space
+
+.pull-left[
+
+EV is given by the income needed to reach `\(u^1\)` given the old price
+
+You can compute it by constructing a hypothetical budget line `\(\tilde{p}^0\)` (red dashed) from price `\(p^0\)` but with increased income so the consumer can reach `\(u^1\)`
+
+This change in income is EV
+
+]
+
+.pull-right[
+
+![Tangent line at the optimum has 0 slope](8-theory-of-welfare_files/figure-html/utility_space-1.png)
+
+]
+
+
+---
+
+# CV and EV in demand space
+
+
+
+.pull-left[
+
+The price change traces out the ordinary demand curve (dark blue):
+
+We are holding income `\(y\)` and environmental quality `\(q\)` fixed, so changes in price move us along `\(x(p,y,q)\)`
+
+]
+
+.pull-right[
+
+![Tangent line at the optimum has 0 slope](8-theory-of-welfare_files/figure-html/demand_space-1.png)
+
+]
+
+
+---
+
+# CV and EV in demand space
+
+
+.pull-left[
+
+Utility is not held constant so we are moving across different compensated demand curves (red to light blue)
+
+What traces out the compensated demand curves?
+
+Changes in *.hi[budget constraints]*
+
+]
+
+.pull-right[
+
+![Tangent line at the optimum has 0 slope](8-theory-of-welfare_files/figure-html/demand_space-1.png)
+
+]
+
+---
+
+# CV and EV in demand space
+
+
+.pull-left[
+
+From the utility space example: we conceptualized moving from `\(p^0\)` to `\(\tilde{p}^1\)`, a change in the budget constraint (price and also income) that kept utility constant, in order to recover CV
+
+This change traces out `\(h(p,u^0,q)\)`
+
+]
+
+.pull-right[
+
+![Tangent line at the optimum has 0 slope](8-theory-of-welfare_files/figure-html/demand_space-1.png)
+
+]
+
+---
+
+# CV and EV in demand space
+
+
+.pull-left[
+
+From the utility space example: we conceptualized moving from `\(p^1\)` to `\(\tilde{p}^0\)`, a change in the budget constraint (price and also income) that kept utility constant, in order to recover EV
+
+This change traces out `\(h(p,u^1,q)\)`
+
+]
+
+.pull-right[
+
+![Tangent line at the optimum has 0 slope](8-theory-of-welfare_files/figure-html/demand_space-1.png)
+
+]
+
+
+---
+
+# CV and EV in demand space
+
+
+.pull-left[
+
+We never observe `\(\tilde{p}^0\)` or `\(\tilde{p}^1\)`, they're just hypothetical
+
+This illustrates how we do not directly observe compensated demand curves even though they are how we compute CV and EV
+
+]
+
+.pull-right[
+
+![Tangent line at the optimum has 0 slope](8-theory-of-welfare_files/figure-html/demand_space-1.png)
+
+]
+
+---
+
+# CV and EV in demand space
+
+
+
+
+
+.pull-left[
+
+What is CV and EV on the graph?
+
+CV is `\((p^0, a, c, p^1)\)`
+
+It is the area under the original compensated demand curve
+
+And note that area under is flipped because price is on the y axis for the inverse demand curves we plot
+
+]
+
+.pull-right[
+
+![Tangent line at the optimum has 0 slope](8-theory-of-welfare_files/figure-html/demand_space_cv-1.png)
+
+]
+
+
+---
+
+# CV and EV in demand space
+
+
+
+
+
+.pull-left[
+
+What is CV and EV on the graph?
+
+EV is `\((p^0, d, b, p^1)\)`
+
+It is the area under the new compensated demand curve
+
+]
+
+.pull-right[
+
+![Tangent line at the optimum has 0 slope](8-theory-of-welfare_files/figure-html/demand_space_ev-1.png)
+
+]
+
+
+---
+
+# Toward computing CV and EV
+
+We saw that we can compute CV and EV using compensated demand curves, so we can link these valuation concepts to behaviorial function for the good
+
+--
+
+Our problem again is that we do not observe compensated demand curves, but ordinary demand curves
+
+--
+
+Often times economists will use .hi-blue[consumer surplus (CS)] in place of CV or EV
+
+---
+
+# Consumer surplus
+
+CS is effectively the ordinary demand version of EV and CV
+
+--
+
+CS is given by:
+`$$CS = \int_{p^0_j}^{p^1_j}x_j(p,y,q)dp_j$$`
+
+--
+
+Since this is based on ordinary demand, we can compute it easily if we have an estimate of consumer demand
+
+
+---
+
+# CS in demand space
+
+
+
+.pull-left[
+
+What is CS on the graph
+
+CS is `\((p^0, a, b, p^1)\)`
+
+It is the area under the ordinary demand curve
+
+What is this measuring?
+
+How does it relate to WTP and WTA?
+
+]
+
+.pull-right[
+
+![Tangent line at the optimum has 0 slope](8-theory-of-welfare_files/figure-html/demand_space_cs-1.png)
+
+]
+
+---
+
+# What is CS
+
+In general CS has no WTP/WTA interpretation since utility is not held fixed for movements along an ordinary demand curve
+
+--
+
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

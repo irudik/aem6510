@@ -1,5 +1,5 @@
 ---
-title: "Lecture 5"
+title: "Lecture 4"
 subtitle: "Imperfect information"
 author: Ivan Rudik
 date: AEM 6510
@@ -48,7 +48,9 @@ What happens when the regulator has imperfect information about:
 
 So we far have assumed perfect information which is unlikely to be true
 
-We will continue assuming that firm's know their own marginal abatement cost
+--
+
+We will continue assuming that firms know their own marginal abatement cost
 
 And that regulators observe firm-level emissions
 
@@ -57,6 +59,8 @@ And that regulators observe firm-level emissions
 # Imperfect information
 
 How do we think about this?
+
+--
 
 Firms are unlikely to tell regulators exactly what their marginal abatement costs are
 
@@ -74,23 +78,37 @@ Estimation will naturally result in some error
 
 Let's start by comparing emissions taxes and tradable permits
 
+--
+
 We'll start by looking at damage function uncertainty with known abatement costs
 
-Then we look at abatement cost uncertainty with know damage functions
+--
 
-We will mainly be focused on efficiency outcomes and want to understand which policy delivers the least welfare loss and why?
+Then we look at abatement cost uncertainty with known damage functions
+
+--
+
+We will mainly be focused on efficiency outcomes and want to understand which policy delivers the highest welfare and why
 
 ---
 
 # Damage function uncertainty
 
 - $D(E)$ is the social damage function
+--
+
 - $C(E)$ is the aggregate abatement cost function
+--
+
 - $E^*$ is the optimal level of pollution
   - This is defined by $-C'(E) = D'(E)$
+--
+  
 - Let $\tilde{D}(E)$ and $\tilde{C}(E)$ denote the estimated damage and abatement cost function
 
-First suppose the regulator estimates $-C'(E)$ correctly and underestimates marginal damages: $\tilde{D}'(E) < D'(E) \,\, \forall E$
+--
+
+First suppose the regulator estimates $-C'(E)$ correctly, but underestimates marginal damages: $\tilde{D}'(E) < D'(E) \,\, \forall E$
 
 ---
 
@@ -102,6 +120,9 @@ The regulator chooses policy based on her estimate $\tilde{D}'(E)$
 
 This means she sets:
 $$-C'(E) = \tilde{D}'(E)$$
+
+--
+
 which is solved by some $\tilde{E} > E^*$ because she underestimated marginal damages
 
 --
@@ -114,15 +135,68 @@ Does the size of the loss depend on the policy instrument?
 
 # Damage function uncertainty
 
-Define welfare loss as the difference in total social costs at $\tilde{E}$ and that would have occured at $E^*$:
+Define welfare loss as the difference in total social costs at $\tilde{E}$ versus the efficient level $E^*$:
 \begin{align}
 WL &= [D(\tilde{E}) + C(\tilde{E})] - [D(E^*) - C(E^*)] \notag\\
   &= [D(\tilde{E}) -D(E^*)] - [ C(\tilde{E})- C(E^*)]
 \end{align}
 
-This is equivalent to the area under the marginal curves between the two emission levels:
+This is equivalent to the area under the marginal damage and abatement cost curves between the two emission levels:
 $$WL = \int_{E^*}^{\tilde{E}}D'(E) dE - \int_{E^*}^{\tilde{E}}C'(E)dE$$
 
+
+---
+
+# Damage function uncertainty with permits
+
+
+.pull-left[
+```{r uncertain_damages_permit_nodwl, echo = FALSE, fig.show = 'hide', warning = F}
+damage_1 <- function(x) 1 + x
+damage_2 <- function(x) -1 + x
+abatement_cost <- function(x) 5 - x
+intersections_1 <- tibble(x = c(0, 2, 2, 3, 3, 3),
+                        y = c(2, 3, 0, 4, 2, 0))
+polys_dwl <- tibble(x = c(2, 3, 3),
+                     y = c(3, 4, 2))
+ggplot() +
+  stat_function(fun = damage_1, color = "#638ccc", size = 1.5) +
+  stat_function(fun = damage_2, color = "#ca5670", size = 1.5) +
+  stat_function(fun = abatement_cost, color = "darkslateblue", size = 1.5) +
+  annotate("text", size = 8, label = "D'(E)", x = 3, y = 4.5) +
+  annotate("text", size = 8, label = expression(tilde(D)*minute (E)), x = 4, y = 2.5) +
+  annotate("text", size = 8, label = expression(-C*minute (E)), x = 4.5, y = 1) +
+  theme_minimal()  +
+  theme(
+    legend.position = "none",
+    title = element_text(size = 24),
+    axis.text.x = element_text(size = 18, color = "#eeeeee"),
+    axis.text.y = element_text(size = 18, color = "#eeeeee"),
+    axis.title.x = element_text(size = 24), axis.title.y = element_text(size = 24),
+    panel.grid.minor.x = element_blank(), panel.grid.major.y = element_blank(),
+    panel.grid.minor.y = element_blank(), panel.grid.major.x = element_blank(),
+    panel.background = element_rect(fill = "#eeeeee", colour = NA),
+    plot.background = element_rect(fill = "#eeeeee", colour = NA),
+    axis.line = element_line(colour = "black")
+  ) +
+  labs(x = "Emissions",
+       y = "MAC/MD ($)",
+       title = "Uncertain MD with permits") +
+  scale_x_continuous(expand = c(0, 0), limits = c(0, 5)) +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 5))
+
+```
+
+![Uncertain MD with permits](`r knitr::fig_chunk("uncertain_damages_permit_nodwl", "png")`)
+]
+
+.pull-right[
+
+Here is the set up
+
+Solve for $\tilde{E}, E^*$ and the welfare loss from setting the number of permits to be $L = \tilde{E}$
+
+]
 
 ---
 
@@ -153,8 +227,8 @@ ggplot() +
   stat_function(fun = damage_2, color = "#ca5670", size = 1.5) +
   stat_function(fun = abatement_cost, color = "darkslateblue", size = 1.5) +
   annotate("text", size = 8, label = "A", x = 2.6, y = 3) +
-  annotate("text", size = 8, label = "D'(E)", x = 4, y = 2.5) +
-  annotate("text", size = 8, label = expression(tilde(D)*minute (E)), x = 3, y = 4.5) +
+  annotate("text", size = 8, label = "D'(E)", x = 3, y = 4.5) +
+  annotate("text", size = 8, label = expression(tilde(D)*minute (E)), x = 4, y = 2.5) +
   annotate("text", size = 8, label = expression(-C*minute (E)), x = 4.5, y = 1) +
   theme_minimal()  +
   theme(
@@ -175,7 +249,7 @@ ggplot() +
   scale_x_continuous(expand = c(0, 0), limits = c(0, 5),
                      breaks = c(intersections_1$x[2], intersections_1$x[4]), labels = expression(E^"*", tilde(E))) +
   scale_y_continuous(expand = c(0, 0), limits = c(0, 5),
-                     breaks = c(intersections_1$y[1]), labels = expression(tau(tilde(E))))
+                     breaks = c(intersections_1$y[1]), labels = expression(sigma(tilde(E))))
 
 ```
 
@@ -192,6 +266,59 @@ She incurs welfare loss $A$ from emissions where marginal damage $>$ marginal ab
 
 ]
 
+
+---
+
+# Damage function uncertainty with taxes
+
+
+.pull-left[
+```{r uncertain_damages_permit_nodwl_tax, echo = FALSE, fig.show = 'hide', warning = F}
+damage_1 <- function(x) 1 + x
+damage_2 <- function(x) -1 + x
+abatement_cost <- function(x) 5 - x
+intersections_1 <- tibble(x = c(0, 2, 2, 3, 3, 3),
+                        y = c(2, 3, 0, 4, 2, 0))
+polys_dwl <- tibble(x = c(2, 3, 3),
+                     y = c(3, 4, 2))
+ggplot() +
+  stat_function(fun = damage_1, color = "#638ccc", size = 1.5) +
+  stat_function(fun = damage_2, color = "#ca5670", size = 1.5) +
+  stat_function(fun = abatement_cost, color = "darkslateblue", size = 1.5) +
+  annotate("text", size = 8, label = "D'(E)", x = 3, y = 4.5) +
+  annotate("text", size = 8, label = expression(tilde(D)*minute (E)), x = 4, y = 2.5) +
+  annotate("text", size = 8, label = expression(-C*minute (E)), x = 4.5, y = 1) +
+  theme_minimal()  +
+  theme(
+    legend.position = "none",
+    title = element_text(size = 24),
+    axis.text.x = element_text(size = 18, color = "#eeeeee"),
+    axis.text.y = element_text(size = 18, color = "#eeeeee"),
+    axis.title.x = element_text(size = 24), axis.title.y = element_text(size = 24),
+    panel.grid.minor.x = element_blank(), panel.grid.major.y = element_blank(),
+    panel.grid.minor.y = element_blank(), panel.grid.major.x = element_blank(),
+    panel.background = element_rect(fill = "#eeeeee", colour = NA),
+    plot.background = element_rect(fill = "#eeeeee", colour = NA),
+    axis.line = element_line(colour = "black")
+  ) +
+  labs(x = "Emissions",
+       y = "MAC/MD ($)",
+       title = "Uncertain MD with taxes") +
+  scale_x_continuous(expand = c(0, 0), limits = c(0, 5)) +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 5))
+
+```
+
+![Uncertain MD with permits](`r knitr::fig_chunk("uncertain_damages_permit_nodwl_tax", "png")`)
+]
+
+.pull-right[
+
+Here is the set up
+
+Solve for $\tilde{E}, E^*$ and $E(\tau)$ which is the firm's choice of emissions given $\tau$, and the welfare loss from setting the tax to be $\tau(\tilde{E})$ which achieves $E=\tilde{E}$ given $-\tilde{C}'(E)$
+
+]
 
 ---
 
@@ -221,8 +348,8 @@ ggplot() +
   stat_function(fun = damage_1, color = "#638ccc", size = 1.5) +
   stat_function(fun = damage_2, color = "#ca5670", size = 1.5) +
   stat_function(fun = abatement_cost, color = "darkslateblue", size = 1.5) +
-  annotate("text", size = 8, label = "D'(E)", x = 4, y = 2.5) +
-  annotate("text", size = 8, label = expression(tilde(D)*minute (E)), x = 3, y = 4.5) +
+  annotate("text", size = 8, label = "D'(E)", x = 3, y = 4.5) +
+  annotate("text", size = 8, label = expression(tilde(D)*minute (E)), x = 4, y = 2.5) +
   annotate("text", size = 8, label = expression(-C*minute (E)), x = 4.5, y = 1) +
   annotate("text", size = 8, label = "A", x = 2.6, y = 3) +
   theme_minimal()  +
@@ -248,14 +375,16 @@ ggplot() +
 
 ```
 
-![Uncertain MD with permits](`r knitr::fig_chunk("uncertain_damages_tax", "png")`)
+![Uncertain MD with taxes](`r knitr::fig_chunk("uncertain_damages_tax", "png")`)
 ]
 
 .pull-right[
 
-With a tax scheme the regulator sets the tax as a function of her target emissions $\tau(\tilde{E})$
+The regulator sets the tax as a function of her target emissions $\tau(\tilde{E})$
 
 Since she underestimates $D'$, she sets $\tau(\tilde{E})$ too low
+
+The firm then selects $E(\tau) = \tilde{E}$
 
 She incurs welfare loss $A$ from emissions where marginal damage $>$ marginal abatement cost
 
@@ -272,25 +401,27 @@ What did we learn?
 
 --
 
-With damage function uncertainty,
+With damage function uncertainty,  
 the regulator will set the incorrect level of policy
 
 --
 
 If she underestimates MD:
+--
+
   - She sets the total number of permits too high
   - She sets too low of a tax
 
 --
 
-Both lead to the exact same welfare loss
+Both lead to the exact same welfare loss  
 so both policies have the same efficiency
 
 ---
 
 # Abatement cost function uncertainty
 
-Suppose the regulator estimates $D'(E)$ correctly and underestimates marginal damages: $-\tilde{E}'(E) < -C'(E) \,\, \forall E$
+Suppose the regulator estimates $D'(E)$ correctly and underestimates marginal abatement cost: $-\tilde{C}'(E) < -C'(E) \,\, \forall E$
 
 
 The regulator chooses policy based on her estimate $-\tilde{C}'(E)$
@@ -304,6 +435,66 @@ which is solved by some $\tilde{E} < E^*$ because she underestimated marginal co
 --
 
 What is the welfare loss from targeting $\tilde{E}$ instead of $E^*$?
+
+
+---
+
+# Abatement cost function uncertainty
+
+
+.pull-left[
+```{r uncertain_abatement_nodwl, echo = FALSE, fig.show = 'hide', warning = F}
+damage <- function(x) 1 + x
+abatement_cost_1 <- function(x) 5 - x
+abatement_cost_2 <- function(x) 3 - x
+
+intersections_1 <- tibble(x = c(0, 2, 2, 3, 3, 3, 1, 1, 0),
+                        y = c(2, 3, 0, 4, 2, 0, 0, 4, 4))
+polys_dwl <- tibble(x = c(2, 3, 3),
+                     y = c(3, 4, 2))
+polys_dwl_2 <- tibble(x = c(2, 1, 1),
+                     y = c(3, 4, 2))
+ggplot() +
+  stat_function(fun = abatement_cost_1, color = "#638ccc", size = 1.5) +
+  stat_function(fun = abatement_cost_2, color = "#ca5670", size = 1.5) +
+  stat_function(fun = damage, color = "darkslateblue", size = 1.5) +
+  annotate("text", size = 8, label = expression(D*minute (E)), x = 3, y = 4.5) +
+  annotate("text", size = 8, label = expression(-C*minute (E)), x = 4.5, y = 1) +
+  annotate("text", size = 8, label = expression(-tilde(C)*minute (E)), x = 0.5, y = 3.25) +
+  theme_minimal()  +
+  theme(
+    legend.position = "none",
+    title = element_text(size = 24),
+    axis.text.x = element_text(size = 18, color = "#eeeeee"),
+    axis.text.y = element_text(size = 18, color = "#eeeeee"),
+    axis.title.x = element_text(size = 24), axis.title.y = element_text(size = 24),
+    panel.grid.minor.x = element_blank(), panel.grid.major.y = element_blank(),
+    panel.grid.minor.y = element_blank(), panel.grid.major.x = element_blank(),
+    panel.background = element_rect(fill = "#eeeeee", colour = NA),
+    plot.background = element_rect(fill = "#eeeeee", colour = NA),
+    axis.line = element_line(colour = "black")
+  ) +
+  labs(x = "Emissions",
+       y = "MAC/MD ($)",
+       title = "Uncertain MAC") +
+  scale_x_continuous(expand = c(0, 0), limits = c(0, 5)) +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 5))
+
+```
+
+
+![Uncertain MAC breaks the equivalence between taxes and permits](`r knitr::fig_chunk("uncertain_abatement_nodwl", "png")`)
+]
+
+.pull-right[
+
+Here's the uncertain MAC problem
+
+Solve for $\tilde{E}, E^*, \sigma(\tilde{E}),$ and the welfare loss from setting the number of permits to be $L = \tilde{E}$
+
+Solve for $\tilde{E}, E^*,$ and $E(\tau)$ which is the firm's choice of emissions given $\tau$, and the welfare loss from setting the tax to be $\tau(\tilde{E})$
+
+]
 
 
 
@@ -434,6 +625,98 @@ In general it seems like sometimes the welfare loss of taxes will be higher, and
 --
 
 What we will do next is try to understand the characteristics of the MAC and MD curves that tend to drive one policy to be better than the other
+
+
+---
+
+# Steep versus flat MD
+
+```{r prices_vs_quantities_nodwl, echo = FALSE, fig.show = 'hide', warning = F, fig.width=12, fig.height=5}
+damage_steep <- function(x) -1.6 + 1.75*x
+abatement_cost_1 <- function(x) 5 - x
+abatement_cost_2 <- function(x) 3 - x
+
+intersections_1 <- tibble(x = c(0.0, 2.4, 2.4, 5-1.328, 5-1.328, 5-1.328, 1.672, 1.672, 0.0),
+                        y =   c(1.328, 2.6, 0.0, -1.6+1.75*(5-1.328), 1.328, 0.0, 0.0, 3.4, 3.4))
+polys_dwl <- tibble(x = c(intersections_1$x[2], intersections_1$x[4], intersections_1$x[5]),
+                     y = c(intersections_1$y[2], intersections_1$y[4], intersections_1$y[5]))
+polys_dwl_2 <- tibble(x = c(intersections_1$x[2], intersections_1$x[7], intersections_1$x[8]),
+                     y = c(intersections_1$y[2], intersections_1$y[1], intersections_1$y[8]))
+steep <- ggplot() +
+  stat_function(fun = abatement_cost_1, color = "#638ccc", size = 1.5) +
+  stat_function(fun = abatement_cost_2, color = "#ca5670", size = 1.5) +
+  stat_function(fun = damage_steep, color = "darkslateblue", size = 1.5) +
+  annotate("text", size = 8, label = expression(D*minute (E)), x = 3, y = 4.5) +
+  annotate("text", size = 8, label = expression(-C*minute (E)), x = 4.5, y = 1.15) +
+  annotate("text", size = 8, label = expression(-tilde(C)*minute (E)), x = 0.5, y = 3.05) +
+  theme_minimal()  +
+  theme(
+    legend.position = "none",
+    title = element_text(size = 24),
+    axis.text.x = element_text(size = 18, color = "#eeeeee"),
+    axis.text.y = element_text(size = 18, color = "#eeeeee"),
+    axis.title.x = element_text(size = 24), axis.title.y = element_text(size = 24),
+    panel.grid.minor.x = element_blank(), panel.grid.major.y = element_blank(),
+    panel.grid.minor.y = element_blank(), panel.grid.major.x = element_blank(),
+    panel.background = element_rect(fill = "#eeeeee", colour = NA),
+    plot.background = element_rect(fill = "#eeeeee", colour = NA),
+    axis.line = element_line(colour = "black")
+  ) +
+  labs(x = "Emissions",
+       y = "MAC/MD ($)",
+       title = "Steep MD") +
+  scale_x_continuous(expand = c(0, 0), limits = c(0, 5),
+                     breaks = c(intersections_1$x[2], intersections_1$x[4], intersections_1$x[7]), labels = expression(E^"*", E(tau), tilde(E))) +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 5),
+                     breaks = c(intersections_1$y[1], intersections_1$y[9]), labels = expression(tau(tilde(E)), sigma(tilde(E))))
+
+
+damage_flat <- function(x) 1 + x/2
+abatement_cost_1 <- function(x) 5 - x
+abatement_cost_2 <- function(x) 3 - x
+
+intersections_1 <- tibble(x = c(0.0, 8/3, 8/3, 5-(3-4/3), 5-(3-4/3), 5-(3-4/3), 4/3, 4/3, 0.0),
+                        y =   c(3-4/3, 5-8/3, 0.0, 1+(5-(3-4/3))/2, 3-4/3, 0.0, 0.0, 5-4/3, 5-4/3))
+polys_dwl <- tibble(x = c(intersections_1$x[2], intersections_1$x[4], intersections_1$x[5]),
+                     y = c(intersections_1$y[2], intersections_1$y[4], intersections_1$y[5]))
+polys_dwl_2 <- tibble(x = c(intersections_1$x[2], intersections_1$x[7], intersections_1$x[8]),
+                     y = c(intersections_1$y[2], intersections_1$y[1], intersections_1$y[8]))
+flat <- ggplot() +
+  stat_function(fun = abatement_cost_1, color = "#638ccc", size = 1.5) +
+  stat_function(fun = abatement_cost_2, color = "#ca5670", size = 1.5) +
+  stat_function(fun = damage_flat, color = "darkslateblue", size = 1.5) +
+  annotate("text", size = 8, label = expression(D*minute (E)), x = 4, y = 3.5) +
+  annotate("text", size = 8, label = expression(-C*minute (E)), x = 4.5, y = 1.15) +
+  annotate("text", size = 8, label = expression(-tilde(C)*minute (E)), x = 0.5, y = 3.05) +
+  theme_minimal()  +
+  theme(
+    legend.position = "none",
+    title = element_text(size = 24),
+    axis.text.x = element_text(size = 18, color = "#eeeeee"),
+    axis.text.y = element_text(size = 18, color = "#eeeeee"),
+    axis.title.x = element_text(size = 24), axis.title.y = element_text(size = 24),
+    panel.grid.minor.x = element_blank(), panel.grid.major.y = element_blank(),
+    panel.grid.minor.y = element_blank(), panel.grid.major.x = element_blank(),
+    panel.background = element_rect(fill = "#eeeeee", colour = NA),
+    plot.background = element_rect(fill = "#eeeeee", colour = NA),
+    axis.line = element_line(colour = "black")
+  ) +
+  labs(x = "Emissions",
+       y = "MAC/MD ($)",
+       title = "Flat MD") +
+  scale_x_continuous(expand = c(0, 0), limits = c(0, 5),
+                     breaks = c(intersections_1$x[2], intersections_1$x[4], intersections_1$x[7]), labels = expression(E^"*", E(tau), tilde(E))) +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 5),
+                     breaks = c(intersections_1$y[1], intersections_1$y[9]), labels = expression(tau(tilde(E)), sigma(tilde(E))))
+
+steep + flat & theme(
+    plot.background = element_rect(fill = "#eeeeee", colour = NA))
+
+```
+
+![Initial distribution matters for how costs and benefits are spread out](`r knitr::fig_chunk("prices_vs_quantities_nodwl", "png")`)
+
+Solve for the permit and tax DWLs in both of these scenarios where the only difference is the steepness of the marginal damage curve
 
 
 ---
@@ -585,8 +868,10 @@ Why?
 # Steep versus flat MD
 
 With a steep (and known) MD:
-  - The difference between $E^*$ and $\tilde{E}$ is restricted: steeper curves are more inelastic, errors in estimating MAC lead to small errors in $\tilde{E}-E^*$
-  - The difference between $E^*$ and $E(\tau)$ can be very large: errors in estimating the MAC lead to bigger errors in $\tau(\tilde{E}) - \tau(E^*)$ because MD is very steep
+--
+
+- The difference between $E^*$ and $\tilde{E}$ is restricted: steeper curves are more inelastic, errors in estimating MAC lead to small errors in $\tilde{E}-E^*$
+- The difference between $E^*$ and $E(\tau)$ can be very large: errors in estimating the MAC lead to bigger errors in $\tau(\tilde{E}) - \tau(E^*)$ because MD is very steep
 
 
 ---
@@ -594,38 +879,51 @@ With a steep (and known) MD:
 # Steep versus flat MD
 
 With a flat (and known) MD:
-  - The difference between $E^*$ and $\tilde{E}$ is can be very large: flatter curves are more elastic, errors in estimating MAC lead to large errors in $\tilde{E}-E^*$
-  - The difference between $E^*$ and $E(\tau)$ is restricted: errors in estimating the MAC lead to smaller errors in $\tau(\tilde{E}) - \tau(E^*)$ because MD is very flat
-
----
-
-# The Weitzman theorem
-
-So far we've focused on the intuition, now lets formalize the results
-
 --
 
-Let the damage function be $D(E,\eta)$ where $\eta$ is a random variable representing the regulator's uncertainty about the damage function
+- The difference between $E^*$ and $\tilde{E}$ is can be very large: flatter curves are more elastic, errors in estimating MAC lead to large errors in $\tilde{E}-E^*$
+- The difference between $E^*$ and $E(\tau)$ is restricted: errors in estimating the MAC lead to smaller errors in $\tau(\tilde{E}) - \tau(E^*)$ because MD is very flat
 
---
+<!-- --- -->
 
-We assume $D_E, D_{EE} > 0$, and that $D_\eta, D_{E\eta} > 0$
+<!-- # The Weitzman theorem -->
 
---
+<!-- So far we've focused on the intuition, now lets formalize the results -->
 
-Increases in $\eta$ shift up the damage and marginal damage curves
+<!-- -- -->
 
----
+<!-- Let the damage function be $D(E,\eta)$ where $\eta$ is a random variable representing the regulator's uncertainty about the damage function -->
 
-# The Weitzman theorem
+<!-- -- -->
+
+<!-- We assume $D_E, D_{EE} > 0$, and that $D_\eta, D_{E\eta} > 0$ -->
+
+<!-- -- -->
+
+<!-- Increases in $\eta$ shift up the damage and marginal damage curves -->
+
+<!-- --- -->
+
+<!-- # The Weitzman theorem -->
 
 
-Let the abatement cost function be $C(E,\epsilon)$ where $\epsilon$ is a random variable representing the regulator's uncertainty about the abatement cost function
+<!-- Let the abatement cost function be $C(E,\epsilon)$ where $\epsilon$ is a random variable representing the regulator's uncertainty about the abatement cost function -->
 
---
+<!-- -- -->
 
-We assume $-C_E > 0, -C_{EE} > 0$, and that $-C_\epsilon, -C_{E\epsilon} > 0$
+<!-- We assume $-C_E > 0, -C_{EE} > 0$, and that $-C_\epsilon, -C_{E\epsilon} > 0$ -->
 
---
+<!-- -- -->
 
-Increases in $\epsilon$ shift up the total and marginal abatement cost curves
+<!-- Increases in $\epsilon$ shift up the total and marginal abatement cost curves -->
+
+<!-- --- -->
+
+<!-- # The Weitzman theorem: quantities -->
+
+<!-- Let's start with a quantity instrument like tradable permits -->
+
+<!-- -- -->
+
+<!-- The regulator's objective is to find the emission target that minimizes social cost: -->
+<!-- $$\min_{E} -->
