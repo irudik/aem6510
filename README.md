@@ -88,7 +88,7 @@ Some sections of the course have readings (available on Canvas if not in the boo
 
 **Reading**: PR Chapter 3
 
-### [Sep 15: Imperfect information](https://ivanrudik.com) <!-- actually 17 -->
+### [Sep 15: Imperfect information](https://raw.githack.com/irudik/aem6510/master/lecture-notes/04-imperfect-information/4-imperfect-information.html) [slides posted] <!-- actually 17 -->
 
 **Reading**: PR Chapter 4.1.1-4.1.2
 
