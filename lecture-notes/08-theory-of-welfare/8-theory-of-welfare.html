@@ -52,7 +52,8 @@ knitr::opts_chunk$set(echo = TRUE, fig.align="center")
 ```
 
 ```
-## Warning in style_panelset_tabs(...): The arguments to `syle_panelset()` changed in xaringanExtra 0.1.0. Please refer to the documentation to update your slides.
+## Warning in style_panelset_tabs(...): The arguments to `syle_panelset()` changed in xaringanExtra 0.1.0.
+## Please refer to the documentation to update your slides.
 ```
 
 ---
@@ -310,6 +311,16 @@ What does this result show us?
 --
 
 This is important to understand the types of welfare measures we will be using
+
+---
+
+class: inverse, center, middle
+name: base_model
+
+# Price change welfare measures
+
+&lt;html&gt;&lt;div style='float:left'&gt;&lt;/div&gt;&lt;hr color='#EB811B' size=1px width=796px&gt;&lt;/html&gt;
+
 
 ---
 
@@ -805,10 +816,144 @@ How does it relate to WTP and WTA?
 
 # What is CS
 
-In general CS has no WTP/WTA interpretation since utility is not held fixed for movements along an ordinary demand curve
+In general CS has no WTP/WTA interpretation since utility is not held fixed for movements along an ordinary demand curve (look at last figure, we jumped compensated demand curves!)
 
 --
 
+Let's see if CS is something else that can be useful
+
+---
+
+# Roy's identity
+
+First we need to derive a central result in economics, .hi-blue[Roy's Identity]
+`$$x_j = -{\partial V / \partial p_j \over \partial V / \partial y}$$`
+
+Roy's identity relates ordinary demand to the indirect utility function `\(V(p,y)\)`
+
+---
+
+# Roy's identity
+
+The derivation is pretty simple
+
+
+Plug the expenditure function into `\(V\)` at `\(\bar{u}\)`:
+
+`$$V(p,e(p,\bar{u})) = \bar{u}$$`
+
+--
+
+Differentiate both sides with respect to `\(p_j\)`:
+`$${\partial V \over \partial p_j} +  {\partial V \over \partial y}{\partial e \over \partial p_j} = 0$$`
+
+and recall that `\({\partial e \over \partial p_j} = h_j(p,\bar{u}) = x_j(p,e(p,\bar{u}))\)`
+
+---
+
+# Roy's identity
+
+We then get:
+
+`$${\partial V \over \partial p_j} +  {\partial V \over \partial y}x_j = 0$$`
+and finally
+`$$x_j = -{\partial V / \partial p_j \over \partial V / \partial y}$$`
+
+It's kind of like an MRS, the demand for good `\(x_i\)` is the income increase required to compensate for a change in the price of good `\(i\)`
+
+---
+
+# What is CS?
+
+Now plug this expression for `\(x_i\)` into our definition of CS to get:
+`$$CS = \int_{p^0_j}^{p^1_j}x_j(p,y,q)dp_j = \int_{p^0_j}^{p^1_j}-{V_{p_j}(p,y,q) \over V_{y}(p,y,q)} dp_j = \int_{p^0_j}^{p^1_j}-{V_{p_j}(p,y,q) \over \lambda(p,y,q)} dp_j$$`
+where `\(V_{p_j}(p,y,q) = \partial v / \partial p_j\)` and `\(V_{y}(p,y,q) = \partial v / \partial y\)`, and `\(\lambda\)` is the marginal utility of income
+
+--
+
+Now lets look at our first result
+
+--
+
+Assume that `\(\lambda(p,y,q)\)` is not a function of `\(p_j\)`: `\(\partial \lambda / \partial p_j = 0\)`
+
+---
+
+# What is CS?
+
+We can re-write CS as:
+`$$CS = {1 \over \lambda(p,y,q)}\int_{p^0_j}^{p^1_j}-{V_{p_j}(p,y,q) } dp_j = [V_{p_j}(p^0,y,q) - V_{p_j}(p^1,y,q)]{1 \over \lambda(p,y,q)}$$`
+
+If the marginal utility of income is constant with respect to price, .hi-blue[CS is a money-metric reflection of the change in utility!]
+
+--
+
+- Change in utility: `\(V_{p_j}(p^0,y,q) - V_{p_j}(p^1,y,q)\)`
+- Translated into dollar terms by: `\({1 \over \lambda(p,y,q)}\)`
+
+--
+
+CS is the change in money implied by a change in utility when `\(\partial \lambda / \partial p_j = 0\)`
+
+---
+
+# What is CS?
+
+`\(\partial \lambda / \partial p_j = 0\)` is generally .hi-red[not] going to be true
+
+--
+
+Pg 399-400 in the book show how assuming `\(\partial \lambda / \partial p_j = 0\)` implies that the .hi-blue[income elasticity of demand] must be equal for all goods whose prices may change in the analysis:
+`$${\partial x_j \over \partial y}{y \over x_j} = {\partial x_k \over \partial y}{y \over x_k} \,\,\, \forall j,k$$`
+
+---
+
+# CS as an approximation
+
+CS doesn't generally recover the money-equivalent change in utility
+
+--
+
+However it is much easier to estimate than anything based off of the compensated demand curve
+
+--
+
+One thing we want to find out: .hi-blue[how big is the error if we use CS in place of CV or EV?]
+
+--
+
+First thing we can observe: for a .hi[normal good]: `\(CV \leq CS \leq EV\)`
+
+--
+
+Willig (1976) shows that `\(CS\)` is a first-order approximation if the income elasticity is small or the change in CS is small relative to the budget
+
+---
+
+# CS and measurement
+
+Hausman (1981) made approximations unnecessary
+
+--
+
+He showed that under certain .hi[integratibility conditions], ordinary demand curves contain all the information we need
+
+--
+
+To see this let's first look at two identifies in consumer economics
+
+1. From before: the observed demand level solves the utility maximization .hi[and] expenditure minimization problems
+2. `\(\bar{u} = V(p,E(p,\bar{u},q),q)\)`, the indirect utility given an income `\(y\)` equal to the expenditure to achieve `\(\bar{u}\)` is equal to `\(\bar{u}\)`
+
+
+---
+
+class: inverse, center, middle
+name: base_model
+
+# Quantity change welfare measures
+
+&lt;html&gt;&lt;div style='float:left'&gt;&lt;/div&gt;&lt;hr color='#EB811B' size=1px width=796px&gt;&lt;/html&gt;
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
