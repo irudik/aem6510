@@ -95,8 +95,10 @@ An input that reduces emissions could reduce output, output-enhancing inputs cou
 
 Next we need the cost functions
 
+--
+
 The cost function $C(x,e)$ is derived from the firm's cost minimization problem:
-$$C(x,e) = \min_{l_1,\dots,l_k} \left\{ \sum_{k=1}^K w_k l_k + \lambda \left[ x - f(l_1,\dots,l_K) \right] + \mu\left[e-g(l_1,\dots,l_K)\right] \right\}$$
+$$C(x,e) = \min_{l_1,\dots,l_k} \left\{ \sum_{k=1}^K w_k l_k + \lambda \underbrace{\left[ x - f(l_1,\dots,l_K) \right]}_{\text{production tech}} + \mu \underbrace{\left[e-g(l_1,\dots,l_K)\right]}_{\text{emission tech}} \right\}$$
 where $\{w_1,\dots,w_K\}$ is a vector of input prices
 
 
@@ -106,13 +108,23 @@ where $\{w_1,\dots,w_K\}$ is a vector of input prices
 
 We need two sets of assumptions to continue
 
-## Assumption set 1
+## Assumption Set 1 (general model)
+--
 
-- $C(x,e)$ is twice continuously-differentiable with $C_x > 0$ and for any $x$ there is an emission level $\hat{e}^x$ such that $C_e(x,\hat{e}^x) = 0$
-- $C_e(x,\hat{e}^x) < 0 \,\,\, \forall e < \hat{e}^x$
-- $C_e(x, \hat{e}^x) \geq 0 \,\,\, \forall e \geq \hat{e}^x$
-- $C_{xe} = C_{ex} < 0 \,\,\, \forall e < \hat{e}^x$ | $x$ and $e$ are 
-- $C_{xx} > 0, C_{ee} > 0, C_{xx}C_{ee} - C_{ex}^2 > 0$   ( $C$ is strictly convex)
+1. $C(x,e)$ is twice continuously-differentiable with $C_x > 0$ and for any $x$ there is an emission level $\hat{e}^x$ such that $C_e(x,\hat{e}^x) = 0$
+--
+
+2. $C_e(x,\hat{e}^x) < 0 \,\,\, \forall e < \hat{e}^x$ and $C_e(x, \hat{e}^x) \geq 0 \,\,\, \forall e \geq \hat{e}^x$
+--
+
+3. $C_{xe} = C_{ex} < 0 \,\,\, \forall e < \hat{e}^x$ 
+--
+
+4. $C_{xx} > 0, C_{ee} > 0, C_{xx}C_{ee} - C_{ex}^2 > 0$ 
+
+--
+
+$\hat{e}^x$ is the freely chosen level of emissions at output level $x$
 
 ---
 
@@ -120,13 +132,22 @@ We need two sets of assumptions to continue
 
 What do these tell us?
 
-- MC is positive
-- There is a cost-minimizing emission level $\hat{e}^x$ for all $x$ in the absense of environmental regulation
-- MC of production is smaller with higher emissions
-- MAC shifts up if output rises
-- The non-regulated emission level $\hat{e}^x$ rises with $x$:
+1. MC of production is positive and there is a cost-minimizing emission level $\hat{e}^x$ for all $x$ in the absence of environmental regulation
+2. MAC is increasing in abatement (decreasing in emissions)
+3. MC of production is smaller with higher emissions $\leftrightarrow$ MAC shifts up if output rises
+4. Production and abatement costs are convex (marginal costs are increasing)
+
+---
+
+# The competitive output model
+
+We can also see that the non-regulated emission level $\hat{e}^x$ rises with $x$ from the $C_e(x,\hat{e}^x) = 0$ assumption
+
+--
 
 Totally differentiate $C_e(x, \hat{e}^x)$ to get $C_{ee}(x,\hat{e}^x)d\hat{e}^x + C_{ex}(x,\hat{e}^x)dx = 0$
+
+--
 
 Rearrange to get: ${d\hat{e}^x \over dx} = - {C_{ee} \over C_{ex}} > 0$
 
@@ -134,13 +155,19 @@ Rearrange to get: ${d\hat{e}^x \over dx} = - {C_{ee} \over C_{ex}} > 0$
 
 # The competitive output model
 
-## Assumption set 2
+## Assumption Set 2 (specific model)
 
-We will be directly linking emissions to output so we make these assumptions:
+We will be directly linking emissions to output in the specific model so we make these assumptions:
 
 - Cost function $C(x)$ is twice continuously-differentiable
+--
+
 - $C'(x) > 0, C''(x) > 0$
+--
+
 - Emissions are given by $e = \delta(x)$ where $\delta'(x) > 0$
+--
+
 - In some cases we will assume $\delta(x) = \delta \cdot x$ to simplify
 
 ---
@@ -168,9 +195,13 @@ At an unregulated optimum it must be that $p - C'(x) = 0$ so $p - C'(\hat{e}^x/\
 
 For $e < \hat{e}^x$: $p - C'(e/\delta) > 0$ since $\hat{e}^x$ is privately optimal for the firm
 
+--
+
 Thus ${d \Pi \over de}$ is the marginal abatement cost where ${d \Pi \over de} > 0$ for $e < \hat{e}^x$
 
-The MC of abatement is the MC of forgone profits from reducing emissions
+--
+
+The MC of abatement is the forgone marginal profits from reducing emissions
 
 --
 
@@ -183,9 +214,16 @@ $${d^2 \Pi \over de^2} = {C''(e/\delta) \over \delta^2} \geq 0$$
 
 Next we need to model the demand side of the market
 
+--
+
 Let consumer utility be:
 $$U^i = U_i(x_i) + z_i - D_i(E)$$
-where $x_i$ is the person's consumption level, $z_i$ is spending on all other non- $x$ goods, $D_i(E)$ are damages from aggregate emissions $E$, and there are $i=1,\dots,J$ consumers
+where
+
+- $x_i$ is the person's consumption level
+- $z_i$ is spending on all other non- $x$ goods
+- $D_i(E)$ are damages from aggregate emissions $E$
+- There are $i=1,\dots,J$ consumers
 
 ---
 
@@ -216,7 +254,7 @@ Next we want to derive .hi-blue[aggregate] market benefits
 --
 
 Let $X = \sum_{i=1}^I x_i$ be aggregate consumption,  $P(X)$ be the market inverse demand curve, and $D(E)$ be the aggregate damage curve
-  - You get $P(X)$ by just horizontally summing $p_i(x_i)$ like we did in previous classes
+- You get $P(X)$ by just horizontally summing $p_i(x_i)$ like we did in previous classes
 
 --
 
@@ -230,15 +268,17 @@ Now we have both sides of our model, next we need to define .hi-blue[social welf
 
 --
 
-Social welfare in the general case is given by:
+Social welfare in the .hi-red[general case] is given by:
 $$W(x_1,\dots,x_J,e_1,\dots,e_J) \equiv \int_0^{X\equiv\sum x_j} P(s)ds - \sum_{j=1}^J C^j(x_j, e_j) - D(E)$$
 where $j$ are specific firms, and household costs and firm revenues cancel out because they are just a transfer from households to firms
+
+Welfare is CS minus total cost, minus damages
 
 ---
 
 # The competitive output model
 
-Social welfare in the specific case when $e_j = \delta_j(x_j)$ is given by:
+Social welfare in the .hi[specific case] when $e_j = \delta_j(x_j)$ is given by:
 $$W(x_1,\dots,x_J) \equiv \int_0^{X\equiv\sum x_j} P(s)ds - \sum_{j=1}^J C^j(x_j) - D(E)$$
 
 where $E = \sum_{j=1}^J \delta_j(x_j)$
@@ -251,10 +291,13 @@ Now we can derive the efficiency conditions for our model to understand what def
 
 # The competitive output model: Efficiency
 
-Begin with the general case, the FOCs are defined by: $\partial W / \partial x_j$ and $\partial W / \partial e_j$ which yield:
-$${\partial W\over\partial x_j} = P(X) - C^j_{x_j}(x_j, e_j) \rightarrow P(X) = C^j_{x_j}(x_j, e_j)$$
-where ${\partial \over \partial x_j} \int_0^{X\equiv\sum x_j} P(s)ds = P(\sum x_j) = P(X)$ by the fundamental theorem of calculus, and
-$${\partial W\over\partial e_j} = C^j_{e_j}(x_j,e_j) + D'(E) \rightarrow D'(E) = -C^j_{e_j}(x_j,e_j)$$
+Begin with the .hi-red[general case], the FOCs are defined by:
+$${\partial W\over\partial x_j} = P(X) - C^j_{x_j}(x_j, e_j) = 0\rightarrow P(X) = C^j_{x_j}(x_j, e_j)$$
+where ${\partial \over \partial x_j} \int_0^{X\equiv\sum x_j} P(s)ds = P(\sum x_j) = P(X)$ by the fundamental theorem of calculus, 
+--
+and
+--
+$${\partial W\over\partial e_j} = C^j_{e_j}(x_j,e_j) + D'(E) = 0 \rightarrow D'(E) = -C^j_{e_j}(x_j,e_j)$$
 
 These $2J$ equations give us the solutions $x^*_j, e^*_j$ for $j=1,\dots,J$
 
@@ -264,8 +307,14 @@ These $2J$ equations give us the solutions $x^*_j, e^*_j$ for $j=1,\dots,J$
 
 The conditions are pretty straightforward, right?
 
+--
+
 - $P(X) = C^j_{x_j}(x_j, e_j)$ tells us that marginal benefit of consumption must equal marginal cost of consumption
-- $D'(E) = -C^j_{e_j}(x_j,e_j)$ tells us that marginal abatement cost must equal marginal damage
+--
+
+- $-C^j_{e_j}(x_j,e_j) = D'(E)$ tells us that marginal abatement cost must equal marginal damage
+
+--
 
 For efficiency, we need to balance the environmental and production costs of producing the good with the benefits of consuming it
 
@@ -273,12 +322,18 @@ For efficiency, we need to balance the environmental and production costs of pro
 
 # The competitive output model: Efficiency
 
-The specific case can give us some more insight
+The .hi[specific case] can give us some more insight
+
+--
 
 Here only the $x_j$s are choice variables so we get the following FOCs:
 $$P(X) = C'_j(x_j) + D'(E)\delta_j'(x_j) \,\,\,\, j=1,\dots,J$$
 
-The left hand side the marginal benefit of consumption
+--
+
+The left hand side is the marginal benefit of consumption
+
+--
 
 The right hand side is the total marginal cost:
   - Private production costs
@@ -382,21 +437,31 @@ $X^*$ is the optimal allocation where SMB = SMC
 
 # Policy instruments
 
-Now we will take another look at our environmental policy instruments in this more general model
+Now we will take another look at our environmental policy instruments in this model with output markets
+
+--
 
 We will see that:
+--
   - There are additional results related to the output market that we didn't have before
+--
+
   - The previous results all still hold: taxes, subsidies, permits can all achieve the efficient allocation
   
 ---
 
 # Policy instruments: taxes
 
-When facing an emission tax $\tau$ a competitive firm's problem in the general case is:
+When facing an emission tax $\tau$ a competitive firm's problem in the .hi-red[general case] is:
 $$\Pi_j(x_j, e_j) = p x_j - C^j(x_j,e_j) - \tau e_j$$
 where $p$ is the market price of $x$
 
+--
+
 The firm's FOCs are:
+
+--
+
 \begin{align}
   p &= C'_{x_j}(x_j,e_j) \\
   \tau &= -C'_{e_j}(x_j,e_j)
@@ -416,20 +481,22 @@ The firm equates MR to MC of production
 
 The firm equates the marginal abatement cost to the tax level
 
-So if the regulator sets $\tau = D'(E^*)$ we can achieve the efficient allocation
+So if the regulator sets $\tau = D'(E^*)$ .hi-blue[we can achieve the efficient allocation]
 
 ---
 
 # Policy instruments: taxes
 
-When facing an emission tax $\tau$ a competitive firm's problem in the *specific* case is:
+When facing an emission tax $\tau$ a competitive firm's problem in the .hi[specific case] is:
 $$\Pi_j(x_j, e_j) = p x_j - C^j(x_j) - \tau \delta_j x_j$$
 with FOC:
 $$p = C'_j(x_j) - \tau \delta_j$$
 
+--
+
 If the regulator sets $\tau = D'(E^*)$ then firms behave as if
 $$P(X) = C'_j(x_j) - \delta_j D'(E^*)$$
-which matches our social efficiency condition
+.hi-blue[which matches our social efficiency condition]
 
 ---
 
@@ -437,26 +504,34 @@ which matches our social efficiency condition
 
 Now that we have an output market in our model we can study how taxes influence it
 
-To start we will assume all firms are identical and we are in the specific case of the model so our profit-maximizing firm FOC is:
+--
+
+To start we will assume all firms are identical and we are in the .hi[specific case] of the model so our profit-maximizing firm FOC is:
 $$P(X) = C'(x) + \delta\tau$$
 where $X = x\cdot J$
-Differentiate with respect to $\tau$ to get how output and emissions respond to a change in the tax rate
+
+--
+
+Differentiate the FOC with respect to $\tau$ to get how output and emissions respond to a change in the tax rate
 
 ---
 
 # Comparative statics
 
-$$\left[P'(X)J - C''(x)\right]{dx\overd\tau} = \delta$$
+Differentiating gives us:
+$$\left[P'(X)J - C''(x)\right]{dx \over d\tau} = \delta$$
 which implies that:
 $${dx\over d\tau} = {\delta \over P'(X)J - C''(x)} < 0$$
 and ${dX\over d\tau} = J{dx\over d\tau} < 0$  
+
+Emission taxes reduce output
 
 ---
 
 # Comparative statics
 
 With $E = \delta \cdot X$ we have how emissions respond to the tax:
-$${dE\over d\tau} = {\delta \over P'(X)J - C''(x)} < 0$$
+$${dE\over d\tau} = {J \delta^2 \over P'(X)J - C''(x)} < 0$$
 and since $p = P(X)$ is the market price of output, we can determine the relationship between output prices and the tax:
 $${dp\over d\tau} = P'(X){d X \over d\tau} > 0$$
 
@@ -475,8 +550,14 @@ Output and emissions decline in the tax:
 
 # Comparative statics
 
-The .hi-blue[incidence] of the tax is also made clear by:
+The .hi-blue[incidence]<sup>1</sup> of the tax is also made clear by:
 $${dp\over d\tau} = P'(X){d X \over d\tau} > 0$$
+
+.footnote[
+Incidence is how the tax burden is distributed between consumers and producers.
+]
+
+--
 
 If $P'(X)$ is small, demand is elastic (flat), and consumers have low incidence because the price they pay does not change much in the tax, firms bear most of the cost of the tax
   - If demand is perfectly elastic $P'(X) = 0$ and there is no associated price increase from a tax increase
@@ -485,7 +566,6 @@ If $P'(X)$ is small, demand is elastic (flat), and consumers have low incidence 
 
 # Comparative statics
 
-The .hi-blue[incidence] of the tax is also made clear by:
 $${dp\over d\tau} = P'(X){d X \over d\tau} > 0$$
 
 If $P'(X)$ is large, demand is inelastic, and consumers have high incidence because the price they pay for $x$ increases substantially in the tax, firms pass-through most of the tax to consumers
@@ -499,7 +579,7 @@ What did we learn?
 
 Increasing a tax:
 1. Decreases firm and aggregate emission levels
-2. Decreases firm and aggregate output (even in the general case, see the book)
+2. Decreases firm and aggregate output (even in the general case, see pg 103-104 in the book)
 3. Increases output prices
 
 ---
@@ -508,7 +588,9 @@ Increasing a tax:
 
 Now suppose the regulator issues $L=E^*$ permits instead of setting a tax
 
-The regulator knows that the permit price that clears the permit market will be $\sigma(L) = \sigma(E^*) = D'(E^*)$
+--
+
+The regulator knows that the permit price $\sigma$ that clears the permit market will be $\sigma(L) = \sigma(E^*) = D'(E^*)$
 
 --
 
@@ -522,7 +604,7 @@ The regulator can achieve the first-best efficient outcome
 
 # Policy instruments: permits
 
-Auctioned versus freely-distributed permits are equivalent in this model in terms of .hi-red[efficiency]
+Auctioned versus freely-distributed permits are equivalent in this model in terms of .hi-blue[efficiency]
 
 --
 
@@ -534,7 +616,7 @@ Output prices will also be the same because all firm and consumer decisions will
 
 --
 
-The one way they will be different is how the .hi-blue[rents] are distributed: who gets the value from the scarcity of permits, the firms or the government?
+The one way they will be different is how the .hi-blue[rents (economic profits)] are distributed: who gets the value from the scarcity of permits, the firms or the government?
 
 
 ---
@@ -615,14 +697,20 @@ If auctioned: they go to the government as revenue
 
 # Relative/intensity standards
 
-A common form of standards is called .hi-red[relative standards]
+A common form of standards is called a .hi-red[relative standard]
+
+--
 
 Relative standards regulate firms based on the concentration of pollution relative to some measurable output
+
+--
 
 A relative standard would look something like:
 $$ e/x \leq \alpha$$
 or equivalently: $e \leq \alpha x$
 where $\alpha$ is the policy variable
+
+--
 
 Relative standards are often called intensity standards because $e/x$ measures the pollution intensity of output
 
@@ -630,11 +718,13 @@ Relative standards are often called intensity standards because $e/x$ measures t
 
 # Relative/intensity standards
 
-Relative standards are only interesting in the general case of our model, in the specific case:
+Relative standards are only interesting in the .hi-red[general case] of our model, in the .hi[specific case]:
 - If $\delta > \alpha$, the firm has to shut down
 - If $\delta \leq \alpha$, the firm complies with the regulation no matter its actions
 
-Assume the regulation is binding (i.e. it actually affects firm behavior), then the firm will always set $e = \alpha x$
+--
+
+Assume the regulation is binding in the .hi-red[general case] (i.e. it actually affects firm behavior), then the firm will always set $e = \alpha x$
 
 This lets us re-write a firm's profit function as:
 $$\Pi(x) = px - C(x, \alpha x)$$
@@ -644,8 +734,11 @@ $$\Pi(x) = px - C(x, \alpha x)$$
 # Relative/intensity standards
 
 $$\Pi(x) = px - C(x, \alpha x)$$
+--
 
 If the regulation is binding, the firm really is only choosing one variable, $x$
+
+--
 
 The FOC is:
 $$p = C_x(x,\alpha x) + \alpha C_e(x, \alpha x)$$
@@ -696,10 +789,16 @@ $$C_x(x(\alpha), \bar{e}) > C_x(x(\bar{e}), \bar{e})$$
 --
 
 It follows pretty simply that: $x(\alpha) > x(\bar{e})$ and that:
+--
+
 - $C(x(\alpha), \bar{e}) > C(x(\bar{e}), \bar{e})$ since $C_{xx} > 0$
+--
+
 - $-C_e(x(\alpha), \bar{e}) > -C_e(x(\bar{e}), \bar{e})$ since $C_{ex} < 0$
 
-Total cost **and** marginal cost are higher under a relative standard
+--
+
+.hi-blue[Total cost and marginal cost are higher under a relative standard]
 
 ---
 
@@ -708,10 +807,15 @@ Total cost **and** marginal cost are higher under a relative standard
 Takeaways:
 
 If a regulator sets an emission goal of $\bar{e}$ for a single firm or $J$ firms, then a relative standard will lead to:
+--
+
 - higher output
+--
+
 - higher total cost
-- higher marginal abatement cost
-relative to a quantity standard
+--
+
+- higher marginal abatement cost relative to a quantity standard
 
 --
 
@@ -730,9 +834,13 @@ Two ways:
 --
 
 1. Decrease emissions $e$
+--
+
 2. Increase output $x$
 
-Relative standards allow the firm to meet the standard in ways we don't want them to so we end up with too much output
+--
+
+Relative standards allow the firm to meet the standard *in ways we don't want them to,* so we end up with too much output
 
 This limits us to .hi-blue[second-best] outcomes
 
@@ -742,8 +850,13 @@ This limits us to .hi-blue[second-best] outcomes
 
 If we need to use a relative standard due to political or technical reasons what standard should we set to maximize welfare?
 
+--
+
 The regulator's problem is:
 $$W(\alpha) = \int_{0}^{x(\alpha)} P(t) dt - C(x(\alpha), \alpha x(\alpha)) - D(\alpha x( \alpha))$$
+
+--
+
 The FOC is:
 $$[P - C_x - \alpha C_e] x'(\alpha) - C_e x - D' \times [x + \alpha x'(\alpha)] = 0$$
 where the term in the first bracket is 0 from the firm's FOCs
@@ -759,9 +872,10 @@ $$- C_e  ={x + \alpha x'(\alpha) \over x } D'$$
 
 $x'(\alpha)$ tells us how output responds to policy and its sign tells us whether MAC $>$ MD or vice versa
 
-Suppose $x'(\alpha) > 0$, then the second best policy sets MAC $>$ MD:
+--
 
-The second-best quantity of emissions is lower than the first-best / optimal level that sets MAC = MD
+Suppose $x'(\alpha) > 0$, then the second best policy sets MAC $>$ MD:
+- The second-best quantity of emissions is lower than the first-best / optimal level that sets MAC = MD
 
 
 ---
@@ -779,9 +893,17 @@ Econ 101 tells us that in perfectly competitive markets:
 --
 
 - Firms are identical
+--
+
 - Firms enter or exit until profits are driven to zero
+--
+
 - Firms produce at minimum average cost
+--
+
 - Optimal number of firms is endogenous (usually)
+
+--
 
 We will now look at long run properties of policy with identical firms
 

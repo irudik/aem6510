@@ -1344,3 +1344,182 @@ CV and EV are then the area under the MWTP/inverse demand curves:
     =& E(p,u^1,q^0) - E(p,u^1,q^1) 
 \end{align}
 ]
+
+
+---
+
+# CV and EV in utility space
+
+```{r utility_space_q, echo = FALSE, fig.show = 'hide', warning = F}
+ic1 <- function(x) 25/x + 2
+ic2 <- function(x) 22/x
+ggplot() +
+  stat_function(fun = ic1, color = "#638ccc", size = 1.0) +
+  stat_function(fun = ic2, color = "#ca5670", size = 1.0) +
+  annotate("segment", x = 0, xend = 8, y = 5, yend = 5,
+           linetype = "dotted", size = 1, color = "grey55") +
+  annotate("segment", x = 0, xend = 8, y = 2.85, yend = 2.85,
+           linetype = "dotted", size = 1, color = "grey55") +
+  annotate("segment", x = 8, xend = 8, y = 0, yend = 5,
+           linetype = "dotted", size = 1, color = "grey55") +
+  annotate("segment", x = 0, xend = 4.5, y = 7.6, yend = 7.6,
+           linetype = "dotted", size = 1, color = "grey55") +
+  annotate("segment", x = 4.5, xend = 4.5, y = 0, yend = 7.6,
+           linetype = "dotted", size = 1, color = "grey55") +
+  annotate("text", size = 6, label = expression(U^0), x = 1, y = 14.25, color = "#ca5670") +
+  annotate("text", size = 6, label = expression(U^1), x = 3, y = 14.25, color = "#638ccc") +
+  annotate("text", size = 6, label = "b", x = 8.2, y = 5.4) +
+  annotate("text", size = 6, label = "c", x = 8.3, y = 2.35) +
+  annotate("text", size = 6, label = "d", x = 4.7, y = 7.8) +
+  annotate("text", size = 6, label = "a", x = 4.2, y = 4.75) +
+  theme_minimal() +
+  theme(
+    legend.position = "none",
+    title = element_text(size = 24),
+    axis.text.x = element_text(size = 16, color = "#000000"), axis.text.y = element_text(size = 16, color = "#000000"),
+    axis.title.x = element_text(size = 16, color = "#000000"), axis.title.y = element_text(size = 16, color = "#000000"),
+    panel.grid.minor.x = element_blank(), panel.grid.major.y = element_blank(),
+    panel.grid.minor.y = element_blank(), panel.grid.major.x = element_blank(),
+    panel.background = element_rect(fill = "#eeeeee",colour = NA),
+    plot.background = element_rect(fill = "#eeeeee",colour = NA),
+    axis.line = element_line(colour = "black")
+  ) +
+  scale_x_continuous(expand = c(0, 0), limits = c(0, 15),
+                     breaks = c(4.5, 8), labels = expression(q^0, q^1)) +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 15),
+                     breaks = c(2.85, 5, 7.6), labels = expression(E(p,u^0,q^1), y[0], E(p,u^1,q^0))) +
+  labs(x = "q",
+       y = "Income / Numeraire good",
+       title = "Utility space")
+  
+```
+
+.pull-left[
+
+Y axis is income/spending on all private goods
+
+X axis is quantity of the environmental good
+
+We start at $a$ where we are at $u^0$ and $q^0$
+
+(Skipping drawing inverse demand curves)
+
+
+
+]
+
+.pull-right[
+
+![Tangent line at the optimum has 0 slope](`r knitr::fig_chunk("utility_space_q", "png")`)
+
+]
+
+---
+
+# CV and EV in utility space
+
+
+.pull-left[
+
+When $q^0 \rightarrow q^1$ we move to point $b$ and $u^0 \rightarrow u^1$
+
+Income/expenditures is held constant because .hi[q has no price] so we just move horizontally
+
+]
+
+.pull-right[
+
+![Tangent line at the optimum has 0 slope](`r knitr::fig_chunk("utility_space_q", "png")`)
+
+]
+
+
+---
+
+# CV and EV in utility space
+
+
+.pull-left[
+
+CV is the change in income needed to go from $u^0 \rightarrow u^1$ at $q^1$: $y_0 - E(p,u^0,q^1)$
+
+EV is the change in income needed to go from $u^0 \rightarrow u^1$ at $q^0$: $E(p,u^1,q^0) - y_0$
+
+]
+
+.pull-right[
+
+![Tangent line at the optimum has 0 slope](`r knitr::fig_chunk("utility_space_q", "png")`)
+
+]
+
+
+---
+
+# CV and EV in demand space
+
+```{r demand_space_q, echo = FALSE, fig.show = 'hide', warning = F}
+ord_demand <- function(x) 3 - x/3
+comp_demand_1 <- function(x) 5 - x
+comp_demand_0 <- function(x) 4 - x
+
+intersections_1 <- tibble(x = c(0, 2, 2, 3, 3, 3, 1, 1, 0),
+                        y = c(2, 3, 0, 4, 2, 0, 0, 4, 4))
+ggplot() +
+  annotate("segment", x = 0, xend = 5, y = 2, yend = 2,
+           linetype = "dotted", size = 1, color = "grey55") +
+  annotate("segment", x = 0, xend = 1.5, y = 3.5, yend = 3.5,
+           linetype = "dotted", size = 1, color = "grey55") +
+  annotate("segment", x = 0, xend = 3, y = 1, yend = 1,
+           linetype = "dotted", size = 1, color = "grey55") +
+  annotate("segment", x = 0, xend = 1.5, y = 2.5, yend = 2.5,
+           linetype = "dotted", size = 1, color = "grey55") +
+  annotate("segment", x = 3, xend = 3, y = 0, yend = 2,
+           linetype = "dotted", size = 1, color = "grey55") +
+  annotate("segment", x = 1.5, xend = 1.5, y = 0, yend = 3.5,
+           linetype = "dotted", size = 1, color = "grey55") +
+  stat_function(fun = comp_demand_1, color = "#638ccc", size = 1.5) +
+  stat_function(fun = comp_demand_0, color = "#ca5670", size = 1.5) +
+  stat_function(fun = ord_demand, color = "darkslateblue", size = 1.5) +
+  annotate("text", size = 6, label = expression(theta^q(p,y,q)), x = 4.25, y = 1.85) +
+  annotate("text", size = 6, label = expression(pi^q(p,u^1,q)), x = 4.5, y = 1.07) +
+  annotate("text", size = 6, label = expression(pi^q(p,u^0,q)), x = 2, y = 1.5) +
+  annotate("text", size = 6, label = "a", x = 1.55, y = 2.65) +
+  annotate("text", size = 6, label = "d", x = 1.55, y = 3.65) +
+  annotate("text", size = 6, label = "b", x = 3.05, y = 2.15) +
+  annotate("text", size = 6, label = "c", x = 3.1, y = 1.15) +
+  theme_minimal()  +
+  theme(
+    legend.position = "none",
+    title = element_text(size = 24),
+    axis.text.x = element_text(size = 16, color = "#000000"), axis.text.y = element_text(size = 16, color = "#000000"),
+    axis.title.x = element_text(size = 16, color = "#000000"), axis.title.y = element_text(size = 16, color = "#000000"),
+    panel.grid.minor.x = element_blank(), panel.grid.major.y = element_blank(),
+    panel.grid.minor.y = element_blank(), panel.grid.major.x = element_blank(),
+    panel.background = element_rect(fill = "#eeeeee",colour = NA),
+    plot.background = element_rect(fill = "#eeeeee",colour = NA),
+    axis.line = element_line(colour = "black")
+  ) +
+  labs(x = "q",
+       y = "Price",
+       title = "Demand space") +
+  scale_x_continuous(expand = c(0, 0), limits = c(0, 5),
+                     breaks = c(1.5, 3), labels = expression(q[0], q[1])) +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 5),
+                     breaks = c(1, 2, 2.5, 3.5), labels = expression(pi^2, pi^1, pi^0, pi^3))
+  
+```
+
+.pull-left[
+
+The price change traces out the ordinary demand curve (dark blue):
+
+We are holding income $y$ and environmental quality $q$ fixed, so changes in price move us along $x(p,y,q)$
+
+]
+
+.pull-right[
+
+![Tangent line at the optimum has 0 slope](`r knitr::fig_chunk("demand_space_q", "png")`)
+
+]
