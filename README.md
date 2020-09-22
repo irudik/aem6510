@@ -92,15 +92,15 @@ Some sections of the course have readings (available on Canvas if not in the boo
 
 **Reading**: PR Chapter 4.1.1-4.1.2
 
-### [Sep 17: Competitive output markets](https://ivanrudik.com)
+### [Sep 17: Competitive output markets](https://raw.githack.com/irudik/aem6510/master/lecture-notes/05-competitive-output-markets/5-competitive-output-markets.html) [slides posted]
 
 **Reading**: PR Chapter 5
 
-### [Sep 24: Non-competitive output markets](https://ivanrudik.com)
+### [Sep 22: Non-competitive output markets](https://ivanrudik.com)
 
 **Reading**: PR Chapter 6
 
-### [Sep 22: Pre-existing distortions](https://ivanrudik.com)
+### [Sep 24: Pre-existing distortions](https://ivanrudik.com)
 
 **Reading**: PR Chapter 7
 
