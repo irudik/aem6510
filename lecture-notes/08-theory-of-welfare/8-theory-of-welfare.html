@@ -1017,6 +1017,97 @@ How is this analysis different and similar to our analysis of price changes?
 --
 
 First let's define CV and EV in terms of .hi[environmental quantity changes]
+
+--
+
+Here we will be thinking about increasing `\(q\)` from `\(q^0\)` to `\(q^1\)`
+
+---
+
+# CV and EV: indirect utility
+
+Compensating variation `\(CV\)` is given by:
+`$$V(p,y,q^0) = V(p,y-CV,q^1)$$`
+and equivalent variation `\(EV\)` is given by:
+`$$V(p,y,q^1) = V(p,y+CV,q^0)$$`
+
+--
+
+CV is the WTP to have the environmental improvement `\(q^0 \rightarrow q^1\)`
+
+EV is the WTA to forgo the environmental improvement `\(q^0 \rightarrow q^1\)`
+
+---
+
+# WTP vs WTA with quantity changes
+
+Unlike with price changes the choice of EV or CV matters conceptually
+
+--
+
+One implies the individual has property rights to the improvement (EV),  
+and one implies they do not have property rights (CV)
+
+--
+
+This may matter in practice because WTP and WTA can diverge due to budget constraints:&lt;sup&gt;1&lt;/sup&gt;
+  - You can only pay as much as your budget but you can accept any positive amount
+
+.footnote[
+There are also other behavioral reasons, but we won't touch on them here. See Sec 14.4 for details on the budget argument.
+]
+
+---
+
+# CV and EV: expenditure function
+
+We can also define CV and EV with the expenditure function:
+`\begin{align}
+  CV =&amp; E(p,u^0,q^0) - E(p,u^0,q^1) \\
+    =&amp; y = E(p,u^0,q^1) \\
+    \,\,\, \\
+  EV =&amp; E(p,u^1,q^0) - E(p,u^1,q^1) \\
+    =&amp; E(p,u^1,q^0) - y \\
+\end{align}`
+
+---
+
+# CV and EV: demand curves
+
+We can also compute quantity change CV and EV with demand curves like we did for price changes
+
+--
+
+Note that since `\(q\)` is fixed from the individual's perspective, we will need to look at .hi[inverse] demand curves (the usual kind on the graphs we draw)
+
+--
+
+The compensated inverse demand is given by:
+`$$\Pi^q(p,u,q) = - {\partial E(p,u,q) \over \partial q}$$`
+which is the marginal willingness to pay for `\(q\)`: it's the change in income that holds utility constant given a marginal increase in `\(q\)`
+
+---
+
+# CV and EV: demand curves
+
+CV and EV are then the area under the MWTP/inverse demand curves:
+
+.pull-left[
+`\begin{align}
+  CV =&amp; \int_{q^0}^{q^1} \pi^q(p,u^0,q) dq \\
+    =&amp; \int_{q^0}^{q^1} - {\partial E(p,u^0,q) \over \partial q} dq \\
+    =&amp; E(p,u^0,q^0) - E(p,u^0,q^1) 
+\end{align}`
+]
+
+
+.pull-right[
+`\begin{align}
+  EV =&amp; \int_{q^0}^{q^1} \pi^q(p,u^1,q) dq \\
+    =&amp; \int_{q^0}^{q^1} - {\partial E(p,u^1,q) \over \partial q} dq \\
+    =&amp; E(p,u^1,q^0) - E(p,u^1,q^1) 
+\end{align}`
+]
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
