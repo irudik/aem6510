@@ -1176,11 +1176,60 @@ He showed that under certain .hi[integratibility conditions], ordinary demand cu
 
 --
 
-To see this let's first look at two identifies in consumer economics
+To see this let's first look at two identities in consumer economics
 
 1. From before: the observed demand level solves the utility maximization .hi[and] expenditure minimization problems
 2. $\bar{u} = V(p,E(p,\bar{u},q),q)$, the indirect utility given an income $y$ equal to the expenditure to achieve $\bar{u}$ is equal to $\bar{u}$
 
+---
+
+# CS and measurement
+
+Differentiate $\bar{u} = V(p,E(p,\bar{u},q),q)$ with respect to $p_j$:
+$${\partial V \over \partial p_j} + {\partial V \over \partial y}{\partial E \over \partial p_j} = 0$$
+
+which gives us that:
+$${\partial E(p,\bar{u},q) \over \partial p_j} = {\partial V \over \partial p_j}\bigg/{\partial V \over \partial y} = x_j(p,y,q)$$
+where the second equality is .hi-blue[Roy's identity]
+
+--
+
+This relates income (equal to expenditures at the optimum) and price
+
+---
+
+# CS and measurement
+
+$${\partial E(p,\bar{u},q) \over \partial p_j} = {\partial y(p) \over \partial p_j} = x_j(p,y,q)$$
+
+Suppose we:
+1. Parameterized $x_j$ with some functional form
+2. Estimated the parameters of $x_j$ using real world data
+
+We can then solve
+${\partial y(p) \over \partial p_j} = x_j(p,y,q)$
+for $y$ to get: $y[p_j,k(p_{-j},q)]$
+
+$k$ is a constant of integration
+
+---
+
+# CS and measurement
+
+If $k(p_{-j},q)$ is held fixed, then $y[p_j,k(p_{-j},q)]$ is a .hi[quasi-expenditure] function
+
+--
+
+This means we can compute welfare measures with it!
+
+--
+
+Since utility is .hi[ordinal] we only care about comparisons, not levels, so we can set $u^0 = k(p_{-j},q)$ so that
+$$y[p_j,k(p_{-j},q)] = y[p_j,u^0] = \hat{E}(p_j,u^0)$$
+
+--
+
+We can compute CV for a change in $p_j$ easily using this quasi-expenditure function, but we need to assume prices of other goods and environmental quality are .hi-red[fixed]
 
 ---
 
@@ -1190,3 +1239,17 @@ name: base_model
 # Quantity change welfare measures
 
 <html><div style='float:left'></div><hr color='#EB811B' size=1px width=796px></html>
+
+---
+
+# Quantity change welfare measures
+
+In environmental economics we are more concerned with .hi-blue[quantity changes] in quasi-fixed environmental goods rather than price changes in private goods
+
+--
+
+How is this analysis different and similar to our analysis of price changes?
+
+--
+
+First let's define CV and EV in terms of .hi[environmental quantity changes]
