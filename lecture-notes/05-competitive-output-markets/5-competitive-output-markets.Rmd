@@ -97,8 +97,12 @@ Next we need the cost functions
 
 --
 
-The cost function $C(x,e)$ is derived from the firm's cost minimization problem:
-$$C(x,e) = \min_{l_1,\dots,l_k} \left\{ \sum_{k=1}^K w_k l_k + \lambda \underbrace{\left[ x - f(l_1,\dots,l_K) \right]}_{\text{production tech}} + \mu \underbrace{\left[e-g(l_1,\dots,l_K)\right]}_{\text{emission tech}} \right\}$$
+The cost function $C(x,e)$ is derived from the firm's cost minimization problem
+
+--
+
+We want to minimize the costs of producing a given combination of output $(x,e)$
+$$C(x,e) = \min_{l_1,\dots,l_k} \left\{ \sum_{k=1}^K w_k l_k + \lambda \underbrace{\left[ x - f(l_1,\dots,l_K) \right]}_{\text{x units of output}} + \mu \underbrace{\left[e-g(l_1,\dots,l_K)\right]}_{\text{e units of emissions}} \right\}$$
 where $\{w_1,\dots,w_K\}$ is a vector of input prices
 
 
@@ -106,9 +110,14 @@ where $\{w_1,\dots,w_K\}$ is a vector of input prices
 
 # The competitive output model
 
+Let $\hat{e}^x$ be the freely chosen level of emissions at output level $x$
+
 We need two sets of assumptions to continue
 
-## Assumption Set 1 (general model)
+--
+
+## Assumption Set 1 .hi-red[(general case)]
+
 --
 
 1. $C(x,e)$ is twice continuously-differentiable with $C_x > 0$ and for any $x$ there is an emission level $\hat{e}^x$ such that $C_e(x,\hat{e}^x) = 0$
@@ -122,10 +131,6 @@ We need two sets of assumptions to continue
 
 4. $C_{xx} > 0, C_{ee} > 0, C_{xx}C_{ee} - C_{ex}^2 > 0$ 
 
---
-
-$\hat{e}^x$ is the freely chosen level of emissions at output level $x$
-
 ---
 
 # The competitive output model
@@ -133,8 +138,14 @@ $\hat{e}^x$ is the freely chosen level of emissions at output level $x$
 What do these tell us?
 
 1. MC of production is positive and there is a cost-minimizing emission level $\hat{e}^x$ for all $x$ in the absence of environmental regulation
-2. MAC is increasing in abatement (decreasing in emissions)
+--
+
+2. MAC is increasing in abating below $\hat{e}^x$
+--
+
 3. MC of production is smaller with higher emissions $\leftrightarrow$ MAC shifts up if output rises
+--
+
 4. Production and abatement costs are convex (marginal costs are increasing)
 
 ---
@@ -145,7 +156,7 @@ We can also see that the non-regulated emission level $\hat{e}^x$ rises with $x$
 
 --
 
-Totally differentiate $C_e(x, \hat{e}^x)$ to get $C_{ee}(x,\hat{e}^x)d\hat{e}^x + C_{ex}(x,\hat{e}^x)dx = 0$
+Totally differentiate $C_e(x, \hat{e}^x) = 0$ to get $C_{ee}(x,\hat{e}^x)d\hat{e}^x + C_{ex}(x,\hat{e}^x)dx = 0$
 
 --
 
@@ -155,9 +166,9 @@ Rearrange to get: ${d\hat{e}^x \over dx} = - {C_{ee} \over C_{ex}} > 0$
 
 # The competitive output model
 
-## Assumption Set 2 (specific model)
+## Assumption Set 2 .hi[(specific case)]
 
-We will be directly linking emissions to output in the specific model so we make these assumptions:
+We will be directly linking emissions to output in the .hi[specific case] so we make these assumptions:
 
 - Cost function $C(x)$ is twice continuously-differentiable
 --
@@ -189,7 +200,7 @@ $${d \Pi \over de} = {p - C'(e/\delta) \over \delta}$$
 
 # The competitive output model
 
-At an unregulated optimum it must be that $p - C'(x) = 0$ so $p - C'(\hat{e}^x/\delta)$ defines the unregulated level of emissions
+At an unregulated optimum it must be that $p - C'(x) = 0$ so $p - C'(\hat{e}^x/\delta) = 0$ defines the unregulated level of emissions
 
 --
 
@@ -201,7 +212,7 @@ Thus ${d \Pi \over de}$ is the marginal abatement cost where ${d \Pi \over de} >
 
 --
 
-The MC of abatement is the forgone marginal profits from reducing emissions
+.hi-blue[The MC of abatement is the forgone marginal profits from reducing emissions]
 
 --
 
@@ -442,8 +453,10 @@ Now we will take another look at our environmental policy instruments in this mo
 --
 
 We will see that:
+
 --
   - There are additional results related to the output market that we didn't have before
+  
 --
 
   - The previous results all still hold: taxes, subsidies, permits can all achieve the efficient allocation
