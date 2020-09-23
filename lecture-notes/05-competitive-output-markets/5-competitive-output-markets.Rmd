@@ -156,11 +156,11 @@ We can also see that the non-regulated emission level $\hat{e}^x$ rises with $x$
 
 --
 
-Totally differentiate $C_e(x, \hat{e}^x) = 0$ to get $C_{ee}(x,\hat{e}^x)d\hat{e}^x + C_{ex}(x,\hat{e}^x)dx = 0$
+Differentiate $C_e(x, \hat{e}^x) = 0$ wrt $x$ to get: $C_{ex}(x,\hat{e}^x){dx \over dx} + C_{ee}(x,\hat{e}^x){d\hat{e}^x \over dx} = 0$
 
 --
 
-Rearrange to get: ${d\hat{e}^x \over dx} = - {C_{ee} \over C_{ex}} > 0$
+Rearrange to get: ${d\hat{e}^x \over dx} = - {C_{ex} \over C_{ee}} > 0$
 
 ---
 
@@ -500,15 +500,15 @@ So if the regulator sets $\tau = D'(E^*)$ .hi-blue[we can achieve the efficient 
 
 # Policy instruments: taxes
 
-When facing an emission tax $\tau$ a competitive firm's problem in the .hi[specific case] is:
-$$\Pi_j(x_j, e_j) = p x_j - C^j(x_j) - \tau \delta_j x_j$$
+When facing an emission tax $\tau$ a competitive firm's problem in the .hi[specific case] where $e_j = d x_j$ is:
+$$\Pi_j(x_j) = p x_j - C^j(x_j) - \tau \delta x_j$$
 with FOC:
-$$p = C'_j(x_j) - \tau \delta_j$$
+$$p = C'_j(x_j) - \tau \delta$$
 
 --
 
 If the regulator sets $\tau = D'(E^*)$ then firms behave as if
-$$P(X) = C'_j(x_j) - \delta_j D'(E^*)$$
+$$P(X) = C'_j(x_j) - \delta D'(E^*)$$
 .hi-blue[which matches our social efficiency condition]
 
 ---
@@ -544,20 +544,21 @@ Emission taxes reduce output
 # Comparative statics
 
 With $E = \delta \cdot X$ we have how emissions respond to the tax:
-$${dE\over d\tau} = {J \delta^2 \over P'(X)J - C''(x)} < 0$$
+$${dE\over d\tau} = J \delta {\delta \over P'(X)J - C''(x)} < 0$$
 and since $p = P(X)$ is the market price of output, we can determine the relationship between output prices and the tax:
 $${dp\over d\tau} = P'(X){d X \over d\tau} > 0$$
+
 
 ---
 
 # Comparative statics
 
-What do the comparative statics tell us?
+Recap: What do the comparative statics tell us?
 
 Output and emissions decline in the tax:
   - A tax on emissions raises the marginal cost of production for firms
-  - Supply shifts left
-  - Price goes up, quantity goes down
+    - Supply shifts left
+  - Output price $p$ goes up, quantity $x$ goes down
   
 ---
 
@@ -572,8 +573,11 @@ Incidence is how the tax burden is distributed between consumers and producers.
 
 --
 
-If $P'(X)$ is small, demand is elastic (flat), and consumers have low incidence because the price they pay does not change much in the tax, firms bear most of the cost of the tax
-  - If demand is perfectly elastic $P'(X) = 0$ and there is no associated price increase from a tax increase
+If $P'(X)$ is small, demand is .hi-blue[elastic (flat), and consumers have low incidence because the price they pay does not change much in the tax, firms bear most of the cost of the tax
+
+--
+
+If demand is perfectly elastic $P'(X) = 0$ and there is no associated price increase from a tax increase
 
 ---
 
@@ -581,8 +585,11 @@ If $P'(X)$ is small, demand is elastic (flat), and consumers have low incidence 
 
 $${dp\over d\tau} = P'(X){d X \over d\tau} > 0$$
 
-If $P'(X)$ is large, demand is inelastic, and consumers have high incidence because the price they pay for $x$ increases substantially in the tax, firms pass-through most of the tax to consumers
-  - If demand is perfectly inelastic, then consumers bear the entire cost of the tax
+If $P'(X)$ is large, demand is .hi-blue[inelastic], and consumers have high incidence because the price they pay for $x$ increases substantially in the tax, firms pass-through most of the tax to consumers
+
+--
+
+If demand is perfectly inelastic, then consumers bear the entire cost of the tax
   
 ---
 
@@ -621,7 +628,7 @@ Auctioned versus freely-distributed permits are equivalent in this model in term
 
 --
 
-The permit price in the market will match the price that clears the auction
+The permit price in the market under free distribution will match the price that clears the permit auction
 
 --
 
@@ -737,10 +744,13 @@ Relative standards are only interesting in the .hi-red[general case] of our mode
 
 --
 
-Assume the regulation is binding in the .hi-red[general case] (i.e. it actually affects firm behavior), then the firm will always set $e = \alpha x$
+Assume the regulation is binding in the .hi-red[general case] (i.e. it actually affects firm behavior), then the firm will always set $e = \alpha x$<sup>1</sup>
 
-This lets us re-write a firm's profit function as:
-$$\Pi(x) = px - C(x, \alpha x)$$
+.footnote[
+<sup>1</sup>Choosing $e$ strictly less than  $\alpha x$ strictly raises costs and reduces profits.
+]
+
+This lets us re-write a firm's profit function as: $\Pi(x) = px - C(x, \alpha x)$
 
 ---
 
@@ -756,7 +766,7 @@ If the regulation is binding, the firm really is only choosing one variable, $x$
 The FOC is:
 $$p = C_x(x,\alpha x) + \alpha C_e(x, \alpha x)$$
 
-The implicit solution to this, $x(\alpha)$, is the firms supply function
+The implicit solution to this, $x(\alpha)$, is the firms supply function, dependent on the policy $\alpha$
 
 ---
 
@@ -776,6 +786,8 @@ The firm's profit function is:
 $$\Pi(x,\bar{e}) = px - C(x,\bar{e})$$
 and the firm's supply $x(\bar{e})$ is defined by $p = C_x(x,\bar{e})$
 
+--
+
 If the regulator chooses $\bar{e} = e^*$ the regulator can achieve the efficient outcome
 
 ---
@@ -784,6 +796,9 @@ If the regulator chooses $\bar{e} = e^*$ the regulator can achieve the efficient
 
 Recall the relative standard FOC if we wanted to set $e = \bar{e}$:
 $$p = C_x(x(\alpha),\bar{e}) + \alpha C_e((\alpha), \bar{e})$$
+
+--
+
 and notice that this means that:
 $$p - \alpha C_e(x(\alpha), \bar{e}) = C_x(x(\alpha), \bar{e}) > p$$
 since $-C_e$ is positive
@@ -811,7 +826,7 @@ It follows pretty simply that: $x(\alpha) > x(\bar{e})$ and that:
 
 --
 
-.hi-blue[Total cost and marginal cost are higher under a relative standard]
+.hi-blue[Total cost and marginal production and abatement costs are higher under a relative standard]
 
 ---
 
@@ -872,7 +887,7 @@ $$W(\alpha) = \int_{0}^{x(\alpha)} P(t) dt - C(x(\alpha), \alpha x(\alpha)) - D(
 
 The FOC is:
 $$[P - C_x - \alpha C_e] x'(\alpha) - C_e x - D' \times [x + \alpha x'(\alpha)] = 0$$
-where the term in the first bracket is 0 from the firm's FOCs
+where the term in the first bracket is 0 from the firm's $\pi$-max FOCs
 
 ---
 
@@ -880,6 +895,8 @@ where the term in the first bracket is 0 from the firm's FOCs
 
 This gives us that:
 $$- C_e  ={x + \alpha x'(\alpha) \over x } D'$$
+
+.hi-blue[This is not MAC = MD!]
 
 --
 
@@ -952,7 +969,7 @@ D'(E^*) =& -C_e(x^*,e^*) \\
 P(X^*)x^* =& C(x^*,e^*) + D'(E^*)e^*
 \end{align}
 
-The last expression is the new one for long-run efficiency
+The last expression is the new one for .hi[long-run efficiency]
 
 ---
 
@@ -965,11 +982,19 @@ What does this say?
 
 --
 
-First, for a small firm, $D'(E^*)e^*$ is approximately the damage caused by that firm because for sufficiently small $e^*$, $D'(E^*)$ will be approximately constant (Taylor expansion argument)
+First, for a small firm, $D'(E^*)e^*$ is approximately the damage caused by that firm because for sufficiently small $e^*$, $D'(E^*)$ will be approximately constant $(\delta)$ (by a Taylor expansion argument)
 
---
 
-This means that it is socially efficient for firms to enter or exit until the price of output equals the .hi-blue[average social cost curve]
+---
+
+# Environmental policy in the long run
+
+With some slight rearranging we can get:
+$$P(X^*) = \underbrace{{C(x^*,e^*) + \delta e^*\over x^*}}_{\text{average social cost}}$$
+
+
+This means that it is socially efficient for firms to enter or exit until the price of output (approximately) equals the .hi-blue[average social cost curve]
+
 
 ---
 
@@ -1006,9 +1031,13 @@ In the long run equilibrium we will have $\hat{J}$ firms all producing $\hat{x}$
   &P(\hat{x}\hat{J})\hat{x} - C(\hat{x},e^*) = 0
 \end{align}
 
+--
+
 MR = MC, and zero profits are our two equilibrium conditions
 
-What do these tell us about standards and efficiency?
+--
+
+MR = MC maximizes firm profit, zero profits ensures no change in # of firms
 
 ---
 
@@ -1016,13 +1045,25 @@ What do these tell us about standards and efficiency?
 
 Recall that long run efficiency required that:
 $$P(X^*)x^* - C(x^*,e^*) = D'(E^*)e^* > 0$$
+
+--
+
 so we have that $\hat{J} \neq J^*$ and $\hat{x} \neq x^*$!
 
 What's the intuition?
 
+--
+
 When we impose a standard:
+
+--
+
 1. Firms cut back output
+--
+
 2. This raises marginal profit above zero: MR > MC!
+--
+
 3. Firms enter the market so $\hat{J} > J^*$ and we will have that $\hat{x} < x^*$
 
 ---
@@ -1058,6 +1099,9 @@ $$\tau = D'(E^*)$$
 
 Firm profit is then:
 $$\Pi = px - C(x,e) - \tau e$$
+
+--
+
 Giving us FOCs:
 $$p = C_x(x^*,e^*) \qquad -C_e(x^*,e^*) = \tau$$
 
@@ -1072,7 +1116,9 @@ $$P(X^*)x^* = C(x^*,e^*) + D'(E^*)e^*$$
 
 The firm FOCs for production and the entry zero-profit condition map exactly to the social welfare maximizing conditions!
 
-The payment of rents from the firms to the regulator of $\tau e^* = D'(E^*)e^*$ limits entry and is what makes taxes efficient in the long run
+--
+
+The payment of tax rents from the firms to the regulator of $\tau e^* = D'(E^*)e^*$ limits entry and is what makes taxes efficient in the long run
 
 ---
 
@@ -1097,7 +1143,11 @@ The long run equilibrium is defined by the two firm FOCs and the entry condition
 
 # Permits in the long run
 
+--
+
 Similar to the short run we will have that $\sigma = -C_e(x^*,e^*) = D'(L) = D'(E^*)$
+
+--
 
 Thus the three long run efficiency conditions are satisfied again if we auction off the permits:
 - MR = MC
@@ -1110,13 +1160,13 @@ Now what if we freely distribute permits?
 
 --
 
-It seems like it might be long run efficient since firms are not paying the environmental rent, so zero profit might not occur
+It seems like it might not be long run efficient since firms are not paying the environmental rent, so zero profit might not occur
 
 ---
 
 # Permits in the long run
 
-Suppose we allocate $\bar{e}$ firms to the incumbent identical firms, profit for the incumbent firms given permits is then:
+Suppose we allocate $\bar{e}$ permits to the incumbent identical firms, profit for the incumbent firms given permits is then:
 $$\Pi = px - C(x,e) - \sigma(e-\bar{e})$$
 and profit for any future entrants who were not given an allocation is:
 $$\Pi = px - C(x,e) - \sigma e$$
@@ -1168,6 +1218,10 @@ In the short run they are equivalent to taxes, are they still equivalent in the 
 
 --
 
+Think about the incentives for entry...
+
+--
+
 Denote the reference level of emissions as $\hat{e}$, firm profits under a subsidy per unit $\xi$ are:
 $$Pi = px - C(x,e) - \xi(e-\hat{e})$$
 
@@ -1175,14 +1229,17 @@ $$Pi = px - C(x,e) - \xi(e-\hat{e})$$
 
 # Subsidies in the long run
 
-For efficiency we need to set the subsidy equal to MD $\xi = D'(E^*)$
+For damage efficiency we need to set the subsidy equal to MD $\xi = D'(E^*)$
 
 --
 
 In the long run equilibrium, firms enter until profits are zero
-$$\Pi = P(X^*)x* - C(x^*,e^*) - D'(E^*)(e^*-\hat{e}) = 0$$
+$$\Pi = P(X^*)x^* - C(x^*,e^*) - D'(E^*)(e^*-\hat{e}) = 0$$
+
+--
+
 which implies that
-$$P(X^*)x* - C(x^*,e^*) - D'(E^*)e^* = D'(E^*)\hat{e} > 0$$
+$$P(X^*)x^* - C(x^*,e^*) - D'(E^*)e^* = D'(E^*)\hat{e} > 0$$
 
 Too many firms have entered!
 
