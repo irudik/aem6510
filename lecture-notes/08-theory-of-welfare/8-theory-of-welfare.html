@@ -1177,15 +1177,138 @@ EV is the change in income needed to go from `\(u^0 \rightarrow u^1\)` at `\(q^0
 
 ---
 
+# CV and EV in utility space
+
+
+.pull-left[
+
+Tracing out demand curves is a little trickier here since `\(q\)` has no price
+
+Here's how to think about it:
+
+- Suppose `\(q\)` was traded in a market at some .hi[virtual price] `\(\pi\)`
+- The person's virtual income to .hi-blue[compensate] them and keep their private good spending to be `\(y_0\)` is: `\(\tilde{y} = y_0 + \pi \tilde{q}\)` 
+
+]
+
+.pull-right[
+
+![virtual prices for q](8-theory-of-welfare_files/figure-html/utility_space_q-1.png)
+
+]
+
+---
+
+# CV and EV in utility space
+
+
+.pull-left[
+
+`$$\tilde{y} = y_0 + \pi \tilde{q}$$`
+
+Given some income `\(\tilde{y}\)` the consumer "buys" `\(\tilde{q}\)` units such that the budget constraint is tangent to an indifference curve (like usual)
+
+]
+
+.pull-right[
+
+![virtual prices for q](8-theory-of-welfare_files/figure-html/utility_space_q-1.png)
+
+]
+
+---
+
+# CV and EV in utility space
+
+
+
+
+.pull-left[
+
+Let `\(\pi_0(\tilde{y}_0), \pi_1(\tilde{y}_1), \pi_2(\tilde{y}_2), \pi_3(\tilde{y}_3)\)` be the virtual price/income combinations tangent at points `\(a, b, c, d\)`
+
+We can use these to trace out our compensated inverse demand curves by moving along the same indifference curve to different levels of `\(q\)`
+
+]
+
+.pull-right[
+
+![virtual prices for q](8-theory-of-welfare_files/figure-html/utility_space_q_virtual-1.png)
+
+]
+
+
+---
+
+# CV and EV in utility space
+
+.pull-left[
+
+The virtual price change along an indifference curve trace out the compensated inverse demands:
+  - `\(\pi_0(\tilde{y}_0)\)` and `\(\pi_2(\tilde{y}_2)\)` trace out `\(\pi^q(p,u^0,q)\)`
+  - `\(\pi_3(\tilde{y}_3)\)` and `\(\pi_1(\tilde{y}_1)\)` trace out `\(\pi^q(p,u^1,q)\)`
+
+]
+
+.pull-right[
+
+![virtual prices for q](8-theory-of-welfare_files/figure-html/utility_space_q_virtual-1.png)
+
+]
+
+---
+
+# CV and EV in utility space
+
+.pull-left[
+
+The virtual price change from `\(q^0\)` to `\(q^1\)` holding income fixed traces out the ordinary inverse demand curve
+  - `\(\pi_0(\tilde{y}_0)\)` and `\(\pi_1(\tilde{y}_1)\)` trace out `\(\theta^q(p,y,q)\)`
+
+]
+
+.pull-right[
+
+![virtual prices for q](8-theory-of-welfare_files/figure-html/utility_space_q_virtual-1.png)
+
+]
+
+
+---
+
 # CV and EV in demand space
 
 
 
 .pull-left[
 
-The price change traces out the ordinary demand curve (dark blue):
+Similar to before (but now with axes flipped since these are inverse demands)
 
-We are holding income `\(y\)` and environmental quality `\(q\)` fixed, so changes in price move us along `\(x(p,y,q)\)`
+CV is given by the area `\(q_0,a,c,q_1\)`
+
+EV is given by the area `\(q_0,d,b,q_1\)`
+
+CS is given by the area `\(q_0,a,b,q_1\)`
+]
+
+.pull-right[
+
+![Tangent line at the optimum has 0 slope](8-theory-of-welfare_files/figure-html/demand_space_q-1.png)
+
+]
+
+
+---
+
+# Compensated demand and virtual prices
+
+.pull-left[
+
+Now we have started to get the intuition for why it's called compensated demand
+
+--
+
+We are directly .hi-blue[compensating] the person's income to maintain constant utility
 
 ]
 
@@ -1194,6 +1317,44 @@ We are holding income `\(y\)` and environmental quality `\(q\)` fixed, so change
 ![Tangent line at the optimum has 0 slope](8-theory-of-welfare_files/figure-html/demand_space_q-1.png)
 
 ]
+
+---
+
+# The fundamental challenge of measurement
+
+Recall with price changes we were able to value them by relating them to (quasi-)expenditures:
+`$${\partial E(p,\bar{u},q) \over \partial p_j} = {\partial V \over \partial p_j}\bigg/{\partial V \over \partial y} = x_j(p,y,q)$$`
+
+--
+
+Here we will have the equivalent outcome:
+`$${\partial E(p,\bar{u},q) \over \partial q} = {\partial V \over \partial q}\bigg/{\partial V \over \partial y} = \theta^q(p,y,q)$$`
+
+--
+
+If we can obtain the ordinary inverse demand curve for `\(q\)` then we can calculate welfare measures!
+
+---
+
+# The fundamental challenge of measurement
+
+What's the problem?
+
+--
+
+`\(q\)` isn't traded in markets
+
+--
+
+We .hi-red[don't] observe an ordinary inverse demand curve because there are no prices-quantity pairs
+
+--
+
+This is the fundamental challenge with measuring changes in the quantity of environmental goods
+
+--
+
+We solve this challenge by studying market goods that capitalize the value of environmental goods
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

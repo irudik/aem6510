@@ -1456,6 +1456,147 @@ EV is the change in income needed to go from $u^0 \rightarrow u^1$ at $q^0$: $E(
 
 ---
 
+# CV and EV in utility space
+
+
+.pull-left[
+
+Tracing out demand curves is a little trickier here since $q$ has no price
+
+Here's how to think about it:
+
+- Suppose $q$ was traded in a market at some .hi[virtual price] $\pi$
+- The person's virtual income to .hi-blue[compensate] them and keep their private good spending to be $y_0$ is: $\tilde{y} = y_0 + \pi \tilde{q}$ 
+
+]
+
+.pull-right[
+
+![virtual prices for q](`r knitr::fig_chunk("utility_space_q", "png")`)
+
+]
+
+---
+
+# CV and EV in utility space
+
+
+.pull-left[
+
+$$\tilde{y} = y_0 + \pi \tilde{q}$$
+
+Given some income $\tilde{y}$ the consumer "buys" $\tilde{q}$ units such that the budget constraint is tangent to an indifference curve (like usual)
+
+]
+
+.pull-right[
+
+![virtual prices for q](`r knitr::fig_chunk("utility_space_q", "png")`)
+
+]
+
+---
+
+# CV and EV in utility space
+
+
+```{r utility_space_q_virtual, echo = FALSE, fig.show = 'hide', warning = F}
+ic1 <- function(x) 25/x + 2
+ic2 <- function(x) 22/x
+ggplot() +
+  stat_function(fun = ic1, color = "#638ccc", size = 1.0) +
+  stat_function(fun = ic2, color = "#ca5670", size = 1.0) +
+  annotate("segment", x = 0, xend = 8, y = 5, yend = 5,
+           linetype = "dotted", size = 1, color = "grey55") +
+  annotate("segment", x = 0, xend = 8, y = 2.85, yend = 2.85,
+           linetype = "dotted", size = 1, color = "grey55") +
+  annotate("segment", x = 8, xend = 8, y = 0, yend = 5,
+           linetype = "dotted", size = 1, color = "grey55") +
+  annotate("segment", x = 0, xend = 4.5, y = 7.6, yend = 7.6,
+           linetype = "dotted", size = 1, color = "grey55") +
+  annotate("segment", x = 4.5, xend = 4.5, y = 0, yend = 7.6,
+           linetype = "dotted", size = 1, color = "grey55") +
+  annotate("text", size = 6, label = expression(U^0), x = 1, y = 14.25, color = "#ca5670") +
+  annotate("text", size = 6, label = expression(U^1), x = 3, y = 14.25, color = "#638ccc") +
+  annotate("text", size = 6, label = expression(pi[1](tilde(y)[1])), x = 8.2, y = 5.4) +
+  annotate("text", size = 6, label = expression(pi[2](tilde(y)[2])), x = 8.3, y = 2.35) +
+  annotate("text", size = 6, label = expression(pi[3](tilde(y)[3])), x = 4.7, y = 7.8) +
+  annotate("text", size = 6, label = expression(pi[0](tilde(y)[0])), x = 4.2, y = 4.75) +
+  theme_minimal() +
+  theme(
+    legend.position = "none",
+    title = element_text(size = 24),
+    axis.text.x = element_text(size = 16, color = "#000000"), axis.text.y = element_text(size = 16, color = "#000000"),
+    axis.title.x = element_text(size = 16, color = "#000000"), axis.title.y = element_text(size = 16, color = "#000000"),
+    panel.grid.minor.x = element_blank(), panel.grid.major.y = element_blank(),
+    panel.grid.minor.y = element_blank(), panel.grid.major.x = element_blank(),
+    panel.background = element_rect(fill = "#eeeeee",colour = NA),
+    plot.background = element_rect(fill = "#eeeeee",colour = NA),
+    axis.line = element_line(colour = "black")
+  ) +
+  scale_x_continuous(expand = c(0, 0), limits = c(0, 15),
+                     breaks = c(4.5, 8), labels = expression(q^0, q^1)) +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 15),
+                     breaks = c(2.85, 5, 7.6), labels = expression(E(p,u^0,q^1), y[0], E(p,u^1,q^0))) +
+  labs(x = "q",
+       y = "Income / Numeraire good",
+       title = "Utility space")
+  
+```
+
+.pull-left[
+
+Let $\pi_0(\tilde{y}_0), \pi_1(\tilde{y}_1), \pi_2(\tilde{y}_2), \pi_3(\tilde{y}_3)$ be the virtual price/income combinations tangent at points $a, b, c, d$
+
+We can use these to trace out our compensated inverse demand curves by moving along the same indifference curve to different levels of $q$
+
+]
+
+.pull-right[
+
+![virtual prices for q](`r knitr::fig_chunk("utility_space_q_virtual", "png")`)
+
+]
+
+
+---
+
+# CV and EV in utility space
+
+.pull-left[
+
+The virtual price change along an indifference curve trace out the compensated inverse demands:
+  - $\pi_0(\tilde{y}_0)$ and $\pi_2(\tilde{y}_2)$ trace out $\pi^q(p,u^0,q)$
+  - $\pi_3(\tilde{y}_3)$ and $\pi_1(\tilde{y}_1)$ trace out $\pi^q(p,u^1,q)$
+
+]
+
+.pull-right[
+
+![virtual prices for q](`r knitr::fig_chunk("utility_space_q_virtual", "png")`)
+
+]
+
+---
+
+# CV and EV in utility space
+
+.pull-left[
+
+The virtual price change from $q^0$ to $q^1$ holding income fixed traces out the ordinary inverse demand curve
+  - $\pi_0(\tilde{y}_0)$ and $\pi_1(\tilde{y}_1)$ trace out $\theta^q(p,y,q)$
+
+]
+
+.pull-right[
+
+![virtual prices for q](`r knitr::fig_chunk("utility_space_q_virtual", "png")`)
+
+]
+
+
+---
+
 # CV and EV in demand space
 
 ```{r demand_space_q, echo = FALSE, fig.show = 'hide', warning = F}
@@ -1512,9 +1653,33 @@ ggplot() +
 
 .pull-left[
 
-The price change traces out the ordinary demand curve (dark blue):
+Similar to before (but now with axes flipped since these are inverse demands)
 
-We are holding income $y$ and environmental quality $q$ fixed, so changes in price move us along $x(p,y,q)$
+CV is given by the area $q_0,a,c,q_1$
+
+EV is given by the area $q_0,d,b,q_1$
+
+CS is given by the area $q_0,a,b,q_1$
+]
+
+.pull-right[
+
+![Tangent line at the optimum has 0 slope](`r knitr::fig_chunk("demand_space_q", "png")`)
+
+]
+
+
+---
+
+# Compensated demand and virtual prices
+
+.pull-left[
+
+Now we have started to get the intuition for why it's called compensated demand
+
+--
+
+We are directly .hi-blue[compensating] the person's income to maintain constant utility
 
 ]
 
@@ -1523,3 +1688,41 @@ We are holding income $y$ and environmental quality $q$ fixed, so changes in pri
 ![Tangent line at the optimum has 0 slope](`r knitr::fig_chunk("demand_space_q", "png")`)
 
 ]
+
+---
+
+# The fundamental challenge of measurement
+
+Recall with price changes we were able to value them by relating them to (quasi-)expenditures:
+$${\partial E(p,\bar{u},q) \over \partial p_j} = {\partial V \over \partial p_j}\bigg/{\partial V \over \partial y} = x_j(p,y,q)$$
+
+--
+
+Here we will have the equivalent outcome:
+$${\partial E(p,\bar{u},q) \over \partial q} = {\partial V \over \partial q}\bigg/{\partial V \over \partial y} = \theta^q(p,y,q)$$
+
+--
+
+If we can obtain the ordinary inverse demand curve for $q$ then we can calculate welfare measures!
+
+---
+
+# The fundamental challenge of measurement
+
+What's the problem?
+
+--
+
+$q$ isn't traded in markets
+
+--
+
+We .hi-red[don't] observe an ordinary inverse demand curve because there are no prices-quantity pairs
+
+--
+
+This is the fundamental challenge with measuring changes in the quantity of environmental goods
+
+--
+
+We solve this challenge by studying market goods that capitalize the value of environmental goods
