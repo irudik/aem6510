@@ -1,0 +1,384 @@
+---
+title: "Lecture 9"
+subtitle: "Hedonics: Property value models"
+author: Ivan Rudik
+date: AEM 6510
+output:
+  xaringan::moon_reader:
+    css: ['default', 'metropolis', 'metropolis-fonts', 'my-css.css']
+    # self_contained: true
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: '16:9'
+
+
+---
+exclude: true
+```{r setup}
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(
+  tidyverse, tidylog, xaringanExtra, rlang, patchwork
+)
+options(htmltools.dir.version = FALSE)
+knitr::opts_hooks$set(fig.callout = function(options) {
+  if (options$fig.callout) {
+    options$echo <- FALSE
+  }
+knitr::opts_chunk$set(echo = TRUE, fig.align="center")
+  options
+})
+```
+```{r xaringanExtra, echo = FALSE}
+xaringanExtra::use_xaringan_extra(c("tile_view", "panelset", "webcam"))
+
+```
+```{r echo=FALSE}
+xaringanExtra::style_panelset(panel_tab_color_active = "red")
+```
+
+---
+
+# Roadmap
+
+- What can we use to infer the demand for environmental goods?
+- What do housing prices tell us?
+- When do changes in house prices give us welfare measures
+
+---
+
+# Environmental quantity changes
+
+Last time we learned that we cannot directly compute the welfare consequences of a change in environmental quantities
+
+--
+
+There are no markets for the environmental goods
+
+--
+
+We don't observe the ordinary inverse demand curve
+
+--
+
+We can't compute CS, EV, CV, etc!
+
+---
+
+# Revealed preference approaches
+
+One way to circumvent this problem is to look at private goods that interact with the environmental good
+
+--
+
+If there are changes in the environmental good, holding everything else fixed, that should be reflected in *some way* in changes in the price of the related private good
+
+--
+
+This change in price can tell us something about how people value the change in the environmental good
+
+---
+
+# Revealed preference approaches
+
+There is no market for orcas
+
+--
+
+Suppose there's a massive decline in orcas off the Washington coast, what happens?
+
+--
+
+We will likely see demand for sightseeing tours go down (MB of these tours went down!)
+
+--
+
+This drops the price of tours
+
+--
+
+A non-market good had an effect on a market price
+
+--
+
+What does this price change mean?
+
+---
+
+# Hedonics: Property value models
+
+Common market goods to use for revealed preference valuation are .hi-blue[properties]
+
+--
+
+When people buy a home they are purchasing a bundle of goods:
+  - Rooms
+  - Bathrooms
+  - School quality
+  - .hi[Environmental quality]
+
+--
+
+Homes located in pristine areas are likely to be more valuable than identical homes located near toxic facilities
+
+---
+
+# Hedonics: Property value models
+
+Real estate is virtually ideal for measuring environmental changes
+
+--
+
+Real estate markets are often competitive and thick
+
+--
+
+Property purchases are large and consequential: buyers and sellers are likely to be well-informed
+
+--
+
+It is uncontroversial that property values should reflect local attributes
+
+---
+
+# The hedonic model
+
+Property value approaches are often called .hi-blue[hedonics] because they rely on the hedonic model
+
+--
+
+Suppose that we have some quality-differentiated good (i.e. a home)
+
+--
+
+This good is characterized by a set of $J$ property characteristics $x$
+  - parcel size, school quality, bedrooms, etc
+  
+--
+
+It is also characterized by an environmental good $q$
+
+
+---
+
+# The hedonic model
+
+The price of a house is determined by a .hi[hedonic price function] $P(x,q)$
+
+
+--
+
+$P$ maps characteristics of the house and local environment to the market value of the home
+
+--
+
+For a particular house $k$ its price is $p_k = P(x_k,q_k)$
+
+--
+
+$P$ arises in equilibrium from the interaction of all buyers in sellers in the market
+
+--
+
+Here we will assume the supply of houses is fixed in the short run so the price function arises from buyer behavior
+
+
+---
+
+# The hedonic model: consumer's choice problem
+
+Households buy a single property given their budget constraint and their preferences
+
+--
+
+Here we will assume that households are effectively just choosing $(x,q)$ instead of a specific house with the following objective:
+$$\max_{x,q,z} U(x,q,z;s) \,\,\,\,\, s.t. \,\,\,\,\, y = z + P(x,q)$$
+
+--
+
+- $z$ is the numeraire good (spending on other private goods)
+- $y$ is income
+- $s$ is the set of the household's characteristics like family size
+
+
+---
+
+# Unrealistic pieces of the model
+
+One unrealistic part of this model is that we are assuming household characteristics are continuous
+
+--
+
+Many housing characteristics are discrete (bedrooms, bathrooms, etc)
+
+--
+
+Another is that you just can't purchase some sets of $x$ (i.e. a huge lot in downtown manhattan with a farm)
+
+--
+
+We won't touch on this in class but there is a .hi-blue[discrete choice] literature that works to alleviate these issues
+
+
+---
+
+# Choosing q
+
+Another thing to note: the consumer *chooses* $q$ where as before it was fixed
+
+--
+
+The idea is that mobile households can move to get their desired level of the environmental good
+
+--
+
+We are thus also implicitly assuming $q$ varies across space so that households can sort into areas they prefer
+  - q is really picking up .hi[local] environmental goods
+  
+
+---
+
+# What is $P(x,q)$
+
+In the model we are thinking of $P(x,q)$ as the annual .hi-blue[rental rate], not the purchase price
+
+--
+
+This allows us to mesh more cleanly with annual income and view the problem as static rather than dynamic
+
+--
+
+This clearly works well for renting households
+
+--
+
+For homeowners we are basically assuming they rent from themselves every year
+
+---
+
+# The hedonic model: consumer's choice problem
+
+$$\max_{x,q,z} U(x,q,z;s) \,\,\,\,\, s.t. \,\,\,\,\, y = z + P(x,q)$$
+
+The FOCs for this problem are:
+\begin{align}
+  {\partial U \over \partial x_j} =& \lambda {\partial P \over \partial x_j} \,\,\, j=1,\dots,J \\
+  {\partial U \over \partial q} =& \lambda {\partial P \over \partial q} \\
+  {\partial U \over \partial z} =& \lambda 
+\end{align}
+
+Next, combine the last two FOCs
+
+---
+
+# The hedonic model: consumer's choice problem
+
+\begin{align}
+  {\partial U \over \partial q} =& \lambda {\partial P \over \partial q} \\
+  {\partial U \over \partial z} =& \lambda 
+\end{align}
+gives us that
+$${\partial P \over \partial q} = {\partial U \over \partial q} \bigg/ {\partial U \over \partial z}$$
+
+At a utility-maximizing choice, a household equates their MRS between $q$ and $z$ and the marginal implicit cost of $q$
+
+
+---
+
+# The hedonic model: consumer's choice problem
+
+$${\partial P \over \partial q} = {\partial U \over \partial q} \bigg/ {\partial U \over \partial z}$$
+
+Recall that $z$ is the numeraire good so we can think of it in terms of dollars
+
+--
+
+This means that ${\partial U \over \partial q} \big/ {\partial U \over \partial z}$ is the WTP for $q$, the reduction in income needed to compensate for an additional unit of $q$
+
+--
+
+Knowledge of the hedonic price function $P$ is enough to tell us about household WTP for $q$!
+
+
+---
+
+# The hedonic model: bid functions
+
+Now let's dive deeper by looking at some reference utility level $\bar{u}$:
+$$U(x,q,z;s) = \bar{u}$$
+
+--
+
+Next we will define something called a .hi-blue[bid function] $b(x,q,y,s,\bar{u})$ where:
+$$U(x,q,y -b(x,q,y,s,\bar{u}) ;s) = \bar{u}$$
+
+The bid function $b$ is the maximum amount the household is willing to pay for:  
+- A house with characteristics $x,q$
+- Given income $y$ and household characteristics $s$
+- Holding utility fixed
+
+---
+
+# The hedonic model: bid functions
+
+$$U(x,q,z;s) = \bar{u}$$
+
+We can also invert this to solve for $z$:<sup>1</sup>
+$$z = U^{-1}(x,q,\bar{u},s)$$
+
+.footnote[
+<sup>1</sup> We can do this because $U$ is monotonically increasing in $z$
+]
+
+--
+
+Income, the bid function and $z$ are related by:
+$$b(x,q,y,s,\bar{u}) ;s) = y - U^{-1}(x,q,\bar{u},s)$$
+
+--
+
+Now we have everything we need to derive a marginal WTP function for $q$
+
+---
+
+# The hedonic model: deriving MWTP
+
+$$U(x,q,y -b(x,q,y,s,\bar{u}) ;s) = \bar{u}$$
+
+Differentiate with respect to $q$ to get:
+$${\partial U \over \partial q} + {\partial U \over \partial z} {\partial b \over \partial q} = 0$$
+
+--
+
+We can then rearrange to get:
+$${\partial b \over \partial q}  = {\partial U \over \partial q}\bigg/{\partial U \over \partial z}$$
+
+
+
+---
+
+# The hedonic model: deriving MWTP
+
+Recall that the bid function is separable in income: $b(x,q,y,s,\bar{u}) ;s) = y - U^{-1}(x,q,\bar{u},s)$
+
+--
+
+This lets us re-write ${\partial b \over \partial q}$ as:
+$$\pi^q(x,q,s,\bar{u}) = {\partial b \over \partial q}  = {\partial U \over \partial q}\bigg/{\partial U \over \partial z}$$
+
+--
+
+Conditional on $x$, this defines our .hi-blue[compensated inverse demand function] for $q$!
+
+---
+
+# The hedonic model: deriving MWTP
+
+$$\pi^q(x,q,s,\bar{u}) = {\partial b \over \partial q}  = {\partial U \over \partial q}\bigg/{\partial U \over \partial z}$$
+
+By assuming $q$ is a part of a larger bundle of house characteristics, we are able to characterize its demand through its relationship to the housing market
+
+--
+
+We can then use the bid function (which maps into prices) to understand the marginal WTP for $q$
