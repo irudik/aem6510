@@ -304,7 +304,7 @@ Now we can derive the efficiency conditions for our model to understand what def
 
 Begin with the .hi-red[general case], the FOCs are defined by:
 $${\partial W\over\partial x_j} = P(X) - C^j_{x_j}(x_j, e_j) = 0\rightarrow P(X) = C^j_{x_j}(x_j, e_j)$$
-where ${\partial \over \partial x_j} \int_0^{X\equiv\sum x_j} P(s)ds = P(\sum x_j) = P(X)$ by the fundamental theorem of calculus, 
+where ${\partial \over \partial x_j} \int_0^{X\equiv\sum x_j} P(s)ds = P(X) {\partial X \over \partial x_j} = P(X)$ by the fundamental theorem of calculus, 
 --
 and
 --
@@ -386,7 +386,7 @@ ggplot() +
   annotate("text", size = 8, label = "A", x = 2.6, y = 3) +
   annotate("text", size = 8, label = expression(delta*D*minute (delta*X)), x = 4, y = 2.5) +
   annotate("text", size = 8, label = expression(C*minute (X)), x = 3, y = 4.5) +
-  annotate("text", size = 8, label = expression(P(E)), x = 4.5, y = 1) +
+  annotate("text", size = 8, label = expression(P(X)), x = 4.5, y = 1) +
   annotate("text", size = 8, label = expression(C*minute (X) + delta*D*minute (delta*X)), x = 1.5, y = 4.75) +
   theme_minimal()  +
   theme(
@@ -490,9 +490,15 @@ The firm's FOCs are:
   \tau &= -C'_{e_j}(x_j,e_j)
 \end{align}
 
+--
+
 The firm equates MR to MC of production
 
+--
+
 The firm equates the marginal abatement cost to the tax level
+
+--
 
 So if the regulator sets $\tau = D'(E^*)$ .hi-blue[we can achieve the efficient allocation]
 
