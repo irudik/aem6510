@@ -31,13 +31,6 @@ exclude: true
 
 ```r
 if (!require("pacman")) install.packages("pacman")
-```
-
-```
-## Loading required package: pacman
-```
-
-```r
 pacman::p_load(
   tidyverse, tidylog, xaringanExtra, rlang, patchwork
 )
@@ -59,8 +52,8 @@ knitr::opts_chunk$set(echo = TRUE, fig.align="center")
 ```
 
 ```
-## Warning in style_panelset_tabs(...): The arguments to `syle_panelset()` changed
-## in xaringanExtra 0.1.0. Please refer to the documentation to update your slides.
+## Warning in style_panelset_tabs(...): The arguments to `syle_panelset()` changed in xaringanExtra 0.1.0. Please refer to
+## the documentation to update your slides.
 ```
 
 ---
@@ -482,12 +475,12 @@ So if the regulator sets `\(\tau = D'(E^*)\)` .hi-blue[we can achieve the effici
 When facing an emission tax `\(\tau\)` a competitive firm's problem in the .hi[specific case] where `\(e_j = d x_j\)` is:
 `$$\Pi_j(x_j) = p x_j - C^j(x_j) - \tau \delta x_j$$`
 with FOC:
-`$$p = C'_j(x_j) - \tau \delta$$`
+`$$p = C'_j(x_j) + \tau \delta$$`
 
 --
 
 If the regulator sets `\(\tau = D'(E^*)\)` then firms behave as if
-`$$P(X) = C'_j(x_j) - \delta D'(E^*)$$`
+`$$P(X) = C'_j(x_j) + \delta D'(E^*)$$`
 .hi-blue[which matches our social efficiency condition]
 
 ---
@@ -733,7 +726,7 @@ If the regulator chooses `\(\bar{e} = e^*\)` the regulator can achieve the effic
 # Relative standards vs quantity standards
 
 Recall the relative standard FOC if we wanted to set `\(e = \bar{e}\)`:
-`$$p = C_x(x(\alpha),\bar{e}) + \alpha C_e((\alpha), \bar{e})$$`
+`$$p = C_x(x(\alpha),\bar{e}) + \alpha C_e(x(\alpha), \bar{e})$$`
 
 --
 
