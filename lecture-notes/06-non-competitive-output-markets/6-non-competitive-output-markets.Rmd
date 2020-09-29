@@ -1,5 +1,5 @@
 ---
-title: "Lecture 7"
+title: "Lecture 6"
 subtitle: "Non-competitive output markets"
 author: Ivan Rudik
 date: AEM 6510
@@ -58,13 +58,13 @@ Why might it?
 
 --
 
-Preview: now we have .hi-blue[two] distortions in our market, pollution and market power
+Now we have .hi-blue[two] distortions in our market, pollution and market power
 
 ---
 
 # Environmental policy under monopoly
 
-Suppose we have an industry with a single firm that generates a local pollutant
+Suppose we have an industry with a .hi-red[single] firm that generates a local pollutant
 
 --
 
@@ -80,13 +80,36 @@ Lets begin with the specific case where abatement is only possible through outpu
 
 The monopolist's profit-maximization problem under an emission tax is:
 $$\max_{X} \Pi(X) = P(X)X - C(X) - \tau E = P(X)X - C(X) - \tau \delta X$$
+
+--
+
+Where the monopolist now controls $X$: aggregate production
+
+--
+
 The FOC for the problem is:
 $$P'(X)X + P(X) = C'(X) + \tau \delta$$
 and the profit-maximizing output choice is given by $X^M(\tau)$
 
+---
+
+# Environmental policy under monopoly
+
+The FOC for the problem is:
+$$P'(X)X + P(X) = C'(X) + \tau \delta$$
+
+This illustrates the monopolists decision rule: MR = MC
+
 --
 
-This illustrates the monopolists decision rule: MR = MC where MR consists of changes in price for .hi-blue[inframarginal units] $(P'(X)X)$
+MR consists of two pieces:
+
+1. $P(X)$: Additional revenue from increased $X$
+2. $P'(X)X$: decreases in the price for .hi-blue[inframarginal units] from increased $X$
+
+--
+
+The monopolist now accounts for how increasing production lowers price
 
 ---
 
@@ -94,8 +117,13 @@ This illustrates the monopolists decision rule: MR = MC where MR consists of cha
 
 How does the firm respond to the tax? Differentiate the FOC wrt $\tau$:
 $$\left[P''(X^M)X^M+ 2P'(X^M) - C''(X^M)\right]{d X^M \over d \tau} = \delta$$
+
+--
+
 and rearrange:
 $${d X^M \over d \tau} = {\delta \over \left[P''(X^M)X^M+ 2P'(X^M) - C''(X^M)\right]}$$
+
+--
 
 What's the sign on this expression? 
 
@@ -111,7 +139,9 @@ $${d X^M \over d \tau} = {\delta \over \left[P''(X^M)X^M+ 2P'(X^M) - C''(X^M)\ri
 
 --
 
-Assume the inverse demand function $P(X)$ is decreasing, and for all $X>0$:
+Assume the inverse demand function $P(X)$ is decreasing, 
+--
+and for all $X>0$:
 $${P''(X) \over P'(X)}X > -1$$
 
 --
@@ -128,6 +158,9 @@ It also ensures that ${d X^M \over d \tau} < 0$
 
 Now lets look at the regulators problem of maximizing the benefits minus the costs of production, accounting for damages:
 $$\max_{X} \int_{0}^XP(t)dt - C(X) - D(\delta X)$$
+
+--
+
 She is maximizing the consumption value minus production and environmental costs
 
 --
@@ -142,18 +175,23 @@ which doesn't map as nicely to the firm's FOC as in competitive markets
 
 Lets re-write the regulator's problem and explicitly include the firm's optimal response to $\tau$:
 $$W(\tau) =  \int_{0}^{X^m(\tau)} P(t)dt - C(X^m(\tau)) - D(\delta X^m(\tau))$$
-Then differentiate with respect to $\tau$ to get:
-$$P'(X^m)dt - C'(X^m) - \delta D'(\delta X^m) \times {d X^m \over d\tau} = 0$$
 
 --
 
-Recognize $P'(X^m)dt - C'(X^m) = \tau\delta - P'(X^m)X^M$ from the firm FOC, now we can solve for $\tau$!
+Then differentiate with respect to $\tau$ to get:
+$$[P(X^m) - C'(X^m) - \delta D'(\delta X^m)] \times {d X^m \over d\tau} = 0$$
 
 ---
 
 # Environmental policy under monopoly
 
-Rearranging gives us the optimal tax rate is characterized by:
+$$[P(X^m) - C'(X^m) - \delta D'(\delta X^m)] \times {d X^m \over d\tau} = 0$$
+
+Recognize $P'(X^m)dt - C'(X^m) = \tau\delta - P'(X^m)X^M$ from the firm FOC
+
+--
+
+Rearranging gives us that the optimal tax rate is characterized by:
 $$\tau = D'(\delta X^m) + {P'(X^m)X^m \over \delta}$$
 
 --
@@ -162,11 +200,7 @@ Can we achieve the first-best with this tax?
 
 --
 
-Yes!
-
---
-
-If we plug it into the firm FOC it is the same as the regulators welfare-maximizing FOC
+Yes! If we plug it into the firm FOC it is the same as the regulator's welfare-maximizing FOC
 
 ---
 
@@ -191,7 +225,6 @@ The monopolist already reduces output to exercise its market power
 --
 
 So we don't need as big of a tax, or may even need a .hi-blue[subsidy] if the monopolist was reducing output too much, to achieve the first-best
-
 
 
 ---
@@ -419,6 +452,9 @@ Can the regulator use an emission tax alone to achieve the efficient outcome?
 
 The regulator's problem is:
 $$W(\tau) = \int_0^{X^m(\tau)}P(t)dt - C(X^m(\tau),E^m(\tau)) - D(E^m(\tau))$$
+
+--
+
 The FOC of this problem is:
 $$[P(X^M) - C_X(X^m,E^m)]{dX^m \over d\tau} - [C_E(X^m,E^m) + D'(E^m)]{dE^m \over d\tau} = 0$$
 
@@ -439,7 +475,7 @@ What is the second term?
 
 --
 
-It represents how a change in emissions induces by the tax changes the degree to which the monopolist exercises market power
+It represents how a change in emissions caused by the tax $\tau$ changes how the monopolist exercises market power
 
 --
 
@@ -453,18 +489,28 @@ The sign of this term depends on ${dX^m/d\tau \over dE^m/d\tau}$, so lets sign t
 
 --
 
-We do this by totally differentiating the firm FOCs wrt $\tau$:
+We do this by differentiating the firm FOCs wrt $\tau$ and first solving for $dX^m/d\tau$:
 $$P'(X)X + P(X) = C_X(X,E) \qquad -C_E(X,E) = \tau$$
 to give us that (dropping function arguments):
 $${dX^m \over d\tau} = { -C_{XE} \over C_{EE}\left[ P''X + 2P' - C_{EE}\left\{ C_{XX}C_{EE}-C^2_{XE} \right\} \right] } < 0$$
-
-We assumed $-C_{XE}> 0$, strict convexity ensures $C_{EE}, C_{XX}C_{EE}-C^2_{XE} > 0$, and our most recent assumption that demand is not too convex ensures $P''X + 2P' < 0$
 
 ---
 
 # Environmental policy under monopoly
 
-For emissions we have:
+$${dX^m \over d\tau} = { -C_{XE} \over C_{EE}\left[ P''X + 2P' - C_{EE}\left\{ C_{XX}C_{EE}-C^2_{XE} \right\} \right] } < 0$$
+
+
+We assumed $-C_{XE}> 0$, strict convexity ensures $C_{EE}, C_{XX}C_{EE}-C^2_{XE} > 0$, and our most recent assumption that demand is not too convex ensures $P''X + 2P' < 0$
+
+--
+
+The numerator is positive, the denominator is negative: output declines as the tax increases
+---
+
+# Environmental policy under monopoly
+
+For emissions we differentiate the firm FOCs wrt $\tau$ solve for ${dE^m \over d\tau}$:
 $${dE^m \over d\tau} = {-1 \over C_{EE}} + { C^2_{XE} \over C^2_{EE}\left[ P''X + 2P' - C_{EE}\left\{ C_{XX}C_{EE}-C^2_{XE} \right\} \right] } < 0$$
 
 --
@@ -485,6 +531,9 @@ Can we use the tax alone to achieve the first-best?
 --
 
 Substitute in the optimal tax expression $\tau$ into the firm emission FOC and see if it reduces to the conditions for the first-best outcome:
+
+--
+
 $$-C_E(X,E) = D'(E^m) + P'(X^m)X^m {dX^m/d\tau \over dE^m/d\tau}$$
 
 --
