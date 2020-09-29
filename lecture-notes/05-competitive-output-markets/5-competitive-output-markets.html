@@ -52,8 +52,7 @@ knitr::opts_chunk$set(echo = TRUE, fig.align="center")
 ```
 
 ```
-## Warning in style_panelset_tabs(...): The arguments to `syle_panelset()` changed in xaringanExtra 0.1.0. Please refer to
-## the documentation to update your slides.
+## Warning in style_panelset_tabs(...): The arguments to `syle_panelset()` changed in xaringanExtra 0.1.0. Please refer to the documentation to update your slides.
 ```
 
 ---
@@ -893,6 +892,8 @@ In the long run, social welfare will depend on `\(x,e\)` .hi-blue[and the number
 Social welfare is given by:
 `$$W(x,e,J) = \max_{x,e,J} \int_0^{x\cdot J} P(t) dt - J\cdot C(x,e)-D(e\cdot J)$$`
 
+--
+
 The FOCs for a social optimum are:
 `\begin{align}
 P(X^*) =&amp; C_x(x^*,e^*) \\
@@ -906,21 +907,25 @@ The last expression is the new one for .hi[long-run efficiency]
 
 # Environmental policy in the long run
 
-With some slight rearranging we can get:
+With some slight rearranging of the `\(J\)` FOC we can get:
 `$$P(X^*) = { C(x^*,e^*) + D'(E^*)e^*\over x^*}$$`
 
 What does this say?
 
 --
 
-First, for a small firm, `\(D'(E^*)e^*\)` is approximately the damage caused by that firm because for sufficiently small `\(e^*\)`, `\(D'(E^*)\)` will be approximately constant `\((\delta)\)` (by a Taylor expansion argument)
+First, for a small firm: 
+--
+`\(D'(E^*)e^*\)` is approximately the damage caused by that firm because 
+--
+for sufficiently small `\(e^*\)`, `\(D'(E^*)\)` will be approximately constant `\((\delta)\)` (by a Taylor expansion argument)
 
 
 ---
 
 # Environmental policy in the long run
 
-With some slight rearranging we can get:
+With some slight rearranging of the `\(J\)` FOC we can get:
 `$$P(X^*) = \underbrace{{C(x^*,e^*) + \delta e^*\over x^*}}_{\text{average social cost}}$$`
 
 
@@ -957,9 +962,12 @@ Firms choose output according to:
 --
 
 In the long run equilibrium we will have `\(\hat{J}\)` firms all producing `\(\hat{x}\)` units of output such that:
+
+--
+
 `\begin{align}
-  &amp;P(\hat{x}\hat{J}) = C_x(\hat{x},e^*) \\
-  &amp;P(\hat{x}\hat{J})\hat{x} - C(\hat{x},e^*) = 0
+  &amp;P(\hat{x}\hat{J}) = C_x(\hat{x},e^*) \tag{MR = MC}\\
+  &amp;P(\hat{x}\hat{J})\hat{x} - C(\hat{x},e^*) = 0 \tag{Zero Profit}
 \end{align}`
 
 --
@@ -979,9 +987,7 @@ Recall that long run efficiency required that:
 
 --
 
-so we have that `\(\hat{J} \neq J^*\)` and `\(\hat{x} \neq x^*\)`!
-
-What's the intuition?
+so we have that `\(\hat{J} \neq J^*\)` and `\(\hat{x} \neq x^*\)`! What's the intuition?
 
 --
 
@@ -992,10 +998,10 @@ When we impose a standard:
 1. Firms cut back output
 --
 
-2. This raises marginal profit above zero: MR &gt; MC!
+2. This raises (short-run) profit above zero
 --
 
-3. Firms enter the market so `\(\hat{J} &gt; J^*\)` and we will have that `\(\hat{x} &lt; x^*\)`
+3. Firms enter the market until profits go to zero: so `\(\hat{J} &gt; J^*\)` and we will have that `\(\hat{x} &lt; x^*\)`
 
 ---
 
@@ -1013,7 +1019,7 @@ This is only true in the short run
 
 --
 
-In the long run, standards do not appropriate the damage to the environment `\(D'(E^*)e^*\)` from firms, so we get .hi-red[excess entry] and standards are no longer first-best
+In the long run: standards do not appropriate the damage to the environment `\(D'(E^*)e^*\)` from firms, so we get .hi-red[excess entry] and standards are no longer first-best
 
 ---
 
@@ -1083,22 +1089,27 @@ Similar to the short run we will have that `\(\sigma = -C_e(x^*,e^*) = D'(L) = D
 Thus the three long run efficiency conditions are satisfied again if we auction off the permits:
 - MR = MC
 - MAC = MD
-- Zero profit
+- P = ASC
 
 --
 
-Now what if we freely distribute permits?
+Now what if we freely distribute permits? What do you think?
 
 --
 
-It seems like it might not be long run efficient since firms are not paying the environmental rent, so zero profit might not occur
+It seems like it might not be long run efficient: 
+--
+firms are not paying the environmental rent, so zero profit and P = ASC might not occur
 
 ---
 
 # Permits in the long run
 
-Suppose we allocate `\(\bar{e}\)` permits to the incumbent identical firms, profit for the incumbent firms given permits is then:
+Suppose we allocate `\(\bar{e}\)` permits to the .hi-[incumbent] identical firms, profit for the incumbent firms given permits is then:
 `$$\Pi = px - C(x,e) - \sigma(e-\bar{e})$$`
+
+--
+
 and profit for any future entrants who were not given an allocation is:
 `$$\Pi = px - C(x,e) - \sigma e$$`
 
@@ -1108,11 +1119,15 @@ What two things do you notice?
 
 First, for any given `\(\sigma\)`, entrants and incumbents cannot both have zero profit!
 
+--
+
+Our P = ASC condition can't hold for all firms
+
 ---
 
 # Permits in the long run
 
-Our efficiency condition is now: .hi-red[new firms enter until profits are zero]
+Our efficiency condition is now .hi-red[new firms enter until profits are zero (P=ASC for entrants)]:
 `$$\Pi = px - C(x,e) - \sigma e = 0$$`
 so that incumbent firms sustain long run profits of:
 `$$\sigma\bar{e}$$`
@@ -1154,13 +1169,13 @@ Think about the incentives for entry...
 --
 
 Denote the reference level of emissions as `\(\hat{e}\)`, firm profits under a subsidy per unit `\(\xi\)` are:
-`$$Pi = px - C(x,e) - \xi(e-\hat{e})$$`
+`$$\Pi = px - C(x,e) - \xi(e-\hat{e})$$`
 
 ---
 
 # Subsidies in the long run
 
-For damage efficiency we need to set the subsidy equal to MD `\(\xi = D'(E^*)\)`
+For damage efficiency we need to set the subsidy equal to MD: `\(\xi = D'(E^*)\)`
 
 --
 
