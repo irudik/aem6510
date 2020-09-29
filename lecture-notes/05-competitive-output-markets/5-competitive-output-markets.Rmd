@@ -1273,7 +1273,7 @@ $$\Pi = P(X^*)x^* - C(x^*,e^*) - D'(E^*)(e^*-\hat{e}) = 0$$
 --
 
 which implies that
-$$P(X^*)x^* - C(x^*,e^*) - D'(E^*)e^* = D'(E^*)\hat{e} > 0$$
+$$P(X^*)x^* - C(x^*,e^*) - D'(E^*)e^* = -D'(E^*)\hat{e} < 0$$
 
 Too many firms have entered!
 
