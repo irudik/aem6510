@@ -96,7 +96,7 @@ Some sections of the course have readings (available on Canvas if not in the boo
 
 **Reading**: PR Chapter 5
 
-### [Sep 22: Non-competitive output markets](https://ivanrudik.com)
+### [Sep 22: Non-competitive output markets](https://raw.githack.com/irudik/aem6510/master/lecture-notes/06-non-competitive-output-markets/6-non-competitive-output-markets.html) [slides posted]
 
 **Reading**: PR Chapter 6
 
