@@ -984,9 +984,9 @@ $$W(x,e,J) = \max_{x,e,J} \int_0^{x\cdot J} P(t) dt - J\cdot C(x,e)-D(e\cdot J)$
 
 The FOCs for a social optimum are:
 \begin{align}
-P(X^*) =& C_x(x^*,e^*) \\
-D'(E^*) =& -C_e(x^*,e^*) \\
-P(X^*)x^* =& C(x^*,e^*) + D'(E^*)e^*
+P(X^*) =& C_x(x^*,e^*) \tag{x FOC} \\
+D'(E^*) =& -C_e(x^*,e^*) \tag{e FOC} \\
+P(X^*)x^* =& C(x^*,e^*) + D'(E^*)e^* \tag{J FOC}
 \end{align}
 
 The last expression is the new one for .hi[long-run efficiency]
@@ -1049,7 +1049,7 @@ $$p = C_x(x,e^*)$$
 
 --
 
-In the long run equilibrium we will have $\hat{J}$ firms all producing $\hat{x}$ units of output such that:
+In the long run competitive equilibrium we will have $\hat{J}$ firms all producing $\hat{x}$ units of output such that:
 
 --
 
@@ -1099,7 +1099,7 @@ This is important!
 
 --
 
-Conventional wisdom tells us that taxes and permits are only better to use than standards because they equate MACs across firms (achieving least-cost) without requiring knowledge of MACs
+Conventional wisdom tells us that taxes, permits, and standards can all achieve the efficient outcome
 
 --
 
