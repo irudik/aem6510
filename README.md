@@ -92,7 +92,7 @@ Some sections of the course have readings (available on Canvas if not in the boo
 
 **Reading**: PR Chapter 4.1.1-4.1.2
 
-### [Sep 17: Competitive output markets](https://raw.githack.com/irudik/aem6510/master/lecture-notes/05-competitive-output-markets/5-competitive-output-markets.html) [slides posted]
+### [Sep 17: Competitive output markets](https://raw.githack.com/irudik/aem6510/master/lecture-notes/05-competitive-output-markets/5-competitive-output-markets.html) [slides posted] <!-- actually half way through 29 -->
 
 **Reading**: PR Chapter 5
 
