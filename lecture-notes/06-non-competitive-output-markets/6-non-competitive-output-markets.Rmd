@@ -491,7 +491,10 @@ The sign of this term depends on ${dX^m/d\tau \over dE^m/d\tau}$, so lets sign t
 
 We do this by differentiating the firm FOCs wrt $\tau$ and first solving for $dX^m/d\tau$:
 $$P'(X)X + P(X) = C_X(X,E) \qquad -C_E(X,E) = \tau$$
-to give us that (dropping function arguments):
+
+--
+
+to give us that (after some algebra and dropping function arguments):
 $${dX^m \over d\tau} = { -C_{XE} \over C_{EE}\left[ P''X + 2P' - C_{EE}\left\{ C_{XX}C_{EE}-C^2_{XE} \right\} \right] } < 0$$
 
 ---
@@ -574,7 +577,7 @@ You cannot use one instrument to pin down two values (similar to solving one equ
 
 --
 
-When you have fewer instruments than degrees of freedom you are in a .hi-blue[second-best world]
+When you have fewer instruments than market distortions you are in a .hi-blue[second-best world]
 
 ---
 
@@ -617,7 +620,7 @@ The FOCs are:
 $$P(X) + \xi + P'(X)X = C_X(X,E) \qquad -C_E(X,E) = \tau$$
 
 If we set:
-$$\xi = -P'(X^*)X^* \qquad \tau - D'(E^*)$$
+$$\xi = -P'(X^*)X^* \qquad \tau = D'(E^*)$$
 the firm FOCs reduce to the regulator's efficiency conditions
 
 --

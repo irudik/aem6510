@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Lecture 8</title>
+    <title>Lecture 7</title>
     <meta charset="utf-8" />
     <meta name="author" content="Ivan Rudik" />
     <script src="7-pre-existing-distortions_files/header-attrs/header-attrs.js"></script>
@@ -20,7 +20,7 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-# Lecture 8
+# Lecture 7
 ## Environmental policy with pre-existing distortions
 ### Ivan Rudik
 ### AEM 6510
@@ -44,9 +44,17 @@ knitr::opts_chunk$set(echo = TRUE, fig.align="center")
 })
 ```
 
-<style>.panelset {
-  --panel-tab-color-active: red;
-}</style>
+
+```
+## Warning: 'xaringanExtra::style_panelset' is deprecated.
+## Use 'style_panelset_tabs' instead.
+## See help("Deprecated")
+```
+
+```
+## Warning in style_panelset_tabs(...): The arguments to `syle_panelset()` changed in xaringanExtra 0.1.0. Please refer to
+## the documentation to update your slides.
+```
 
 ---
 
@@ -78,6 +86,8 @@ To focus on the key intuition we assume: `\(^1\)`
   - There is a representative (single) firm
   - There is a representative household
 
+--
+
 This allows us to treat individual and aggregate behavior the same
 
 .footnote[1: The underlying critical assumption is that utility and profit functions take what's called a Gorman form.]
@@ -103,18 +113,30 @@ where `\(U_{XX}, U_{NN} &lt; 0\)` and  `\(U_{XX}U_{NN}-U_{NX}^2 &gt; 0\)` and th
 # Environmental policy with leisure
 
 Wages earned by the household are `\(w\)`, and we assume demand for labor is perfectly elastic
-  - Demand is horizontal at `\(w\)`
-  
+
+--
+
+i.e. demand is horizontal at `\(w\)`
+
+--
+
 Household income is then: `\(w\cdot(T-N)\)`
 
+--
+
 We can now write the households utility maximization problem as:
-`$$\max_{X,N} U(X,Z,N,E)  = U(X,N) + Z - D(E) \text{ subject to: } w\cdot(T-N) = Z + pX$$`
+`$$\max_{X,N,Z} U(X,Z,N,E)  = U(X,N) + Z - D(E) \\
+\text{ subject to: } \,\,\,\, w\cdot(T-N) = Z + pX$$`
+
 ---
 
 # Environmental policy with leisure
 
 We can substitute the budget constraint in for `\(Z\)` to get an unconstrained problem:
 `$$\max_{X,N} U(X,Z,N,E)  = U(X,N) + w\cdot(T-N) - pX - D(E)$$`
+
+--
+
 with FOCs:
 `$$U_X = p \qquad U_N = w$$`
 which implicitly define the demand function for consumption `\(X(p,w)\)` and the demand function for leisure `\(N(p,w)\)`
@@ -125,8 +147,15 @@ which implicitly define the demand function for consumption `\(X(p,w)\)` and the
 
 How do choices of `\(X,N\)` respond to a change in price `\(p\)`?
 
+--
+
 Differentiate both FOCs with respect to p:
+
+--
+
 `$$U_{XX} {\partial X \over \partial p} + U_{XN} {\partial N \over \partial p} = 1 \qquad U_{NN} {\partial N \over \partial p} + U_{XN} {\partial X \over \partial p} = 0$$`
+
+--
 
 We have two equations and two unknowns so we can solve to get:
 `$${\partial N \over \partial p} = {-U_{XN} \over U_{XX}U_{NN} - U_{XN}^2} \qquad {\partial X \over \partial p} = {U_{NN} \over U_{XX}U_{NN} - U_{XN}^2}$$`
@@ -137,13 +166,40 @@ We have two equations and two unknowns so we can solve to get:
 
 `$${\partial N \over \partial p} = {-U_{XN} \over U_{XX}U_{NN} - U_{XN}^2} \qquad {\partial X \over \partial p} = {U_{NN} \over U_{XX}U_{NN} - U_{XN}^2}$$`
 
+--
+
 `\({\partial X \over \partial p}\)` is negative since `\(U\)` is concave `\((U_{NN} &lt; 0, U_{XX}U_{NN} - U_{XN}^2 &gt; 0)\)`
+
+--
 
 The sign of `\({\partial N \over \partial p}\)` equals the sign on `\(-U_{XN}\)`
 
+--
+
 If `\(X\)` and `\(N\)` are substitutes, `\(-U_{XN} &gt; 0\)`, and leisure increases in the price of the consumption good
 
+--
+
 If they are complements, `\(-U_{XN} &lt; 0\)`, and leisure decreases in the price of the consumption good
+
+---
+
+# Environmental policy with leisure
+
+If `\(N\)` is going on a picnic and `\(X\)` is hot dogs: `\(X\)` and `\(N\)` are complements
+
+--
+
+If the price of hot dogs goes up 1000% then you will go on fewer picnics
+
+--
+
+If `\(N\)` is going on a picnic and `\(X\)` is video games: `\(X\)` and `\(N\)` are substitutes
+
+--
+
+If the price of video games go up 1000% then you will go on more picnics
+
 
 ---
 
@@ -152,23 +208,29 @@ If they are complements, `\(-U_{XN} &lt; 0\)`, and leisure decreases in the pric
 The firm side of the economy will be the same as before: it produces `\(X\)` and emits `\(E\)` and for simplicity we will focus on the specific case:
 `$$\Pi = pX - C(X) \text{ where } E = \delta X$$`
 
+--
+
 We will also assume:
 
 - `\(\delta=1\)` so we can use `\(E\)` and `\(X\)` interchangeably
+--
+
 - `\(C'(X) &gt; 0, C''(X) \geq 0\)`
-- The polluting industry's demand for labor is small relative to the entire economy, i.e. wages are effectively fixed
+--
+
+- The polluting industry's demand for labor is small relative to the entire economy, i.e. wages are effectively fixed for the household
 
 ---
 
 # Environmental policy with leisure
 
-Now lets solve for the optimum:
-`$$\max_{X} W = U(X,N) + w\cdot(T-N) - pX - D(X) + pX - C(X)$$`
+Now lets solve for the social optimum:
+`$$\max_{X} W = \underbrace{U(X,N) + w\cdot(T-N) - pX - D(X)}_{\text{Consumer Utility}} + \underbrace{pX - C(X)}_{\text{Firm profit}}$$`
 To focus on interactions with non-regulated industries, we assume the regulator cannot determine leisure
 
 --
 
-The consumer chooses `\(N\)` and therefore `\(Z\)` according to the budget constraint `\(Z = w(T-N) - pX\)` and FOC `\(U_N(X^*,N) = w\)`
+The consumer chooses `\(N\)` according to the FOC `\(U_N(X^*,N) = w\)` and then `\(Z\)` given the budget constraint `\(Z = w(T-N) - pX^*\)`
 
 --
 
@@ -195,7 +257,11 @@ Marginal abatement cost `\((U_X - C'(X))\)` equals marginal damage `\((D'(X))\)`
 
 # Environmental policy with labor market distortions
 
-Now suppose the government needs to raise revenue with a labor income tax `\(m\)`
+.hi[Elastic labor supply/leisure doesn't change the efficiency condition]
+
+--
+
+Now suppose the government needs to raise revenue with a labor income tax `\(m\)` in order to finance government services
 
 --
 
@@ -220,7 +286,7 @@ The FOCs are:
 
 --
 
-The labor tax causes an inefficiency in the labor market: the marginal value of leisure `\((u_N)\)` is no longer equal to the marginal value of labor `\((w)\)`
+.hi-blue[The labor tax causes an inefficiency in the labor market:] the marginal value of leisure `\((u_N)\)` is no longer equal to the marginal value of labor `\((w)\)`
 
 --
 
@@ -250,7 +316,9 @@ The tax `\(m\)` makes the consumer act as if there is a subsidy `\(mw\)` on leis
 
 `\(N^c\)` is how much leisure the consumer chooses, since `\((1-m)w &lt; w\)` this is too much and induces DWL equal to `\(b\)`
 
-The tax raises revenues equal to `\(G\)`
+This is called .hi-red[excess burden]
+
+The tax raises revenues equal to `\(G\)`: `\(mw\times(T-N^c)\)`
 
 ]
 
@@ -268,7 +336,7 @@ The tax raises revenues equal to `\(G\)`
 
 .pull-right[
 
-Suppose the regulator sets `\(X=X^*\)` where `\(X^* \rightarrow MAC = MD\)`
+Suppose `\(N\)` and `\(X\)` are substitutes, and the regulator sets `\(X=X^*\)` where `\(X^* \rightarrow MAC = MD\)`
 
 This raises the price of `\(X\)`, shifts leisure demand to the .hi-red[right]
 
@@ -279,13 +347,36 @@ Change in DWL from `\(X^c \rightarrow X^*\)` is indeterminant
 ]
 
 
+
+---
+
+# Environmental policy with labor market distortions
+
+.pull-left[
+
+![excess burden is because MU of leisure is less than wage](7-pre-existing-distortions_files/figure-html/labor_market_2-1.png)
+]
+
+.pull-right[
+
+Fixing the pollution externality had two effects:
+
+1. Indeterminant effect on the distortion in the labor market
+2. Reduced the amount of revenue the government raised through labor taxation
+
+]
+
 ---
 
 # Second-best environmental policy
 
 What does the optimal environmental policy look like if there's a pre-existing labor market distortion?
 
+--
+
 The government has a budget `\(G\)` it needs to finance using labor taxes or emission taxes
+
+--
 
 First let's consider the case where they can only raise revenue via a labor tax: this is non-revenue raising environmental policy
 
@@ -297,7 +388,9 @@ If we cannot raise revenue with the environmental policy, the regulator chooses 
 
 --
 
-The household consumes leisure according to the FOC: `\(U_N(\bar{X},N) = (1-m)w\)` given the regulator chose `\(X=\bar{X}\)`
+The household consumes leisure according to the FOC: 
+`$$U_N(\bar{X},N) = (1-m)w$$` 
+given the regulator chose `\(X=\bar{X}\)`
 
 --
 
@@ -314,31 +407,33 @@ which depends on `\(N\)`
 
 --
 
-How do the endogenous variables `\(N\)` and `\(p\)` vary with `\(\bar{X}\)`?
+First we need to learn how the endogenous variables `\(N\)` and `\(p\)` vary with `\(\bar{X}\)`?
 
-Let's look at the comparative statics and differentiate the consumer FOCs wrt `\(\bar{X}\)`
+--
+
+Let's do the comparative statics: differentiate the consumer's two FOCs with respect to `\(\bar{X}\)`
 
 ---
 
 # Second-best non-revenue raising environmental policy
 
 `\begin{align}
-  u_{XX} + u_{XN} \frac{\partial N}{\partial \bar{X}} &amp;= \frac{\partial p}{\partial \bar{X}} \\
-  u_{NX} + u_{NN} \frac{\partial N}{\partial \bar{X}} &amp;= 0
+  u_{XX}\frac{\partial \bar{X}}{\partial \bar{X}} + u_{XN} \frac{\partial N}{\partial \bar{X}} &amp;= \frac{\partial p}{\partial \bar{X}} \tag{X FOC} \\
+  u_{NX}\frac{\partial \bar{X}}{\partial \bar{X}} + u_{NN} \frac{\partial N}{\partial \bar{X}} &amp;= 0 \tag{N FOC}
 \end{align}`
 
-which gives us:
+`\(\frac{\partial \bar{X}}{\partial \bar{X}} = 1\)` so two equations, two unknowns; solving the system gives us:
 `\begin{align}
  \frac{\partial N}{\partial \bar{X}} &amp;= - {u_{XN} \over u_{NN}} \\
  \frac{\partial p}{\partial \bar{X}} &amp;= {u_{XX}u_{NN} - u_{NN}^2 \over u_{NN}} &lt; 0
 \end{align}`
-The sign of `\(\frac{\partial N}{\partial \bar{X}}\)` depends on whether `\(X\)` and `\(N\)` are complements or substitutes
+`\(\text{sign}(\frac{\partial N}{\partial \bar{X}})\)` depends on whether `\(X\)` and `\(N\)` are complements or substitutes
 
 ---
 
 # Second-best non-revenue raising environmental policy
 
-The regulator's problem is then:
+Now that we know how the firm responds, return to the regulator's problem:
 `$$\max_{X,m} u(X,N) + Z - D(X) + pX - C(X) \text{ s.t. } wm(T-N) = G$$`
 
 --
@@ -348,7 +443,7 @@ We still need to decide what the government does with its revenue
 --
 
 For convenience, we assume its returned to the consumer as a lump sum transfer so that:
-`$$Z=(1-m)w(T-N)-pX+G = w(T-N) - pX$$`
+`$$Z=(1-m)w(T-N)-pX+G = (1-m)w(T-N)-pX+wm(T-N)\\ \Rightarrow Z =  w(T-N) - pX$$`
 Income is unchanged for a given level of `\(N\)` under the tax and transfer
 
 
@@ -358,11 +453,11 @@ Income is unchanged for a given level of `\(N\)` under the tax and transfer
 
 The regulator's problem is then:
 `$$\max_{X,m} u(X,N) +  w(T-N) - D(X) - C(X) + \lambda[ wm(T-N)  -G]$$`
-`\(\lambda\)` is the marginal welfare cost of public funds
+`\(\lambda\)` is called the .hi[marginal welfare cost of public funds]
 
 --
 
-It measures the welfare costs of raising revenue by taxing labor
+It measures the welfare cost of raising revenue by taxing labor
 
 --
 
@@ -375,8 +470,15 @@ What's the FOC for `\(m\)`?
 The FOC for `\(m\)` is:
 `$$(u_N - w){\partial N \over \partial m} + \lambda \left[w(T-N)-wm {\partial N \over \partial m} \right] = 0$$`
 
+--
+
 The household's optimal choice of `\(N\)` tells us that: `\(-mw = u_N - w\)`, we can substitute this in to get `\(\lambda\)`:
+
+--
+
 `$$\lambda = \frac{w  m {\partial N \over \partial m}}{w(T-N)-wm{\partial N \over \partial m}}$$`
+
+--
 
 Whats the interpretation of the right hand side?
 
@@ -404,7 +506,7 @@ Higher `\(m\)` increases leisure demand `\({\partial N \over \partial m}\)`
 
 --
 
-This times the tax wedge `\(mw\)` gives us the change in excess burden (i.e. the DWL `\(d\)`)
+This times the .hi[tax wedge] `\(mw\)`, the gap between `\(w\)` and actual wage after taxes, gives us the change in excess burden (i.e. the DWL `\(d\)` in the graph)
 
 ---
 
@@ -416,7 +518,7 @@ The denominator is:
 
 --
 
-The change in tax revenue
+The change in tax revenue from higher `\(m\)`
 
 --
 
@@ -424,7 +526,8 @@ First term is the increase in marginal revenue
 
 --
 
-Second term is the decrease in infra-marginal revenue
+Second term is the decrease in inframarginal revenue
+  - Similar to `\(P(X) + P'(X)X\)` for a monopolist
 
 ---
 
@@ -432,7 +535,13 @@ Second term is the decrease in infra-marginal revenue
 
 `$$\lambda = \frac{w  m {\partial N \over \partial m}}{w(T-N)-wm{\partial N \over \partial m}}$$`
 
-Numerator and denominator combined give us the ratio of change in welfare from a change in `\(m\)` to the change in tax revenue from a change in `\(m\)`
+Numerator and denominator combined give us:
+
+The change in welfare from a change in `\(m\)`
+--
+ over 
+--
+the change in tax revenue from a change in `\(m\)`
 
 --
 
@@ -445,12 +554,16 @@ This is the change in welfare from a change in tax revenue!
 Now consider the FOC for `\(X\)`:
 `$$u_X - D'(X) - C'(X) + \left[ u_N - w - \lambda w m \right] {\partial N \over \partial X} = 0$$`
 
-Recall that we know:
-- `\(-wm = u_N - w\)`
-- `\(\frac{\partial N}{\partial X} = \frac{\partial N}{\partial p}\frac{\partial p}{\partial X}\)`
+--
 
-This gives us that:
-`$$u_X - C'(X) + (1+\lambda)\left[-{\partial N \over \partial p}\frac{\partial p}{\partial X}\right] = D'(X)$$`
+Recall that we know:
+`$$-wm = u_N - w \qquad \frac{\partial N}{\partial X} = \frac{\partial N}{\partial p}\frac{\partial p}{\partial X}$$`
+
+So that we can substitute in the consumer leisure response:
+
+--
+
+`$$u_X - C'(X) + (1+\lambda)\left[-{\partial N \over \partial p}\frac{\partial p}{\partial X}\right]wm = D'(X)$$`
 
 ---
 
@@ -472,7 +585,7 @@ What are each of the terms:
 
 --
 
-`\((1+\lambda)\left[-{\partial N \over \partial p}\frac{\partial p}{\partial X}\right]\)` is new
+`\((1+\lambda)\left[-{\partial N \over \partial p}\frac{\partial p}{\partial X}\right]wm\)` is new
 
 --
 
@@ -484,7 +597,11 @@ What's the interpretation?
 
 `\((1+\lambda)\left[-{\partial N \over \partial p}\frac{\partial p}{\partial X}\right]wm\)` is called the .hi-blue[marginal interaction effect (MIE)]
 
+
+--
+
 It tells us how the optimal choice of `\(X\)` departs from `\(X^*\)` because of the labor market distortion
+  - Changing `\(\bar{X}\)` changes the price `\(p\)` which changes the household's optimal choice of `\(N\)`
 
 --
 
@@ -502,7 +619,7 @@ Substitutes means that `\(MIE &gt; 0\)`
 
 --
 
-The marginal social cost of abatement `\((MAC + MIE)\)` has become *larger*
+The marginal social cost of abatement `\((MAC + MIE)\)` has become .hi-red[larger]
 
 --
 
@@ -510,15 +627,34 @@ Intuition?
 
 --
 
-Its more socially costly to reduce `\(X\)` because the household increases `\(N\)` in responses
+Its more socially costly to reduce `\(X\)` because the household increases `\(N\)` in response
 
 --
 
-This .hi-red[exacerbates] the distortion caused by the income tax
+This .hi-red[exacerbates] the distortion caused by the income tax: the household was already undersupplying labor because of the income tax
+
+
+---
+
+# Second-best non-revenue raising environmental policy
+
+Complements means that `\(MIE &lt; 0\)`
 
 --
 
-The opposite is true if `\(X\)` and `\(N\)` are complements, `\(MIE &lt; 0\)` and addressing the pollution distortion helps address the labor market distortion
+The marginal social cost of abatement `\((MAC + MIE)\)` has become .hi-blue[smaller]
+
+--
+
+Intuition?
+
+--
+
+Its less socially costly to reduce `\(X\)` because the household decreases `\(N\)` in response
+
+--
+
+This .hi-blue[alleviates] the distortion caused by the income tax: the household was undersupplying labor because of the income tax, but now reducing `\(X\)` increases labor supply
 
 
 ---
