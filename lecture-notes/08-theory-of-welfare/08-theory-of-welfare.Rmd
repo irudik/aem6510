@@ -103,7 +103,10 @@ WTP and WTA are nice because they translate preferences into money equivalents
 
 --
 
-e.g. substitutability matters
+i.e. substitutability matters
+
+--
+
 - If there's a lot of substitutes for the good, the price decrease isn't that valuable
 - If there's few substitutes, the price decrease may be very valuable
 
@@ -131,7 +134,7 @@ Utility is $U(x,z,q)$
 - $x$ is a vector of private goods
 --
 
-- $z$ is the numeraire with price = 1
+- $z$ is the numeraire with price = $1
 --
 
 - $q$ is a vector of environmental goods
@@ -144,7 +147,7 @@ $q$ can be a bunch of stuff, here we assume it's a good $(U_q > 0)$:
 - Recreation
 --
 
-- Health impacts
+- Health impacts from clean air
 --
 
 - Ecosystem services
@@ -156,7 +159,7 @@ $q$ can be a bunch of stuff, here we assume it's a good $(U_q > 0)$:
 
 # The general model
 
-The consumer maximizes utility given some fixed level of $q$, vector of market prices $p = \{p_1,...,p_J\}$, and income $y$:
+The consumer maximizes utility given some .hi[fixed] level of $q$, vector of market prices $p = \{p_1,...,p_J\}$, and income $y$:
 $$\max_{z,x_1,\dots,x_J} U(x,z,q) + \lambda[y - z - \sum_{i=1}^J p_i x_i]$$
 
 --
@@ -170,13 +173,19 @@ $$U_z = \lambda$$
 
 # The general model
 
-With the FOCs we can solve for the .hi[*ordinary*] demand functions $x_j(p,y,q)$, the Lagrange multiplier $\lambda(p,y,q)$, and $z$
+With the FOCs we can solve for the .hi[*ordinary*] demand functions $x_j(p,y,q)$, the Lagrange multiplier $\lambda(p,y,q)$, and $z$<sup>1</sup>
+
+.footnote[
+<sup>1</sup>Ordinary demand functions are the regular ones you've seen so far.
+]
 
 --
 
 Note we can directly estimate ordinary demand functions since they depend on observables $p, y, q$
 
---
+---
+
+# The general model
 
 If we substitute $x_j$ into $U$ we get the .hi-blue[indirect utility function] $V(p,y,q)$
 - $V(p,y,q)$ tells us the maximized level of utility given prices, income, and environmental quality
@@ -189,7 +198,12 @@ Note that $\lambda$ can be interpreted as the marginal utility of income
 
 # The general model
 
-We can also represent the consumer's behavior by the dual expenditure minimization problem:
+We can also represent the consumer's behavior by the dual expenditure minimization problem:<sup>1</sup>
+
+.footnote[
+<sup>1</sup>In economics, by *dual* we mean expenditure min and utility max solutions are the same.
+]
+
 $$\min_{x,z} p\cdot x + z + \mu[\bar{u} - U(x,z,q)]$$
 where $\bar{u}$ is a reference level of utility
 
@@ -218,6 +232,10 @@ These FOCs allow us to derive .hi-blue[compensated demand functions] $h_j(p, \ba
 --
 
 Note that these are .hi-red[not] directly estimable because we do not observe $\bar{u}$
+
+--
+
+These are also .hi[not the same as the ordinary demand functions]
 
 --
 
@@ -254,7 +272,10 @@ $$x_j(p,E(p,u^0,q),q) \equiv h_j(p,u^0,q) \,\,\,\,\, \forall j$$
 
 --
 
-We can now determine the price responses for both kinds of demand functions by differentiating wrt $p_j$:
+We can now determine the price responses for both kinds of demand functions by differentiating both sides with respect to $p_j$:
+
+--
+
 \begin{align}
   {\partial x_j \over \partial p_j} &= {\partial h_j \over \partial p_j} - {\partial x_j \over \partial y}\times {\partial E_j \over p_j} \\
   &= {\partial h_j \over \partial p_j} - {\partial x_j \over \partial y}\times x_j
@@ -274,7 +295,7 @@ What does this result show us?
 
 --
 
-- The difference between compensated and ordinary demand is an .hi-blue[income gradient]
+- The difference between compensated $(h)$ and ordinary $(x)$ demand is an .hi-blue[income gradient]
   - If there's no income effect ${\partial x_j \over \partial y}$, then they are equivalent
 
 ---
@@ -287,7 +308,7 @@ What does this result show us?
 
 --
 
-- Utility is held constant for movements in price along the .hi[*compensated*] demand curve, but not the ordinary demand curve
+- By definition, utility is held constant for movements in price along the .hi[*compensated*] demand curve, but not the ordinary demand curve
   - Moving along the ordinary demand curve confounds the pure price effect, and an implicit income effect (i.e. the substitution and income effects)
   
 --
@@ -422,7 +443,7 @@ Our goal in applied welfare economics is to estimate the components of preferenc
 
 --
 
-Once we have CV or EV we have defensible measures for a consumer's value of an exogenous change in some environmental variable
+Once we have CV or EV we have defensible measures for a consumer's value of an exogenous change in some variable
 
 ---
 
@@ -447,8 +468,8 @@ Where the second set of equalities come from the duality of the two problems: $E
 
 Now, by the fundamental theorem of calculus we have:
 \begin{align}
-  CV = E(p^0,u^0,q) - E(p^1,u^0,q) = \int_{p^1_j}^{p^0_j}{\partial E(p,u,q) dp_j \over \partial p_j} dp_j  \\
-  EV =  E(p^0,u^1,q) - E(p^1,u^1,q) = \int_{p^1_j}^{p^0_j}{\partial E(p,u,q) dp_j \over \partial p_j} dp_j 
+  CV = E(p^0,u^0,q) - E(p^1,u^0,q) = \int_{p^1_j}^{p^0_j}{\partial E(p, p_{-j},u,q) \over \partial p_j} dp_j  \\
+  EV =  E(p^0,u^1,q) - E(p^1,u^1,q) = \int_{p^1_j}^{p^0_j}{\partial E(p, p_{-j},u,q) \over \partial p_j} dp_j 
 \end{align}
 where $p_{-j}$ is the set of prices without $p_j$
 
@@ -478,7 +499,7 @@ What does this say about how we interpret CV and EV?
   EV =  E(p^0,u^1,q) - E(p^1,u^1,q) = \int_{p^1_j}^{p^0_j} h_j(p_j, p_{-j},u^1,q)dp_j
 \end{align}
 
-CV and EV are the area under the appropriate compensated demand curve, between two price levels
+.hi-red[Key point:] CV and EV are the area under the appropriate compensated demand curve, between two price levels
 
 --
 

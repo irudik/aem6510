@@ -755,7 +755,7 @@ $N^c \rightarrow N^*$ when $p^c \rightarrow p^*$ because of a change in $X$
 This is $-{\partial N \over \partial p}\frac{\partial p}{\partial X}$
 
 This reduces tax revenue by $e+c$ which is just 
-$$(N^*c* - N^c)(w - (1-m)w) \\
+$$(N^* - N^c)(w - (1-m)w) \\
 = (N^* - N^c)mw$$
 
 ]
@@ -778,10 +778,14 @@ The discrete version of MIE!
 
 # Findings recap
 
-If there's a gov't revenue constraint, and it can only be met with labor taxes then:
+If there's a government revenue constraint, and it can only be met with labor taxes then:
 
 1. The marginal social cost of reducing $X$ is higher than the first-best if $X$ and $N$ are substitutes and lower if they are complements
+--
+
 2. The optimal level of pollution is larger if they are substitutes, lower if they are complements
+--
+
 3. The absolute value of the difference in first and second-best pollution levels is larger if:
   - Labor supply is more elastic
   - Demand for $X$ is more inelastic
@@ -798,9 +802,11 @@ We didn't actually show the last part yet
 
 First define:
 - $\varepsilon_x$ as the own price elasticity ${\frac{\partial X}{\partial p} / \frac{p}{X}}$
-- $\eta_{XN}$ as the elasticity of substitution ${\frac{\partial X}{\partial w} / \frac{(1-m)w}{X}}$
+- $\eta_{XN}$ as the elasticity of substitution between $X$ and $N$: ${\frac{\partial X}{\partial w} / \frac{(1-m)w}{X}}$
 
-and take advantage of the .hi-blue[Slusky symmetry condition] $\partial N / \partial p = \partial X / \partial w$
+--
+
+and take advantage of the .hi-blue[Slutsky symmetry condition] $\partial N / \partial p = \partial X / \partial w$
 
 We can then use these to substitute into the MIE and get:
 $$MIE = (1+\lambda)\left[- {\eta_{XN} \over \varepsilon_X}\right]p {m \over 1-m}$$
@@ -810,11 +816,11 @@ $$MIE = (1+\lambda)\left[- {\eta_{XN} \over \varepsilon_X}\right]p {m \over 1-m}
 # Second-best non-revenue raising environmental policy
 
 $$MIE = (1+\lambda)\left[- {\eta_{XN} \over \varepsilon_X}\right]p {m \over 1-m}$$
-MIE bigger if $|\eta_{XN}|$ is bigger
+MIE bigger if $|\eta_{XN}|$ is bigger (higher elasticity of substitution)
 
 --
 
-MIE bigger if $|\varepsilon_X|$ is smaller (more inelastic)
+MIE bigger if $|\varepsilon_X|$ is smaller (more inelastic demand for $X$)
 
 --
 
@@ -824,11 +830,15 @@ Still need to show labor supply part
 
 # Second-best non-revenue raising environmental policy
 
-Define the elasticity of labor supply *at the net wage* as:
+Define the elasticity of labor supply .hi[at the after-tax wage] as:
 $$\varepsilon_{L} = - {\partial N \over \partial w}{(1-m)w \over L}$$
+
+--
 
 And recognize that:
 $${\partial N(p,(1-m)w) \over \partial m} = -w {\partial N(p,w) \over \partial w}$$
+
+--
 
 Combining these two gives:
 $${\partial N \over \partial m}m = \varepsilon_{L} L m / (1-m)$$
@@ -842,11 +852,13 @@ $${\partial N \over \partial m}m = \varepsilon_{L} L m / (1-m)$$
 in
 $$\lambda = \frac{w  m {\partial N \over \partial m}}{w(T-N)-wm{\partial N \over \partial m}}$$
 
+To get the welfare cost of public funds in terms of fundamental economic parameters
+
 ---
 
 # Second-best non-revenue raising environmental policy
 
-To get:
+We get:
 $$\lambda = \frac{\varepsilon_{L}m/(1-m)}{1- \varepsilon_{L}m/(1-m)}$$
 
 Side note: 
@@ -861,9 +873,10 @@ If labor supply is perfectly inelastic (vertical), there is no welfare cost of p
 Finally use:
 $$\lambda = \frac{\varepsilon_{L}m/(1-m)}{1- \varepsilon_{L}m/(1-m)}$$
 to get:
-$${m\over(1-m)} = {\lambda \over (1-\lambda)\varepsilon_L}$$
+$${m\over(1-m)} = {\lambda \over (1 + \lambda)\varepsilon_L}$$
 
-and then substitute into our MIE expression
+and then substitute into our MIE expression:
+$$MIE = (1+\lambda)\left[- {\eta_{XN} \over \varepsilon_X}\right]p {m \over 1-m}$$
 
 ---
 
@@ -872,7 +885,23 @@ and then substitute into our MIE expression
 Finally we will get:
 $$MIE = \lambda {-\eta_{XN} \over \varepsilon_X} {p \over \varepsilon_L}$$
 
-Bigger $\varepsilon_L$ ... huh?
+and substitute in our expression for $\lambda$:
+$$\lambda = \frac{\varepsilon_{L}m/(1-m)}{1- \varepsilon_{L}m/(1-m)}$$
+
+To get:
+$$MIE = p\frac{m/(1-m)}{1- \varepsilon_{L}m/(1-m)} {-\eta_{XN} \over \varepsilon_X}$$
+
+---
+
+# Second-best non-revenue raising environmental policy
+
+$$MIE = p\frac{m/(1-m)}{1- \varepsilon_{L}m/(1-m)} {-\eta_{XN} \over \varepsilon_X}$$
+
+MIE is bigger and the absolute value of the difference in first and second-best pollution levels is larger if:
+
+1. Labor supply is more elastic: $\varepsilon_{L}$ bigger
+2. Demand for $X$ is more inelastic: $\varepsilon_X$ smaller
+3. Elasticity of substitution between $N$ and $X$ is greater: $\eta_{XN}$ bigger in magnitude
 
 ---
 
@@ -900,7 +929,7 @@ For simplicity we still assume tax revenues are returned lump sum to households
 
 First derive household spending on the numeraire good:
 $$Z = (1-m)w(T-N)-pX+G = w(T-N)-pX+\tau X$$
-where the second equality comes from substituting out the govt's budget constraint
+where the second equality comes from substituting out the govt's budget constraint: $G = wm(T-N) + \tau X$
 
 --
 
@@ -927,21 +956,20 @@ MR = MC of production
 
 --
 
-Next, differentiate the FOCs wrt $\tau$
+Next, as usual, differentiate the FOCs wrt $\tau$
 
 
 ---
 
 # Revenue raising environmental policy
 
-Household $X$ FOC:
-$$u_XX {\partial X \over \partial \tau} + u_{XN}{\partial N \over \partial \tau} = {\partial p \over \partial \tau}$$
+This gives us 3 equations and 3 unknown partial derivatives:
+$$u_XX {\partial X \over \partial \tau} + u_{XN}{\partial N \over \partial \tau} = {\partial p \over \partial \tau} \tag{Household X FOC}$$
 
-$N$ FOC:
-$$u_XN {\partial X \over \partial \tau} + u_{N}{\partial N \over \partial \tau} = 0$$
 
-Firm $X$ FOC:
-$$C''(X) {\partial X \over \partial \tau} = {\partial p \over \partial \tau} - 1$$
+$$u_XN {\partial X \over \partial \tau} + u_{N}{\partial N \over \partial \tau} = 0 \tag{N FOC}$$
+
+$$C''(X) {\partial X \over \partial \tau} = {\partial p \over \partial \tau} - 1 \tag{Firm X FOC}$$
 
 ---
 
@@ -955,7 +983,7 @@ $${\partial X \over \partial \tau} = {u_{NN} \over H} < 0$$
 
 $${\partial N \over \partial \tau} = {-u_{XN} \over H} \lessgtr 0$$
 
-$${\partial p \over \partial \tau} = {u_{XX}u_{NN}-u_{XN}^2 \over H} < 0$$
+$${\partial p \over \partial \tau} = {u_{XX}u_{NN}-u_{XN}^2 \over H} > 0$$
 
 where $H = u_{XX}u_{NN}-u_{XN}^2-C''(X)u_{NN} > 0$
 
@@ -973,6 +1001,8 @@ The regulator wants to maximize social welfare given the budget constraint:
 \text{ subject to:      } wm(T-N)+\tau X=G
 \end{gather}
 
+--
+
 Substitute in for Z from household spending:
 $$Z = w(T-N)-pX+\tau X$$
 
@@ -984,8 +1014,12 @@ And look at the $\tau$ FOC
 
 $$\left[u_X - C'(X) - D'(X)\right]{\partial X \over \partial \tau} + \lambda\left[X + \tau {\partial X \over \partial \tau} \right] + \left[\underbrace{u_N - w}_{-wm} - \lambda wm\right]{\partial N \over \partial \tau} = 0$$
 
+--
+
 Just follow the same steps as we did with the non-revenue raising case and divide by ${\partial X \over \partial \tau}$ to get:
 $$\underbrace{u_x - C'(X)}_{MAC} + \underbrace{(1+\lambda)wm\left[-{\partial N \over \partial \tau}\bigg/{\partial X \over \partial \tau}\right]}_{MIE} + \underbrace{\lambda\left[\tau + x/{\partial X \over \partial \tau}\right]}_{MRE} = D'(X)$$
+
+--
 
 Since the tax is per unit, we have that: ${\partial N \over \partial \tau}\big/{\partial X \over \partial \tau} = {\partial N \over \partial p}\big/{\partial X \over \partial p}$, MIE is similar in revenue and non-revenue raising contexts
 
@@ -1063,7 +1097,7 @@ MRE is negative and increases total abatement if:
 
 --
 
-- demand for for dirty good is sufficiently inelastic
+- demand for dirty good is sufficiently inelastic
 
 --
 
@@ -1142,7 +1176,7 @@ ggplot() +
 .pull-right[
 
 
-.hi-blue[Demand for for dirty good is sufficiently inelastic]:
+.hi-blue[Demand for dirty good is sufficiently inelastic]:
 
 Suppose ${\partial N \over \partial p}= 0$ so $MIE = 0$, $C'(X) = c$, $D'(X) = d$
 
@@ -1192,7 +1226,7 @@ We can also see that if $D'(X)$ was very large, making $\tau$ larger, we would b
 
 # Double dividend
 
-Is there a prospect for a double dividend?
+Is there a prospect for a .hi[double dividend?]
 
 There is a .hi-blue[weak double dividend] if welfare is always greater when revenue raised via environmental taxation is used to reduced distortionary taxation rather than refunded lump sum
 - This is always true
@@ -1230,7 +1264,7 @@ In this pathway we have that leisure and the polluting good are .hi-blue[complem
 
 --
 
-Price of $X$ rises from $\tau$, demand for leisure goes down, labor supply goes up
+Price of $X$ rises from $\tau$, demand for leisure goes down, labor goes up
 
 ---
 
@@ -1264,7 +1298,9 @@ Again, assume $C'(X) = c$, this gives us that:
   MRE =& \lambda\left({p \over \varepsilon_X} + \tau \right)
 \end{align}
 
-Suppose N and X are *average subsitutes* so that $\eta_{XN} = \varepsilon_L$, then:
+--
+
+Suppose N and X are *average substitutes* which means $\eta_{XN} = \varepsilon_L$, then:
 $$MIE = \lambda\left(- {p\over \varepsilon_X} \right) < \lambda\left({p \over \varepsilon_X} + \tau \right) = MRE$$
 
 $\Rightarrow$ we shouldn't expect a strong double dividend
