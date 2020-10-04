@@ -100,7 +100,7 @@ Some sections of the course have readings (available on Canvas if not in the boo
 
 **Reading**: PR Chapter 6
 
-### [Sep 24: Pre-existing distortions](https://github.com/irudik/aem6510/blob/master/lecture-notes/07-pre-existing-distortions/7-pre-existing-distortions.html) [slides posted] <!-- either oct 6 or 8 -->
+### [Sep 24: Pre-existing distortions](https://raw.githack.com/irudik/aem6510/master/lecture-notes/07-pre-existing-distortions/7-pre-existing-distortions.html) [slides posted] <!-- either oct 6 or 8 -->
 
 **Reading**: PR Chapter 7
 
