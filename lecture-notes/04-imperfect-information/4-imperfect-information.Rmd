@@ -137,7 +137,7 @@ Does the size of the loss depend on the policy instrument?
 
 Define welfare loss as the difference in total social costs at $\tilde{E}$ versus the efficient level $E^*$:
 \begin{align}
-WL &= [D(\tilde{E}) - C(\tilde{E})] - [D(E^*) - C(E^*)] \notag\\
+WL &= [D(\tilde{E}) + C(\tilde{E})] - [D(E^*) + C(E^*)] \notag\\
   &= [D(\tilde{E}) -D(E^*)] - [ C(\tilde{E}) - C(E^*)]
 \end{align}
 
@@ -590,7 +590,7 @@ Firm behavior sets the price even though quantity is fixed by the regulator
 
 .pull-right[
 
-With a tax, the regulator sets a price $\tau(\tilde{E})$ per unit of emissions, and the firms choose the quantity of emissions where $\tau{\tilde{E}} = C'(\tilde{E})$ which causes total emissions to be $E(\tau)$
+With a tax, the regulator sets a price $\tau(\tilde{E})$ per unit of emissions, and the firms choose the quantity of emissions where $\tau(\tilde{E}) = -C'(\tilde{E})$ which causes total emissions to be $E(\tau)$
 
 This yields a welfare loss of $B$
 
