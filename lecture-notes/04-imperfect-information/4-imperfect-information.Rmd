@@ -138,7 +138,7 @@ Does the size of the loss depend on the policy instrument?
 Define welfare loss as the difference in total social costs at $\tilde{E}$ versus the efficient level $E^*$:
 \begin{align}
 WL &= [D(\tilde{E}) + C(\tilde{E})] - [D(E^*) + C(E^*)] \notag\\
-  &= [D(\tilde{E}) -D(E^*)] - [ C(\tilde{E}) - C(E^*)]
+  &= [D(\tilde{E}) -D(E^*)] + [ C(\tilde{E}) - C(E^*)]
 \end{align}
 
 This is equivalent to the area under the marginal damage and abatement cost curves between the two emission levels:
