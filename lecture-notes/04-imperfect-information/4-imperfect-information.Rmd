@@ -590,7 +590,7 @@ Firm behavior sets the price even though quantity is fixed by the regulator
 
 .pull-right[
 
-With a tax, the regulator sets a price $\tau(\tilde{E})$ per unit of emissions, and the firms choose the quantity of emissions where $\tau(\tilde{E}) = -C'(\tilde{E})$ which causes total emissions to be $E(\tau)$
+With a tax, the regulator sets a price $\tau(\tilde{E})$ per unit of emissions, and the firms choose the quantity of emissions where $\tau(\tilde{E}) = -C'(E)$ which causes total emissions to be $E(\tau)$
 
 This yields a welfare loss of $B$
 
