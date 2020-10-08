@@ -1210,7 +1210,7 @@ Differentiate $\bar{u} = V(p,E(p,\bar{u},q),q)$ with respect to $p_j$:
 $${\partial V \over \partial p_j} + {\partial V \over \partial y}{\partial E \over \partial p_j} = 0$$
 
 which gives us that:
-$${\partial E(p,\bar{u},q) \over \partial p_j} = {\partial V \over \partial p_j}\bigg/{\partial V \over \partial y} = x_j(p,y,q)$$
+$${\partial E(p,\bar{u},q) \over \partial p_j} = -{\partial V \over \partial p_j}\bigg/{\partial V \over \partial y} = x_j(p,y,q)$$
 where the second equality is .hi-blue[Roy's identity]
 
 --
