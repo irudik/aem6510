@@ -405,8 +405,8 @@ EV uses the post-change level of utility as the reference, it's the income chang
 
 # Equivalent variation
 
-Given a change in price from $p^0 \text{ to } p^1 < p^0$ the CV is:
-$$V(p^1,y,q) = V(p^0,y+CV,q)$$
+Given a change in price from $p^0 \text{ to } p^1 < p^0$ the EV is:
+$$V(p^1,y,q) = V(p^0,y+EV,q)$$
 --
 
 LHS is maximized utility at the baseline (changed) price, RHS is maximized utility at the old price but with an income adjustment to keep utility equal
