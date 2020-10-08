@@ -1139,7 +1139,7 @@ Assume that $\lambda(p,y,q)$ is not a function of $p_j$: $\partial \lambda / \pa
 # What is CS?
 
 We can re-write CS as:
-$$CS = {1 \over \lambda(p,y,q)}\int_{p^0_j}^{p^1_j}-{V_{p_j}(p,y,q) } dp_j = [V_{p_j}(p^0,y,q) - V_{p_j}(p^1,y,q)]{1 \over \lambda(p,y,q)}$$
+$$CS = {1 \over \lambda(p,y,q)}\int_{p^0_j}^{p^1_j}-{V_{p_j}(p,y,q) } dp_j = [V(p^0,y,q) - V(p^1,y,q)]{1 \over \lambda(p,y,q)}$$
 
 If the marginal utility of income is constant with respect to price, .hi-blue[CS is a money-metric reflection of the change in utility!]
 
