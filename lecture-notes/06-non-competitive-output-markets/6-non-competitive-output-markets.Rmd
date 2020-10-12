@@ -187,7 +187,7 @@ $$[P(X^m) - C'(X^m) - \delta D'(\delta X^m)] \times {d X^m \over d\tau} = 0$$
 
 $$[P(X^m) - C'(X^m) - \delta D'(\delta X^m)] \times {d X^m \over d\tau} = 0$$
 
-Recognize $P'(X^m)dt - C'(X^m) = \tau\delta - P'(X^m)X^M$ from the firm FOC
+Recognize $P(X^m) - C'(X^m) = \tau\delta - P'(X^m)X^M$ from the firm FOC
 
 --
 
