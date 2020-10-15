@@ -52,8 +52,7 @@ knitr::opts_chunk$set(echo = TRUE, fig.align="center")
 ```
 
 ```
-## Warning in style_panelset_tabs(...): The arguments to `syle_panelset()` changed in xaringanExtra 0.1.0. Please refer to
-## the documentation to update your slides.
+## Warning in style_panelset_tabs(...): The arguments to `syle_panelset()` changed in xaringanExtra 0.1.0. Please refer to the documentation to update your slides.
 ```
 
 ---
@@ -400,6 +399,98 @@ By assuming `\(q\)` is a part of a larger bundle of house characteristics, we ar
 --
 
 We can then use the bid function (which maps into prices) to understand the marginal WTP for `\(q\)`
+
+--
+
+Our ultimate empirical goal is to estimate `\(\pi^q(x,q,s,\bar{u})\)`
+
+
+---
+
+# Bid functions and housing prices
+
+
+
+.pull-left[
+
+The red line is the hedonic price function
+
+The blue lines are a single household's bid functions at different reference utility levels where `\(u_1 &gt; u_0 &gt; u_2\)`
+
+Higher utility `\(\rightarrow\)` lower bids because same level of `\(q\)` can be achieved with higher `\(z\)`
+
+]
+
+.pull-right[
+
+![bid function is tangent to hedonic price function](09-hedonics_files/figure-html/bid_functions_1-1.png)
+
+]
+
+
+---
+
+# Bid functions and housing prices
+
+.pull-left[
+
+Optimal choice is where the household's bid function is tangent to the hedonic price schedule: `\(a\)`
+
+This gives us an observed consumption level `\(q_0\)`, observed price `\(P(x,q_0)\)`, and realized utility `\(u^0\)`
+
+]
+
+.pull-right[
+
+![bid function is tangent to hedonic price function](09-hedonics_files/figure-html/bid_functions_1-1.png)
+
+]
+
+
+---
+
+# Compensated MWTP
+
+
+
+.pull-left[
+
+This plot shows the corresponding compensated MWTP curve associated with `\(b(x,q,y,s,u^0)\)`
+
+It is the slope of the bid function as `\(q\)` changes
+
+We observe `\(b\)` if we can estimate `\(P(x,q)\)` and its derivative
+
+]
+
+.pull-right[
+
+![bid function is tangent to hedonic price function](09-hedonics_files/figure-html/bid_functions_2-1.png)
+
+]
+
+
+---
+
+# Compensated MWTP
+
+.pull-left[
+
+We can estimate `\(P(x,q)\)` using home sales prices and home attributes data
+
+The slope of `\(P(x,q)\)` is then equal to the MWTP for `\(q\)`
+
+This gives us the consumers inverse demand for `\(q\)`
+
+`$${\partial P(x,q_0) \over \partial q} = \pi^q(x,q_0,s,u^0)$$`
+
+]
+
+.pull-right[
+
+![bid function is tangent to hedonic price function](09-hedonics_files/figure-html/bid_functions_2-1.png)
+
+]
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

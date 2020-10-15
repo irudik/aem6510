@@ -1321,7 +1321,7 @@ There are also other behavioral reasons, but we won't touch on them here. See Se
 We can also define CV and EV with the expenditure function:
 \begin{align}
   CV =& E(p,u^0,q^0) - E(p,u^0,q^1) \\
-    =& y = E(p,u^0,q^1) \\
+    =& y - E(p,u^0,q^1) \\
     \,\,\, \\
   EV =& E(p,u^1,q^0) - E(p,u^1,q^1) \\
     =& E(p,u^1,q^0) - y \\
@@ -1410,7 +1410,7 @@ ggplot() +
   scale_y_continuous(expand = c(0, 0), limits = c(0, 15),
                      breaks = c(2.85, 5, 7.6), labels = expression(E(p,u^0,q^1), y[0], E(p,u^1,q^0))) +
   labs(x = "q",
-       y = "Income / Numeraire good",
+       y = "Income / private goods",
        title = "Utility space")
   
 ```
@@ -1674,7 +1674,7 @@ ggplot() +
 
 .pull-left[
 
-Similar to before (but now with axes flipped since these are inverse demands)
+Similar to before
 
 CV is given by the area $q_0,a,c,q_1$
 

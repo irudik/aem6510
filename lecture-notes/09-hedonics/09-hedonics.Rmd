@@ -382,3 +382,164 @@ By assuming $q$ is a part of a larger bundle of house characteristics, we are ab
 --
 
 We can then use the bid function (which maps into prices) to understand the marginal WTP for $q$
+
+--
+
+Our ultimate empirical goal is to estimate $\pi^q(x,q,s,\bar{u})$
+
+
+---
+
+# Bid functions and housing prices
+
+```{r bid_functions_1, echo = FALSE, fig.show = 'hide', warning = F}
+bid1 <- function(x) -x^2/2*1.2 + 5*x + 3
+bid2 <- function(x) -x^2/2*1.2 + 5*x
+bid3 <- function(x) -x^2/2*1.2 + 5*x - 3
+hedonic_p <- function(x) -x^2/2.2 + 4*x + 1.
+ggplot() +
+  stat_function(fun = bid1, color = "#638ccc", size = 1.0) +
+  stat_function(fun = bid2, color = "#638ccc", size = 1.0) +
+  stat_function(fun = bid3, color = "#638ccc", size = 1.0) +
+  stat_function(fun = hedonic_p, color = "#ca5670", size = 1.0) +
+    annotate("segment", x = 1.3, xend = 1.3, y = 0, yend = 5.25,
+           linetype = "dotted", size = 1, color = "grey55") +
+    annotate("segment", x = .5, xend = .5, y = 0, yend = 2.5,
+           linetype = "dotted", size = 1, color = "grey55") +
+    annotate("segment", x = 0, xend = 1.3, y = 5.25, yend = 5.25,
+           linetype = "dotted", size = 1, color = "grey55") +
+  annotate("text", size = 6, label = expression(b(x,q,y,s, u^2)), x = 3.25, y = 14, color = "#638ccc") +
+  annotate("text", size = 6, label = expression(b(x,q,y,s, u^0)), x = 3.25, y = 11, color = "#638ccc") +
+  annotate("text", size = 6, label = expression(b(x,q,y,s, u^1)), x = 3.25, y = 5, color = "638ccc") +
+  annotate("text", size = 6, label = "P(x,q)", x = 3.25, y = 8.5, color = "#ca5670") +
+  annotate("text", size = 6, label = "a", x = 1.25, y = 6, color = "black") +
+  theme_minimal() +
+  theme(
+    legend.position = "none",
+    title = element_text(size = 24),
+    axis.text.x = element_text(size = 16, color = "#000000"), axis.text.y = element_text(size = 16, color = "#000000"),
+    axis.title.x = element_text(size = 16, color = "#000000"), axis.title.y = element_text(size = 16, color = "#000000"),
+    panel.grid.minor.x = element_blank(), panel.grid.major.y = element_blank(),
+    panel.grid.minor.y = element_blank(), panel.grid.major.x = element_blank(),
+    panel.background = element_rect(fill = "#eeeeee",colour = NA),
+    plot.background = element_rect(fill = "#eeeeee",colour = NA),
+    axis.line = element_line(colour = "black")
+  ) +
+  scale_x_continuous(expand = c(0, 0), limits = c(0, 4), breaks = c(0.5, 1.3), labels = expression(q[1], q[0])) +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 15), breaks = c(5.25), labels = expression(P(x,q[0]))) +
+  labs(x = "q",
+       y = "$",
+       title = "Hedonic price function\nand bid functions")
+  
+```
+
+.pull-left[
+
+The red line is the hedonic price function
+
+The blue lines are a single household's bid functions at different reference utility levels where $u_1 > u_0 > u_2$
+
+Higher utility $\rightarrow$ lower bids because same level of $q$ can be achieved with higher $z$
+
+]
+
+.pull-right[
+
+![bid function is tangent to hedonic price function](`r knitr::fig_chunk("bid_functions_1", "png")`)
+
+]
+
+
+---
+
+# Bid functions and housing prices
+
+.pull-left[
+
+Optimal choice is where the household's bid function is tangent to the hedonic price schedule: $a$
+
+This gives us an observed consumption level $q_0$, observed price $P(x,q_0)$, and realized utility $u^0$
+
+]
+
+.pull-right[
+
+![bid function is tangent to hedonic price function](`r knitr::fig_chunk("bid_functions_1", "png")`)
+
+]
+
+
+---
+
+# Compensated MWTP
+
+```{r bid_functions_2, echo = FALSE, fig.show = 'hide', warning = F}
+cwtp <- function(x) 12-3*x
+ggplot() +
+  stat_function(fun = cwtp, color = "#638ccc", size = 1.0) +
+    annotate("segment", x = 1.3, xend = 1.3, y = 0, yend = 12-3*1.3,
+           linetype = "dotted", size = 1, color = "grey55") +
+    annotate("segment", x = .5, xend = .5, y = 0, yend = 12-3*.5,
+           linetype = "dotted", size = 1, color = "grey55") +
+    annotate("segment", x = 0, xend = 1.3, y = 12-3*1.3, yend = 12-3*1.3,
+           linetype = "dotted", size = 1, color = "grey55") +
+  annotate("text", size = 6, label = expression(paste(pi^q, "(x,q,s,", u^0, ")")), x = 3.25, y = 5, color = "638ccc") +
+  annotate("text", size = 6, label = "b", x = 1.25, y = 12-3*1.3+1, color = "black") +
+  theme_minimal() +
+  theme(
+    legend.position = "none",
+    title = element_text(size = 24),
+    axis.text.x = element_text(size = 16, color = "#000000"), axis.text.y = element_text(size = 16, color = "#000000"),
+    axis.title.x = element_text(size = 16, color = "#000000"), axis.title.y = element_text(size = 16, color = "#000000"),
+    panel.grid.minor.x = element_blank(), panel.grid.major.y = element_blank(),
+    panel.grid.minor.y = element_blank(), panel.grid.major.x = element_blank(),
+    panel.background = element_rect(fill = "#eeeeee",colour = NA),
+    plot.background = element_rect(fill = "#eeeeee",colour = NA),
+    axis.line = element_line(colour = "black")
+  ) +
+  scale_x_continuous(expand = c(0, 0), limits = c(0, 4), breaks = c(0.5, 1.3), labels = expression(q[1], q[0])) +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 15), breaks = c(12-3*1.3), labels = expression(paste(partialdiff, P(x, q[0]), "/", partialdiff, q))) +
+  labs(x = "q",
+       y = "$",
+       title = "Compensated MWTP")
+  
+```
+
+.pull-left[
+
+This plot shows the corresponding compensated MWTP curve associated with $b(x,q,y,s,u^0)$
+
+It is the slope of the bid function as $q$ changes
+
+We observe $b$ if we can estimate $P(x,q)$ and its derivative
+
+]
+
+.pull-right[
+
+![bid function is tangent to hedonic price function](`r knitr::fig_chunk("bid_functions_2", "png")`)
+
+]
+
+
+---
+
+# Compensated MWTP
+
+.pull-left[
+
+We can estimate $P(x,q)$ using home sales prices and home attributes data
+
+The slope of $P(x,q)$ is then equal to the MWTP for $q$
+
+This gives us the consumers inverse demand for $q$
+
+$${\partial P(x,q_0) \over \partial q} = \pi^q(x,q_0,s,u^0)$$
+
+]
+
+.pull-right[
+
+![bid function is tangent to hedonic price function](`r knitr::fig_chunk("bid_functions_2", "png")`)
+
+]
