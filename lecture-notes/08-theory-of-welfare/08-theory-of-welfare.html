@@ -430,8 +430,8 @@ EV uses the post-change level of utility as the reference, it's the income chang
 
 # Equivalent variation
 
-Given a change in price from `\(p^0 \text{ to } p^1 &lt; p^0\)` the CV is:
-`$$V(p^1,y,q) = V(p^0,y+CV,q)$$`
+Given a change in price from `\(p^0 \text{ to } p^1 &lt; p^0\)` the EV is:
+`$$V(p^1,y,q) = V(p^0,y+EV,q)$$`
 --
 
 LHS is maximized utility at the baseline (changed) price, RHS is maximized utility at the old price but with an income adjustment to keep utility equal
@@ -910,13 +910,13 @@ Assume that `\(\lambda(p,y,q)\)` is not a function of `\(p_j\)`: `\(\partial \la
 # What is CS?
 
 We can re-write CS as:
-`$$CS = {1 \over \lambda(p,y,q)}\int_{p^0_j}^{p^1_j}-{V_{p_j}(p,y,q) } dp_j = [V_{p_j}(p^0,y,q) - V_{p_j}(p^1,y,q)]{1 \over \lambda(p,y,q)}$$`
+`$$CS = {1 \over \lambda(p,y,q)}\int_{p^0_j}^{p^1_j}-{V_{p_j}(p,y,q) } dp_j = [V(p^0,y,q) - V(p^1,y,q)]{1 \over \lambda(p,y,q)}$$`
 
 If the marginal utility of income is constant with respect to price, .hi-blue[CS is a money-metric reflection of the change in utility!]
 
 --
 
-- Change in utility: `\(V_{p_j}(p^0,y,q) - V_{p_j}(p^1,y,q)\)`
+- Change in utility: `\(V(p^0,y,q) - V(p^1,y,q)\)`
 - Translated into dollar terms by: `\({1 \over \lambda(p,y,q)}\)`
 
 --
@@ -981,7 +981,7 @@ Differentiate `\(\bar{u} = V(p,E(p,\bar{u},q),q)\)` with respect to `\(p_j\)`:
 `$${\partial V \over \partial p_j} + {\partial V \over \partial y}{\partial E \over \partial p_j} = 0$$`
 
 which gives us that:
-`$${\partial E(p,\bar{u},q) \over \partial p_j} = {\partial V \over \partial p_j}\bigg/{\partial V \over \partial y} = x_j(p,y,q)$$`
+`$${\partial E(p,\bar{u},q) \over \partial p_j} = -{\partial V \over \partial p_j}\bigg/{\partial V \over \partial y} = x_j(p,y,q)$$`
 where the second equality is .hi-blue[Roy's identity]
 
 --
