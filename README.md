@@ -112,11 +112,11 @@ Some sections of the course have readings (available on Canvas if not in the boo
 
 **Reading**: PR Chapter 14
 
-### [Oct 6: Revealed preference models](https://ivanrudik.com)
+### [Oct 6: Revealed preference models](https://ivanrudik.com) [skipped]
 
 **Reading**: PR Chapter 15
 
-### [Oct 8: Hedonics](https://ivanrudik.com)
+### [Oct 8: Hedonics](https://raw.githack.com/irudik/aem6510/master/lecture-notes/09-hedonics/09-hedonics.html) [slides posted]
 
 **Reading**: PR Chapter 18
 
