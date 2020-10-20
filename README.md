@@ -122,7 +122,7 @@ Some sections of the course have readings (available on Canvas if not in the boo
 
 ### Oct 13: Theory Prelim
 
-### [Oct 15: R and the tidyverse, causal inference](https://ivanrudik.com)
+### [Oct 15: R and the tidyverse, causal inference](https://raw.githack.com/irudik/aem6510/master/lecture-notes/10-r-and-the-tidyverse/10-r-and-the-tidyverse.html) [slides posted]
 
 **Reading**: 
   - Mixtape: properties of regression, directed acyclical graphs, potential outcomes causal model
@@ -130,7 +130,7 @@ Some sections of the course have readings (available on Canvas if not in the boo
 
 We will be using [RStudio Cloud](https://rstudio.cloud/) for computing.
 
-### [Oct 20: R and the tidyverse, causal inference, randomized control trials](https://ivanrudik.com)
+### [Oct 20: R and the tidyverse, causal inference, randomized control trials](https://raw.githack.com/irudik/aem6510/master/lecture-notes/10-r-and-the-tidyverse/10-r-and-the-tidyverse.html) [slides posted]
 
 **Reading**: 
   - Mixtape: properties of regression, directed acyclical graphs, potential outcomes causal model
