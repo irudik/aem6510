@@ -274,6 +274,14 @@ Now, let's try to run a regression<sup>1</sup> on these "x" and "y" variables:
 
 # Global environment
 
+```{r, eval = F, error = T}
+lm(y ~ x) ## The "lm" stands for linear model(s)
+```
+
+---
+
+# Global environment
+
 ```{r, error=T}
 lm(y ~ x) ## The "lm" stands for linear model(s)
 ```
