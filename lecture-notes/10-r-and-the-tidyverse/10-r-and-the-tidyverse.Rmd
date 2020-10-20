@@ -55,6 +55,99 @@ A good chunk of this lecture comes from Grant Mcdermott's [data science for econ
 class: inverse, center, middle
 name: r
 
+# RStudio Cloud
+
+<html><div style='float:left'></div><hr color='#EB811B' size=1px width=796px></html>
+
+---
+
+# Getting started
+
+We will be using [rstudio.cloud](https://rstudio.cloud) for our coding
+
+--
+
+Why?
+
+--
+
+You don't need to download/install anything
+
+--
+
+I can prepare the packages and code and make it easy to download
+
+--
+
+Let's get everything going...
+
+---
+
+# Getting started: login 
+
+![](files/login.png)
+
+---
+
+# Getting started: new project from github 
+
+![](files/project.png)
+
+---
+
+# Getting started: new project from github 
+
+![](files/github_url.png)
+
+
+---
+
+# Getting started: wait for deployment
+
+![](files/deploying.png)
+
+---
+
+# Click on class-code in bottom-right
+
+![](files/workspace.png)
+
+---
+
+# Click on class-code.Rproj
+
+![](files/r_project.png)
+
+---
+
+# Click yes
+
+```{r, echo = FALSE, fig.align = "center"}
+knitr::include_graphics("files/open_project.png")
+```
+
+
+---
+
+# Check package status (not required)
+
+```{r, echo = FALSE, out.width = "80%", fig.align = "center"}
+knitr::include_graphics("files/package_status.png")
+```
+
+---
+
+# Install packages (then press 'y')
+
+```{r, echo = FALSE, out.width = "60%", fig.align = "center"}
+knitr::include_graphics("files/install_packages.png")
+```
+
+---
+
+class: inverse, center, middle
+name: r
+
 # Quick intro to R
 
 <html><div style='float:left'></div><hr color='#EB811B' size=1px width=796px></html>
@@ -1483,14 +1576,14 @@ Observable outcomes are outcomes that actually show up in the data (i.e. the *fa
 --
 
 We can write the observable outcome $Y_i$ as a simple equation:
-$$Y_i = D_i Y^1_i (1-D_i)Y^0_i$$
+$$Y_i = D_i Y^1_i  + (1-D_i)Y^0_i$$
 where $D_i = 1$ if $i$ received treatment and 0 otherwise
 
 ---
 
 # The Rubin causal model: treatment effects
 
-$$Y_i = D_i Y^1_i (1-D_i)Y^0_i$$
+$$Y_i = D_i Y^1_i + (1-D_i)Y^0_i$$
 
 This is the basis of the *Rubin causal model*
 
