@@ -1382,11 +1382,29 @@ stocks <- data.frame(
 stocks
 ```
 
+We have 4 variables, the date and the stocks
+
+How do we get this in tidy form?
+
 ---
 
 # 1) tidyr::pivot_longer
 
-```{r pivot_longer1b}
+```{r pivot_longer1b, eval = F}
+stocks %>% pivot_longer(-time, names_to = "stock", values_to = "price")
+```
+
+We need to pivot the stock name variables `X, Y, Z` longer
+
+1. Choose non-time variables: `-time`
+2. Decide what variable holds the names: `names_to = "stock"`
+3. Decide what variable holds the values: `values_to = "price"`
+
+---
+
+# 1) tidyr::pivot_longer
+
+```{r pivot_longer1c}
 stocks %>% pivot_longer(-time, names_to = "stock", values_to = "price")
 ```
 
