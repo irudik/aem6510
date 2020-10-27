@@ -1618,7 +1618,7 @@ This leads to an obvious problem: we only observe one of these two states for ea
 
 # The Rubin causal model: average treatment effect
 
-We can derive three parameters of interested from the definition of a treatment effect:
+We can derive three parameters of interest from the definition of a treatment effect:
 
 .hi-blue[Average treatment effect (ATE):] $$E[\delta_i] = E[Y^1_i - Y^0_i] = E[Y^1_i] - E[Y^0_i]$$
 
@@ -1731,7 +1731,7 @@ cons_df
 
 # Hands on: understanding treatment effects
 
-Suppose we have a perfect policymaker who knows each states potential outcomes and can perfectly decide whether each state should have a conservation policy
+Suppose we have a perfect policymaker who knows each state's potential outcomes and can perfectly decide whether each state should have a conservation policy
 
 --
 
@@ -1761,10 +1761,12 @@ observed_df
 
 Given the .hi-blue[observed] data, what if we tried to *estimate* the ATE by comparing mean outcomes of treated $(D_i=1)$ vs untreated units $(D_i=0)$
 
+--
+
 This is the simple difference in mean outcomes (SDO):
 \begin{align}
   SDO &= E[Y^1|D=1] - E[Y^0|D=0] \\
-    &= {1 \over N_T}\sum_{i=1}^{N_T} (y_i | d_i = 1) + {1 \over N_U}\sum_{i=1}^{N_U} (y_i | d_i = 0)
+    &= {1 \over N_T}\sum_{i=1}^{N_T} (y_i | d_i = 1) - {1 \over N_U}\sum_{i=1}^{N_U} (y_i | d_i = 0)
 \end{align}
 
 where $N_T$ is the number of treated units and $N_U$ is the number of untreated units
@@ -1792,17 +1794,21 @@ We know the ATE is 4, why is the SDO giving us a much smaller estimate of the ef
 
 Because the SDO is actually composed of three pieces, only one of which is the ATE:<sup>1</sup>
 
+.footnote[
+  See Mixtape pages 89-91 for the derivation.
+]
+
 <center>
-SDO = ATE + Selection Bias + Heterogeneous Treatment Effect Bias
+SDO = ATE + 
+--
+Selection Bias + 
+--
+Heterogeneous Treatment Effect Bias
 </center>
 
 --
 
 What are these mathematically and intuitively?
-
-.footnote[
-  See Mixtape pages 89-91 for the derivation.
-]
 
 ---
 
@@ -1838,7 +1844,7 @@ Let's work through these two in more detail
 
 # Hands on: Selection bias
 
-The second term is selection bias:
+The second term is .hi-blue[selection bias:]
 $$E[Y^0 | D = 1] - E[Y^0 | D= 0]$$
 
 It is the inherent differences between the two groups if they did not *actually* get the conservation policy
@@ -1891,6 +1897,8 @@ What's the intuition for this?
 
 Basically:
   - How much more of an effect did the policy have on the units that *happened* to get treatment versus the effect the policy would have had on the units that *happened* to be in the control group
+--
+
   - Scale the size of this difference by fraction of control units
   
 --
@@ -1926,7 +1934,11 @@ Taking a simple difference in means of outcomes between treatment and control gr
 
 Unfortunately it is .hi-red[confounded] by two forms of bias:
 
+--
+
 1. .hi-blue[Selection bias:] The units in the treatment group different from the control group in the absence of treatment
+--
+
 2. .hi-blue[Heterogeneous treatment effect bias]: The units in the treatment group respond to treatment differently than units in the control group
 
 ---
@@ -1957,8 +1969,14 @@ A huge chunk of economics is trying circumvent these forms of bias<sup>1</sup>
 
 The rest of class is largely dedicated to:
 1. Understanding what tools we have to correctly estimate the ATE
+--
+
 2. Understanding what assumptions are required for these tools to be valid
+--
+
 3. Understanding when these ATE estimates are valid
+--
+
 4. Seeing how this all works (hands on) in modern environmental economics
 
 --
@@ -2019,7 +2037,7 @@ What's a simple way to deal with this?
 
 If we randomize treatment across observational units then SDO = ATE
 
--- 
+--
 
 Randomization drives selection bias and HTEB to zero
 
