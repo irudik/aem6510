@@ -12,3 +12,5 @@ cons_df <- tibble(
   Y0 = floor(runif(8)*10), # control potential outcome
   delta = Y1 - Y0
 )
+
+cons_df %>% summarise(mean(delta))
