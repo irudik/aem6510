@@ -1261,7 +1261,7 @@ We merge data with [join operations](https://cran.r-project.org/web/packages/dpl
 - `semi_join(df1, df2)`
 - `anti_join(df1, df2)`
 
-(You can visualize the operations [here](https://r4ds.had.co.nz/relational-data.html)
+(You can visualize the operations [here](https://r4ds.had.co.nz/relational-data.html))
 
 ---
 
@@ -1366,6 +1366,7 @@ name: tidyr
 4. `unite`: Combine multiple columns into one
 
 --
+
 Let's practice these verbs together in class
   
 ---
@@ -1915,10 +1916,10 @@ cons_df %>%
     D = as.numeric(delta > 0) 
     ) %>% 
   group_by(D) %>% 
-  summarise(mean(delta), sum(D)) # Difference in potential control and treatment outcomes across the two groups, count in treatment and control
+  summarise(mean(delta), n()) # Difference in potential control and treatment outcomes across the two groups, count in treatment and control
 ```
 
-Heterogeneous treatment effect bias is thus: (1 - 5/8)*(7.4 - (-1.67)) = 3.40
+Heterogeneous treatment effect bias is thus: (1 - 5/(5+3))*(7.4 - (-1.67)) = 3.40
 
 --
 
@@ -1947,12 +1948,18 @@ Unfortunately it is .hi-red[confounded] by two forms of bias:
 
 What are some examples of these forms of bias?
 
-.hi-blue[Selection bias:] If we select certain groups into treatment, for example, if we give COVID treatments to the sickest patients
-  - This may lead to a negative bias on life expectancy even with a positive effect
+--
+
+.hi-blue[Selection bias:] 
+--
+If we select certain groups into treatment, for example, if we pass conservation policy in states with little biodiversity
+  - This may lead to a negative bias on conservation policy impacts, even with a positive ATE
   
 --
 
-.hi-blue[HTEB:] If we select units into treatment based on expected response, for example, if we give steroids to patients who we know have strong immune responses (i.e. the response we want)
+.hi-blue[HTEB:] 
+--
+If we select units into treatment based on expected response, for example, if we pass policy in states where birds are **very** sensitive to conservation
   - This may lead to an overestimate of the size of the treatment effect
   
 ---
@@ -1991,7 +1998,7 @@ There are many different ways to recover the ATE
 
 --
 
-We will cover:
+We will cover some subset of:
 
 1. Randomized control trials
 2. Regression discontinuity
@@ -2074,8 +2081,11 @@ $$E[Y^1 | D = 1] - E[Y^1 | D = 0] = 0 \qquad E[Y^0 | D = 1] - E[Y^0 | D = 0] = 0
 
 --
 
-If we randomized treatment across units, then on average, the potential outcomes should be the same across units in both groups 
+If we randomized treatment across units, then on average, the difference in potential outcomes across groups should be zero
 
+--
+
+This means that:
 $$E[Y^1 | D = 1] = E[Y^1 | D = 0] \qquad E[Y^0 | D = 1] = E[Y^0 | D = 0]$$
 
 --
@@ -2099,7 +2109,7 @@ What does randomization do to HTEB?
 
 --
 
-HTEB goes to zero
+HTEB goes to zero!
 
 ---
 
@@ -2176,7 +2186,10 @@ As `n_obs` $\rightarrow \infty$, we will have that $SDO \rightarrow ATE$
 
 # Randomization: what it does and doesn't do
 
-What does independence imply? That:
+What does independence imply?
+
+--
+
 $$E[Y^1|D = 1] - E[Y^1 | D = 0] = 0 \qquad E[Y^0|D = 1] - E[Y^0 | D = 0] = 0$$
 
 The two groups have the same potential outcomes, .hi-blue[*on average*]
@@ -2222,13 +2235,6 @@ After controlling for some other variables $X$, the potential outcomes are indep
 
 This is much weaker than (unconditional) independence: we only need independence to hold for units that share the same $X$ values, not for all units
 
----
-
-# Conditional independence
-
-Many of the estimation tools used in economics rely on (variants of) the conditional independence assumption
-
 --
 
-We will often explain intuition behind the assumption in different ways depending on the methods
-  - e.g. parallel trends, no omitted variables
+Many of the estimation tools used in economics rely on (variants of) the conditional independence assumption
