@@ -22,4 +22,4 @@ pacman::p_load(
 ############################
 ############################
 
-setwd("../lecture-notes/13-health-dd")
+setwd("lecture-notes/13-health-dd")
