@@ -68,13 +68,15 @@ So far we've made two kinds of comparisons to estimate treatment effects:
 
 --
 
-In both of these were are comparing groups in the .hi-blue[cross-section]: there is no concept or time, before and after a policy was enacted, etc
+In both of these we are comparing groups in the .hi-blue[cross-section]: there is no concept of time, before and after a policy was enacted, etc
 
 ---
 
 # Our comparisons so far
 
-The key assumption for these comparisons is that the treated group would have looked the same as the control group (i.e. had the same outcomes) in the absence of treatment
+The key assumption for these comparisons is that 
+--
+the treated group would have looked the same as the control group (i.e. had the same outcomes) in the absence of treatment
 
 --
 
@@ -96,12 +98,12 @@ One way to describe our comparisons thus far is as .hi-red[differences]
 
 --
 
-The estimated effect of a policy is simply the difference in mean outcomes between treated and control groups:
-$$math here$$
+The estimated effect of a policy is simply the difference in expected outcomes between treated and control groups:
+$$\delta = E[Y^1|D=1] - E[Y^0|D=0]$$
 
 --
 
-figure here
+It's exactly that for an RCT since $D$ was randomly assigned, and its the difference in conditional expectations (conditional on being around the threshold) for RDD
 
 ---
 
@@ -155,7 +157,11 @@ This is much less stringent than requiring the outcomes to have been the same in
 
 Suppose also that:
 - The effect of the New York policy is given by .hi[B]
+--
+
 - Each state has it's own fixed determinants of biodiversity (e.g. land cover, average temperature, etc) given by .hi[NY, PA, MA, etc]
+--
+
 - Each period has it's own determinants of biodiversity, common across all states (e.g. federal policy, global climate change) given by .hi[T<sub>0</sub>, T<sub>1</sub>], where 0 is years before the policy is passed, and 1 is after
 
 ---
@@ -171,6 +177,8 @@ We want to find a way to recover **only** .hi[E[B]]
 --
 
 There are two ways you could think about trying to estimate .hi[B] using differences:
+
+--
 
 1. Compare New York to another state after the policy is passed
 --
@@ -261,7 +269,7 @@ We take the time series differences for NY and PA:
 
 |              |        After        |           Before           |                                Time Series Difference                               |
 |:------------:|:-------------------:|:--------------------------:|:-----------------------------------------------------------------------------------:|
-|   New York   | B + NY + T<sub>1</sub> |   NY + T<sub>0</sub>   | (B + NY + T<sub>1</sub>) - (B + NY + T<sub>1</sub>) = .hi[B + T<sub>1</sub> - T<sub>0</sub>] |
+|   New York   | B + NY + T<sub>1</sub> |   NY + T<sub>0</sub>   | (B + NY + T<sub>1</sub>) - (NY + T<sub>0</sub>) = .hi[B + T<sub>1</sub> - T<sub>0</sub>] |
 | Pennsylvania |  PA + T<sub>1</sub> |     PA + T<sub>0</sub>     |  (PA + T<sub>1</sub>) - (PA + T<sub>0</sub>) = .hi[T<sub>1</sub> - T<sub>0</sub>]  |
 
 --
@@ -307,7 +315,12 @@ Note that DD is not magic
 --
 
 It only can address determinants of biodiversity that are either:
+
+--
+
 1. Time-invariant
+--
+
 2. Time-varying, but common across all states
 
 --
@@ -352,7 +365,7 @@ There cannot be any (uncontrolled for) time varying differences between NY and P
 
 # Difference-in-differences: to the data
 
-Now lets see how this works in practice: [notebook here](https://raw.githack.com/irudik/aem6510/master/lecture-notes/12-health-dd/12-health-dd-notebook.html)
+Now lets see how this works in practice: [notebook here](https://raw.githack.com/irudik/aem6510/master/lecture-notes/13-health-dd/13-health-dd-notebook.html)
 
 --
 
@@ -803,9 +816,6 @@ Here we estimate the effect of being in the treated group, relative to some base
 
 --
 
-This is nice for a few reasons:
---
-
 1. We can look at dynamic effects
 --
 
@@ -815,7 +825,20 @@ This is nice for a few reasons:
 
 # Event studies: dynamic effects
 
-With an event study we can see how the effect changes *over time*
+With an event study we can see how the effect of a policy changes *over time*
+
+--
+
+We will be able to estimate the effect in each post-period relative to some period
+
+--
+
+If we see estimates getting larger, the effect grows over time
+
+--
+
+If estimates get smaller, the effect shrinks
+
 
 ---
 
@@ -843,7 +866,7 @@ We never observe what would have .hi-red[actually] happened though, parallel pre
 
 # HR (2021): to the data
 
-Now lets use the actual HR (2021) data to get some practice: [notebook here](https://raw.githack.com/irudik/aem6510/master/lecture-notes/12-health-dd/12-health-dd-notebook.html)
+Now lets use the actual HR (2021) data to get some practice: [notebook here](https://raw.githack.com/irudik/aem6510/master/lecture-notes/13-health-dd/13-health-dd-notebook.html)
 
 ---
 

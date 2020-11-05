@@ -43,8 +43,8 @@ xaringanExtra::style_panelset(panel_tab_color_active = "red")
 # Roadmap
 
 - Can we exploit situations when we know the mechanism for treatment assignment?
-- Can exploit situations where some units are just above some threshold to get treatment, and others are just below the threshold?
-- Do deforestation policies work?
+  - Can we exploit situations where some units are just above some threshold to get treatment, and others are just below the threshold?
+  - Do deforestation policies work?
 
 ---
 
@@ -63,7 +63,11 @@ Suppose we want to estimate the effect of air quality on property values
 
 --
 
-We have a potentially large problem: there's quite a lot of things that affect housing values that may also be correlated with air quality
+We have a potentially large problem: 
+--
+there's quite a lot of things that affect housing values that may also be correlated with air quality
+--
+
   - wealth, temperature, density, etc
   
 --
@@ -102,11 +106,13 @@ Non-attainment counties had .hi-red[much] greater pollution reductions during th
 
 # Regression discontinuity design
 
-The NAAQS generate a .hi-red[discontinuity:] counties just above the threshold in some year $T$ face greater pressure to reduce pollution in subsequent years $T+1, T+2, \dots$ compared to counties just below the threshold
+The NAAQS generate a .hi-red[discontinuity:] 
+--
+counties just above the threshold in some year $T$ face greater pressure to reduce pollution in subsequent years $T+1, T+2, \dots$ compared to counties just below the threshold
 
 --
 
-In the absence of this policy we might expect counties with $R + \epsilon$ levels of pollution to be similar to counties with $R + \epsilon$ in terms of .hi-blue[all other factors] (on average)
+In the absence of this policy we might expect counties with $c_0 + \epsilon$ levels of pollution to be similar to counties with $c_0 - \epsilon$ in terms of .hi-blue[all other factors] (on average)
   - i.e. $E[Y^0 | D = 1] - D[Y^0 | D = 0] = 0$
 
 --
@@ -133,17 +139,17 @@ Compare two counties that have *virtually identical* levels of pollution,
 --
  but 
 --
-where one is above a threshold that forces it to significantly reduce pollution, and the other is the below the threshold
+where one is *just* above a threshold that forces it to significantly reduce pollution, and the other is *just* the below the threshold
 
 --
 
-The subsequent difference in pollution and other outcomes we may consider .hi-red[as good as random]
+The subsequent difference in other outcomes we may consider .hi-red[as good as random]
 
 ---
 
 # Regression discontinuity design
 
-RDD is appropriate whenever a units entry into treatment $D$ .hi[jumps] in probability when some other variable $X$, called the running variable, is above some threshold $c_0$
+RDD is appropriate whenever a observational unit's assignment to treatment $D$ .hi[jumps] in probability when some other variable $X$, called the running variable, is above some threshold $c_0$
 
 --
 
@@ -169,7 +175,7 @@ More precisely: we compare units just below to just above $c_0$ to estimate some
 
 --
 
-The local is because the estimate is only a valid ATE for units that have pollution levels near the threshold $c_0$
+The .hi-blue[local] is because the estimate is only a valid ATE for units that have pollution levels near the threshold $c_0$
 
 --
 
@@ -407,8 +413,9 @@ Y^1_i = Y^0_i + \delta$$
 
 Which gives us our regression is:
 \begin{align}
-  Y_i &= Y^0_i + (Y^1_i - Y^0_i)D_i \\
-  &= \alpha + \beta X_i + \delta D_i + \varepsilon_i
+  Y_i &= D_i Y^1_i + (1- D_i) Y^0_i \tag{Rubin model} \\
+  Y_i &= Y^0_i + (Y^1_i - Y^0_i)D_i \tag{Rearranged} \\
+  Y_i &= \alpha + \beta X_i + \delta D_i + \underbrace{\varepsilon_i}_{\text{Error}} \tag{Plug in above terms}
 \end{align}
 
 --
@@ -419,7 +426,10 @@ What is the mathematical definition of $\delta$?
 
 # Sharp RDD: treatment effects
 
-$\delta$ is the discontinuity in the conditional expectation function:
+$\delta$ is the discontinuity in the .hi[conditional expectation function:]
+
+--
+
 \begin{align}
   \delta =& \lim_{X_i \rightarrow c_0} E[Y^1_i | X_i = c_0] - \lim_{c_0 \leftarrow X_i} E[Y^0_i | X_i = c_0] \\
   =& \lim_{X_i \rightarrow c_0} E[Y_i | X_i = c_0] - \lim_{c_0 \leftarrow X_i} E[Y_i | X_i = c_0]
@@ -427,7 +437,7 @@ $\delta$ is the discontinuity in the conditional expectation function:
 
 --
 
-The sharp RDD gives us an average causal effect of treatment *at the discontinuity*, which is why it is called a local average treatment effect (LATE):
+The sharp RDD gives us an average causal effect of treatment .hi-blue[at the discontinuity,] which is why it is called a local average treatment effect (LATE):
 $$\delta_{SRDD} = E[Y_i^1 - Y^0_i | X_i = c_0]$$
 
 ---
@@ -602,7 +612,7 @@ BCO's key assumption is that other factors that affect deforestation change smoo
 
 --
 
-This is likely reasonable: the borders were arbitrarily set in 1750 when the area was virtually unexplored: where the border is *locally* is almost random
+This is likely reasonable: the borders were arbitrarily set in 1750 when the area was virtually unexplored: where the border is .hi-blue[locally] is effectively random
 
 --
 
@@ -657,7 +667,7 @@ This is about when Brazil implemented tougher national deforestation policies: *
 
 ---
 
-# What they get: LATE by year
+# What they get: deforestation LATE by year
 
 
 <div style= "float:right;position: relative;">
@@ -675,23 +685,3 @@ Why?
 --
 
 Economic crises decreased enforcement of environmental regulations, and lead to weakening of the regulations
-
----
-
-class: inverse, center, middle
-name: hr2021
-
-# Geocomputation in R
-
-<html><div style='float:left'></div><hr color='#EB811B' size=1px width=796px></html>
-
-
----
-
-# Geocomputation in R
-
-How do you even *do* something like this with data on forest cover?
-
---
-
-Let's find out

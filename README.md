@@ -130,20 +130,20 @@ Some sections of the course have readings (available on Canvas if not in the boo
 
 We will be using [RStudio Cloud](https://rstudio.cloud/) for computing.
 
-### [Oct 20: R and the tidyverse, causal inference, randomized control trials](https://raw.githack.com/irudik/aem6510/master/lecture-notes/10-r-and-the-tidyverse/10-r-and-the-tidyverse.html) [slides posted]
+### [Oct 20: R and the tidyverse, causal inference, randomized control trials](https://raw.githack.com/irudik/aem6510/master/lecture-notes/10-r-and-the-tidyverse/10-r-and-the-tidyverse.html) [slides posted] <!-- finish oct 29 -->
 
 **Reading**: 
   - Mixtape: properties of regression, directed acyclical graphs, potential outcomes causal model
   - Guiteras, Raymond, James Levinsohn, and Ahmed Mushfiq Mobarak. "Encouraging sanitation investment in the developing world: a cluster-randomized trial." Science 348, no. 6237 (2015): 903-906.
   
-### [Oct 22: Deforestation, remote sensing/simple features, regression discontinuity](https://ivanrudik.com)
+### [Oct 22: Deforestation, remote sensing/simple features, regression discontinuity](https://raw.githack.com/irudik/aem6510/master/lecture-notes/11-rdd/11-rdd.html) [slides posted]
 
 **Reading**: 
   - Mixtape: regression discontinuity
   - [Geocomputation with R](https://geocompr.robinlovelace.net/)
   - Burgess, R., Costa, F. and Olken, B.A., 2019. The Brazilian Amazon’s Double Reversal of Fortune.
 
-### [Oct 27: Hedonics](https://ivanrudik.com)
+### [Oct 27: Hedonics](https://ivanrudik.com) [skipping for now]
 
 **Reading**: Muehlenbachs, Lucija, Elisheba Spiller, and Christopher Timmins. "The housing market impacts of shale gas development." American Economic Review 105, no. 12 (2015): 3633-59.
 

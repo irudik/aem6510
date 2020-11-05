@@ -196,27 +196,28 @@ For now we will just directly go to estimating the effect using DD and the `fixe
 estimates <- fixest::feols(
   biodiversity ~ treated + period + state, 
   data = bio_df
-  ) %>%  # use the BLL data frame
-  msummary( # report estimates in a table
-  coef_map = c(
-    "statePA" = "Pennsylvania",
-    "periodafter" = "After",
-    "treatedTRUE" = "New York & After (Treatment Effect)"
-  ),
-  gof_omit = "R2|AIC|BIC|Log.|FE|Std.|Obs",
-  stars = TRUE,
-  fmt = "%.2f",
-  title = "The effect of the NY policy on biodiversity",
+) 
+
+msummary(estimates, # report estimates in a table
+    coef_map = c(
+      "statePA" = "Pennsylvania",
+      "periodafter" = "After",
+      "treatedTRUE" = "New York & After (Treatment Effect)"
+    ),
+    gof_omit = "R2|AIC|BIC|Log.|FE|Std.|Obs",
+    stars = TRUE,
+    fmt = "%.2f",
+    title = "The effect of the NY policy on biodiversity",
   )
-estimates
 ```
 
 Now compare the true values (left) versus the estimates (right). **DD correctly recovers the true treatment effect (with some noise)!**
 
 ```{r}
-c(treatment_effect, estimates$estimate[2]) # treatment_effect
-c(period_fes$period_fe[period_fes$period == "after"] - period_fes$period_fe[period_fes$period == "before"], estimates$estimate[3]) # period_after
-c(state_fes$state_fe[state_fes$state == "PA"] - state_fes$state_fe[state_fes$state == "NY"], estimates$estimate[4]) # statePA
+coefs <- estimates$coefficients
+c(treatment_effect, coefs[2]) # treatment_effect
+c(period_fes$period_fe[period_fes$period == "after"] - period_fes$period_fe[period_fes$period == "before"], coefs[3]) # period_after
+c(state_fes$state_fe[state_fes$state == "PA"] - state_fes$state_fe[state_fes$state == "NY"], coefs[4]) # statePA
 
 ```
 
@@ -286,7 +287,7 @@ Cleaning the data is a huge chunk of the actual work of doing research (90%+), b
 First, load the lead poisoning data and look at it.
 ```{r}
 ## Read in blood lead data
-bll_df <- read_csv("data/hr_2021_bll.csv")
+bll_df <- read.csv("data/hr_2021_bll.csv") %>% as_tibble()
 bll_df
 ```
 
@@ -459,7 +460,7 @@ First, load the data.
 ```{r}
 ########################################
 ## Read in mortality data
-mortality_df <- read_csv("data/hr_2021_mortality.csv")
+mortality_df <- read.csv("data/hr_2021_mortality.csv") %>% as_tibble()
 mortality_df
 ```
 

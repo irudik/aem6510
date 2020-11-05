@@ -1261,7 +1261,7 @@ We merge data with [join operations](https://cran.r-project.org/web/packages/dpl
 - `semi_join(df1, df2)`
 - `anti_join(df1, df2)`
 
-(You can visualize the operations [here](https://r4ds.had.co.nz/relational-data.html)
+(You can visualize the operations [here](https://r4ds.had.co.nz/relational-data.html))
 
 ---
 
@@ -1366,6 +1366,7 @@ name: tidyr
 4. `unite`: Combine multiple columns into one
 
 --
+
 Let's practice these verbs together in class
   
 ---
@@ -1382,11 +1383,29 @@ stocks <- data.frame(
 stocks
 ```
 
+We have 4 variables, the date and the stocks
+
+How do we get this in tidy form?
+
 ---
 
 # 1) tidyr::pivot_longer
 
-```{r pivot_longer1b}
+```{r pivot_longer1b, eval = F}
+stocks %>% pivot_longer(-time, names_to = "stock", values_to = "price")
+```
+
+We need to pivot the stock name variables `X, Y, Z` longer
+
+1. Choose non-time variables: `-time`
+2. Decide what variable holds the names: `names_to = "stock"`
+3. Decide what variable holds the values: `values_to = "price"`
+
+---
+
+# 1) tidyr::pivot_longer
+
+```{r pivot_longer1c}
 stocks %>% pivot_longer(-time, names_to = "stock", values_to = "price")
 ```
 
@@ -1600,7 +1619,7 @@ This leads to an obvious problem: we only observe one of these two states for ea
 
 # The Rubin causal model: average treatment effect
 
-We can derive three parameters of interested from the definition of a treatment effect:
+We can derive three parameters of interest from the definition of a treatment effect:
 
 .hi-blue[Average treatment effect (ATE):] $$E[\delta_i] = E[Y^1_i - Y^0_i] = E[Y^1_i] - E[Y^0_i]$$
 
@@ -1713,7 +1732,7 @@ cons_df
 
 # Hands on: understanding treatment effects
 
-Suppose we have a perfect policymaker who knows each states potential outcomes and can perfectly decide whether each state should have a conservation policy
+Suppose we have a perfect policymaker who knows each state's potential outcomes and can perfectly decide whether each state should have a conservation policy
 
 --
 
@@ -1743,10 +1762,12 @@ observed_df
 
 Given the .hi-blue[observed] data, what if we tried to *estimate* the ATE by comparing mean outcomes of treated $(D_i=1)$ vs untreated units $(D_i=0)$
 
+--
+
 This is the simple difference in mean outcomes (SDO):
 \begin{align}
   SDO &= E[Y^1|D=1] - E[Y^0|D=0] \\
-    &= {1 \over N_T}\sum_{i=1}^{N_T} (y_i | d_i = 1) + {1 \over N_U}\sum_{i=1}^{N_U} (y_i | d_i = 0)
+    &= {1 \over N_T}\sum_{i=1}^{N_T} (y_i | d_i = 1) - {1 \over N_U}\sum_{i=1}^{N_U} (y_i | d_i = 0)
 \end{align}
 
 where $N_T$ is the number of treated units and $N_U$ is the number of untreated units
@@ -1774,17 +1795,21 @@ We know the ATE is 4, why is the SDO giving us a much smaller estimate of the ef
 
 Because the SDO is actually composed of three pieces, only one of which is the ATE:<sup>1</sup>
 
+.footnote[
+  See Mixtape pages 89-91 for the derivation.
+]
+
 <center>
-SDO = ATE + Selection Bias + Heterogeneous Treatment Effect Bias
+SDO = ATE + 
+--
+Selection Bias + 
+--
+Heterogeneous Treatment Effect Bias
 </center>
 
 --
 
 What are these mathematically and intuitively?
-
-.footnote[
-  See Mixtape pages 89-91 for the derivation.
-]
 
 ---
 
@@ -1820,7 +1845,7 @@ Let's work through these two in more detail
 
 # Hands on: Selection bias
 
-The second term is selection bias:
+The second term is .hi-blue[selection bias:]
 $$E[Y^0 | D = 1] - E[Y^0 | D= 0]$$
 
 It is the inherent differences between the two groups if they did not *actually* get the conservation policy
@@ -1873,6 +1898,8 @@ What's the intuition for this?
 
 Basically:
   - How much more of an effect did the policy have on the units that *happened* to get treatment versus the effect the policy would have had on the units that *happened* to be in the control group
+--
+
   - Scale the size of this difference by fraction of control units
   
 --
@@ -1889,10 +1916,10 @@ cons_df %>%
     D = as.numeric(delta > 0) 
     ) %>% 
   group_by(D) %>% 
-  summarise(mean(delta), sum(D)) # Difference in potential control and treatment outcomes across the two groups, count in treatment and control
+  summarise(mean(delta), n()) # Difference in potential control and treatment outcomes across the two groups, count in treatment and control
 ```
 
-Heterogeneous treatment effect bias is thus: (1 - 5/8)*(7.4 - (-1.67)) = 3.40
+Heterogeneous treatment effect bias is thus: (1 - 5/(5+3))*(7.4 - (-1.67)) = 3.40
 
 --
 
@@ -1908,7 +1935,11 @@ Taking a simple difference in means of outcomes between treatment and control gr
 
 Unfortunately it is .hi-red[confounded] by two forms of bias:
 
+--
+
 1. .hi-blue[Selection bias:] The units in the treatment group different from the control group in the absence of treatment
+--
+
 2. .hi-blue[Heterogeneous treatment effect bias]: The units in the treatment group respond to treatment differently than units in the control group
 
 ---
@@ -1917,12 +1948,18 @@ Unfortunately it is .hi-red[confounded] by two forms of bias:
 
 What are some examples of these forms of bias?
 
-.hi-blue[Selection bias:] If we select certain groups into treatment, for example, if we give COVID treatments to the sickest patients
-  - This may lead to a negative bias on life expectancy even with a positive effect
+--
+
+.hi-blue[Selection bias:] 
+--
+If we select certain groups into treatment, for example, if we pass conservation policy in states with little biodiversity
+  - This may lead to a negative bias on conservation policy impacts, even with a positive ATE
   
 --
 
-.hi-blue[HTEB:] If we select units into treatment based on expected response, for example, if we give steroids to patients who we know have strong immune responses (i.e. the response we want)
+.hi-blue[HTEB:] 
+--
+If we select units into treatment based on expected response, for example, if we pass policy in states where birds are **very** sensitive to conservation
   - This may lead to an overestimate of the size of the treatment effect
   
 ---
@@ -1939,8 +1976,14 @@ A huge chunk of economics is trying circumvent these forms of bias<sup>1</sup>
 
 The rest of class is largely dedicated to:
 1. Understanding what tools we have to correctly estimate the ATE
+--
+
 2. Understanding what assumptions are required for these tools to be valid
+--
+
 3. Understanding when these ATE estimates are valid
+--
+
 4. Seeing how this all works (hands on) in modern environmental economics
 
 --
@@ -1955,7 +1998,7 @@ There are many different ways to recover the ATE
 
 --
 
-We will cover:
+We will cover some subset of:
 
 1. Randomized control trials
 2. Regression discontinuity
@@ -2001,7 +2044,7 @@ What's a simple way to deal with this?
 
 If we randomize treatment across observational units then SDO = ATE
 
--- 
+--
 
 Randomization drives selection bias and HTEB to zero
 
@@ -2038,8 +2081,11 @@ $$E[Y^1 | D = 1] - E[Y^1 | D = 0] = 0 \qquad E[Y^0 | D = 1] - E[Y^0 | D = 0] = 0
 
 --
 
-If we randomized treatment across units, then on average, the potential outcomes should be the same across units in both groups 
+If we randomized treatment across units, then on average, the difference in potential outcomes across groups should be zero
 
+--
+
+This means that:
 $$E[Y^1 | D = 1] = E[Y^1 | D = 0] \qquad E[Y^0 | D = 1] = E[Y^0 | D = 0]$$
 
 --
@@ -2063,7 +2109,7 @@ What does randomization do to HTEB?
 
 --
 
-HTEB goes to zero
+HTEB goes to zero!
 
 ---
 
@@ -2140,7 +2186,10 @@ As `n_obs` $\rightarrow \infty$, we will have that $SDO \rightarrow ATE$
 
 # Randomization: what it does and doesn't do
 
-What does independence imply? That:
+What does independence imply?
+
+--
+
 $$E[Y^1|D = 1] - E[Y^1 | D = 0] = 0 \qquad E[Y^0|D = 1] - E[Y^0 | D = 0] = 0$$
 
 The two groups have the same potential outcomes, .hi-blue[*on average*]
@@ -2186,13 +2235,6 @@ After controlling for some other variables $X$, the potential outcomes are indep
 
 This is much weaker than (unconditional) independence: we only need independence to hold for units that share the same $X$ values, not for all units
 
----
-
-# Conditional independence
-
-Many of the estimation tools used in economics rely on (variants of) the conditional independence assumption
-
 --
 
-We will often explain intuition behind the assumption in different ways depending on the methods
-  - e.g. parallel trends, no omitted variables
+Many of the estimation tools used in economics rely on (variants of) the conditional independence assumption

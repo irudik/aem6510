@@ -31,13 +31,6 @@ exclude: true
 
 ```r
 if (!require("pacman")) install.packages("pacman")
-```
-
-```
-## Loading required package: pacman
-```
-
-```r
 pacman::p_load(
   tidyverse, xaringanExtra, rlang, patchwork, nycflights13
 )
@@ -59,8 +52,7 @@ knitr::opts_chunk$set(echo = TRUE, fig.align="center")
 ```
 
 ```
-## Warning in style_panelset_tabs(...): The arguments to `syle_panelset()` changed
-## in xaringanExtra 0.1.0. Please refer to the documentation to update your slides.
+## Warning in style_panelset_tabs(...): The arguments to `syle_panelset()` changed in xaringanExtra 0.1.0. Please refer to the documentation to update your slides.
 ```
 
 ---
@@ -602,17 +594,17 @@ df2
 ```
 
 ```
-##             x          y
-## 1  -0.3376530 0.78701499
-## 2  -0.5475772 0.75024617
-## 3  -0.4524908 0.04545984
-## 4   0.6176283 0.93151217
-## 5  -0.1449272 0.90398589
-## 6   0.1637176 0.93784900
-## 7   0.2678190 0.98911622
-## 8   0.8957138 0.36196136
-## 9   0.6834629 0.98954425
-## 10  0.6473880 0.07971651
+##              x         y
+## 1  -1.43614571 0.8393892
+## 2  -0.62925965 0.2673705
+## 3   0.24352177 0.1951011
+## 4   1.05836223 0.2513002
+## 5   0.83134882 0.3891329
+## 6   0.10521182 0.8435996
+## 7  -1.74171309 0.9805974
+## 8   0.64524699 0.3063197
+## 9   0.09710422 0.2704168
+## 10 -0.07673369 0.6229376
 ```
 
 ---
@@ -790,26 +782,11 @@ rnorm(n = 100, mean = 0, sd = 1)
 ```
 
 ```
-##   [1] -1.290499308  0.162729574  1.828871917  0.324565238  0.029698462
-##   [6]  0.719557238 -1.143573374 -0.249985902  0.081730998  0.283374782
-##  [11]  0.869096372  0.772080894 -0.655682826 -0.484132375  1.470721460
-##  [16] -0.281691469  0.635635222  1.463110839 -1.209586729 -0.390811807
-##  [21]  0.906533416  0.402960859 -1.005475471  0.641485816 -0.842591339
-##  [26] -0.500025711 -1.464737439  0.626487091  0.861436395  1.148019590
-##  [31] -1.230832037 -1.313332327  0.048194769  0.438341646 -0.635489337
-##  [36] -0.705187590  0.095783173  0.414801434 -0.177515173 -3.045123881
-##  [41] -0.541035540 -0.577083712 -0.478302412 -0.634226705  0.491135556
-##  [46] -1.576737412  0.326799794  0.371198092 -1.381836961  0.396087316
-##  [51] -0.212253068 -1.309631768  0.401131785 -0.922693980  0.265735069
-##  [56] -1.090959916 -0.439832170  0.567275872 -1.303585309 -0.542702156
-##  [61] -1.134338726  0.343594127 -0.043225707  1.041535207  2.300917972
-##  [66]  1.096555919  1.065223714 -0.904436152 -1.733037059  0.707246398
-##  [71] -2.188241996  0.050454281  0.004212585 -0.655976120  0.458879702
-##  [76]  2.140623634 -0.622975431 -0.352902541 -0.767843321 -0.396476091
-##  [81] -0.197537695 -0.400734071  1.096985713  0.301490714 -0.692653690
-##  [86] -0.513298293  0.495948865  0.106049146 -0.887120327  0.502326072
-##  [91] -0.210666673  1.210060180 -2.662114795  0.479821120  0.840847518
-##  [96]  0.062946673  2.391084985 -1.041857323  1.468879327  0.036515245
+##   [1]  0.31561282  0.66029338 -1.72220241 -2.13462605  0.06894560  0.86782174 -2.29004418 -0.15019029 -0.26878179  1.79133204  0.67226804 -0.20930114  0.01218251  1.53411686  0.07729182  0.07843753 -0.77926107  0.16655967  0.26532457  0.89078071 -0.46788837  0.75837456 -0.64173636
+##  [24]  0.62767182  0.24833013 -0.70007582 -0.56740159 -0.26139393 -1.06388504 -0.10636865  0.77110374  2.74740354 -0.08393476  0.54356763  0.75286121 -0.80867413  1.00111985  0.45605250 -1.43425031 -0.26530482  0.64176916 -0.41502103 -0.45957568 -0.79249402 -1.15853913  0.71089000
+##  [47]  1.26760175 -0.14315106 -0.51502891  1.48289118 -0.16258891  0.04170917  0.48303990 -1.18012717 -0.66357374 -0.63464989 -0.70196303  0.57685038 -2.11308037  0.26090968  1.14712719  0.01479365 -0.31173924 -0.95619611  0.47341376 -1.51386408  0.16428100 -0.87086522  1.59332899
+##  [70]  0.64659752  0.35736969  0.10239306 -0.67526683  0.97208502  0.75586993 -0.42828562 -0.71392476 -0.19038407  0.39986481 -0.97784491  0.18373691 -2.15031053 -0.62296653 -0.76543932  0.46430942  0.52228217  0.00979376 -0.44052620  1.19948953 -0.11746849  0.03820979  1.19480563
+##  [93]  0.34395835 -0.32907297  1.67085792 -0.91805820 -0.08780733  1.32029372  1.73078613  2.16259608
 ```
 
 ---
@@ -1164,12 +1141,8 @@ tidyverse_packages()
 ```
 
 ```
-##  [1] "broom"      "cli"        "crayon"     "dbplyr"     "dplyr"     
-##  [6] "forcats"    "ggplot2"    "haven"      "hms"        "httr"      
-## [11] "jsonlite"   "lubridate"  "magrittr"   "modelr"     "pillar"    
-## [16] "purrr"      "readr"      "readxl"     "reprex"     "rlang"     
-## [21] "rstudioapi" "rvest"      "stringr"    "tibble"     "tidyr"     
-## [26] "xml2"       "tidyverse"
+##  [1] "broom"      "cli"        "crayon"     "dbplyr"     "dplyr"      "forcats"    "ggplot2"    "haven"      "hms"        "httr"       "jsonlite"   "lubridate"  "magrittr"   "modelr"     "pillar"     "purrr"      "readr"      "readxl"     "reprex"     "rlang"      "rstudioapi"
+## [22] "rvest"      "stringr"    "tibble"     "tidyr"      "xml2"       "tidyverse"
 ```
 
 e.g. the **lubridate** package is for working with dates and the **rvest** package is for webscraping
@@ -1212,18 +1185,18 @@ mpg
 
 ```
 ## # A tibble: 234 x 11
-##    manufacturer model    displ  year   cyl trans   drv     cty   hwy fl    class
-##    &lt;chr&gt;        &lt;chr&gt;    &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;   &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt;
-##  1 audi         a4         1.8  1999     4 auto(l… f        18    29 p     comp…
-##  2 audi         a4         1.8  1999     4 manual… f        21    29 p     comp…
-##  3 audi         a4         2    2008     4 manual… f        20    31 p     comp…
-##  4 audi         a4         2    2008     4 auto(a… f        21    30 p     comp…
-##  5 audi         a4         2.8  1999     6 auto(l… f        16    26 p     comp…
-##  6 audi         a4         2.8  1999     6 manual… f        18    26 p     comp…
-##  7 audi         a4         3.1  2008     6 auto(a… f        18    27 p     comp…
-##  8 audi         a4 quat…   1.8  1999     4 manual… 4        18    26 p     comp…
-##  9 audi         a4 quat…   1.8  1999     4 auto(l… 4        16    25 p     comp…
-## 10 audi         a4 quat…   2    2008     4 manual… 4        20    28 p     comp…
+##    manufacturer model      displ  year   cyl trans      drv     cty   hwy fl    class  
+##    &lt;chr&gt;        &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;      &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt;  
+##  1 audi         a4           1.8  1999     4 auto(l5)   f        18    29 p     compact
+##  2 audi         a4           1.8  1999     4 manual(m5) f        21    29 p     compact
+##  3 audi         a4           2    2008     4 manual(m6) f        20    31 p     compact
+##  4 audi         a4           2    2008     4 auto(av)   f        21    30 p     compact
+##  5 audi         a4           2.8  1999     6 auto(l5)   f        16    26 p     compact
+##  6 audi         a4           2.8  1999     6 manual(m5) f        18    26 p     compact
+##  7 audi         a4           3.1  2008     6 auto(av)   f        18    27 p     compact
+##  8 audi         a4 quattro   1.8  1999     4 manual(m5) 4        18    26 p     compact
+##  9 audi         a4 quattro   1.8  1999     4 auto(l5)   4        16    25 p     compact
+## 10 audi         a4 quattro   2    2008     4 manual(m6) 4        20    28 p     compact
 ## # … with 224 more rows
 ```
 
@@ -1380,20 +1353,19 @@ starwars
 
 ```
 ## # A tibble: 87 x 14
-##    name  height  mass hair_color skin_color eye_color birth_year sex   gender
-##    &lt;chr&gt;  &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
-##  1 Luke…    172    77 blond      fair       blue            19   male  mascu…
-##  2 C-3PO    167    75 &lt;NA&gt;       gold       yellow         112   none  mascu…
-##  3 R2-D2     96    32 &lt;NA&gt;       white, bl… red             33   none  mascu…
-##  4 Dart…    202   136 none       white      yellow          41.9 male  mascu…
-##  5 Leia…    150    49 brown      light      brown           19   fema… femin…
-##  6 Owen…    178   120 brown, gr… light      blue            52   male  mascu…
-##  7 Beru…    165    75 brown      light      blue            47   fema… femin…
-##  8 R5-D4     97    32 &lt;NA&gt;       white, red red             NA   none  mascu…
-##  9 Bigg…    183    84 black      light      brown           24   male  mascu…
-## 10 Obi-…    182    77 auburn, w… fair       blue-gray       57   male  mascu…
-## # … with 77 more rows, and 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;,
-## #   films &lt;list&gt;, vehicles &lt;list&gt;, starships &lt;list&gt;
+##    name               height  mass hair_color    skin_color  eye_color birth_year sex    gender    homeworld species films     vehicles  starships
+##    &lt;chr&gt;               &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;   &lt;list&gt;    &lt;list&gt;    &lt;list&gt;   
+##  1 Luke Skywalker        172    77 blond         fair        blue            19   male   masculine Tatooine  Human   &lt;chr [5]&gt; &lt;chr [2]&gt; &lt;chr [2]&gt;
+##  2 C-3PO                 167    75 &lt;NA&gt;          gold        yellow         112   none   masculine Tatooine  Droid   &lt;chr [6]&gt; &lt;chr [0]&gt; &lt;chr [0]&gt;
+##  3 R2-D2                  96    32 &lt;NA&gt;          white, blue red             33   none   masculine Naboo     Droid   &lt;chr [7]&gt; &lt;chr [0]&gt; &lt;chr [0]&gt;
+##  4 Darth Vader           202   136 none          white       yellow          41.9 male   masculine Tatooine  Human   &lt;chr [4]&gt; &lt;chr [0]&gt; &lt;chr [1]&gt;
+##  5 Leia Organa           150    49 brown         light       brown           19   female feminine  Alderaan  Human   &lt;chr [5]&gt; &lt;chr [1]&gt; &lt;chr [0]&gt;
+##  6 Owen Lars             178   120 brown, grey   light       blue            52   male   masculine Tatooine  Human   &lt;chr [3]&gt; &lt;chr [0]&gt; &lt;chr [0]&gt;
+##  7 Beru Whitesun lars    165    75 brown         light       blue            47   female feminine  Tatooine  Human   &lt;chr [3]&gt; &lt;chr [0]&gt; &lt;chr [0]&gt;
+##  8 R5-D4                  97    32 &lt;NA&gt;          white, red  red             NA   none   masculine Tatooine  Droid   &lt;chr [1]&gt; &lt;chr [0]&gt; &lt;chr [0]&gt;
+##  9 Biggs Darklighter     183    84 black         light       brown           24   male   masculine Tatooine  Human   &lt;chr [1]&gt; &lt;chr [0]&gt; &lt;chr [1]&gt;
+## 10 Obi-Wan Kenobi        182    77 auburn, white fair        blue-gray       57   male   masculine Stewjon   Human   &lt;chr [6]&gt; &lt;chr [1]&gt; &lt;chr [5]&gt;
+## # … with 77 more rows
 ```
 
 ---
@@ -1412,14 +1384,12 @@ starwars %&gt;%
 
 ```
 ## # A tibble: 4 x 14
-##   name  height  mass hair_color skin_color eye_color birth_year sex   gender
-##   &lt;chr&gt;  &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
-## 1 Dart…    202   136 none       white      yellow          41.9 male  mascu…
-## 2 Qui-…    193    89 brown      fair       blue            92   male  mascu…
-## 3 Dooku    193    80 white      fair       brown          102   male  mascu…
-## 4 Bail…    191    NA black      tan        brown           67   male  mascu…
-## # … with 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
-## #   vehicles &lt;list&gt;, starships &lt;list&gt;
+##   name                height  mass hair_color skin_color eye_color birth_year sex   gender    homeworld species films     vehicles  starships
+##   &lt;chr&gt;                &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;   &lt;list&gt;    &lt;list&gt;    &lt;list&gt;   
+## 1 Darth Vader            202   136 none       white      yellow          41.9 male  masculine Tatooine  Human   &lt;chr [4]&gt; &lt;chr [0]&gt; &lt;chr [1]&gt;
+## 2 Qui-Gon Jinn           193    89 brown      fair       blue            92   male  masculine &lt;NA&gt;      Human   &lt;chr [1]&gt; &lt;chr [1]&gt; &lt;chr [0]&gt;
+## 3 Dooku                  193    80 white      fair       brown          102   male  masculine Serenno   Human   &lt;chr [2]&gt; &lt;chr [1]&gt; &lt;chr [0]&gt;
+## 4 Bail Prestor Organa    191    NA black      tan        brown           67   male  masculine Alderaan  Human   &lt;chr [2]&gt; &lt;chr [0]&gt; &lt;chr [0]&gt;
 ```
 
 ---
@@ -1435,13 +1405,11 @@ starwars %&gt;%
 
 ```
 ## # A tibble: 3 x 14
-##   name  height  mass hair_color skin_color eye_color birth_year sex   gender
-##   &lt;chr&gt;  &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
-## 1 Luke…    172    77 blond      fair       blue            19   male  mascu…
-## 2 Anak…    188    84 blond      fair       blue            41.9 male  mascu…
-## 3 Shmi…    163    NA black      fair       brown           72   fema… femin…
-## # … with 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
-## #   vehicles &lt;list&gt;, starships &lt;list&gt;
+##   name             height  mass hair_color skin_color eye_color birth_year sex    gender    homeworld species films     vehicles  starships
+##   &lt;chr&gt;             &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;   &lt;list&gt;    &lt;list&gt;    &lt;list&gt;   
+## 1 Luke Skywalker      172    77 blond      fair       blue            19   male   masculine Tatooine  Human   &lt;chr [5]&gt; &lt;chr [2]&gt; &lt;chr [2]&gt;
+## 2 Anakin Skywalker    188    84 blond      fair       blue            41.9 male   masculine Tatooine  Human   &lt;chr [3]&gt; &lt;chr [2]&gt; &lt;chr [3]&gt;
+## 3 Shmi Skywalker      163    NA black      fair       brown           72   female feminine  Tatooine  Human   &lt;chr [2]&gt; &lt;chr [0]&gt; &lt;chr [0]&gt;
 ```
 
 This subsets the observations for individuals whose names contain "Skywalker"
@@ -1459,16 +1427,14 @@ starwars %&gt;%
 
 ```
 ## # A tibble: 6 x 14
-##   name  height  mass hair_color skin_color eye_color birth_year sex   gender
-##   &lt;chr&gt;  &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
-## 1 Arve…     NA    NA brown      fair       brown             NA male  mascu…
-## 2 Finn      NA    NA black      dark       dark              NA male  mascu…
-## 3 Rey       NA    NA brown      light      hazel             NA fema… femin…
-## 4 Poe …     NA    NA brown      light      brown             NA male  mascu…
-## 5 BB8       NA    NA none       none       black             NA none  mascu…
-## 6 Capt…     NA    NA unknown    unknown    unknown           NA &lt;NA&gt;  &lt;NA&gt;  
-## # … with 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
-## #   vehicles &lt;list&gt;, starships &lt;list&gt;
+##   name           height  mass hair_color skin_color eye_color birth_year sex    gender    homeworld species films     vehicles  starships
+##   &lt;chr&gt;           &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;   &lt;list&gt;    &lt;list&gt;    &lt;list&gt;   
+## 1 Arvel Crynyd       NA    NA brown      fair       brown             NA male   masculine &lt;NA&gt;      Human   &lt;chr [1]&gt; &lt;chr [0]&gt; &lt;chr [1]&gt;
+## 2 Finn               NA    NA black      dark       dark              NA male   masculine &lt;NA&gt;      Human   &lt;chr [1]&gt; &lt;chr [0]&gt; &lt;chr [0]&gt;
+## 3 Rey                NA    NA brown      light      hazel             NA female feminine  &lt;NA&gt;      Human   &lt;chr [1]&gt; &lt;chr [0]&gt; &lt;chr [0]&gt;
+## 4 Poe Dameron        NA    NA brown      light      brown             NA male   masculine &lt;NA&gt;      Human   &lt;chr [1]&gt; &lt;chr [0]&gt; &lt;chr [1]&gt;
+## 5 BB8                NA    NA none       none       black             NA none   masculine &lt;NA&gt;      Droid   &lt;chr [1]&gt; &lt;chr [0]&gt; &lt;chr [0]&gt;
+## 6 Captain Phasma     NA    NA unknown    unknown    unknown           NA &lt;NA&gt;   &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;    &lt;chr [1]&gt; &lt;chr [0]&gt; &lt;chr [0]&gt;
 ```
 
 ---
@@ -1484,20 +1450,19 @@ starwars %&gt;%
 
 ```
 ## # A tibble: 81 x 14
-##    name  height  mass hair_color skin_color eye_color birth_year sex   gender
-##    &lt;chr&gt;  &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
-##  1 Luke…    172    77 blond      fair       blue            19   male  mascu…
-##  2 C-3PO    167    75 &lt;NA&gt;       gold       yellow         112   none  mascu…
-##  3 R2-D2     96    32 &lt;NA&gt;       white, bl… red             33   none  mascu…
-##  4 Dart…    202   136 none       white      yellow          41.9 male  mascu…
-##  5 Leia…    150    49 brown      light      brown           19   fema… femin…
-##  6 Owen…    178   120 brown, gr… light      blue            52   male  mascu…
-##  7 Beru…    165    75 brown      light      blue            47   fema… femin…
-##  8 R5-D4     97    32 &lt;NA&gt;       white, red red             NA   none  mascu…
-##  9 Bigg…    183    84 black      light      brown           24   male  mascu…
-## 10 Obi-…    182    77 auburn, w… fair       blue-gray       57   male  mascu…
-## # … with 71 more rows, and 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;,
-## #   films &lt;list&gt;, vehicles &lt;list&gt;, starships &lt;list&gt;
+##    name               height  mass hair_color    skin_color  eye_color birth_year sex    gender    homeworld species films     vehicles  starships
+##    &lt;chr&gt;               &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;   &lt;list&gt;    &lt;list&gt;    &lt;list&gt;   
+##  1 Luke Skywalker        172    77 blond         fair        blue            19   male   masculine Tatooine  Human   &lt;chr [5]&gt; &lt;chr [2]&gt; &lt;chr [2]&gt;
+##  2 C-3PO                 167    75 &lt;NA&gt;          gold        yellow         112   none   masculine Tatooine  Droid   &lt;chr [6]&gt; &lt;chr [0]&gt; &lt;chr [0]&gt;
+##  3 R2-D2                  96    32 &lt;NA&gt;          white, blue red             33   none   masculine Naboo     Droid   &lt;chr [7]&gt; &lt;chr [0]&gt; &lt;chr [0]&gt;
+##  4 Darth Vader           202   136 none          white       yellow          41.9 male   masculine Tatooine  Human   &lt;chr [4]&gt; &lt;chr [0]&gt; &lt;chr [1]&gt;
+##  5 Leia Organa           150    49 brown         light       brown           19   female feminine  Alderaan  Human   &lt;chr [5]&gt; &lt;chr [1]&gt; &lt;chr [0]&gt;
+##  6 Owen Lars             178   120 brown, grey   light       blue            52   male   masculine Tatooine  Human   &lt;chr [3]&gt; &lt;chr [0]&gt; &lt;chr [0]&gt;
+##  7 Beru Whitesun lars    165    75 brown         light       blue            47   female feminine  Tatooine  Human   &lt;chr [3]&gt; &lt;chr [0]&gt; &lt;chr [0]&gt;
+##  8 R5-D4                  97    32 &lt;NA&gt;          white, red  red             NA   none   masculine Tatooine  Droid   &lt;chr [1]&gt; &lt;chr [0]&gt; &lt;chr [0]&gt;
+##  9 Biggs Darklighter     183    84 black         light       brown           24   male   masculine Tatooine  Human   &lt;chr [1]&gt; &lt;chr [0]&gt; &lt;chr [1]&gt;
+## 10 Obi-Wan Kenobi        182    77 auburn, white fair        blue-gray       57   male   masculine Stewjon   Human   &lt;chr [6]&gt; &lt;chr [1]&gt; &lt;chr [5]&gt;
+## # … with 71 more rows
 ```
 
 ---
@@ -1513,20 +1478,19 @@ starwars %&gt;%
 
 ```
 ## # A tibble: 87 x 14
-##    name  height  mass hair_color skin_color eye_color birth_year sex   gender
-##    &lt;chr&gt;  &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
-##  1 Wick…     88  20   brown      brown      brown            8   male  mascu…
-##  2 IG-88    200 140   none       metal      red             15   none  mascu…
-##  3 Luke…    172  77   blond      fair       blue            19   male  mascu…
-##  4 Leia…    150  49   brown      light      brown           19   fema… femin…
-##  5 Wedg…    170  77   brown      fair       hazel           21   male  mascu…
-##  6 Plo …    188  80   none       orange     black           22   male  mascu…
-##  7 Bigg…    183  84   black      light      brown           24   male  mascu…
-##  8 Han …    180  80   brown      fair       brown           29   male  mascu…
-##  9 Land…    177  79   black      dark       brown           31   male  mascu…
-## 10 Boba…    183  78.2 black      fair       brown           31.5 male  mascu…
-## # … with 77 more rows, and 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;,
-## #   films &lt;list&gt;, vehicles &lt;list&gt;, starships &lt;list&gt;
+##    name                  height  mass hair_color skin_color eye_color birth_year sex    gender    homeworld species films     vehicles  starships
+##    &lt;chr&gt;                  &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;   &lt;list&gt;    &lt;list&gt;    &lt;list&gt;   
+##  1 Wicket Systri Warrick     88  20   brown      brown      brown            8   male   masculine Endor     Ewok    &lt;chr [1]&gt; &lt;chr [0]&gt; &lt;chr [0]&gt;
+##  2 IG-88                    200 140   none       metal      red             15   none   masculine &lt;NA&gt;      Droid   &lt;chr [1]&gt; &lt;chr [0]&gt; &lt;chr [0]&gt;
+##  3 Luke Skywalker           172  77   blond      fair       blue            19   male   masculine Tatooine  Human   &lt;chr [5]&gt; &lt;chr [2]&gt; &lt;chr [2]&gt;
+##  4 Leia Organa              150  49   brown      light      brown           19   female feminine  Alderaan  Human   &lt;chr [5]&gt; &lt;chr [1]&gt; &lt;chr [0]&gt;
+##  5 Wedge Antilles           170  77   brown      fair       hazel           21   male   masculine Corellia  Human   &lt;chr [3]&gt; &lt;chr [1]&gt; &lt;chr [1]&gt;
+##  6 Plo Koon                 188  80   none       orange     black           22   male   masculine Dorin     Kel Dor &lt;chr [3]&gt; &lt;chr [0]&gt; &lt;chr [1]&gt;
+##  7 Biggs Darklighter        183  84   black      light      brown           24   male   masculine Tatooine  Human   &lt;chr [1]&gt; &lt;chr [0]&gt; &lt;chr [1]&gt;
+##  8 Han Solo                 180  80   brown      fair       brown           29   male   masculine Corellia  Human   &lt;chr [4]&gt; &lt;chr [0]&gt; &lt;chr [2]&gt;
+##  9 Lando Calrissian         177  79   black      dark       brown           31   male   masculine Socorro   Human   &lt;chr [2]&gt; &lt;chr [0]&gt; &lt;chr [1]&gt;
+## 10 Boba Fett                183  78.2 black      fair       brown           31.5 male   masculine Kamino    Human   &lt;chr [3]&gt; &lt;chr [0]&gt; &lt;chr [1]&gt;
+## # … with 77 more rows
 ```
 
 ---
@@ -1542,20 +1506,19 @@ starwars %&gt;%
 
 ```
 ## # A tibble: 87 x 14
-##    name  height  mass hair_color skin_color eye_color birth_year sex   gender
-##    &lt;chr&gt;  &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
-##  1 Yoda      66    17 white      green      brown            896 male  mascu…
-##  2 Jabb…    175  1358 &lt;NA&gt;       green-tan… orange           600 herm… mascu…
-##  3 Chew…    228   112 brown      unknown    blue             200 male  mascu…
-##  4 C-3PO    167    75 &lt;NA&gt;       gold       yellow           112 none  mascu…
-##  5 Dooku    193    80 white      fair       brown            102 male  mascu…
-##  6 Qui-…    193    89 brown      fair       blue              92 male  mascu…
-##  7 Ki-A…    198    82 white      pale       yellow            92 male  mascu…
-##  8 Fini…    170    NA blond      fair       blue              91 male  mascu…
-##  9 Palp…    170    75 grey       pale       yellow            82 male  mascu…
-## 10 Clie…    183    NA brown      fair       blue              82 male  mascu…
-## # … with 77 more rows, and 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;,
-## #   films &lt;list&gt;, vehicles &lt;list&gt;, starships &lt;list&gt;
+##    name                  height  mass hair_color skin_color       eye_color birth_year sex            gender    homeworld species        films     vehicles  starships
+##    &lt;chr&gt;                  &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;            &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;          &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;          &lt;list&gt;    &lt;list&gt;    &lt;list&gt;   
+##  1 Yoda                      66    17 white      green            brown            896 male           masculine &lt;NA&gt;      Yoda's species &lt;chr [5]&gt; &lt;chr [0]&gt; &lt;chr [0]&gt;
+##  2 Jabba Desilijic Tiure    175  1358 &lt;NA&gt;       green-tan, brown orange           600 hermaphroditic masculine Nal Hutta Hutt           &lt;chr [3]&gt; &lt;chr [0]&gt; &lt;chr [0]&gt;
+##  3 Chewbacca                228   112 brown      unknown          blue             200 male           masculine Kashyyyk  Wookiee        &lt;chr [5]&gt; &lt;chr [1]&gt; &lt;chr [2]&gt;
+##  4 C-3PO                    167    75 &lt;NA&gt;       gold             yellow           112 none           masculine Tatooine  Droid          &lt;chr [6]&gt; &lt;chr [0]&gt; &lt;chr [0]&gt;
+##  5 Dooku                    193    80 white      fair             brown            102 male           masculine Serenno   Human          &lt;chr [2]&gt; &lt;chr [1]&gt; &lt;chr [0]&gt;
+##  6 Qui-Gon Jinn             193    89 brown      fair             blue              92 male           masculine &lt;NA&gt;      Human          &lt;chr [1]&gt; &lt;chr [1]&gt; &lt;chr [0]&gt;
+##  7 Ki-Adi-Mundi             198    82 white      pale             yellow            92 male           masculine Cerea     Cerean         &lt;chr [3]&gt; &lt;chr [0]&gt; &lt;chr [0]&gt;
+##  8 Finis Valorum            170    NA blond      fair             blue              91 male           masculine Coruscant Human          &lt;chr [1]&gt; &lt;chr [0]&gt; &lt;chr [0]&gt;
+##  9 Palpatine                170    75 grey       pale             yellow            82 male           masculine Naboo     Human          &lt;chr [5]&gt; &lt;chr [0]&gt; &lt;chr [0]&gt;
+## 10 Cliegg Lars              183    NA brown      fair             blue              82 male           masculine Tatooine  Human          &lt;chr [1]&gt; &lt;chr [0]&gt; &lt;chr [0]&gt;
+## # … with 77 more rows
 ```
 
 ---
@@ -1627,20 +1590,19 @@ starwars %&gt;%
 
 ```
 ## # A tibble: 87 x 14
-##    alias height  mass hair_color skin_color eye_color birth_year sex   gender
-##    &lt;chr&gt;  &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
-##  1 Luke…    172    77 blond      fair       blue            19   male  mascu…
-##  2 C-3PO    167    75 &lt;NA&gt;       gold       yellow         112   none  mascu…
-##  3 R2-D2     96    32 &lt;NA&gt;       white, bl… red             33   none  mascu…
-##  4 Dart…    202   136 none       white      yellow          41.9 male  mascu…
-##  5 Leia…    150    49 brown      light      brown           19   fema… femin…
-##  6 Owen…    178   120 brown, gr… light      blue            52   male  mascu…
-##  7 Beru…    165    75 brown      light      blue            47   fema… femin…
-##  8 R5-D4     97    32 &lt;NA&gt;       white, red red             NA   none  mascu…
-##  9 Bigg…    183    84 black      light      brown           24   male  mascu…
-## 10 Obi-…    182    77 auburn, w… fair       blue-gray       57   male  mascu…
-## # … with 77 more rows, and 5 more variables: crib &lt;chr&gt;, species &lt;chr&gt;,
-## #   films &lt;list&gt;, vehicles &lt;list&gt;, starships &lt;list&gt;
+##    alias              height  mass hair_color    skin_color  eye_color birth_year sex    gender    crib     species films     vehicles  starships
+##    &lt;chr&gt;               &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;    &lt;chr&gt;   &lt;list&gt;    &lt;list&gt;    &lt;list&gt;   
+##  1 Luke Skywalker        172    77 blond         fair        blue            19   male   masculine Tatooine Human   &lt;chr [5]&gt; &lt;chr [2]&gt; &lt;chr [2]&gt;
+##  2 C-3PO                 167    75 &lt;NA&gt;          gold        yellow         112   none   masculine Tatooine Droid   &lt;chr [6]&gt; &lt;chr [0]&gt; &lt;chr [0]&gt;
+##  3 R2-D2                  96    32 &lt;NA&gt;          white, blue red             33   none   masculine Naboo    Droid   &lt;chr [7]&gt; &lt;chr [0]&gt; &lt;chr [0]&gt;
+##  4 Darth Vader           202   136 none          white       yellow          41.9 male   masculine Tatooine Human   &lt;chr [4]&gt; &lt;chr [0]&gt; &lt;chr [1]&gt;
+##  5 Leia Organa           150    49 brown         light       brown           19   female feminine  Alderaan Human   &lt;chr [5]&gt; &lt;chr [1]&gt; &lt;chr [0]&gt;
+##  6 Owen Lars             178   120 brown, grey   light       blue            52   male   masculine Tatooine Human   &lt;chr [3]&gt; &lt;chr [0]&gt; &lt;chr [0]&gt;
+##  7 Beru Whitesun lars    165    75 brown         light       blue            47   female feminine  Tatooine Human   &lt;chr [3]&gt; &lt;chr [0]&gt; &lt;chr [0]&gt;
+##  8 R5-D4                  97    32 &lt;NA&gt;          white, red  red             NA   none   masculine Tatooine Droid   &lt;chr [1]&gt; &lt;chr [0]&gt; &lt;chr [0]&gt;
+##  9 Biggs Darklighter     183    84 black         light       brown           24   male   masculine Tatooine Human   &lt;chr [1]&gt; &lt;chr [0]&gt; &lt;chr [1]&gt;
+## 10 Obi-Wan Kenobi        182    77 auburn, white fair        blue-gray       57   male   masculine Stewjon  Human   &lt;chr [6]&gt; &lt;chr [1]&gt; &lt;chr [5]&gt;
+## # … with 77 more rows
 ```
 
 ---
@@ -1686,15 +1648,13 @@ starwars %&gt;%
 
 ```
 ## # A tibble: 5 x 14
-##   species homeworld name  height  mass hair_color skin_color eye_color
-##   &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt;  &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;    
-## 1 Human   Tatooine  Luke…    172    77 blond      fair       blue     
-## 2 Droid   Tatooine  C-3PO    167    75 &lt;NA&gt;       gold       yellow   
-## 3 Droid   Naboo     R2-D2     96    32 &lt;NA&gt;       white, bl… red      
-## 4 Human   Tatooine  Dart…    202   136 none       white      yellow   
-## 5 Human   Alderaan  Leia…    150    49 brown      light      brown    
-## # … with 6 more variables: birth_year &lt;dbl&gt;, sex &lt;chr&gt;, gender &lt;chr&gt;,
-## #   films &lt;list&gt;, vehicles &lt;list&gt;, starships &lt;list&gt;
+##   species homeworld name           height  mass hair_color skin_color  eye_color birth_year sex    gender    films     vehicles  starships
+##   &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt;           &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;     &lt;list&gt;    &lt;list&gt;    &lt;list&gt;   
+## 1 Human   Tatooine  Luke Skywalker    172    77 blond      fair        blue            19   male   masculine &lt;chr [5]&gt; &lt;chr [2]&gt; &lt;chr [2]&gt;
+## 2 Droid   Tatooine  C-3PO             167    75 &lt;NA&gt;       gold        yellow         112   none   masculine &lt;chr [6]&gt; &lt;chr [0]&gt; &lt;chr [0]&gt;
+## 3 Droid   Naboo     R2-D2              96    32 &lt;NA&gt;       white, blue red             33   none   masculine &lt;chr [7]&gt; &lt;chr [0]&gt; &lt;chr [0]&gt;
+## 4 Human   Tatooine  Darth Vader       202   136 none       white       yellow          41.9 male   masculine &lt;chr [4]&gt; &lt;chr [0]&gt; &lt;chr [1]&gt;
+## 5 Human   Alderaan  Leia Organa       150    49 brown      light       brown           19   female feminine  &lt;chr [5]&gt; &lt;chr [1]&gt; &lt;chr [0]&gt;
 ```
 
 ---
@@ -1712,15 +1672,13 @@ starwars %&gt;%
 
 ```
 ## # A tibble: 5 x 14
-##   species homeworld name  height  mass hair_color skin_color eye_color
-##   &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt;  &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;    
-## 1 Human   Tatooine  Luke…    172    77 blond      fair       blue     
-## 2 Droid   Tatooine  C-3PO    167    75 &lt;NA&gt;       gold       yellow   
-## 3 Droid   Naboo     R2-D2     96    32 &lt;NA&gt;       white, bl… red      
-## 4 Human   Tatooine  Dart…    202   136 none       white      yellow   
-## 5 Human   Alderaan  Leia…    150    49 brown      light      brown    
-## # … with 6 more variables: birth_year &lt;dbl&gt;, sex &lt;chr&gt;, gender &lt;chr&gt;,
-## #   films &lt;list&gt;, vehicles &lt;list&gt;, starships &lt;list&gt;
+##   species homeworld name           height  mass hair_color skin_color  eye_color birth_year sex    gender    films     vehicles  starships
+##   &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt;           &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;     &lt;list&gt;    &lt;list&gt;    &lt;list&gt;   
+## 1 Human   Tatooine  Luke Skywalker    172    77 blond      fair        blue            19   male   masculine &lt;chr [5]&gt; &lt;chr [2]&gt; &lt;chr [2]&gt;
+## 2 Droid   Tatooine  C-3PO             167    75 &lt;NA&gt;       gold        yellow         112   none   masculine &lt;chr [6]&gt; &lt;chr [0]&gt; &lt;chr [0]&gt;
+## 3 Droid   Naboo     R2-D2              96    32 &lt;NA&gt;       white, blue red             33   none   masculine &lt;chr [7]&gt; &lt;chr [0]&gt; &lt;chr [0]&gt;
+## 4 Human   Tatooine  Darth Vader       202   136 none       white       yellow          41.9 male   masculine &lt;chr [4]&gt; &lt;chr [0]&gt; &lt;chr [1]&gt;
+## 5 Human   Alderaan  Leia Organa       150    49 brown      light       brown           19   female feminine  &lt;chr [5]&gt; &lt;chr [1]&gt; &lt;chr [0]&gt;
 ```
 
 ---
@@ -1738,18 +1696,18 @@ starwars %&gt;%
 
 ```
 ## # A tibble: 87 x 4
-##    name               birth_year dog_years comment                              
-##    &lt;chr&gt;                   &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;                                
-##  1 Luke Skywalker           19        133  Luke Skywalker is 133 in dog years.  
-##  2 C-3PO                   112        784  C-3PO is 784 in dog years.           
-##  3 R2-D2                    33        231  R2-D2 is 231 in dog years.           
-##  4 Darth Vader              41.9      293. Darth Vader is 293.3 in dog years.   
-##  5 Leia Organa              19        133  Leia Organa is 133 in dog years.     
-##  6 Owen Lars                52        364  Owen Lars is 364 in dog years.       
-##  7 Beru Whitesun lars       47        329  Beru Whitesun lars is 329 in dog yea…
-##  8 R5-D4                    NA         NA  R5-D4 is NA in dog years.            
-##  9 Biggs Darklighter        24        168  Biggs Darklighter is 168 in dog year…
-## 10 Obi-Wan Kenobi           57        399  Obi-Wan Kenobi is 399 in dog years.  
+##    name               birth_year dog_years comment                                
+##    &lt;chr&gt;                   &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;                                  
+##  1 Luke Skywalker           19        133  Luke Skywalker is 133 in dog years.    
+##  2 C-3PO                   112        784  C-3PO is 784 in dog years.             
+##  3 R2-D2                    33        231  R2-D2 is 231 in dog years.             
+##  4 Darth Vader              41.9      293. Darth Vader is 293.3 in dog years.     
+##  5 Leia Organa              19        133  Leia Organa is 133 in dog years.       
+##  6 Owen Lars                52        364  Owen Lars is 364 in dog years.         
+##  7 Beru Whitesun lars       47        329  Beru Whitesun lars is 329 in dog years.
+##  8 R5-D4                    NA         NA  R5-D4 is NA in dog years.              
+##  9 Biggs Darklighter        24        168  Biggs Darklighter is 168 in dog years. 
+## 10 Obi-Wan Kenobi           57        399  Obi-Wan Kenobi is 399 in dog years.    
 ## # … with 77 more rows
 ```
 
@@ -1771,18 +1729,18 @@ starwars %&gt;%
 
 ```
 ## # A tibble: 87 x 4
-##    name               birth_year dog_years comment                              
-##    &lt;chr&gt;                   &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;                                
-##  1 Luke Skywalker           19        133  Luke Skywalker is 133 in dog years.  
-##  2 C-3PO                   112        784  C-3PO is 784 in dog years.           
-##  3 R2-D2                    33        231  R2-D2 is 231 in dog years.           
-##  4 Darth Vader              41.9      293. Darth Vader is 293.3 in dog years.   
-##  5 Leia Organa              19        133  Leia Organa is 133 in dog years.     
-##  6 Owen Lars                52        364  Owen Lars is 364 in dog years.       
-##  7 Beru Whitesun lars       47        329  Beru Whitesun lars is 329 in dog yea…
-##  8 R5-D4                    NA         NA  R5-D4 is NA in dog years.            
-##  9 Biggs Darklighter        24        168  Biggs Darklighter is 168 in dog year…
-## 10 Obi-Wan Kenobi           57        399  Obi-Wan Kenobi is 399 in dog years.  
+##    name               birth_year dog_years comment                                
+##    &lt;chr&gt;                   &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;                                  
+##  1 Luke Skywalker           19        133  Luke Skywalker is 133 in dog years.    
+##  2 C-3PO                   112        784  C-3PO is 784 in dog years.             
+##  3 R2-D2                    33        231  R2-D2 is 231 in dog years.             
+##  4 Darth Vader              41.9      293. Darth Vader is 293.3 in dog years.     
+##  5 Leia Organa              19        133  Leia Organa is 133 in dog years.       
+##  6 Owen Lars                52        364  Owen Lars is 364 in dog years.         
+##  7 Beru Whitesun lars       47        329  Beru Whitesun lars is 329 in dog years.
+##  8 R5-D4                    NA         NA  R5-D4 is NA in dog years.              
+##  9 Biggs Darklighter        24        168  Biggs Darklighter is 168 in dog years. 
+## 10 Obi-Wan Kenobi           57        399  Obi-Wan Kenobi is 399 in dog years.    
 ## # … with 77 more rows
 ```
 
@@ -1961,7 +1919,7 @@ We merge data with [join operations](https://cran.r-project.org/web/packages/dpl
 - `semi_join(df1, df2)`
 - `anti_join(df1, df2)`
 
-(You can visualize the operations [here](https://r4ds.had.co.nz/relational-data.html)
+(You can visualize the operations [here](https://r4ds.had.co.nz/relational-data.html))
 
 ---
 
@@ -1977,21 +1935,19 @@ flights
 
 ```
 ## # A tibble: 336,776 x 19
-##     year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
-##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;
-##  1  2013     1     1      517            515         2      830            819
-##  2  2013     1     1      533            529         4      850            830
-##  3  2013     1     1      542            540         2      923            850
-##  4  2013     1     1      544            545        -1     1004           1022
-##  5  2013     1     1      554            600        -6      812            837
-##  6  2013     1     1      554            558        -4      740            728
-##  7  2013     1     1      555            600        -5      913            854
-##  8  2013     1     1      557            600        -3      709            723
-##  9  2013     1     1      557            600        -3      838            846
-## 10  2013     1     1      558            600        -2      753            745
-## # … with 336,766 more rows, and 11 more variables: arr_delay &lt;dbl&gt;,
-## #   carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;,
-## #   air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;
+##     year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time arr_delay carrier flight tailnum origin dest  air_time distance  hour minute time_hour          
+##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt; &lt;chr&gt;    &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dttm&gt;             
+##  1  2013     1     1      517            515         2      830            819        11 UA        1545 N14228  EWR    IAH        227     1400     5     15 2013-01-01 05:00:00
+##  2  2013     1     1      533            529         4      850            830        20 UA        1714 N24211  LGA    IAH        227     1416     5     29 2013-01-01 05:00:00
+##  3  2013     1     1      542            540         2      923            850        33 AA        1141 N619AA  JFK    MIA        160     1089     5     40 2013-01-01 05:00:00
+##  4  2013     1     1      544            545        -1     1004           1022       -18 B6         725 N804JB  JFK    BQN        183     1576     5     45 2013-01-01 05:00:00
+##  5  2013     1     1      554            600        -6      812            837       -25 DL         461 N668DN  LGA    ATL        116      762     6      0 2013-01-01 06:00:00
+##  6  2013     1     1      554            558        -4      740            728        12 UA        1696 N39463  EWR    ORD        150      719     5     58 2013-01-01 05:00:00
+##  7  2013     1     1      555            600        -5      913            854        19 B6         507 N516JB  EWR    FLL        158     1065     6      0 2013-01-01 06:00:00
+##  8  2013     1     1      557            600        -3      709            723       -14 EV        5708 N829AS  LGA    IAD         53      229     6      0 2013-01-01 06:00:00
+##  9  2013     1     1      557            600        -3      838            846        -8 B6          79 N593JB  JFK    MCO        140      944     6      0 2013-01-01 06:00:00
+## 10  2013     1     1      558            600        -2      753            745         8 AA         301 N3ALAA  LGA    ORD        138      733     6      0 2013-01-01 06:00:00
+## # … with 336,766 more rows
 ```
 
 ---
@@ -2005,18 +1961,18 @@ planes
 
 ```
 ## # A tibble: 3,322 x 9
-##    tailnum  year type          manufacturer   model  engines seats speed engine 
-##    &lt;chr&gt;   &lt;int&gt; &lt;chr&gt;         &lt;chr&gt;          &lt;chr&gt;    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;  
-##  1 N10156   2004 Fixed wing m… EMBRAER        EMB-1…       2    55    NA Turbo-…
-##  2 N102UW   1998 Fixed wing m… AIRBUS INDUST… A320-…       2   182    NA Turbo-…
-##  3 N103US   1999 Fixed wing m… AIRBUS INDUST… A320-…       2   182    NA Turbo-…
-##  4 N104UW   1999 Fixed wing m… AIRBUS INDUST… A320-…       2   182    NA Turbo-…
-##  5 N10575   2002 Fixed wing m… EMBRAER        EMB-1…       2    55    NA Turbo-…
-##  6 N105UW   1999 Fixed wing m… AIRBUS INDUST… A320-…       2   182    NA Turbo-…
-##  7 N107US   1999 Fixed wing m… AIRBUS INDUST… A320-…       2   182    NA Turbo-…
-##  8 N108UW   1999 Fixed wing m… AIRBUS INDUST… A320-…       2   182    NA Turbo-…
-##  9 N109UW   1999 Fixed wing m… AIRBUS INDUST… A320-…       2   182    NA Turbo-…
-## 10 N110UW   1999 Fixed wing m… AIRBUS INDUST… A320-…       2   182    NA Turbo-…
+##    tailnum  year type                    manufacturer     model     engines seats speed engine   
+##    &lt;chr&gt;   &lt;int&gt; &lt;chr&gt;                   &lt;chr&gt;            &lt;chr&gt;       &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;    
+##  1 N10156   2004 Fixed wing multi engine EMBRAER          EMB-145XR       2    55    NA Turbo-fan
+##  2 N102UW   1998 Fixed wing multi engine AIRBUS INDUSTRIE A320-214        2   182    NA Turbo-fan
+##  3 N103US   1999 Fixed wing multi engine AIRBUS INDUSTRIE A320-214        2   182    NA Turbo-fan
+##  4 N104UW   1999 Fixed wing multi engine AIRBUS INDUSTRIE A320-214        2   182    NA Turbo-fan
+##  5 N10575   2002 Fixed wing multi engine EMBRAER          EMB-145LR       2    55    NA Turbo-fan
+##  6 N105UW   1999 Fixed wing multi engine AIRBUS INDUSTRIE A320-214        2   182    NA Turbo-fan
+##  7 N107US   1999 Fixed wing multi engine AIRBUS INDUSTRIE A320-214        2   182    NA Turbo-fan
+##  8 N108UW   1999 Fixed wing multi engine AIRBUS INDUSTRIE A320-214        2   182    NA Turbo-fan
+##  9 N109UW   1999 Fixed wing multi engine AIRBUS INDUSTRIE A320-214        2   182    NA Turbo-fan
+## 10 N110UW   1999 Fixed wing multi engine AIRBUS INDUSTRIE A320-214        2   182    NA Turbo-fan
 ## # … with 3,312 more rows
 ```
 
@@ -2091,12 +2047,11 @@ left_join(
 
 ```
 ## # A tibble: 3 x 11
-##    year month   day dep_time arr_time carrier flight tailnum year_built type 
-##   &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;    &lt;int&gt; &lt;chr&gt;    &lt;int&gt; &lt;chr&gt;        &lt;int&gt; &lt;chr&gt;
-## 1  2013     1     1      517      830 UA        1545 N14228        1999 Fixe…
-## 2  2013     1     1      533      850 UA        1714 N24211        1998 Fixe…
-## 3  2013     1     1      542      923 AA        1141 N619AA        1990 Fixe…
-## # … with 1 more variable: model &lt;chr&gt;
+##    year month   day dep_time arr_time carrier flight tailnum year_built type                    model  
+##   &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;    &lt;int&gt; &lt;chr&gt;    &lt;int&gt; &lt;chr&gt;        &lt;int&gt; &lt;chr&gt;                   &lt;chr&gt;  
+## 1  2013     1     1      517      830 UA        1545 N14228        1999 Fixed wing multi engine 737-824
+## 2  2013     1     1      533      850 UA        1714 N24211        1998 Fixed wing multi engine 737-824
+## 3  2013     1     1      542      923 AA        1141 N619AA        1990 Fixed wing multi engine 757-223
 ```
 
 ---
@@ -2115,11 +2070,11 @@ left_join(flights,
 
 ```
 ## # A tibble: 3 x 11
-##   year.x year.y month   day dep_time arr_time carrier flight tailnum type  model
-##    &lt;int&gt;  &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;    &lt;int&gt; &lt;chr&gt;    &lt;int&gt; &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;
-## 1   2013   1999     1     1      517      830 UA        1545 N14228  Fixe… 737-…
-## 2   2013   1998     1     1      533      850 UA        1714 N24211  Fixe… 737-…
-## 3   2013   1990     1     1      542      923 AA        1141 N619AA  Fixe… 757-…
+##   year.x year.y month   day dep_time arr_time carrier flight tailnum type                    model  
+##    &lt;int&gt;  &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;    &lt;int&gt; &lt;chr&gt;    &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;                   &lt;chr&gt;  
+## 1   2013   1999     1     1      517      830 UA        1545 N14228  Fixed wing multi engine 737-824
+## 2   2013   1998     1     1      533      850 UA        1714 N24211  Fixed wing multi engine 737-824
+## 3   2013   1990     1     1      542      923 AA        1141 N619AA  Fixed wing multi engine 757-223
 ```
 
 --
@@ -2147,6 +2102,7 @@ name: tidyr
 4. `unite`: Combine multiple columns into one
 
 --
+
 Let's practice these verbs together in class
   
 ---
@@ -2169,6 +2125,25 @@ stocks
 ## 1 2009-01-01  0.6163028 1.779204 -1.461802
 ## 2 2009-01-02 -0.1024888 2.548539 -2.816719
 ```
+
+We have 4 variables, the date and the stocks
+
+How do we get this in tidy form?
+
+---
+
+# 1) tidyr::pivot_longer
+
+
+```r
+stocks %&gt;% pivot_longer(-time, names_to = "stock", values_to = "price")
+```
+
+We need to pivot the stock name variables `X, Y, Z` longer
+
+1. Choose non-time variables: `-time`
+2. Decide what variable holds the names: `names_to = "stock"`
+3. Decide what variable holds the values: `values_to = "price"`
 
 ---
 
@@ -2510,7 +2485,7 @@ This leads to an obvious problem: we only observe one of these two states for ea
 
 # The Rubin causal model: average treatment effect
 
-We can derive three parameters of interested from the definition of a treatment effect:
+We can derive three parameters of interest from the definition of a treatment effect:
 
 .hi-blue[Average treatment effect (ATE):] `$$E[\delta_i] = E[Y^1_i - Y^0_i] = E[Y^1_i] - E[Y^0_i]$$`
 
@@ -2653,7 +2628,7 @@ cons_df
 
 # Hands on: understanding treatment effects
 
-Suppose we have a perfect policymaker who knows each states potential outcomes and can perfectly decide whether each state should have a conservation policy
+Suppose we have a perfect policymaker who knows each state's potential outcomes and can perfectly decide whether each state should have a conservation policy
 
 --
 
@@ -2698,10 +2673,12 @@ observed_df
 
 Given the .hi-blue[observed] data, what if we tried to *estimate* the ATE by comparing mean outcomes of treated `\((D_i=1)\)` vs untreated units `\((D_i=0)\)`
 
+--
+
 This is the simple difference in mean outcomes (SDO):
 `\begin{align}
   SDO &amp;= E[Y^1|D=1] - E[Y^0|D=0] \\
-    &amp;= {1 \over N_T}\sum_{i=1}^{N_T} (y_i | d_i = 1) + {1 \over N_U}\sum_{i=1}^{N_U} (y_i | d_i = 0)
+    &amp;= {1 \over N_T}\sum_{i=1}^{N_T} (y_i | d_i = 1) - {1 \over N_U}\sum_{i=1}^{N_U} (y_i | d_i = 0)
 \end{align}`
 
 where `\(N_T\)` is the number of treated units and `\(N_U\)` is the number of untreated units
@@ -2738,17 +2715,21 @@ We know the ATE is 4, why is the SDO giving us a much smaller estimate of the ef
 
 Because the SDO is actually composed of three pieces, only one of which is the ATE:&lt;sup&gt;1&lt;/sup&gt;
 
+.footnote[
+  See Mixtape pages 89-91 for the derivation.
+]
+
 &lt;center&gt;
-SDO = ATE + Selection Bias + Heterogeneous Treatment Effect Bias
+SDO = ATE + 
+--
+Selection Bias + 
+--
+Heterogeneous Treatment Effect Bias
 &lt;/center&gt;
 
 --
 
 What are these mathematically and intuitively?
-
-.footnote[
-  See Mixtape pages 89-91 for the derivation.
-]
 
 ---
 
@@ -2784,7 +2765,7 @@ Let's work through these two in more detail
 
 # Hands on: Selection bias
 
-The second term is selection bias:
+The second term is .hi-blue[selection bias:]
 `$$E[Y^0 | D = 1] - E[Y^0 | D= 0]$$`
 
 It is the inherent differences between the two groups if they did not *actually* get the conservation policy
@@ -2846,6 +2827,8 @@ What's the intuition for this?
 
 Basically:
   - How much more of an effect did the policy have on the units that *happened* to get treatment versus the effect the policy would have had on the units that *happened* to be in the control group
+--
+
   - Scale the size of this difference by fraction of control units
   
 --
@@ -2863,18 +2846,18 @@ cons_df %&gt;%
     D = as.numeric(delta &gt; 0) 
     ) %&gt;% 
   group_by(D) %&gt;% 
-  summarise(mean(delta), sum(D)) # Difference in potential control and treatment outcomes across the two groups, count in treatment and control
+  summarise(mean(delta), n()) # Difference in potential control and treatment outcomes across the two groups, count in treatment and control
 ```
 
 ```
 ## # A tibble: 2 x 3
-##       D `mean(delta)` `sum(D)`
-##   &lt;dbl&gt;         &lt;dbl&gt;    &lt;dbl&gt;
-## 1     0         -1.67        0
-## 2     1          7.4         5
+##       D `mean(delta)` `n()`
+##   &lt;dbl&gt;         &lt;dbl&gt; &lt;int&gt;
+## 1     0         -1.67     3
+## 2     1          7.4      5
 ```
 
-Heterogeneous treatment effect bias is thus: (1 - 5/8)*(7.4 - (-1.67)) = 3.40
+Heterogeneous treatment effect bias is thus: (1 - 5/(5+3))*(7.4 - (-1.67)) = 3.40
 
 --
 
@@ -2890,7 +2873,11 @@ Taking a simple difference in means of outcomes between treatment and control gr
 
 Unfortunately it is .hi-red[confounded] by two forms of bias:
 
+--
+
 1. .hi-blue[Selection bias:] The units in the treatment group different from the control group in the absence of treatment
+--
+
 2. .hi-blue[Heterogeneous treatment effect bias]: The units in the treatment group respond to treatment differently than units in the control group
 
 ---
@@ -2899,12 +2886,18 @@ Unfortunately it is .hi-red[confounded] by two forms of bias:
 
 What are some examples of these forms of bias?
 
-.hi-blue[Selection bias:] If we select certain groups into treatment, for example, if we give COVID treatments to the sickest patients
-  - This may lead to a negative bias on life expectancy even with a positive effect
+--
+
+.hi-blue[Selection bias:] 
+--
+If we select certain groups into treatment, for example, if we pass conservation policy in states with little biodiversity
+  - This may lead to a negative bias on conservation policy impacts, even with a positive ATE
   
 --
 
-.hi-blue[HTEB:] If we select units into treatment based on expected response, for example, if we give steroids to patients who we know have strong immune responses (i.e. the response we want)
+.hi-blue[HTEB:] 
+--
+If we select units into treatment based on expected response, for example, if we pass policy in states where birds are **very** sensitive to conservation
   - This may lead to an overestimate of the size of the treatment effect
   
 ---
@@ -2921,8 +2914,14 @@ A huge chunk of economics is trying circumvent these forms of bias&lt;sup&gt;1&l
 
 The rest of class is largely dedicated to:
 1. Understanding what tools we have to correctly estimate the ATE
+--
+
 2. Understanding what assumptions are required for these tools to be valid
+--
+
 3. Understanding when these ATE estimates are valid
+--
+
 4. Seeing how this all works (hands on) in modern environmental economics
 
 --
@@ -2937,7 +2936,7 @@ There are many different ways to recover the ATE
 
 --
 
-We will cover:
+We will cover some subset of:
 
 1. Randomized control trials
 2. Regression discontinuity
@@ -2983,7 +2982,7 @@ What's a simple way to deal with this?
 
 If we randomize treatment across observational units then SDO = ATE
 
--- 
+--
 
 Randomization drives selection bias and HTEB to zero
 
@@ -3020,8 +3019,11 @@ Randomization of treatment / policy means that:
 
 --
 
-If we randomized treatment across units, then on average, the potential outcomes should be the same across units in both groups 
+If we randomized treatment across units, then on average, the difference in potential outcomes across groups should be zero
 
+--
+
+This means that:
 `$$E[Y^1 | D = 1] = E[Y^1 | D = 0] \qquad E[Y^0 | D = 1] = E[Y^0 | D = 0]$$`
 
 --
@@ -3045,7 +3047,7 @@ What does randomization do to HTEB?
 
 --
 
-HTEB goes to zero
+HTEB goes to zero!
 
 ---
 
@@ -3150,7 +3152,10 @@ As `n_obs` `\(\rightarrow \infty\)`, we will have that `\(SDO \rightarrow ATE\)`
 
 # Randomization: what it does and doesn't do
 
-What does independence imply? That:
+What does independence imply?
+
+--
+
 `$$E[Y^1|D = 1] - E[Y^1 | D = 0] = 0 \qquad E[Y^0|D = 1] - E[Y^0 | D = 0] = 0$$`
 
 The two groups have the same potential outcomes, .hi-blue[*on average*]
@@ -3196,16 +3201,9 @@ After controlling for some other variables `\(X\)`, the potential outcomes are i
 
 This is much weaker than (unconditional) independence: we only need independence to hold for units that share the same `\(X\)` values, not for all units
 
----
-
-# Conditional independence
-
-Many of the estimation tools used in economics rely on (variants of) the conditional independence assumption
-
 --
 
-We will often explain intuition behind the assumption in different ways depending on the methods
-  - e.g. parallel trends, no omitted variables
+Many of the estimation tools used in economics rely on (variants of) the conditional independence assumption
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

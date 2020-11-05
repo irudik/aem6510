@@ -1,0 +1,43 @@
+---
+title: "AEM 6510 Problem Set 3"
+subtitle: "Fall 2020"
+date: Due November 2
+output: 
+  html_document:
+  theme: flatly
+  highlight: haddock
+  code_folding: show
+  toc: yes
+  toc_depth: 4
+  toc_float: yes
+  keep_md: true
+---
+  
+<style type="text/css">
+  .main-container {
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+</style>
+  
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, cache = TRUE, dpi = 300)
+# Load packages
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(
+  tidyverse, lubridate, tidylog
+)
+options("tidylog.display" = NULL)
+```
+
+Using only `tidyverse` commands and the `lm` command do the following:
+
+1. Load the csv datasets in the `data` folder into dataframes named `storms` and `damages`
+2. Put the `damages` data in *tidy* or *long* format where each observation is a storm
+3. In `storms`: create a single date-time variable from the year, month, day, hour variables; then convert the date-time into a date variable using `lubridate`
+4. Keep only observations that are hurricanes
+5. Join together the storm and damage datasets, keeping only observations that are in both datasets
+6. For each storm: calculate the average wind speed over all observations, and then calculate how much damage was caused per unit of average wind speed in a new variable named `damage_per_mph`
+7. Sort the data so the storms with the greatest damage per unit of average wind speed are at the top
+8. Regress damages on wind speed and store the coefficient on wind speed in a variable called `estimate`
