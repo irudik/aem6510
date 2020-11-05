@@ -91,7 +91,9 @@ In both of these we are comparing groups in the .hi-blue[cross-section]: there i
 
 # Our comparisons so far
 
-The key assumption for these comparisons is that the treated group would have looked the same as the control group (i.e. had the same outcomes) in the absence of treatment
+The key assumption for these comparisons is that 
+--
+the treated group would have looked the same as the control group (i.e. had the same outcomes) in the absence of treatment
 
 --
 
@@ -113,8 +115,12 @@ One way to describe our comparisons thus far is as .hi-red[differences]
 
 --
 
-The estimated effect of a policy is simply the difference in mean outcomes between treated and control groups:
+The estimated effect of a policy is simply the difference in expected outcomes between treated and control groups:
 `$$\delta = E[Y^1|D=1] - E[Y^0|D=0]$$`
+
+--
+
+It's exactly that for an RCT since `\(D\)` was randomly assigned, and its the difference in conditional expectations (conditional on being around the threshold) for RDD
 
 ---
 
@@ -168,7 +174,11 @@ This is much less stringent than requiring the outcomes to have been the same in
 
 Suppose also that:
 - The effect of the New York policy is given by .hi[B]
+--
+
 - Each state has it's own fixed determinants of biodiversity (e.g. land cover, average temperature, etc) given by .hi[NY, PA, MA, etc]
+--
+
 - Each period has it's own determinants of biodiversity, common across all states (e.g. federal policy, global climate change) given by .hi[T&lt;sub&gt;0&lt;/sub&gt;, T&lt;sub&gt;1&lt;/sub&gt;], where 0 is years before the policy is passed, and 1 is after
 
 ---
@@ -184,6 +194,8 @@ We want to find a way to recover **only** .hi[E[B]]
 --
 
 There are two ways you could think about trying to estimate .hi[B] using differences:
+
+--
 
 1. Compare New York to another state after the policy is passed
 --
@@ -274,7 +286,7 @@ We take the time series differences for NY and PA:
 
 |              |        After        |           Before           |                                Time Series Difference                               |
 |:------------:|:-------------------:|:--------------------------:|:-----------------------------------------------------------------------------------:|
-|   New York   | B + NY + T&lt;sub&gt;1&lt;/sub&gt; |   NY + T&lt;sub&gt;0&lt;/sub&gt;   | (B + NY + T&lt;sub&gt;1&lt;/sub&gt;) - (B + NY + T&lt;sub&gt;1&lt;/sub&gt;) = .hi[B + T&lt;sub&gt;1&lt;/sub&gt; - T&lt;sub&gt;0&lt;/sub&gt;] |
+|   New York   | B + NY + T&lt;sub&gt;1&lt;/sub&gt; |   NY + T&lt;sub&gt;0&lt;/sub&gt;   | (B + NY + T&lt;sub&gt;1&lt;/sub&gt;) - (NY + T&lt;sub&gt;0&lt;/sub&gt;) = .hi[B + T&lt;sub&gt;1&lt;/sub&gt; - T&lt;sub&gt;0&lt;/sub&gt;] |
 | Pennsylvania |  PA + T&lt;sub&gt;1&lt;/sub&gt; |     PA + T&lt;sub&gt;0&lt;/sub&gt;     |  (PA + T&lt;sub&gt;1&lt;/sub&gt;) - (PA + T&lt;sub&gt;0&lt;/sub&gt;) = .hi[T&lt;sub&gt;1&lt;/sub&gt; - T&lt;sub&gt;0&lt;/sub&gt;]  |
 
 --
@@ -320,7 +332,12 @@ Note that DD is not magic
 --
 
 It only can address determinants of biodiversity that are either:
+
+--
+
 1. Time-invariant
+--
+
 2. Time-varying, but common across all states
 
 --
