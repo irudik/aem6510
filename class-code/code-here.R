@@ -1,4 +1,4 @@
 if (!require("pacman")) install.packages("pacman")
 pacman::p_load(
-  rlang, nycflights13, tidyverse
+  ggthemes, fixest, broom, modelsummary, tidyverse
 )
