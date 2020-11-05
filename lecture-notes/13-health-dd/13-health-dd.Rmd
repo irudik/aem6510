@@ -68,7 +68,7 @@ So far we've made two kinds of comparisons to estimate treatment effects:
 
 --
 
-In both of these were are comparing groups in the .hi-blue[cross-section]: there is no concept or time, before and after a policy was enacted, etc
+In both of these we are comparing groups in the .hi-blue[cross-section]: there is no concept of time, before and after a policy was enacted, etc
 
 ---
 
@@ -97,11 +97,7 @@ One way to describe our comparisons thus far is as .hi-red[differences]
 --
 
 The estimated effect of a policy is simply the difference in mean outcomes between treated and control groups:
-$$math here$$
-
---
-
-figure here
+$$\delta = E[Y^1|D=1] - E[Y^0|D=0]$$
 
 ---
 
@@ -352,7 +348,7 @@ There cannot be any (uncontrolled for) time varying differences between NY and P
 
 # Difference-in-differences: to the data
 
-Now lets see how this works in practice: [notebook here](https://raw.githack.com/irudik/aem6510/master/lecture-notes/12-health-dd/12-health-dd-notebook.html)
+Now lets see how this works in practice: [notebook here](https://raw.githack.com/irudik/aem6510/master/lecture-notes/13-health-dd/13-health-dd-notebook.html)
 
 --
 
@@ -803,9 +799,6 @@ Here we estimate the effect of being in the treated group, relative to some base
 
 --
 
-This is nice for a few reasons:
---
-
 1. We can look at dynamic effects
 --
 
@@ -815,7 +808,20 @@ This is nice for a few reasons:
 
 # Event studies: dynamic effects
 
-With an event study we can see how the effect changes *over time*
+With an event study we can see how the effect of a policy changes *over time*
+
+--
+
+We will be able to estimate the effect in each post-period relative to some period
+
+--
+
+If we see estimates getting larger, the effect grows over time
+
+--
+
+If estimates get smaller, the effect shrinks
+
 
 ---
 
@@ -843,7 +849,7 @@ We never observe what would have .hi-red[actually] happened though, parallel pre
 
 # HR (2021): to the data
 
-Now lets use the actual HR (2021) data to get some practice: [notebook here](https://raw.githack.com/irudik/aem6510/master/lecture-notes/12-health-dd/12-health-dd-notebook.html)
+Now lets use the actual HR (2021) data to get some practice: [notebook here](https://raw.githack.com/irudik/aem6510/master/lecture-notes/13-health-dd/13-health-dd-notebook.html)
 
 ---
 

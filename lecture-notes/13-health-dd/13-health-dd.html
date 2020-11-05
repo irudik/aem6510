@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Lecture 13</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Ivan Rudik" />
+    <script src="13-health-dd_files/header-attrs/header-attrs.js"></script>
+    <link href="13-health-dd_files/remark-css/default.css" rel="stylesheet" />
+    <link href="13-health-dd_files/remark-css/metropolis.css" rel="stylesheet" />
+    <link href="13-health-dd_files/remark-css/metropolis-fonts.css" rel="stylesheet" />
+    <link href="13-health-dd_files/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="13-health-dd_files/tile-view/tile-view.js"></script>
+    <link href="13-health-dd_files/panelset/panelset.css" rel="stylesheet" />
+    <script src="13-health-dd_files/panelset/panelset.js"></script>
+    <script src="13-health-dd_files/xaringanExtra-webcam/webcam.js"></script>
+    <script id="xaringanExtra-webcam-options" type="application/json">{"width":"200","height":"200","margin":"1em"}</script>
+    <link rel="stylesheet" href="my-css.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Lecture 13
+## Health // Difference-in-differences
+### Ivan Rudik
+### AEM 6510
+
+---
+
+exclude: true
+
+```r
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(
+  tidyverse, xaringanExtra, rlang, patchwork, nycflights13
+)
+options(htmltools.dir.version = FALSE)
+knitr::opts_hooks$set(fig.callout = function(options) {
+  if (options$fig.callout) {
+    options$echo &lt;- FALSE
+  }
+knitr::opts_chunk$set(echo = TRUE, fig.align="center")
+  options
+})
+```
+
+
+```
+## Warning: 'xaringanExtra::style_panelset' is deprecated.
+## Use 'style_panelset_tabs' instead.
+## See help("Deprecated")
+```
+
+```
+## Warning in style_panelset_tabs(...): The arguments to `syle_panelset()` changed in xaringanExtra 0.1.0. Please refer to the documentation to update your slides.
+```
+
+---
+
+# Roadmap
+
+- How do we estimate a treatment effect when the treated and control groups do not (counterfactually) look the same in the cross-section?
+- What is the mortality cost of lead?
+
+
+---
+
+class: inverse, center, middle
+name: dd
+
+# Difference-in-differences
+
+&lt;html&gt;&lt;div style='float:left'&gt;&lt;/div&gt;&lt;hr color='#EB811B' size=1px width=796px&gt;&lt;/html&gt;
+
+---
+
+# Our comparisons so far
+
+So far we've made two kinds of comparisons to estimate treatment effects:
+
+1. Comparing two groups with random assignment to treatment .hi[(RCT)]
+--
+
+2. Comparing two groups where there is a local discontinuity (i.e. discrete change) in policy .hi[(regression discontinuity)]
+
+--
+
+In both of these we are comparing groups in the .hi-blue[cross-section]: there is no concept of time, before and after a policy was enacted, etc
+
+---
+
+# Our comparisons so far
+
+The key assumption for these comparisons is that the treated group would have looked the same as the control group (i.e. had the same outcomes) in the absence of treatment
+
+--
+
+This assumption is often hard to defend&lt;sup&gt;1&lt;/sup&gt;
+
+.footnote[
+One way people show that this tends to not be true is to throw in a bunch of extra controls into the regression, if this affects your estimates it indicates there's likely a problem with the assumption.
+]
+
+--
+
+Let's try to relax this assumption by exploiting .hi-blue[temporal comparisons] in addition to the cross-sectional comparison
+
+---
+
+# Difference-in-differences
+
+One way to describe our comparisons thus far is as .hi-red[differences]
+
+--
+
+The estimated effect of a policy is simply the difference in mean outcomes between treated and control groups:
+`$$\delta = E[Y^1|D=1] - E[Y^0|D=0]$$`
+
+---
+
+# Difference-in-differences
+
+Our next method is called .hi-blue[difference-in-differences] (DD)
+
+--
+
+What DD does is take the difference of two comparisons in three steps:
+--
+
+1. Take the difference in mean outcomes between treated and control .hi-red[before] treatment
+--
+
+2. Take the difference in mean outcomes between treated and control .hi-red[after] treatment
+--
+
+3. Take the difference between 1 and 2
+
+--
+
+The name comes from the fact that we are taking the difference (3) between two differences (1 and 2)
+
+---
+
+# Difference-in-differences
+
+Why do we use DD?
+
+--
+
+The identifying assumption required is less strict than for difference approaches
+
+--
+
+.hi[**DD assumption:**] the treatment and control group would have followed .hi-blue[parallel trends] in the absence of treatment
+- i.e. the difference in outcomes would have remained constant
+
+--
+
+This is much less stringent than requiring the outcomes to have been the same in the absence of treatment
+
+---
+
+# Difference-in-differences
+
+.hi-red[Example:] Suppose we want to understand the effect of a conservation policy passed in New York on biodiversity
+
+--
+
+Suppose also that:
+- The effect of the New York policy is given by .hi[B]
+- Each state has it's own fixed determinants of biodiversity (e.g. land cover, average temperature, etc) given by .hi[NY, PA, MA, etc]
+- Each period has it's own determinants of biodiversity, common across all states (e.g. federal policy, global climate change) given by .hi[T&lt;sub&gt;0&lt;/sub&gt;, T&lt;sub&gt;1&lt;/sub&gt;], where 0 is years before the policy is passed, and 1 is after
+
+---
+
+# Difference-in-differences
+
+When we observe data on biodiversity we see the combination of all determinants: .hi[B + NY + T], not just .hi[B]
+
+--
+
+We want to find a way to recover **only** .hi[E[B]]
+
+--
+
+There are two ways you could think about trying to estimate .hi[B] using differences:
+
+1. Compare New York to another state after the policy is passed
+--
+
+2. Compare New York to itself, before and after the policy is passed
+
+---
+
+# The cross-sectional difference
+
+Let's compare New York to another state, Pennsylvania
+
+--
+
+If we were to do this with differences we would get an estimate of .hi[B] given by: 
+&lt;center&gt;
+  .hi[(B + NY + T&lt;sub&gt;1&lt;/sub&gt;) - (PA + T&lt;sub&gt;1&lt;/sub&gt;) = B + NY - PA]
+&lt;/center&gt;
+
+--
+
+This is not .hi[B]!
+
+--
+
+Why?
+
+---
+
+# The cross-sectional difference
+
+&lt;center&gt;
+  .hi[(B + NY + T&lt;sub&gt;1&lt;/sub&gt;) - (PA + T&lt;sub&gt;1&lt;/sub&gt;) = B + NY - PA]
+&lt;/center&gt;
+
+There are other determinants of biodiversity that are different across New York and Pennsylvania that are .hi-blue[not] the policy: landcover, urbanization, pollution, etc
+
+--
+
+If we take a simple difference across states, we can't disentangle whether the difference is due to the policy .hi[B] or differences in these other factors .hi[NY - PA]
+
+
+---
+
+# The time series difference
+
+The next logical thing to try to circumvent this problem is to compare New York to itself, before .hi[NY + T&lt;sub&gt;0&lt;/sub&gt;] and after .hi[B + NY + T&lt;sub&gt;1&lt;/sub&gt;] the policy
+
+--
+
+&lt;center&gt;
+  .hi[(B + NY + T&lt;sub&gt;1&lt;/sub&gt;) - (NY + T&lt;sub&gt;0&lt;/sub&gt;) = B + T&lt;sub&gt;1&lt;/sub&gt; - T&lt;sub&gt;0&lt;/sub&gt;]
+&lt;/center&gt;
+
+--
+
+This is not .hi[B]!
+
+--
+
+Why?
+
+
+---
+
+# The time series difference
+
+&lt;center&gt;
+  .hi[(B + NY + T&lt;sub&gt;1&lt;/sub&gt;) - (NY + T&lt;sub&gt;0&lt;/sub&gt;) = B + T&lt;sub&gt;1&lt;/sub&gt; - T&lt;sub&gt;0&lt;/sub&gt;]
+&lt;/center&gt;
+
+There are other determinants of biodiversity that are different before and after the policy that are .hi-blue[not] the New York policy: federal policy changes, trends in urbanization and pollution
+
+--
+
+If we take a simple difference over time, we can't disentangle whether the difference is due to the policy .hi[B] or differences in other factors that are changing over time .hi[T&lt;sub&gt;1&lt;/sub&gt; - T&lt;sub&gt;0&lt;/sub&gt;]
+
+---
+
+# Difference-in-differences
+
+With DD we .hi-blue[combine] these two differences
+
+--
+
+We take the time series differences for NY and PA:
+
+
+|              |        After        |           Before           |                                Time Series Difference                               |
+|:------------:|:-------------------:|:--------------------------:|:-----------------------------------------------------------------------------------:|
+|   New York   | B + NY + T&lt;sub&gt;1&lt;/sub&gt; |   NY + T&lt;sub&gt;0&lt;/sub&gt;   | (B + NY + T&lt;sub&gt;1&lt;/sub&gt;) - (B + NY + T&lt;sub&gt;1&lt;/sub&gt;) = .hi[B + T&lt;sub&gt;1&lt;/sub&gt; - T&lt;sub&gt;0&lt;/sub&gt;] |
+| Pennsylvania |  PA + T&lt;sub&gt;1&lt;/sub&gt; |     PA + T&lt;sub&gt;0&lt;/sub&gt;     |  (PA + T&lt;sub&gt;1&lt;/sub&gt;) - (PA + T&lt;sub&gt;0&lt;/sub&gt;) = .hi[T&lt;sub&gt;1&lt;/sub&gt; - T&lt;sub&gt;0&lt;/sub&gt;]  |
+
+--
+
+Next,  difference the time series differences to get the DD&lt;sup&gt;1&lt;/sup&gt;
+
+.footnote[
+&lt;sup&gt;1&lt;/sup&gt;You can also difference in the opposite order and end up with the same result
+]
+
+
+---
+
+# Difference-in-differences
+
+
+|              |        After        |           Before           |                                Time Series Difference                               |
+|:------------:|:-------------------:|:--------------------------:|:-----------------------------------------------------------------------------------:|
+|   New York   | B + NY + T&lt;sub&gt;1&lt;/sub&gt; |  NY + T&lt;sub&gt;0&lt;/sub&gt;   | (B + NY + T&lt;sub&gt;1&lt;/sub&gt;) - (B + NY + T&lt;sub&gt;1&lt;/sub&gt;) = .hi[B + T&lt;sub&gt;1&lt;/sub&gt; - T&lt;sub&gt;0&lt;/sub&gt;] |
+| Pennsylvania |  PA + T&lt;sub&gt;1&lt;/sub&gt; |     PA + T&lt;sub&gt;0&lt;/sub&gt;     |  (PA + T&lt;sub&gt;1&lt;/sub&gt;) - (PA + T&lt;sub&gt;0&lt;/sub&gt;) = .hi[T&lt;sub&gt;1&lt;/sub&gt; - T&lt;sub&gt;0&lt;/sub&gt;]  |
+|              |                     |                            |                                                                                     |
+|              |                     |                            |                                                                                     |
+|              |                     | Difference-in-differences: |                .hi[(B + T&lt;sub&gt;1&lt;/sub&gt; - T&lt;sub&gt;0&lt;/sub&gt;) - (T&lt;sub&gt;1&lt;/sub&gt; - T&lt;sub&gt;0&lt;/sub&gt;) = B      ]                                    |
+
+--
+
+The time series differences lets us control for all fixed determinants within a state (.hi[NY])
+
+--
+
+The cross-sectional difference lets us control for all period-specific determinants common across all states (.hi[T&lt;sub&gt;1&lt;/sub&gt;])
+
+--
+
+Combining these two differences addresses both and lets us recover .hi[B], the true effect of the policy!
+
+---
+
+# Difference-in-differences
+
+Note that DD is not magic
+
+--
+
+It only can address determinants of biodiversity that are either:
+1. Time-invariant
+2. Time-varying, but common across all states
+
+--
+
+If there is a determinant of biodiversity that is varying over time, and differentially across states, DD will fail to correctly estimate .hi[B]
+- State climate trends, state pollution trends, etc
+
+---
+
+# Difference-in-differences
+
+Suppose that there is another determinant of biodiversity .hi[C&lt;sup&gt;NY&lt;/sup&gt;&lt;sub&gt;1&lt;/sub&gt;, C&lt;sup&gt;NY&lt;/sup&gt;&lt;sub&gt;0&lt;/sub&gt;] that only occurs in New York and varies over time
+- e.g. climate in New York relative to Pennsylvania
+
+Our DD is then
+
+|              |        After        |           Before           |                                Time Series Difference                               |
+|:------------:|:-------------------:|:--------------------------:|:-----------------------------------------------------------------------------------:|
+|   New York   | B + NY + T&lt;sub&gt;1&lt;/sub&gt; + C&lt;sup&gt;NY&lt;/sup&gt;&lt;sub&gt;1&lt;/sub&gt; + C&lt;sup&gt;NY&lt;/sup&gt;&lt;sub&gt;0&lt;/sub&gt; |  NY + T&lt;sub&gt;0&lt;/sub&gt;   | (B + NY + T&lt;sub&gt;1&lt;/sub&gt;) - (B + NY + T&lt;sub&gt;1&lt;/sub&gt;) = .hi[B + T&lt;sub&gt;1&lt;/sub&gt; - T&lt;sub&gt;0&lt;/sub&gt; + C&lt;sup&gt;NY&lt;/sup&gt;&lt;sub&gt;1&lt;/sub&gt;- C&lt;sup&gt;NY&lt;/sup&gt;&lt;sub&gt;0&lt;/sub&gt;] |
+| Pennsylvania |  PA + T&lt;sub&gt;1&lt;/sub&gt; |     PA + T&lt;sub&gt;0&lt;/sub&gt;     |  (PA + T&lt;sub&gt;1&lt;/sub&gt;) - (PA + T&lt;sub&gt;0&lt;/sub&gt;) = .hi[T&lt;sub&gt;1&lt;/sub&gt; - T&lt;sub&gt;0&lt;/sub&gt;]  |
+|              |                     |                            |                                                                                     |
+|              |                     |                            |                                                                                     |
+|              |                     | Difference-in-differences: |                .hi[(B + T&lt;sub&gt;1&lt;/sub&gt; - T&lt;sub&gt;0&lt;/sub&gt;) - (T&lt;sub&gt;1&lt;/sub&gt; - T&lt;sub&gt;0&lt;/sub&gt;) = B + C&lt;sup&gt;NY&lt;/sup&gt;&lt;sub&gt;1&lt;/sub&gt;- C&lt;sup&gt;NY&lt;/sup&gt;&lt;sub&gt;0&lt;/sub&gt;      ]                                    |
+
+---
+
+# Difference-in-differences
+
+|              |        After        |           Before           |                                Time Series Difference                               |
+|:------------:|:-------------------:|:--------------------------:|:-----------------------------------------------------------------------------------:|
+|   New York   | B + NY + T&lt;sub&gt;1&lt;/sub&gt; + C&lt;sup&gt;NY&lt;/sup&gt;&lt;sub&gt;1&lt;/sub&gt; + C&lt;sup&gt;NY&lt;/sup&gt;&lt;sub&gt;0&lt;/sub&gt; |  NY + T&lt;sub&gt;0&lt;/sub&gt;   | (B + NY + T&lt;sub&gt;1&lt;/sub&gt;) - (B + NY + T&lt;sub&gt;1&lt;/sub&gt;) = .hi[B + T&lt;sub&gt;1&lt;/sub&gt; - T&lt;sub&gt;0&lt;/sub&gt; + C&lt;sup&gt;NY&lt;/sup&gt;&lt;sub&gt;1&lt;/sub&gt;- C&lt;sup&gt;NY&lt;/sup&gt;&lt;sub&gt;0&lt;/sub&gt;] |
+| Pennsylvania |  PA + T&lt;sub&gt;1&lt;/sub&gt; |     PA + T&lt;sub&gt;0&lt;/sub&gt;     |  (PA + T&lt;sub&gt;1&lt;/sub&gt;) - (PA + T&lt;sub&gt;0&lt;/sub&gt;) = .hi[T&lt;sub&gt;1&lt;/sub&gt; - T&lt;sub&gt;0&lt;/sub&gt;]  |
+|              |                     |                            |                                                                                     |
+|              |                     |                            |                                                                                     |
+|              |                     | Difference-in-differences: |                .hi[(B + T&lt;sub&gt;1&lt;/sub&gt; - T&lt;sub&gt;0&lt;/sub&gt;) - (T&lt;sub&gt;1&lt;/sub&gt; - T&lt;sub&gt;0&lt;/sub&gt;) = B + C&lt;sup&gt;NY&lt;/sup&gt;&lt;sub&gt;1&lt;/sub&gt;- C&lt;sup&gt;NY&lt;/sup&gt;&lt;sub&gt;0&lt;/sub&gt;      ]                                    |
+
+DD cannot isolate the effect of .hi[B] versus .hi[C&lt;sup&gt;NY&lt;/sup&gt;&lt;sub&gt;1&lt;/sub&gt;- C&lt;sup&gt;NY&lt;/sup&gt;&lt;sub&gt;0&lt;/sub&gt;]
+
+There cannot be any (uncontrolled for) time varying differences between NY and PA if we want to correctly estimate .hi[B]
+
+---
+
+# Difference-in-differences: to the data
+
+Now lets see how this works in practice: [notebook here](https://raw.githack.com/irudik/aem6510/master/lecture-notes/13-health-dd/13-health-dd-notebook.html)
+
+--
+
+What we are going to do is create a fake dataset where we .hi-blue[know the true value of what we want to estimate]
+
+--
+
+This is a good skill to practice to make sure you understand methods and that your code works correctly
+
+
+---
+exclude: true
+
+```
+## Joining, by = "period"
+```
+
+```
+## Joining, by = "state"
+```
+
+```
+## `summarise()` regrouping output by 'state' (override with `.groups` argument)
+```
+
+
+
+---
+
+# DD step 1
+
+
+
+![](13-health-dd_files/figure-html/dd1-1.png)
+
+---
+
+# DD step 2
+
+
+
+![](13-health-dd_files/figure-html/dd2-1.png)
+
+
+---
+
+# DD step 3
+
+
+
+![](13-health-dd_files/figure-html/dd3-1.png)
+
+
+---
+
+# DD step 4
+
+
+
+![](13-health-dd_files/figure-html/dd4-1.png)
+
+
+---
+
+# DD step 5
+
+
+
+![](13-health-dd_files/figure-html/dd5-1.png)
+
+
+---
+
+# DD step 6
+
+
+
+![](13-health-dd_files/figure-html/dd6-1.png)
+
+---
+
+class: inverse, center, middle
+name: hr2021
+
+# The effect of leaded gasoline on elderly mortality: Evidence from regulatory exemptions
+
+&lt;html&gt;&lt;div style='float:left'&gt;&lt;/div&gt;&lt;hr color='#EB811B' size=1px width=796px&gt;&lt;/html&gt;
+
+---
+
+# What is the paper about?
+
+What is Hollingsworth and Rudik (2021) (.blue[HR]) about?
+
+--
+
+HR aims to estimate the .hi-red[causal] effect of lead on mortality
+
+--
+
+Why is this important? We know lead is bad
+
+--
+
+1. There is little causal evidence for any effects of lead
+--
+
+2. Almost zero causal evidence for effects of lead on adults in any way
+--
+
+3. Having an accurate measure of effects/costs is vital for policymaking
+
+---
+
+# Environmental research directly affects policy!
+
+![federal_register](figures/federal_register.png)
+
+---
+
+# How does the paper do it?
+
+HR estimates the causal effect of lead by exploiting a .hi-blue[quasi-experiment]
+
+--
+
+&gt; a quasi-experiment is a real world occurance that approximates an actual RCT; quasi-experiments are also called natural experiments
+
+--
+
+Randomly assigning lead exposure to different groups is unethical, but we can learn from situations where real world exposure was *as good as random*
+
+--
+
+The quasi-experiment HR exploits is the sudden removal of lead from racing gasoline in 2007
+
+--
+
+Places that happened to have racetracks in 2007 had a significant decrease in lead emissions relative to places without racetracks
+
+---
+
+# How does the paper do it?
+
+Here's the 2x2 DD table
+
+|         	|                    Before                    	|                    After                    	|
+|:-------:	|:--------------------------------------------:	|:-------------------------------------------:	|
+| .hi[Treated] 	|   .hi[Areas near NASCAR racetracks before 2007]   	|   .hi[Areas near NASCAR racetracks after 2007 ]  	|
+| Control 	| Areas far from NASCAR racetracks before 2007 	| Areas far from NASCAR racetracks after 2007 	|
+
+
+We are comparing areas .hi[close] vs far from racetracks, before vs after deleading in 2007
+
+---
+
+# How does the paper do it?
+
+Here's the 2x2 DD table
+
+|         	|                    Before                    	|                    After                    	|
+|:-------:	|:--------------------------------------------:	|:-------------------------------------------:	|
+| Treated 	|   Areas near NASCAR racetracks before 2007   	|   Areas near NASCAR racetracks after 2007   	|
+| .hi[Control] 	| .hi[Areas far from NASCAR racetracks before 2007] 	| .hi[Areas far from NASCAR racetracks after 2007] 	|
+
+
+We are comparing areas close vs .hi[far] from racetracks, before vs after deleading in 2007
+
+---
+
+# How does the paper do it?
+
+Here's the 2x2 DD table
+
+|         	|                    .hi[Before]                    	|                    After                    	|
+|:-------:	|:--------------------------------------------:	|:-------------------------------------------:	|
+| Treated 	|   .hi[Areas near NASCAR racetracks before 2007]   	|   Areas near NASCAR racetracks after 2007   	|
+| Control 	| .hi[Areas far from NASCAR racetracks before 2007] 	| Areas far from NASCAR racetracks after 2007 	|
+
+
+We are comparing areas close vs far from racetracks, .hi[before] vs after deleading in 2007
+
+---
+
+# How does the paper do it?
+
+Here's the 2x2 DD table
+
+|         	|                    Before                    	|                    .hi[After]                    	|
+|:-------:	|:--------------------------------------------:	|:-------------------------------------------:	|
+| Treated 	|   Areas near NASCAR racetracks before 2007   	|   .hi[Areas near NASCAR racetracks after 2007]   	|
+| Control 	| Areas far from NASCAR racetracks before 2007 	| .hi[Areas far from NASCAR racetracks after 2007] 	|
+
+
+We are comparing areas close vs far from racetracks, before vs .hi[after] deleading in 2007
+
+
+---
+
+# How does the paper do it?
+
+.blue[track/treated counties], .green[border/weak treated counties], white control counties
+
+![county map](figures/figure_a3_county_type.png)
+
+---
+
+# Event studies
+
+What HR do is actually a generalization of DD: an .hi-blue[event study]
+
+--
+
+An event study is basically just a DD with multiple time periods before and after the treatment
+
+--
+
+Here we estimate the effect of being in the treated group, relative to some baseline period
+- In the 2x2 DD this baseline period was "before"
+
+--
+
+1. We can look at dynamic effects
+--
+
+2. It provides supporting evidence for the parallel trends assumption
+
+---
+
+# Event studies: dynamic effects
+
+With an event study we can see how the effect of a policy changes *over time*
+
+--
+
+We will be able to estimate the effect in each post-period relative to some period
+
+--
+
+If we see estimates getting larger, the effect grows over time
+
+--
+
+If estimates get smaller, the effect shrinks
+
+
+---
+
+# Event studies: parallel pre-trends
+
+In an event study we may have multiple periods before treatment
+
+--
+
+We can estimate the effect of being in the treatment group in each of these (pre-)periods
+
+--
+
+If there is no trend in the effect, the .hi-blue[pre-]trends are parallel
+
+--
+
+This gives us some comfort that the trends were likely to be parallel in the post-period in the absence of treatment
+
+--
+
+We never observe what would have .hi-red[actually] happened though, parallel pre-trends is just supporting evidence that the parallel trends assumption holds
+
+---
+
+# HR (2021): to the data
+
+Now lets use the actual HR (2021) data to get some practice: [notebook here](https://raw.githack.com/irudik/aem6510/master/lecture-notes/13-health-dd/13-health-dd-notebook.html)
+
+---
+
+# HR (2021): takeaways
+
+What can we take away from HR (2021)
+
+1. Lead has a causal effect on elderly mortality
+  - It appears to be through cardiovascular channels, perhaps *deaths of despair* as well (Case and Deaton, 2015)
+2. The mortality costs are large
+  - The external mortality costs imposed by NASCAR are larger than the value of all NASCAR teams combined
+  - The social cost of lead is .hi-red[at least $1,000 per gram]
+    - This is very, very, very big
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
