@@ -147,14 +147,14 @@ We will be using [RStudio Cloud](https://rstudio.cloud/) for computing.
 
 **Reading**: Muehlenbachs, Lucija, Elisheba Spiller, and Christopher Timmins. "The housing market impacts of shale gas development." American Economic Review 105, no. 12 (2015): 3633-59.
 
-### [Oct 29: Environmental health, difference-in-differences, and event studies](https://ivanrudik.com)
+### [Oct 29: Environmental health, difference-in-differences, and event studies](https://raw.githack.com/irudik/aem6510/master/lecture-notes/13-health-dd/13-health-dd.html) [slides posted]
 
 **Reading**: 
   - Mixtape: difference-in-differences
   - [Hollingsworth A. and Rudik, I., 2021. The effect of leaded gasoline on elderly mortality: Evidence from regulatory exemptions. American Economic Journal: Economic Policy.](https://osf.io/preprints/socarxiv/rdy6g/)
   - Graff Zivin, J. and Neidell, M., 2013. Environment, health, and human capital. Journal of Economic Literature, 51(3), pp.689-730.
   
-### [Nov 3: Environmental health, difference-in-differences, and event studies](https://ivanrudik.com)
+### [Nov 3: Environmental health, difference-in-differences, and event studies](https://raw.githack.com/irudik/aem6510/master/lecture-notes/13-health-dd/13-health-dd.html) [slides posted]
 
 **Reading**:  
   - Mixtape: difference-in-differences
