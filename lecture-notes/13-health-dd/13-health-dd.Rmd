@@ -98,17 +98,12 @@ One way to describe our comparisons thus far is as .hi-red[differences]
 
 --
 
-<<<<<<< HEAD
-The estimated effect of a policy is simply the difference in mean outcomes between treated and control groups:
-$$\delta = E[Y^1|D=1] - E[Y^0|D=0]$$
-=======
 The estimated effect of a policy is simply the difference in expected outcomes between treated and control groups:
 $$\delta = E[Y^1|D=1] - E[Y^0|D=0]$$
 
 --
 
 It's exactly that for an RCT since $D$ was randomly assigned, and its the difference in conditional expectations (conditional on being around the threshold) for RDD
->>>>>>> bbdeb841616661e82ffea2eac9eca25724ce1cf6
 
 ---
 
@@ -344,7 +339,7 @@ Our DD is then
 
 |              |        After        |           Before           |                                Time Series Difference                               |
 |:------------:|:-------------------:|:--------------------------:|:-----------------------------------------------------------------------------------:|
-|   New York   | B + NY + T<sub>1</sub> + C<sup>NY</sup><sub>1</sub> + C<sup>NY</sup><sub>0</sub> |  NY + T<sub>0</sub>   | (B + NY + T<sub>1</sub>) - (B + NY + T<sub>1</sub>) = .hi[B + T<sub>1</sub> - T<sub>0</sub> + C<sup>NY</sup><sub>1</sub>- C<sup>NY</sup><sub>0</sub>] |
+|   New York   | B + NY + T<sub>1</sub> + C<sup>NY</sup><sub>1</sub> |  NY + T<sub>0</sub> + C<sup>NY</sup><sub>0</sub>   | (B + NY + T<sub>1</sub>) - (B + NY + T<sub>1</sub>) = .hi[B + T<sub>1</sub> - T<sub>0</sub> + C<sup>NY</sup><sub>1</sub>- C<sup>NY</sup><sub>0</sub>] |
 | Pennsylvania |  PA + T<sub>1</sub> |     PA + T<sub>0</sub>     |  (PA + T<sub>1</sub>) - (PA + T<sub>0</sub>) = .hi[T<sub>1</sub> - T<sub>0</sub>]  |
 |              |                     |                            |                                                                                     |
 |              |                     |                            |                                                                                     |
