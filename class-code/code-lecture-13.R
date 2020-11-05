@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Run this line
 if (!require("pacman")) install.packages("pacman")
 

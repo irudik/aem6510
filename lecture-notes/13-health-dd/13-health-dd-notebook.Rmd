@@ -287,7 +287,7 @@ Cleaning the data is a huge chunk of the actual work of doing research (90%+), b
 First, load the lead poisoning data and look at it.
 ```{r}
 ## Read in blood lead data
-bll_df <- read_csv("data/hr_2021_bll.csv")
+bll_df <- read.csv("data/hr_2021_bll.csv") %>% as_tibble()
 bll_df
 ```
 
@@ -460,7 +460,7 @@ First, load the data.
 ```{r}
 ########################################
 ## Read in mortality data
-mortality_df <- read_csv("data/hr_2021_mortality.csv")
+mortality_df <- read.csv("data/hr_2021_mortality.csv") %>% as_tibble()
 mortality_df
 ```
 
