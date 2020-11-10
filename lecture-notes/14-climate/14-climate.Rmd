@@ -193,7 +193,7 @@ Pen and paper versions of these models existed in the late 1800s
 
 # Climate models
 
-.hi-blueGeneral circulation models] popped up in the 1960s using fluid dynamics
+.hi-blue[General circulation models] popped up in the 1960s using fluid dynamics
 
 These capture the 3D structure of the earth and the dynamic evolution of the atmosphere
 
