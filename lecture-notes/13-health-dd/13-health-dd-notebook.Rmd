@@ -179,7 +179,7 @@ ggplot(bio_df, group = interaction(state, period)) +
     axis.text.x = element_text(size = 24), axis.text.y = element_text(size = 24),
     axis.title.x = element_text(size = 24), axis.title.y = element_text(size = 24),
     panel.grid.minor.x = element_blank(), panel.grid.minor.y = element_blank(),
-    panel.grid.major.x = element_blank(),
+    panel.grid.major.x = element_blank(), axis.ticks = element_line(),
     axis.line = element_line(colour = "black")
   ) 
 ```
@@ -338,7 +338,7 @@ bll_df %>%
       axis.text.x = element_text(size = 14), axis.text.y = element_text(size = 14),
       axis.title.x = element_text(size = 14), axis.title.y = element_text(size = 14),
       panel.grid.minor.x = element_blank(), panel.grid.minor.y = element_blank(),
-      panel.grid.major.x = element_blank(),
+      panel.grid.major.x = element_blank(), axis.ticks = element_line(),
       axis.line = element_line(colour = "black")
     ) 
 ```
@@ -439,7 +439,7 @@ ggplot(data = event_study, aes(x = year, y = estimate)) +
     axis.text.x = element_text(size = 14), axis.text.y = element_text(size = 14),
     axis.title.x = element_text(size = 14), axis.title.y = element_text(size = 14),
     panel.grid.minor.x = element_blank(), panel.grid.minor.y = element_blank(),
-    panel.grid.major.x = element_blank(),
+    panel.grid.major.x = element_blank(), axis.ticks = element_line(),
     axis.line = element_line(colour = "black")
   )
 ```
@@ -540,7 +540,7 @@ ggplot(data = event_study, aes(x = year, y = estimate)) +
     axis.text.x = element_text(size = 14), axis.text.y = element_text(size = 14),
     axis.title.x = element_text(size = 14), axis.title.y = element_text(size = 14),
     panel.grid.minor.x = element_blank(), panel.grid.minor.y = element_blank(),
-    panel.grid.major.x = element_blank(),
+    panel.grid.major.x = element_blank(), axis.ticks = element_line(),
     axis.line = element_line(colour = "black")
   )
 ```

@@ -138,18 +138,6 @@ knitr::include_graphics("figures/paleoclimate.png")
 
 The spike in $CO_2$ is large, we can see seasonal variation in $CO_2$ in the shorter panel caused by changes in the strength of ocean and land carbon sinks
 
---
-
-Until recently, the earth was slowly cooling because of slow variations in earth's orbit
-
---
-
-Now we are warming rapidly
-
---
-
-Sea level is responding only very slowly because water and ice can absorb a lot of heat
-
 ---
 
 # Historical climate
@@ -159,6 +147,11 @@ Sea level is responding only very slowly because water and ice can absorb a lot 
 knitr::include_graphics("figures/paleoclimate.png")
 ```
 </div>
+
+
+Until recently, the earth was slowly cooling because of slow variations in earth's orbit
+
+--
 
 Now we are warming rapidly
 
@@ -219,15 +212,8 @@ A central goal of climate science has been to detect and attribute changes to th
 
 --
 
-Detection is where we need to determine if there has been a change in $C_{i\tau}$, attribution is figuring out what caused it
+Detection is where we need to determine if there has been a change in climate, attribution is figuring out what caused it
 
---
-
-When trying to human causes, we need to simulate counterfactual climates without human influence
-
---
-
-The intergovernmental panel on climate change (IPCC) has reported the current consensus on these points since 1990
 
 ---
 
@@ -285,18 +271,6 @@ With an average increase in temperature of $1^\circ$C, there is substantial hete
 --
 
 The arctic is predicted to warm substantially more than the rest of the planet, while the southern hemisphere is projected to have much less warming
-
---
-
-Warming also results in substantial differences in the change in rainfall
-
---
-
-The arctic, equator, and areas around the middle east and Indian ocean will see huge increases in rain
-
---
-
-South America and western Europe will see decreases in rainfall
 
 
 ---
