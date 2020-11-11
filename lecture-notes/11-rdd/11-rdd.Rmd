@@ -113,7 +113,7 @@ counties just above the threshold in some year $T$ face greater pressure to redu
 --
 
 In the absence of this policy we might expect counties with $c_0 + \epsilon$ levels of pollution to be similar to counties with $c_0 - \epsilon$ in terms of .hi-blue[all other factors] (on average)
-  - i.e. $E[Y^0 | D = 1] - D[Y^0 | D = 0] = 0$
+  - i.e. $E[Y^0 | D = 1] - E[Y^0 | D = 0] = 0$
 
 --
 
