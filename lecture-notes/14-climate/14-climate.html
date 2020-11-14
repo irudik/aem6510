@@ -52,8 +52,7 @@ knitr::opts_chunk$set(echo = TRUE, fig.align="center")
 ```
 
 ```
-## Warning in style_panelset_tabs(...): The arguments to `syle_panelset()` changed in xaringanExtra 0.1.0.
-## Please refer to the documentation to update your slides.
+## Warning in style_panelset_tabs(...): The arguments to `syle_panelset()` changed in xaringanExtra 0.1.0. Please refer to the documentation to update your slides.
 ```
 
 ---
@@ -511,9 +510,7 @@ $$ Y(\mathbf{C}) = Y[\mathbf{c(C),b(C)}] $$
 
 The marginal effect of climate on `\(Y\)` is given by the vector of derivatives
 `\begin{align}
-  \frac{dY(\mathbf{C})}{d\mathbf{C}} =&amp; \nabla_c Y(\mathbf{C}) \cdot \frac{d\mathbf{c}}{d\mathbf{C}} +
-  \nabla_b Y(\mathbf{C}) \cdot \frac{d\mathbf{b}}{d\mathbf{C}} \notag\\
-  =&amp; \sum_{k=1}^K \frac{\partial Y(\mathbf{C})}{\partial \mathbf{c}_k} \cdot \frac{d\mathbf{c}_k}{d\mathbf{C}}   + \sum_{n=1}^N\frac{\partial Y(\mathbf{C})}{\partial \mathbf{b}_n} \frac{d\mathbf{b}_n}{d\mathbf{C}}
+  \frac{dY(\mathbf{C})}{d\mathbf{C}} = \sum_{k=1}^K \frac{\partial Y(\mathbf{C})}{\partial \mathbf{c}_k} \cdot \frac{d\mathbf{c}_k}{d\mathbf{C}}   + \sum_{n=1}^N\frac{\partial Y(\mathbf{C})}{\partial \mathbf{b}_n} \frac{d\mathbf{b}_n}{d\mathbf{C}}
 \end{align}`
 
 --
