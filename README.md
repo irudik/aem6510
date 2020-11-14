@@ -136,7 +136,7 @@ We will be using [RStudio Cloud](https://rstudio.cloud/) for computing.
   - Mixtape: properties of regression, directed acyclical graphs, potential outcomes causal model
   - Guiteras, Raymond, James Levinsohn, and Ahmed Mushfiq Mobarak. "Encouraging sanitation investment in the developing world: a cluster-randomized trial." Science 348, no. 6237 (2015): 903-906.
   
-### [Oct 22: Deforestation, remote sensing/simple features, regression discontinuity](https://raw.githack.com/irudik/aem6510/master/lecture-notes/11-rdd/11-rdd.html) [slides posted]
+### [Oct 22: Deforestation, remote sensing/simple features, regression discontinuity](https://raw.githack.com/irudik/aem6510/master/lecture-notes/11-rdd/11-rdd.html) [slides posted] <!-- finish nov 3 -->
 
 **Reading**: 
   - Mixtape: regression discontinuity
@@ -147,34 +147,34 @@ We will be using [RStudio Cloud](https://rstudio.cloud/) for computing.
 
 **Reading**: Muehlenbachs, Lucija, Elisheba Spiller, and Christopher Timmins. "The housing market impacts of shale gas development." American Economic Review 105, no. 12 (2015): 3633-59.
 
-### [Oct 29: Environmental health, difference-in-differences, and event studies](https://raw.githack.com/irudik/aem6510/master/lecture-notes/13-health-dd/13-health-dd.html) [slides posted]
+### [Oct 29: Environmental health, difference-in-differences, and event studies](https://raw.githack.com/irudik/aem6510/master/lecture-notes/13-health-dd/13-health-dd.html) [slides posted] <!-- finish nov 10 -->
 
 **Reading**: 
   - Mixtape: difference-in-differences
   - [Hollingsworth A. and Rudik, I., 2021. The effect of leaded gasoline on elderly mortality: Evidence from regulatory exemptions. American Economic Journal: Economic Policy.](https://osf.io/preprints/socarxiv/rdy6g/)
   - Graff Zivin, J. and Neidell, M., 2013. Environment, health, and human capital. Journal of Economic Literature, 51(3), pp.689-730.
   
-### [Nov 3: Environmental health, difference-in-differences, and event studies](https://raw.githack.com/irudik/aem6510/master/lecture-notes/13-health-dd/13-health-dd.html) [slides posted]
+### [Nov 3: Environmental health, difference-in-differences, and event studies](https://raw.githack.com/irudik/aem6510/master/lecture-notes/13-health-dd/13-health-dd.html) [slides posted] <!-- finish nov 10 -->
 
 **Reading**:  
   - Mixtape: difference-in-differences
   - [Hollingsworth A. and Rudik, I., 2021. The effect of leaded gasoline on elderly mortality: Evidence from regulatory exemptions. American Economic Journal: Economic Policy.](https://osf.io/preprints/socarxiv/rdy6g/)
   - Graff Zivin, J. and Neidell, M., 2013. Environment, health, and human capital. Journal of Economic Literature, 51(3), pp.689-730.
 
-### [Nov 5: Climate change science](https://ivanrudik.com)
+### [Nov 5: Climate change science](https://raw.githack.com/irudik/aem6510/master/lecture-notes/14-climate/14-climate.html) [slides posted]
 
 **Reading**: 
   - Hsiang, S. and Robert Kopp. 2018. An economist's guide to climate change science, Journal of Economic Perspectives, Vol. 32, No. 4, pp. 3-32.
   - Hsiang, S., 2016. Climate econometrics. Annual Review of Resource Economics, 8, pp.43-75.
   - Good resource on doing climate-econ research: [ClimateEstimate.net](https://climateestimate.net/getting-started)
 
-### [Nov 10: Climate change and the Ricardian model](https://ivanrudik.com)
+### [Nov 10: Climate change and the Ricardian model](https://raw.githack.com/irudik/aem6510/master/lecture-notes/14-climate/14-climate.html) [slides posted]
 
 **Reading**: 
   - Mendelsohn, R., Nordhaus, W.D. and Shaw, D., 1994. The impact of global warming on agriculture: a Ricardian analysis. The American economic review, pp.753-771.
   - Ortiz‐Bobea, A., 2020. The role of nonfarm influences in Ricardian estimates of climate change impacts on US agriculture. American Journal of Agricultural Economics, 102(3), pp.934-959.
 
-### [Nov 12: Climate change and two way fixed effects, integrated assessment](https://ivanrudik.com)
+### [Nov 12: Climate change and two way fixed effects, integrated assessment](https://raw.githack.com/irudik/aem6510/master/lecture-notes/14-climate/14-climate.html) [slides posted]
 
 **Reading**: Deschênes, O. and Greenstone, M., 2007. The economic impacts of climate change: evidence from agricultural output and random fluctuations in weather. American Economic Review, 97(1), pp.354-385.
 
