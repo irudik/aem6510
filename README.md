@@ -6,7 +6,7 @@
 
 **Office hours:** Tues/Thurs 4:20-4:50 (link on Canvas)
 
-**Teaching assistant:** Diego Cardoso
+**Teaching assistant:** Weiliang Tan
 
 **TA office hours:** Mon 3:00-4:00  (link on Canvas)
 
@@ -35,11 +35,11 @@ The grading scale is:
 
 ### Prelims
 
-There will be 2 prelims. You will have 24 hours for the theory prelim. You will have 48 hours for the empirical prelim. The class time is reserved for Zoom office hours for any questions. **You are expected to complete the prelims on your own, not in groups.** Your higher-scoring prelim will be 30% of your grade, your lower-scoring prelim will be 25% of your grade. If you miss a prelim without an acceptable excuse you will receive a zero. If you have an acceptable excuse (these must be brought in beforehand except for sickness, injuries, accidents, etc) an alternative prelim will be scheduled. If you miss a prelim and do not notify me beforehand you must have a valid document (doctor's note, etc) explaining why you missed class and were not able to let me know before the missed prelim. Prelims submitted late will have a 30% deduction.
+There will be 2 prelims. The theory prelim will be in person, the empirical prelim will be takehome. You have 48 hours for the empirical prelim. The class time during the empirical prelim is reserved for Zoom office hours for any questions. **You are expected to complete the prelims on your own, not in groups.** Your higher-scoring prelim will be 30% of your grade, your lower-scoring prelim will be 25% of your grade. If you miss a prelim without an acceptable excuse you will receive a zero. If you have an acceptable excuse (these must be brought in beforehand except for sickness, injuries, accidents, etc) an alternative prelim will be scheduled. If you miss a prelim and do not notify me beforehand you must have a valid document (doctor's note, etc) explaining why you missed class and were not able to let me know before the missed prelim. Prelims submitted late will have a 30% deduction.
 
 ### Problem sets
 
-You will have 4 problem sets. You may work in groups of up to 3 on problem sets. Problem sets may be turned in late with a penalty of 20% of that homework's grade for each day it is late. Problem sets are due at the start of class on Canvas.
+You will have 4 problem sets. You may work in groups of up to 3 on problem sets and turn in one for your entire group. Problem sets may be turned in late with a penalty of 20% of that homework's grade for each day it is late. Problem sets are due at the start of class on Canvas.
 
 ### Final project
 
@@ -47,7 +47,7 @@ For your final project you can choose between a literature review or a data dive
 
 #### Literature review
 
-You can do a literature review on up to 5 papers on an environmental, resource, or energy economics topic of your choice. Your goal will be to summarise the findings, find common threads, and work yet to be done in the area. In the last two weeks of class you will give a short presentation of your review of the literature. Papers are due after the semi-final period. My approval of your choice of papers is required before you start the literature review. 
+You can do a literature review on up to **3** papers on an environmental, resource, or energy economics topic of your choice. Your goal will be to summarise the findings, find common threads, and work yet to be done in the area. In the last two weeks of class you will give a short presentation of your review of the literature. Papers are due after the semi-final period. My approval of your choice of papers is required before you start the literature review. 
 
 #### Data dive
 
