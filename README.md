@@ -62,7 +62,7 @@ Some sections of the course have readings (available on Canvas if not in the boo
 - Theory prelim: October 14
 - Empirical prelim: November 22-23
 - Final project paper due: December 10
-- Final project presentations: November 3, December 2, December 7
+- Final project presentations: November 30, December 2, December 7
 
 ## Other things
 
