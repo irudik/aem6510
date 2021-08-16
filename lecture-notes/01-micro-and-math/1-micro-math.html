@@ -31,13 +31,6 @@ exclude: true
 
 ```r
 if (!require("pacman")) install.packages("pacman")
-```
-
-```
-## Loading required package: pacman
-```
-
-```r
 pacman::p_load(
   tidyverse, tidylog, xaringanExtra, Ryacas, rlang
 )
@@ -49,11 +42,47 @@ knitr::opts_hooks$set(fig.callout = function(options) {
 knitr::opts_chunk$set(echo = TRUE, fig.align="center")
   options
 })
+red_pink &lt;- "#e64173"
+blue &lt;- "#3C93DC"
+red &lt;- "#ff0000"
+# A blank theme for ggplot
+theme_empty &lt;- theme_minimal() +
+  theme(
+    legend.position = "none",
+    title = element_text(size = 24),
+    axis.text.x = element_text(size = 24), axis.text.y = element_text(size = 24),
+    axis.title.x = element_text(size = 24), axis.title.y = element_text(size = 24),
+    panel.grid.minor.x = element_blank(), panel.grid.major.y = element_blank(),
+    panel.grid.minor.y = element_blank(), panel.grid.major.x = element_blank(),
+    panel.background = element_rect(fill = "#ffffff", colour = NA),
+    plot.background = element_rect(fill = "#ffffff", colour = NA),
+    axis.line = element_line(colour = "black"), axis.ticks = element_line(),
+  )
+theme_blank &lt;- theme_minimal() +
+  theme(
+    legend.position = "none",
+    title = element_text(size = 24),
+    axis.text.x = element_blank(), axis.text.y = element_blank(),
+    axis.title.x = element_blank(), axis.title.y = element_blank(),
+    panel.grid.minor.x = element_blank(), panel.grid.major.y = element_blank(),
+    panel.grid.minor.y = element_blank(), panel.grid.major.x = element_blank(),
+    panel.background = element_rect(fill = "#ffffff", colour = NA),
+    plot.background = element_rect(fill = "#ffffff", colour = NA),
+    axis.line = element_blank(), axis.ticks = element_blank(),
+  ) 
 ```
 
-<style>.panelset {
-  --panel-tab-color-active: red;
-}</style>
+
+
+```
+## Warning: 'xaringanExtra::style_panelset' is deprecated.
+## Use 'style_panelset_tabs' instead.
+## See help("Deprecated")
+```
+
+```
+## Warning in style_panelset_tabs(...): The arguments to `syle_panelset()` changed in xaringanExtra 0.1.0. Please refer to the documentation to update your slides.
+```
 
 &lt;style type="text/css"&gt;
 /* custom.css */
@@ -91,17 +120,15 @@ knitr::opts_chunk$set(echo = TRUE, fig.align="center")
 
 --
 
-**Synchronous class time:** Tuesday and Thursday 3:00-4:15
+**Class time:** Tuesday and Thursday 3:00-4:15
 
 **Instructor:** Ivan Rudik
 
-**Zoom office hours:** Tuesday and Thursday 4:20-4:50
+**Office hours:** Tuesday and Thursday 4:20-4:50
 
-**Teaching assistant:** Diego Cardoso
+**Teaching assistant:** Weiliang Tan
 
-**TA zoom office hours:** Monday 3:00-4:00
-
-Class and office hour zoom links are on Canvas
+**TA office hours:** Monday 3:00-4:00
 
 ---
 
@@ -117,19 +144,19 @@ Class and office hour zoom links are on Canvas
 
 **Lecture notes:** https://github.com/irudik/aem6510, accessible through Canvas
 
----
+&lt;!-- --- --&gt;
 
-# Zoom etiquette
+&lt;!-- # Zoom etiquette --&gt;
 
-A few requests on how you should interact through zoom:
+&lt;!-- A few requests on how you should interact through zoom: --&gt;
 
-1. Be on time
-2. Stay muted unless answering/asking a question
-3. Turn on video, have a non-distracting actual or virtual background
-4. Display your full name and any preferred nick name
-5. Be active!
-  - Ask questions in chat or use the hand raise feature
-  - If I don't respond in a reasonable timeframe feel free to unmute and ask your question
+&lt;!-- 1. Be on time --&gt;
+&lt;!-- 2. Stay muted unless answering/asking a question --&gt;
+&lt;!-- 3. Turn on video, have a non-distracting actual or virtual background --&gt;
+&lt;!-- 4. Display your full name and any preferred nick name --&gt;
+&lt;!-- 5. Be active! --&gt;
+&lt;!--   - Ask questions in chat or use the hand raise feature --&gt;
+&lt;!--   - If I don't respond in a reasonable timeframe feel free to unmute and ask your question --&gt;
 
 ---
 
@@ -173,7 +200,7 @@ Start your final project early
 
 --
 
-Contact me or Diego if you have and questions or concerns
+Contact me or Weilaing if you have and questions or concerns
 
 ---
 
@@ -204,11 +231,11 @@ your lowest-scoring prelim is 25%
 
 --
 
-Prelims will basically just be longer homeworks that you are expected to complete .hi-red[on your own]
+The empirical prelim is takehome, and you are expected to complete it .hi-red[on your own]
 
 --
 
-You have 24 hours to finish the theory prelim and 48 hours to finish the empirical prelim
+You have 48 hours to finish the empirical prelim
 
 --
 
@@ -239,7 +266,7 @@ There is a final project for the course aimed to get you moving toward research
 
 You can choose one of two options:
 
-1) Literature Review
+1) Literature review
 
 2) Data dive
 
@@ -247,7 +274,7 @@ You can choose one of two options:
 
 # Final project: lit review
 
-Write a literature review on up to 5 papers all in a particular subfield of environmental and resource economics
+Write a literature review on up to 3 papers all in a particular subfield of environmental and resource economics
 
 --
 
@@ -396,9 +423,7 @@ X is the .hi-blue[sufficient condition]
 }
 &lt;/style&gt;
 
-<style>.panelset {
-  --panel-tab-color-active: red;
-}</style>
+
 
 
 .pull-left[
@@ -463,10 +488,6 @@ Negative semi-definite is basically just saying that a multivariate function is 
   --panel-tab-font-family: Roboto;
 }
 &lt;/style&gt;
-
-<style>.panelset {
-  --panel-tab-color-active: red;
-}</style>
 
 .panelset[
 

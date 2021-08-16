@@ -7,6 +7,10 @@ h2 {
     margin-top: 2.75rem;
 }
 
+h1 {
+    color: #111100;
+}
+
 .article-container {
     max-width: 960px;
 }
@@ -291,9 +295,9 @@ td.mid-table-header {
 
 .remark-slide-content {
   font-family: "Lato", sans-serif;
-  border-top: 70px solid #192439;
-  color: #192439;
-  background-color: #eeeeee;
+  border-top: 70px solid #ffffff;
+  color: #000000;
+  background-color: #ffffff;
   font-size: 32px;
   font-weight: 355;
   /* line-height: 1.5; */
@@ -302,12 +306,13 @@ td.mid-table-header {
 
 .inverse {
   background-color: #192439;
+  border-top: 70px solid #192439;
   text-shadow: 0 0 20px #333;
   /* text-shadow: none; */
 }
 
 .title-slide {
-  background-color: #eeeeee;
+  background-color: #ffffff;
   border-top: 0px solid #ffffff;
 }
 

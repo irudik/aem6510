@@ -20,13 +20,7 @@
     [...document.querySelectorAll('.panel-name')]
       .map(el => el.textContent.trim())
 
-    const panelIds = {};
-
-    const randId = () => {
-      // https://gist.github.com/6174/6062387
-      return Math.random().toString(36).substring(2, 8) +
-    Math.random().toString(36).substring(2, 8)
-    }
+    const panelIds = {}
 
     const uniquePanelId = (name) => {
       name = encodeURIComponent(name.toLowerCase().replace(/[\s]/g, '-'))
@@ -38,16 +32,52 @@
       return name
     }
 
-    const processPanelItem = (item) => {
-      const nameDiv = item.querySelector('.panel-name')
+    const identifyPanelName = (item) => {
       let name = 'Panel'
-      if (nameDiv) {
-        name = nameDiv.textContent.trim()
-        if (nameDiv.tagName === 'SPAN' && nameDiv.parentNode.tagName === 'P') {
-          item.removeChild(nameDiv.parentNode)
-        } else {
-          item.removeChild(nameDiv)
-        }
+
+      // If the item doesn't have a parent element, then we've already processed
+      // it, probably because we're in an Rmd, and it's been removed from the DOM
+      if (!item.parentElement) {
+        return
+      }
+
+      // In R Markdown when header-attrs.js is present, we may have found a
+      // section header but the class attributes won't be duplicated on the <hX> tag
+      if (
+        (item.tagName === 'SECTION' || item.classList.contains('section')) &&
+        /^H[1-6]/.test(item.children[0].tagName)
+      ) {
+        name = item.children[0].textContent
+        item.classList.remove('panel-name')
+        item.removeChild(item.children[0])
+        return name
+      }
+
+      const nameDiv = item.querySelector('.panel-name')
+      if (!nameDiv) return name
+
+      // In remarkjs the .panel-name span might be in a paragraph tag
+      // and if the <p> is empty, we'll remove it
+      if (
+        nameDiv.tagName === 'SPAN' &&
+        nameDiv.parentNode.tagName === 'P' &&
+        nameDiv.textContent === nameDiv.parentNode.textContent
+      ) {
+        name = nameDiv.textContent
+        item.removeChild(nameDiv.parentNode)
+        return name
+      }
+
+      // If none of the above, remove the nameDiv and return the name
+      name = nameDiv.textContent
+      nameDiv.parentNode.removeChild(nameDiv)
+      return name
+    }
+
+    const processPanelItem = (item) => {
+      const name = identifyPanelName(item)
+      if (!name) {
+        return null
       }
       return { name, content: item.children, id: uniquePanelId(name) }
     }
@@ -61,7 +91,7 @@
       const res = document.createElement('div')
       res.className = 'panelset'
       res.id = 'panelset' + (idx > 0 ? idx : '')
-      let panelSelected = getCurrentPanelFromUrl(res.id)
+      const panelSelected = getCurrentPanelFromUrl(res.id)
 
       // create header row
       const headerRow = document.createElement('ul')
@@ -71,9 +101,12 @@
         .map((p, idx) => {
           const panelHeaderItem = document.createElement('li')
           panelHeaderItem.className = 'panel-tab'
-          panelHeaderItem.setAttribute('role', 'presentation')
-          thisPanelIsActive = panelSelected ? panelSelected === p.id : idx === 0
-          panelHeaderItem.classList.toggle('panel-tab-active', thisPanelIsActive)
+          panelHeaderItem.setAttribute('role', 'tab')
+          const thisPanelIsActive = panelSelected ? panelSelected === p.id : idx === 0
+          if (thisPanelIsActive) {
+            panelHeaderItem.classList.add('panel-tab-active')
+            panelHeaderItem.setAttribute('aria-selected', true)
+          }
           panelHeaderItem.tabIndex = 0
           panelHeaderItem.id = res.id + '_' + p.id // #panelsetid_panelid
 
@@ -81,7 +114,6 @@
           panelHeaderLink.href = '?' + res.id + '=' + p.id + '#' + panelHeaderItem.id
           panelHeaderLink.setAttribute('onclick', 'return false;')
           panelHeaderLink.tabIndex = -1 // list item is tabable, not link
-          if (idx === 0) panelHeaderLink.setAttribute('aria-selected', true)
           panelHeaderLink.innerHTML = p.name
           panelHeaderLink.setAttribute('aria-controls', p.id)
 
@@ -97,7 +129,7 @@
           const panelContent = document.createElement('section')
           panelContent.className = 'panel'
           panelContent.setAttribute('role', 'tabpanel')
-          thisPanelIsActive = panelSelected ? panelSelected === p.id : idx === 0
+          const thisPanelIsActive = panelSelected ? panelSelected === p.id : idx === 0
           panelContent.classList.toggle('panel-active', thisPanelIsActive)
           panelContent.id = p.id
           panelContent.setAttribute('aria-labelledby', p.id)
@@ -109,17 +141,31 @@
       return res
     }
 
-    const updateUrl = (panelset, panel) => {
-      let params = new URLSearchParams(window.location.search)
+    /*
+     * Update selected panel for panelset or delete panelset from query string
+     *
+     * @param panelset Panelset ID to update in the search params
+     * @param panel Panel ID of selected panel in panelset, or null to delete from search params
+     * @param params Current params object, or params from window.location.search
+     */
+    function updateSearchParams (panelset, panel, params = new URLSearchParams(window.location.search)) {
       if (panel) {
         params.set(panelset, panel)
       } else {
         params.delete(panelset)
       }
+      return params
+    }
+
+    /*
+     * Update the URL to match params
+     */
+    const updateUrl = (params) => {
+      if (typeof params === 'undefined') return
       params = params.toString() ? ('?' + params.toString()) : ''
-      const {pathname, hash} = window.location
+      const { pathname, hash } = window.location
       const uri = pathname + params + hash
-      history.replaceState(uri, '', uri)
+      window.history.replaceState(uri, '', uri)
     }
 
     const togglePanel = (clicked) => {
@@ -158,15 +204,36 @@
       clicked.classList.add('panel-tab-active')
       clicked.setAttribute('aria-selected', true)
 
+      // emit window resize event to trick html widgets into fitting to the panel width
+      window.dispatchEvent(new Event('resize'))
+
       // update query string
-      updateUrl(panelClicked, panelTabClicked)
+      const params = updateSearchParams(panelClicked, panelTabClicked)
+      updateUrl(params)
     }
 
     const initPanelSet = (panelset, idx) => {
-      const panels = Array.from(panelset.querySelectorAll('.panel'))
-      if (!panels.length) return;
+      let panels = Array.from(panelset.querySelectorAll('.panel'))
+      if (!panels.length && panelset.matches('.section[class*="level"]')) {
+        // we're in tabset-alike R Markdown
+        const panelsetLevel = [...panelset.classList]
+          .filter(s => s.match(/^level/))[0]
+          .replace('level', '')
 
-      const contents = panels.map(processPanelItem)
+        // move children that aren't inside a section up above the panelset
+        Array.from(panelset.children).forEach(function (el) {
+          if (el.matches('div.section[class*="level"]')) return
+          panelset.parentElement.insertBefore(el, panelset)
+        })
+
+        // panels are all .sections with .level<panelsetLevel + 1>
+        const panelLevel = +panelsetLevel + 1
+        panels = Array.from(panelset.querySelectorAll(`.section.level${panelLevel}`))
+      }
+
+      if (!panels.length) return
+
+      const contents = panels.map(processPanelItem).filter(o => o !== null)
       const newPanelSet = reflowPanelSet(contents, idx)
       panelset.parentNode.insertBefore(newPanelSet, panelset)
       panelset.parentNode.removeChild(panelset)
@@ -174,12 +241,12 @@
       // click and touch events
       const panelTabs = newPanelSet.querySelector('.panel-tabs');
       ['click', 'touchend'].forEach(eventType => {
-        panelTabs.addEventListener(eventType, function(ev) {
+        panelTabs.addEventListener(eventType, function (ev) {
           togglePanel(ev.target)
           ev.stopPropagation()
         })
       })
-      panelTabs.addEventListener('touchmove', function(ev) {
+      panelTabs.addEventListener('touchmove', function (ev) {
         ev.preventDefault()
       })
 
@@ -187,7 +254,7 @@
       newPanelSet
         .querySelector('.panel-tabs')
         .addEventListener('keydown', (ev) => {
-          let self = ev.currentTarget.querySelector('.panel-tab-active')
+          const self = ev.currentTarget.querySelector('.panel-tab-active')
           if (ev.code === 'Space' || ev.code === 'Enter') {
             togglePanel(ev.target)
             ev.stopPropagation()
@@ -209,13 +276,10 @@
     Array.from(document.querySelectorAll('.panelset')).map(initPanelSet)
 
     if (typeof slideshow !== 'undefined') {
-      const panelSetIds = Array.from(document.querySelectorAll('.panelset'))
-        .map(ps => ps.id)
-
       const getVisibleActivePanelInfo = () => {
         const slidePanels = document.querySelectorAll('.remark-visible .panel-tab-active')
 
-        if (!slidePanels.length) return null;
+        if (!slidePanels.length) return null
 
         return slidePanels.map(panel => {
           return {
@@ -231,8 +295,12 @@
         document.activeElement.blur()
 
         // clear search query for panelsets in current slide
-        document.querySelectorAll('.remark-visible .panelset')
-          .forEach(ps => updateUrl(ps.id, null))
+        const params = [...document.querySelectorAll('.remark-visible .panelset')]
+          .reduce(function (params, panelset) {
+            return updateSearchParams(panelset.id, null, params)
+          }, new URLSearchParams(window.location.search))
+
+        updateUrl(params)
       })
 
       slideshow.on('afterShowSlide', slide => {
@@ -242,7 +310,13 @@
           // only first panel gets focus
           slidePanels[0].panel.focus()
           // but still update the url to reflect all active panels
-          slidePanels.forEach(({panelId, panelSetId}) => updateUrl(panelSetId, panelId))
+          const params = slidePanels.reduce(
+            function (params, { panelId, panelSetId }) {
+              return updateSearchParams(panelSetId, panelId, params)
+            },
+            new URLSearchParams(window.location.search)
+          )
+          updateUrl(params)
         }
       })
     }
