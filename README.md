@@ -1,10 +1,10 @@
 # AEM 6510 - Environmental and Resource Economics
 
-**Class location:** Zoom (link on Canvas)
+**Class location:** Warren B02
 
-**Class time:** Tues/Thurs 3:00-4:15
+**Class time:** Tues/Thurs 2:45-4:00
 
-**Office hours:** Tues/Thurs 4:20-4:50 (link on Canvas)
+**Office hours:** Tues/Thurs 4:00-5:00 Tues
 
 **Teaching assistant:** Weiliang Tan
 
@@ -16,7 +16,7 @@
 
 **Course description:** An introduction to environmental economics. The first half of the class focuses on the core theory, theory of regulation, and theory of welfare analysis. The second half of the course covers empirical topics. We will be learning how to use R for empirical research in environmental economics.
 
-**Course requirements:** Students are expected to attend the Zoom class sessions if they are in a reasonable timezone. If you are not (e.g. 12 hour difference) you may take the course asynchronously. Students are expected to prepare for class, prelims, and complete problem sets outside of class. 
+**Course requirements:** Students are expected to prepare for class, prelims, and complete problem sets outside of class. 
 
 ## Grading and Assignments
 
@@ -35,7 +35,7 @@ The grading scale is:
 
 ### Prelims
 
-There will be 2 prelims. The theory prelim will be in person, the empirical prelim will be takehome. You have 48 hours for the empirical prelim. The class time during the empirical prelim is reserved for Zoom office hours for any questions. **You are expected to complete the prelims on your own, not in groups.** Your higher-scoring prelim will be 30% of your grade, your lower-scoring prelim will be 25% of your grade. If you miss a prelim without an acceptable excuse you will receive a zero. If you have an acceptable excuse (these must be brought in beforehand except for sickness, injuries, accidents, etc) an alternative prelim will be scheduled. If you miss a prelim and do not notify me beforehand you must have a valid document (doctor's note, etc) explaining why you missed class and were not able to let me know before the missed prelim. Prelims submitted late will have a 30% deduction.
+There will be 2 prelims. The theory prelim will be in person, the empirical prelim will be take-home. You have 48 hours for the empirical prelim. The class time during the empirical prelim is reserved for Zoom office hours for any questions. **You are expected to complete the prelims on your own, not in groups.** Your higher-scoring prelim will be 30% of your grade, your lower-scoring prelim will be 25% of your grade. If you miss a prelim without an acceptable excuse you will receive a zero. If you have an acceptable excuse (these must be brought in beforehand except for sickness, injuries, accidents, etc) an alternative prelim will be scheduled. If you miss a prelim and do not notify me beforehand you must have a valid document (doctor's note, etc) explaining why you missed class and were not able to let me know before the missed prelim. Prelims submitted late will have a 30% deduction.
 
 ### Problem sets
 
@@ -47,7 +47,7 @@ For your final project you can choose between a literature review or a data dive
 
 #### Literature review
 
-You can do a literature review on up to **3** papers on an environmental, resource, or energy economics topic of your choice. Your goal will be to summarise the findings, find common threads, and work yet to be done in the area. In the last two weeks of class you will give a short presentation of your review of the literature. Papers are due after the semi-final period. My approval of your choice of papers is required before you start the literature review. 
+You can do a literature review on up to **3** papers on an environmental, resource, or energy economics topic of your choice. Your goal will be to summarise the findings, find common threads, and work yet to be done in the area. In the last two weeks of class you will give a short presentation of your review of the literature. Papers are due after the semi-final period. My approval of your choice of papers is required before you start the literature rev
 
 #### Data dive
 
@@ -76,53 +76,49 @@ Some sections of the course have readings (available on Canvas if not in the boo
 
 ## Course outline and readings
 
-### [Sep 3: Micro and math recap](https://raw.githack.com/irudik/aem6510/master/lecture-notes/01-micro-and-math/1-micro-math.html) [slides posted]
+### [Aug 26: Micro and math recap](https://raw.githack.com/irudik/aem6510/master/lecture-notes/01-micro-and-math/1-micro-math.html)
 
 **Reading**: None
 
-### [Sep 8: Theory of externalities](https://raw.githack.com/irudik/aem6510/master/lecture-notes/02-theory-of-externalities/2-theory-of-externalities.html) [slides posted] <!-- actually 8,10 -->
+### [Aug 31: Theory of externalities](https://raw.githack.com/irudik/aem6510/master/lecture-notes/02-theory-of-externalities/2-theory-of-externalities.html) <!-- actually 8,10 -->
 
 **Reading**: PR Chapter 1
 
-### [Sep 10: Introduction to the theory of environmental policy](https://raw.githack.com/irudik/aem6510/master/lecture-notes/03-theory-of-environmental-policy/3-theory-of-environmental-policy.html) [slides posted] <!-- actually 10, 15, 17 -->
+### [Sep 2, 7: Introduction to the theory of environmental policy](https://raw.githack.com/irudik/aem6510/master/lecture-notes/03-theory-of-environmental-policy/3-theory-of-environmental-policy.html) <!-- actually 10, 15, 17 -->
 
 **Reading**: PR Chapter 3
 
-### [Sep 15: Imperfect information](https://raw.githack.com/irudik/aem6510/master/lecture-notes/04-imperfect-information/4-imperfect-information.html) [slides posted] <!-- actually 17 -->
+### [Sep 7: Imperfect information](https://raw.githack.com/irudik/aem6510/master/lecture-notes/04-imperfect-information/4-imperfect-information.html)  <!-- actually 17 -->
 
 **Reading**: PR Chapter 4.1.1-4.1.2
 
-### [Sep 17: Competitive output markets](https://raw.githack.com/irudik/aem6510/master/lecture-notes/05-competitive-output-markets/5-competitive-output-markets.html) [slides posted] <!-- actually half way through 29 -->
+### [Sep 9, 14, 16: Competitive output markets](https://raw.githack.com/irudik/aem6510/master/lecture-notes/05-competitive-output-markets/5-competitive-output-markets.html)  <!-- actually half way through 29 -->
 
 **Reading**: PR Chapter 5
 
-### [Sep 22: Non-competitive output markets](https://raw.githack.com/irudik/aem6510/master/lecture-notes/06-non-competitive-output-markets/6-non-competitive-output-markets.html) [slides posted] <!-- actually oct 1 -->
+### [Sep 21: Non-competitive output markets](https://raw.githack.com/irudik/aem6510/master/lecture-notes/06-non-competitive-output-markets/6-non-competitive-output-markets.html)  <!-- actually oct 1 -->
 
 **Reading**: PR Chapter 6
 
-### [Sep 24: Pre-existing distortions](https://raw.githack.com/irudik/aem6510/master/lecture-notes/07-pre-existing-distortions/7-pre-existing-distortions.html) [slides posted] <!-- either oct 6 or 8 -->
+### [Sep 23: Pre-existing distortions](https://raw.githack.com/irudik/aem6510/master/lecture-notes/07-pre-existing-distortions/7-pre-existing-distortions.html)  <!-- either oct 6 or 8 -->
 
 **Reading**: PR Chapter 7
 
-### [Sep 29: Theory of applied welfare economics](https://raw.githack.com/irudik/aem6510/master/lecture-notes/08-theory-of-welfare/08-theory-of-welfare.html) [slides posted]
+### [Sep 28, 30: Theory of applied welfare economics](https://raw.githack.com/irudik/aem6510/master/lecture-notes/08-theory-of-welfare/08-theory-of-welfare.html) 
 
 **Reading**: PR Chapter 14
 
-### [Oct 1: Theory of applied welfare economics](https://raw.githack.com/irudik/aem6510/master/lecture-notes/08-theory-of-welfare/08-theory-of-welfare.html) [slides posted]
-
-**Reading**: PR Chapter 14
-
-### [Oct 6: Revealed preference models](https://ivanrudik.com) [skipped]
+### [Oct 5: Revealed preference models](https://ivanrudik.com) 
 
 **Reading**: PR Chapter 15
 
-### [Oct 8: Hedonics](https://raw.githack.com/irudik/aem6510/master/lecture-notes/09-hedonics/09-hedonics.html) [slides posted]
+### [Oct 7: Hedonics](https://raw.githack.com/irudik/aem6510/master/lecture-notes/09-hedonics/09-hedonics.html) 
 
 **Reading**: PR Chapter 18
 
-### Oct 13: Theory Prelim
+### Oct 14: Theory Prelim
 
-### [Oct 15: R and the tidyverse, causal inference](https://raw.githack.com/irudik/aem6510/master/lecture-notes/10-r-and-the-tidyverse/10-r-and-the-tidyverse.html) [slides posted]
+### [Oct 19: R and the tidyverse, causal inference](https://raw.githack.com/irudik/aem6510/master/lecture-notes/10-r-and-the-tidyverse/10-r-and-the-tidyverse.html) 
 
 **Reading**: 
   - Mixtape: properties of regression, directed acyclical graphs, potential outcomes causal model
@@ -130,74 +126,66 @@ Some sections of the course have readings (available on Canvas if not in the boo
 
 We will be using [RStudio Cloud](https://rstudio.cloud/) for computing.
 
-### [Oct 20: R and the tidyverse, causal inference, randomized control trials](https://raw.githack.com/irudik/aem6510/master/lecture-notes/10-r-and-the-tidyverse/10-r-and-the-tidyverse.html) [slides posted] <!-- finish oct 29 -->
+### [Oct 21: R and the tidyverse, causal inference, randomized control trials](https://raw.githack.com/irudik/aem6510/master/lecture-notes/10-r-and-the-tidyverse/10-r-and-the-tidyverse.html)  <!-- finish oct 29 -->
 
 **Reading**: 
   - Mixtape: properties of regression, directed acyclical graphs, potential outcomes causal model
   - Guiteras, Raymond, James Levinsohn, and Ahmed Mushfiq Mobarak. "Encouraging sanitation investment in the developing world: a cluster-randomized trial." Science 348, no. 6237 (2015): 903-906.
   
-### [Oct 22: Deforestation, remote sensing/simple features, regression discontinuity](https://raw.githack.com/irudik/aem6510/master/lecture-notes/11-rdd/11-rdd.html) [slides posted] <!-- finish nov 3 -->
+### [Oct 26: Deforestation, remote sensing/simple features, regression discontinuity](https://raw.githack.com/irudik/aem6510/master/lecture-notes/11-rdd/11-rdd.html)  <!-- finish nov 3 -->
 
 **Reading**: 
   - Mixtape: regression discontinuity
   - [Geocomputation with R](https://geocompr.robinlovelace.net/)
   - Burgess, R., Costa, F. and Olken, B.A., 2019. The Brazilian Amazon’s Double Reversal of Fortune.
 
-### [Oct 27: Hedonics](https://ivanrudik.com) [skipping for now]
+### [Oct 28: Hedonics](https://ivanrudik.com) 
 
 **Reading**: Muehlenbachs, Lucija, Elisheba Spiller, and Christopher Timmins. "The housing market impacts of shale gas development." American Economic Review 105, no. 12 (2015): 3633-59.
 
-### [Oct 29: Environmental health, difference-in-differences, and event studies](https://raw.githack.com/irudik/aem6510/master/lecture-notes/13-health-dd/13-health-dd.html) [slides posted] <!-- finish nov 10 -->
+### [Nov 2, 4: Environmental health, difference-in-differences, and event studies](https://raw.githack.com/irudik/aem6510/master/lecture-notes/13-health-dd/13-health-dd.html) <!-- finish nov 10 -->
 
 **Reading**: 
   - Mixtape: difference-in-differences
   - [Hollingsworth A. and Rudik, I., 2021. The effect of leaded gasoline on elderly mortality: Evidence from regulatory exemptions. American Economic Journal: Economic Policy.](https://osf.io/preprints/socarxiv/rdy6g/)
   - Graff Zivin, J. and Neidell, M., 2013. Environment, health, and human capital. Journal of Economic Literature, 51(3), pp.689-730.
-  
-### [Nov 3: Environmental health, difference-in-differences, and event studies](https://raw.githack.com/irudik/aem6510/master/lecture-notes/13-health-dd/13-health-dd.html) [slides posted] <!-- finish nov 10 -->
 
-**Reading**:  
-  - Mixtape: difference-in-differences
-  - [Hollingsworth A. and Rudik, I., 2021. The effect of leaded gasoline on elderly mortality: Evidence from regulatory exemptions. American Economic Journal: Economic Policy.](https://osf.io/preprints/socarxiv/rdy6g/)
-  - Graff Zivin, J. and Neidell, M., 2013. Environment, health, and human capital. Journal of Economic Literature, 51(3), pp.689-730.
-
-### [Nov 5: Climate change science](https://raw.githack.com/irudik/aem6510/master/lecture-notes/14-climate/14-climate.html) [slides posted]
+### [Nov 9: Climate change science](https://raw.githack.com/irudik/aem6510/master/lecture-notes/14-climate/14-climate.html) 
 
 **Reading**: 
   - Hsiang, S. and Robert Kopp. 2018. An economist's guide to climate change science, Journal of Economic Perspectives, Vol. 32, No. 4, pp. 3-32.
   - Hsiang, S., 2016. Climate econometrics. Annual Review of Resource Economics, 8, pp.43-75.
   - Good resource on doing climate-econ research: [ClimateEstimate.net](https://climateestimate.net/getting-started)
 
-### [Nov 10: Climate change and the Ricardian model](https://raw.githack.com/irudik/aem6510/master/lecture-notes/14-climate/14-climate.html) [slides posted]
+### [Nov 11: Climate change and the Ricardian model](https://raw.githack.com/irudik/aem6510/master/lecture-notes/14-climate/14-climate.html)
 
 **Reading**: 
   - Mendelsohn, R., Nordhaus, W.D. and Shaw, D., 1994. The impact of global warming on agriculture: a Ricardian analysis. The American economic review, pp.753-771.
   - Ortiz‐Bobea, A., 2020. The role of nonfarm influences in Ricardian estimates of climate change impacts on US agriculture. American Journal of Agricultural Economics, 102(3), pp.934-959.
 
-### [Nov 12: Climate change and two way fixed effects, integrated assessment](https://raw.githack.com/irudik/aem6510/master/lecture-notes/14-climate/14-climate.html) [slides posted]
+### [Nov 16: Climate change and two way fixed effects, integrated assessment](https://raw.githack.com/irudik/aem6510/master/lecture-notes/14-climate/14-climate.html) 
 
 **Reading**: Deschênes, O. and Greenstone, M., 2007. The economic impacts of climate change: evidence from agricultural output and random fluctuations in weather. American Economic Review, 97(1), pp.354-385.
-
-### Nov 17: Semi-final period
-
-### Nov 19: Semi-final period
-
-### Nov 24: Semi-final period
-
-### Nov 26: Thanksgiving break
   
-### [Dec 1: Perverse incentives, clean air act, remote sensing](https://ivanrudik.com)
+### [Nov 18: Climate change in space](https://raw.githack.com/irudik/aem6510/master/lecture-notes/14-climate/14-climate.html)
+
+**Reading**: 
+  - Desmet, K., Kopp, R.E., Kulp, S.A., Nagy, D.K., Oppenheimer, M., Rossi-Hansberg, E. and Strauss, B.H., 2021. Evaluating the Economic Cost of Coastal Flooding. American Economic Journal: Macroeconomics, 13(2), pp.444-486.
+  - Nath, I.B., 2020. The Food Problem and the Aggregate Productivity Consequences of Climate Change (No. w27297). National Bureau of Economic Research.
+  - Rudik, I., Lyn, G., Tan, W. and Ortiz-Bobea, A., 2021. Heterogeneity and Market Adaptation to Climate Change in Dynamic-Spatial Equilibrium.
 
 **Reading**: 
   - [Geocomputation with R](https://geocompr.robinlovelace.net/)
   -  Zou, E., 2021. Unwatched pollution: The effect of intermittent monitoring on air quality. American Economic Review.
 
-### Dec 3: Empirical prelim
+### Nov 22, 23: Empirical prelim
 
-### Dec 8: Final project presentations
+### Nov 25: Thanksgiving break
 
-### Dec 10: Final project presentations
+### Nov 30: Final project presentations
 
-### Dec 15: Final project presentations
+### Dec 2: Final project presentations
+
+### Dec 7: Final project presentations
 
 
