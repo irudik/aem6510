@@ -4,7 +4,7 @@
 
 **Class time:** Tues/Thurs 2:45-4:00
 
-**Office hours:** Tues/Thurs 4:00-5:00 Tues
+**Office hours:** Tues 4:00-5:00
 
 **Teaching assistant:** Weiliang Tan
 
