@@ -12,7 +12,7 @@
 
 **Textbook:** A Course in Environmental Economics by Phaneuf and Requate is required. [Causal Inference: The Mixtape](https://www.scunning.com/mixtape.html) by Cunningham is also required and free. 
 
-**Prerequisites:** MATH 1110 or equivalent. 
+**Prerequisites:** MATH 1110 or equivalent. Previous experience at the intermediate microeconomic level is **highly** recommended.
 
 **Course description:** An introduction to environmental economics. The first half of the class focuses on the core theory, theory of regulation, and theory of welfare analysis. The second half of the course covers empirical topics. We will be learning how to use R for empirical research in environmental economics.
 
