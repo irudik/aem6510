@@ -165,7 +165,9 @@ We will be using [RStudio Cloud](https://rstudio.cloud/) for computing.
 
 ### [Nov 16: Climate change and two way fixed effects, integrated assessment](https://raw.githack.com/irudik/aem6510/master/lecture-notes/14-climate/14-climate.html) 
 
-**Reading**: Deschênes, O. and Greenstone, M., 2007. The economic impacts of climate change: evidence from agricultural output and random fluctuations in weather. American Economic Review, 97(1), pp.354-385.
+**Reading**: 
+  - Deschênes, O. and Greenstone, M., 2007. The economic impacts of climate change: evidence from agricultural output and random fluctuations in weather. American Economic Review, 97(1), pp.354-385.
+  - Burke, M., Hsiang, S.M. and Miguel, E., 2015. Global non-linear effect of temperature on economic production. Nature, 527(7577), pp.235-239.
   
 ### [Nov 18: Climate change in space](https://raw.githack.com/irudik/aem6510/master/lecture-notes/14-climate/14-climate.html)
 
@@ -173,10 +175,6 @@ We will be using [RStudio Cloud](https://rstudio.cloud/) for computing.
   - Desmet, K., Kopp, R.E., Kulp, S.A., Nagy, D.K., Oppenheimer, M., Rossi-Hansberg, E. and Strauss, B.H., 2021. Evaluating the Economic Cost of Coastal Flooding. American Economic Journal: Macroeconomics, 13(2), pp.444-486.
   - Nath, I.B., 2020. The Food Problem and the Aggregate Productivity Consequences of Climate Change (No. w27297). National Bureau of Economic Research.
   - Rudik, I., Lyn, G., Tan, W. and Ortiz-Bobea, A., 2021. Heterogeneity and Market Adaptation to Climate Change in Dynamic-Spatial Equilibrium.
-
-**Reading**: 
-  - [Geocomputation with R](https://geocompr.robinlovelace.net/)
-  -  Zou, E., 2021. Unwatched pollution: The effect of intermittent monitoring on air quality. American Economic Review.
 
 ### Nov 22, 23: Empirical prelim
 
