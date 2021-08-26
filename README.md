@@ -59,6 +59,10 @@ Some sections of the course have readings (available on Canvas if not in the boo
 
 ## Important dates
 
+- Problem set 1: TBD [link here]()
+- Problem set 2: TBD [link here]()
+- Problem set 3: TBD [link here]()
+- Problem set 4: TBD [link here]()
 - Theory prelim: October 14
 - Empirical prelim: November 22-23
 - Final project paper due: December 10
