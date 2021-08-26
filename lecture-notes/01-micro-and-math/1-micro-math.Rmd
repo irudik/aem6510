@@ -37,6 +37,7 @@ theme_empty <- theme_minimal() +
   theme(
     legend.position = "none",
     title = element_text(size = 24),
+    text = element_text(family = "Lato"),
     axis.text.x = element_text(size = 24), axis.text.y = element_text(size = 24),
     axis.title.x = element_text(size = 24), axis.title.y = element_text(size = 24),
     panel.grid.minor.x = element_blank(), panel.grid.major.y = element_blank(),
@@ -49,6 +50,7 @@ theme_blank <- theme_minimal() +
   theme(
     legend.position = "none",
     title = element_text(size = 24),
+    text = element_text(family = "Lato"),
     axis.text.x = element_blank(), axis.text.y = element_blank(),
     axis.title.x = element_blank(), axis.title.y = element_blank(),
     panel.grid.minor.x = element_blank(), panel.grid.major.y = element_blank(),
@@ -99,19 +101,19 @@ xaringanExtra::style_panelset(panel_tab_color_active = "red")
 
 # AEM 6510: Environmental and resource economics
 
-.hi-blue[Welcome to AEM 6510]
+.blue[Welcome to AEM 6510]
 
 --
 
-**Class time:** Tuesday and Thursday 3:00-4:15
+**Class time:** Tuesday and Thursday 2:45-4:00
 
-**Instructor:** Ivan Rudik
+**Instructor:** Ivan Rudik (ir229)
 
-**Office hours:** Tuesday and Thursday 4:20-4:50
+**Office hours:** Tuesday 4:00-5:00 Warren 462
 
-**Teaching assistant:** Weiliang Tan
+**Teaching assistant:** Weiliang Tan (wt289)
 
-**TA office hours:** Monday 3:00-4:00
+**TA office hours:** Monday 3:00-4:00 Warren 372
 
 ---
 
@@ -147,7 +149,7 @@ xaringanExtra::style_panelset(panel_tab_color_active = "red")
 
 To learn:
 
-Core environmental theory
+Core environmental theory 
 
 --
 
@@ -161,21 +163,16 @@ Applied welfare analysis
 
 How to do empirical analysis on the environment
 
---
-
-How to use R and do geospatial analysis
-- This is increasingly important in environmental economics
-
 
 ---
 
 # What do you need to succeed in this class?
 
-Attend lectures if possible
+Attend lectures
 
 --
 
-Do your homework and prelims
+Do your problem sets and prelims
 
 --
 
@@ -183,7 +180,7 @@ Start your final project early
 
 --
 
-Contact me or Weilaing if you have and questions or concerns
+Contact me or Weiliang if you have and questions or concerns
 
 ---
 
@@ -214,7 +211,7 @@ your lowest-scoring prelim is 25%
 
 --
 
-The empirical prelim is takehome, and you are expected to complete it .hi-red[on your own]
+The empirical prelim is takehome, and you are expected to complete it .hi-pink[on your own]
 
 --
 
@@ -229,7 +226,7 @@ Late prelims automatically get 30% deducted: don't wait until the last minute to
 
 # Problem sets
 
-There will be 4 problem sets worth 10% each
+There will be 4 problem sets worth 5% each
 
 --
 
@@ -252,6 +249,10 @@ You can choose one of two options:
 1) Literature review
 
 2) Data dive
+
+--
+
+TBD but depending on the number of students you may be able to work in pairs
 
 ---
 
@@ -299,34 +300,31 @@ More details later
 
 # Course schedule: Theory
 
-1. Micro & math recap, theory of externalities
+1. Micro & math recap
+2. Theory of externalities
 2. Intro to the theory of environmental policy
-3. Intro to the theory of environmental policy
 4. Imperfect information
 5. Competitive output markets
 6. Non-competitive output markets
 7. Pre-existing distortions
 8. Theory of applied welfare economics
-9. Theory of applied welfare economics
 10. Revealed preference models
 11. Hedonics (theory)
-12. Extra theory prelim office hours
+12. Theory prelim
 
 ---
 
 # Course schedule: Empirics
 
 13. R and the tidyverse, causal inference
-14. R and the tidyverse, causal inference, RCTs
-15. Deforestation, remote sensing/simple features, regression discontinuity
+15. Deforestation, regression discontinuity
 16. Hedonics (applied)
-17. Climate change science
-18. Climate change and the Ricardian Model
-19. Climate change and two-way fixed effects
 20. Environmental health, difference-in-differences, and event studies
-21. Environmental health, difference-in-differences, and event studies
-22. Perverse incentives, clean air act, remote sensing
-23. Extra empirical prelim office hours
+17. Climate change science
+18. Climate change and the Ricardian model
+19. Climate change and two-way fixed effects
+22. Climate change in space
+23. Empirical prelim office hours
 
 
 ---
@@ -337,14 +335,22 @@ Before getting into the core material we need to review the mathematical foundat
 
 --
 
-What is central to economic decisionmaking is .hi-blue[constrained optimization]
+.hi-blue[Constrained optimization] is central in economic decisionmaking
 
 --
 
 - We want to max utility subject to a budget
+--
+
 - We want to max profits subject to a constraining regulation
+--
+
 - We want to max social welfare subject to an environmental target
+--
+
 - We want to minimize costs subject to meeting electricity demand
+--
+
 - Etc
   
 
@@ -365,7 +371,7 @@ where $U(\mathbf{x}):\mathbb{R}^N \rightarrow\mathbb{R}$
 
 --
 
-.b[Theorem]: Let $U$ be once continuously-differentiable ( $\mathbb{C}^1$ ) so that first partial derivatives exist and are continuous. If $x^*$ is a local maximum of $U$ on $A$ then
+.hi-pink[Theorem]: Let $U$ be once continuously-differentiable ( $\mathbb{C}^1$ ) so that first partial derivatives exist and are continuous. If $x^*$ is a local maximum of $U$ on $A$ then
 
 --
 
@@ -383,29 +389,17 @@ That the first-order conditions give us the .hi-blue[necessary conditions] for t
 
 --
 
-These conditions .b[must] be satisfied for any bundle that maximizes utility
+These conditions .hi-pink[must] be satisfied for any bundle that maximizes utility
 
 --
 
-In a logical statement, .ex[if X then Y], Y is the necessary condition: Y .b[must] be true for X to be true
+In a logical statement, *if X then Y*, Y is the necessary condition: Y .hi-pink[must] be true for X to be true
 
 X is the .hi-blue[sufficient condition]
 
 ---
 
 # Unconstrained optimization
-
-```{css echo=FALSE}
-.panelset {
-  --panel-tab-color: currentColor;
-  --panel-tab-color-active: currentColor;
-  --panel-tab-color-hover: currentColor;
-  --panel-tabs-border-bottom: #ddd;
-  --panel-tab-inactive-opacity: 0.25;
-  --panel-tab-font-family: Roboto;
-}
-```
-
 
 ```{r plot_foc, echo = FALSE, fig.show = 'hide'}
 fun.1 <- function(x) -x^2 + 4*x + 4
@@ -445,11 +439,11 @@ Do necessary conditions guarantee that we have found the utility-maximizing bund
 
 --
 
-.hi-red[NO!]
+.hi-pink[NO!]
 
 --
 
-They are necessary but not .hi-red[sufficient]: you can come up with counter-examples where a function's derivative equals zero but it is not maximized ( e.g. $x^3$ )
+They are necessary but not .hi-pink[sufficient]: you can come up with counter-examples where a function's derivative equals zero but it is not maximized ( e.g. $x^3$ )
 
 --
 
@@ -491,7 +485,7 @@ Negative semi-definite is basically just saying that a multivariate function is 
 We need second-order conditions to guarantee we have found a maximum
 
 
-We need marginal utility to be .b[decreasing] (i.e. utility be concave) at $x^*$
+We need marginal utility to be .hi[decreasing] (i.e. utility be concave) at $x^*$
 
 
 This guarantees $x^*$ maximizes $U$ if $x^*$ satisfies the first-order necessary conditions
@@ -550,7 +544,7 @@ ggplot() +
 A simple and familiar example is utility maximization:
 $$ \max_{x_1,x_2} U(x_1,x_2) \text{ subject to } h(x_1, x_2) = a $$
 
-We want to be on the .hi-blue[highest indifference curve] subject to our .hi-red[budget constraint]
+We want to be on the .hi-blue[highest indifference curve] subject to our .hi-pink[budget constraint]
 
 ]
 
@@ -591,7 +585,7 @@ How does this magic happen?
 
 --
 
-.hi-blue[Intuition:] We can reframe a constrained optimization problem in an alternative fashion where we allow the agent to pick whatever $(x_1,x_2)$ they want, .b[but], they must pay a fine $\lambda$ per unit violation of the restriction
+.hi[Intuition:] We can reframe a constrained optimization problem in an alternative fashion where we allow the agent to pick whatever $(x_1,x_2)$ they want, .hi-blue[but], they must pay a fine $\lambda$ per unit violation of the restriction
 
 --
 
@@ -642,7 +636,7 @@ We can translate a constrained optimization problem into an unconstrained one (t
 
 --
 
-1. Adding a new variable $\lambda$, which is called the *Lagrange Multiplier* or the *shadow value* of the constraint
+1. Adding a new variable $\lambda$, which is called the .hi-blue[Lagrange Multiplier] or the .hi-blue[shadow value] of the constraint
 --
 
 2. Adding another first-order condition (feasibility condition) and modifying the original first-order conditions to reflect the constraint
@@ -651,3 +645,6 @@ We can translate a constrained optimization problem into an unconstrained one (t
 
 The intuition for $\lambda$ is that it is the marginal value of loosening (or tightening) the constraint
 
+--
+
+In constrained utility maximization, $\lambda$ is the marginal utility of income

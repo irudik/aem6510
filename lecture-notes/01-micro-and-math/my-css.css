@@ -79,7 +79,7 @@ footer p {
 }
 
 .article-style #TOC {
-    font-family: "Lato", sans-serif;
+    font-family: "Lato";
     font-size: 0.8rem;
     text-align: left;
     background: #f2f2f2;
@@ -103,8 +103,7 @@ footer p {
 }
 
 .fake-header-table, td.mid-table-header {
-    font-family: "Lato", sans-serif;
-    font-weight: 700;
+    font-family: "Lato";
 }
 
 .fake-header-table {
@@ -294,12 +293,12 @@ td.mid-table-header {
 }
 
 .remark-slide-content {
-  font-family: "Lato", sans-serif;
+  font-family: "Lato";
   border-top: 70px solid #ffffff;
   color: #000000;
   background-color: #ffffff;
   font-size: 32px;
-  font-weight: 355;
+  font-weight: 400;
   /* line-height: 1.5; */
   /* padding: 1em 2em 1em 2em; */
 }
@@ -390,6 +389,7 @@ td.mid-table-header {
   font-style: italic;
   margin-top: -25px;
 }
+
 .title-slide > h2  {
   margin-top: -25px;
   padding-bottom: -20px;
