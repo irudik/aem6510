@@ -4,15 +4,15 @@
 
 **Class time:** Tues/Thurs 2:45-4:00
 
-**Office hours:** Tues 4:00-5:00
+**Office hours:** Tues 4:00-5:00 Warren 462
 
 **Teaching assistant:** Weiliang Tan
 
-**TA office hours:** Mon 3:00-4:00  (link on Canvas)
+**TA office hours:** Mon 3:00-4:00 Warren 372
 
 **Textbook:** A Course in Environmental Economics by Phaneuf and Requate is required. [Causal Inference: The Mixtape](https://www.scunning.com/mixtape.html) by Cunningham is also required and free. 
 
-**Prerequisites:** MATH 1110 or equivalent. 
+**Prerequisites:** MATH 1110 or equivalent. Previous experience at the intermediate microeconomic level is **highly** recommended.
 
 **Course description:** An introduction to environmental economics. The first half of the class focuses on the core theory, theory of regulation, and theory of welfare analysis. The second half of the course covers empirical topics. We will be learning how to use R for empirical research in environmental economics.
 
@@ -59,10 +59,14 @@ Some sections of the course have readings (available on Canvas if not in the boo
 
 ## Important dates
 
+- Problem set 1: TBD [link here]()
+- Problem set 2: TBD [link here]()
+- Problem set 3: TBD [link here]()
+- Problem set 4: TBD [link here]()
 - Theory prelim: October 14
 - Empirical prelim: November 22-23
 - Final project paper due: December 10
-- Final project presentations: November 3, December 2, December 7
+- Final project presentations: November 30, December 2, December 7
 
 ## Other things
 
@@ -165,7 +169,9 @@ We will be using [RStudio Cloud](https://rstudio.cloud/) for computing.
 
 ### [Nov 16: Climate change and two way fixed effects, integrated assessment](https://raw.githack.com/irudik/aem6510/master/lecture-notes/14-climate/14-climate.html) 
 
-**Reading**: Deschênes, O. and Greenstone, M., 2007. The economic impacts of climate change: evidence from agricultural output and random fluctuations in weather. American Economic Review, 97(1), pp.354-385.
+**Reading**: 
+  - Deschênes, O. and Greenstone, M., 2007. The economic impacts of climate change: evidence from agricultural output and random fluctuations in weather. American Economic Review, 97(1), pp.354-385.
+  - Burke, M., Hsiang, S.M. and Miguel, E., 2015. Global non-linear effect of temperature on economic production. Nature, 527(7577), pp.235-239.
   
 ### [Nov 18: Climate change in space](https://raw.githack.com/irudik/aem6510/master/lecture-notes/14-climate/14-climate.html)
 
@@ -173,10 +179,6 @@ We will be using [RStudio Cloud](https://rstudio.cloud/) for computing.
   - Desmet, K., Kopp, R.E., Kulp, S.A., Nagy, D.K., Oppenheimer, M., Rossi-Hansberg, E. and Strauss, B.H., 2021. Evaluating the Economic Cost of Coastal Flooding. American Economic Journal: Macroeconomics, 13(2), pp.444-486.
   - Nath, I.B., 2020. The Food Problem and the Aggregate Productivity Consequences of Climate Change (No. w27297). National Bureau of Economic Research.
   - Rudik, I., Lyn, G., Tan, W. and Ortiz-Bobea, A., 2021. Heterogeneity and Market Adaptation to Climate Change in Dynamic-Spatial Equilibrium.
-
-**Reading**: 
-  - [Geocomputation with R](https://geocompr.robinlovelace.net/)
-  -  Zou, E., 2021. Unwatched pollution: The effect of intermittent monitoring on air quality. American Economic Review.
 
 ### Nov 22, 23: Empirical prelim
 
