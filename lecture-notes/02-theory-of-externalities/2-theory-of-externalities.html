@@ -31,13 +31,6 @@ exclude: true
 
 ```r
 if (!require("pacman")) install.packages("pacman")
-```
-
-```
-## Loading required package: pacman
-```
-
-```r
 pacman::p_load(
   tidyverse, tidylog, xaringanExtra, Ryacas, rlang
 )
@@ -49,11 +42,42 @@ knitr::opts_hooks$set(fig.callout = function(options) {
 knitr::opts_chunk$set(echo = TRUE, fig.align="center")
   options
 })
+red_pink &lt;- "#e64173"
+blue &lt;- "#3C93DC"
+red &lt;- "#ff0000"
+# A blank theme for ggplot
+theme_empty &lt;- theme_minimal() +
+  theme(
+    legend.position = "none",
+    title = element_text(size = 24),
+    text = element_text(family = "Lato"),
+    axis.text.x = element_text(size = 24), axis.text.y = element_text(size = 24),
+    axis.title.x = element_text(size = 24), axis.title.y = element_text(size = 24),
+    panel.grid.minor.x = element_blank(), panel.grid.major.y = element_blank(),
+    panel.grid.minor.y = element_blank(), panel.grid.major.x = element_blank(),
+    panel.background = element_rect(fill = "#ffffff", colour = NA),
+    plot.background = element_rect(fill = "#ffffff", colour = NA),
+    axis.line = element_line(colour = "black"), axis.ticks = element_line(),
+  )
+theme_blank &lt;- theme_minimal() +
+  theme(
+    legend.position = "none",
+    title = element_text(size = 24),
+    text = element_text(family = "Lato"),
+    axis.text.x = element_blank(), axis.text.y = element_blank(),
+    axis.title.x = element_blank(), axis.title.y = element_blank(),
+    panel.grid.minor.x = element_blank(), panel.grid.major.y = element_blank(),
+    panel.grid.minor.y = element_blank(), panel.grid.major.x = element_blank(),
+    panel.background = element_rect(fill = "#ffffff", colour = NA),
+    plot.background = element_rect(fill = "#ffffff", colour = NA),
+    axis.line = element_blank(), axis.ticks = element_blank(),
+  ) 
 ```
 
-<style>.panelset {
-  --panel-tab-color-active: red;
-}</style>
+
+```
+## Warning in xaringanExtra::style_panelset_tabs(panel_tab_color_active = "red"): The arguments to `syle_panelset()` changed in xaringanExtra 0.1.0. Please refer to the documentation to update your slides.
+```
 
 &lt;style type="text/css"&gt;
 /* custom.css */
@@ -384,9 +408,6 @@ Now let's look at the FOCs
 ---
 
 # Pareto optimality
-<style>.panelset {
-  --panel-tab-color-active: red;
-}</style>
 .panelset[
 
 .panel[.panel-name[Problem]
@@ -415,7 +436,7 @@ Marginal utility equals the shadow price of the good
   
 ]
   
-.panel[.panel-name[Labor Supply FOCs]
+.panel[.panel-name[Labor FOCs]
 
   
 `$$\lambda_x{\partial f \over \partial l_x} 
@@ -440,12 +461,10 @@ The marginal utility cost of emissions equals the marginal product of emissions
 ---
 
 # Pareto optimality
-<style>.panelset {
-  --panel-tab-color-active: red;
-}</style>
+
 .panelset[
   
-.panel[.panel-name[Consumption Efficiency]
+.panel[.panel-name[Consumption Efficent]
   
 The consumption FOCs give us efficiency in consumption: 
 `$$MRS^{xz}_1 \equiv {\partial U_1 \over \partial x_1}\Bigg/{\partial U_1 \over \partial z_1} 
@@ -455,7 +474,7 @@ Efficiency in consumption requires that the marginal rate of substitution (MRS) 
   
 ]
   
-.panel[.panel-name[Exchange Efficiency]
+.panel[.panel-name[Exchange Efficent]
 
 The consumption and labor supply FOCs give us
 $$ MRS^{xz}_i \equiv {\partial U_i \over \partial x_i}\Bigg/{\partial U_i \over \partial z_i} 
@@ -468,11 +487,11 @@ The slope of the indifference curves must equal the slope of the production poss
 ]
   
   
-.panel[.panel-name[Emissions Efficiency]
+.panel[.panel-name[Emissions Efficent]
 
 Substitute in the consumption FOCs to obtain a new expression for emissions efficiency:
 `$$MRS^{Ex}_1 + MRS^{Ex}_2 \equiv -{\partial U_1 \over \partial E}\bigg/{\partial U_1 \over \partial x_1} - {\partial U_2 \over \partial E}\bigg/{\partial U_2 \over \partial x_2} = {\partial f \over \partial E}$$`
-The marginal product of emissions must equal the .hi-red[sum] of the marginal rates of substitution of between `\(x\)` and `\(E\)` across both individuals
+The marginal product of emissions must equal the .hi-pink[sum] of the marginal rates of substitution of between `\(x\)` and `\(E\)` across both individuals
 
   
 ]
@@ -669,7 +688,7 @@ The efficiency condition for emissions:
 
 --
 
-.hi-red[is not met!]
+.hi-pink[is not met!]
 
 --
 
@@ -700,15 +719,12 @@ with first-order conditions:
 
 --
 
-.hi-red[Is there a fee that can satisfy the emissions efficiency condition achieve the Pareto optimal outcome?]
+.hi-pink[Is there a fee that can satisfy the emissions efficiency condition achieve the Pareto optimal outcome?]
 
 
 ---
 
 # Emissions taxation
-<style>.panelset {
-  --panel-tab-color-active: red;
-}</style>
 
 .panelset[
 
