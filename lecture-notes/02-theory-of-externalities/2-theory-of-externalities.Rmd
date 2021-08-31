@@ -396,16 +396,13 @@ Now let's look at the FOCs
 
 ---
 
-# Pareto optimality
-.panelset[
-
-.panel[.panel-name[Problem]
+# Pareto optimality: Problem
 
 $$\max_{x_1,x_2,z_1,z_2,l_x,l_z,E} U_1(x_1,z_1,E) \\+ \lambda_u[U_2(x_2,z_2,E) - \bar{u}_2] \\+ \lambda_x[f(l_x,E) - x_1 - x_2] \\+ \lambda_z[g(l_z) - z_1-z_2] \\+ \lambda_l[l - l_x - l_z]$$
-  
-]
-  
-.panel[.panel-name[Consumption FOCs]
+
+---
+
+# Pareto optimality: Consumption FOCs
   
 $${\partial U_1 \over \partial x_1} 
 = \lambda_x, 
@@ -423,9 +420,9 @@ $$\lambda_u{\partial U_2 \over \partial x_2}
 
 Marginal utility equals the shadow price of the good
   
-]
-  
-.panel[.panel-name[Labor FOCs]
+---
+
+# Pareto optimality: Labor FOCs
 
   
 $$\lambda_x{\partial f \over \partial l_x} 
@@ -434,58 +431,46 @@ $$\lambda_x{\partial f \over \partial l_x}
   
 The marginal product of labor equals the shadow price of labor
   
-]
-  
-.panel[.panel-name[Emissions FOC]
+---
+
+# Pareto optimality: Emissions FOC
 
   
 $$-\left[{\partial U_1 \over \partial E} + \lambda_u{\partial U_2 \over \partial E}\right] 
 = \lambda_x {\partial f \over \partial E}$$
 The marginal utility cost of emissions equals the marginal product of emissions
   
-]
-
-]
 
 ---
 
-# Pareto optimality
+# Consumption efficiency
 
-.panelset[
-  
-.panel[.panel-name[Consumption Efficent]
   
 The consumption FOCs give us efficiency in consumption: 
 $$MRS^{xz}_1 \equiv {\partial U_1 \over \partial x_1}\Bigg/{\partial U_1 \over \partial z_1} 
 = \lambda_x/\lambda_z 
 = {\partial U_2 \over \partial x_2}\Bigg/{\partial U_2 \over \partial z_2} \equiv MRS^{xz}_2$$
 Efficiency in consumption requires that the marginal rate of substitution (MRS) between individuals is equal (i.e. the slopes of their indifference curves are equal)
-  
-]
-  
-.panel[.panel-name[Exchange Efficent]
+
+---
+
+# Exchange efficiency
 
 The consumption and labor supply FOCs give us
-$$ MRS^{xz}_i \equiv {\partial U_i \over \partial x_i}\Bigg/{\partial U_i \over \partial z_i} 
+$$MRS^{xz}_i \equiv {\partial U_i \over \partial x_i}\Bigg/{\partial U_i \over \partial z_i} 
 = \lambda_x/\lambda_z 
 = {\partial g \over \partial l_z}\Bigg/{\partial f \over \partial l_x} \equiv MRT^{xz}$$
 MRSs must equal the marginal rate of transformation (MRT)
   
 The slope of the indifference curves must equal the slope of the production possibility frontier
-  
-]
-  
-  
-.panel[.panel-name[Emissions Efficent]
+
+---
+
+# Emissions efficiency
 
 Substitute in the consumption FOCs to obtain a new expression for emissions efficiency:
 $$MRS^{Ex}_1 + MRS^{Ex}_2 \equiv -{\partial U_1 \over \partial E}\bigg/{\partial U_1 \over \partial x_1} - {\partial U_2 \over \partial E}\bigg/{\partial U_2 \over \partial x_2} = {\partial f \over \partial E}$$
 The marginal product of emissions must equal the .hi-pink[sum] of the marginal rates of substitution of between $x$ and $E$ across both individuals
-
-  
-]
-
-]
 
 ---
 
@@ -713,30 +698,23 @@ $$p_x {\partial f \over \partial l_x} = w, \qquad p_x {\partial f \over \partial
 
 ---
 
-# Emissions taxation
-
-.panelset[
-
-.panel[.panel-name[Conditions]
+# Emissions taxation: Conditions
 
 Recall the firm's FOC is:
 $$p_x {\partial f \over \partial E} = \tau^*$$
 and the emissions efficiency condition is:
 $$-{\partial U_1 \over \partial E}\bigg/{\partial U_1 \over \partial x_1} - {\partial U_2 \over \partial E}\bigg/{\partial U_2 \over \partial x_2} = {\partial f \over \partial E}$$
 
-]
 
-.panel[.panel-name[Solution]
+---
+
+# Emissions taxation: Solution
 
 Notice that if you multiply the right hand side of the emissions efficiency condition by $p_x$, it is equal to the left hand side of the firm FOC
 
 The Pareto optimal tax is thus:
 $$\tau^* = -p_x\left[{\partial U_1 \over \partial E}\bigg/{\partial U_1 \over \partial x_1} + {\partial U_2 \over \partial E}\bigg/{\partial U_2 \over \partial x_2}\right]$$
 This tax can thus make the firm's profit-maximizing condition consistent with Pareto optimality
-
-]
-
-]
 
 ---
 

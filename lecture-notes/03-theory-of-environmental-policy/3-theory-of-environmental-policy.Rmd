@@ -12,8 +12,8 @@ output:
       highlightLines: true
       countIncrementalSlides: false
       ratio: '16:9'
-
-
+editor_options: 
+  chunk_output_type: console
 ---
 exclude: true
 ```{r setup}
@@ -29,6 +29,36 @@ knitr::opts_hooks$set(fig.callout = function(options) {
 knitr::opts_chunk$set(echo = TRUE, fig.align="center")
   options
 })
+red_pink <- "#e64173"
+blue <- "#3C93DC"
+red <- "#ff0000"
+# A blank theme for ggplot
+theme_empty <- theme_minimal() +
+  theme(
+    legend.position = "none",
+    title = element_text(size = 24),
+    text = element_text(family = "Lato"),
+    axis.text.x = element_text(size = 24), axis.text.y = element_text(size = 24),
+    axis.title.x = element_text(size = 24), axis.title.y = element_text(size = 24),
+    panel.grid.minor.x = element_blank(), panel.grid.major.y = element_blank(),
+    panel.grid.minor.y = element_blank(), panel.grid.major.x = element_blank(),
+    panel.background = element_rect(fill = "#ffffff", colour = NA),
+    plot.background = element_rect(fill = "#ffffff", colour = NA),
+    axis.line = element_line(colour = "black"), axis.ticks = element_line(),
+  )
+theme_blank <- theme_minimal() +
+  theme(
+    legend.position = "none",
+    title = element_text(size = 24),
+    text = element_text(family = "Lato"),
+    axis.text.x = element_blank(), axis.text.y = element_blank(),
+    axis.title.x = element_blank(), axis.title.y = element_blank(),
+    panel.grid.minor.x = element_blank(), panel.grid.major.y = element_blank(),
+    panel.grid.minor.y = element_blank(), panel.grid.major.x = element_blank(),
+    panel.background = element_rect(fill = "#ffffff", colour = NA),
+    plot.background = element_rect(fill = "#ffffff", colour = NA),
+    axis.line = element_blank(), axis.ticks = element_blank(),
+  ) 
 ```
 ```{r xaringanExtra, echo = FALSE}
 xaringanExtra::use_xaringan_extra(c("tile_view", "panelset", "webcam"))
@@ -259,19 +289,7 @@ ggplot() +
   annotate("segment", x = intersections$x, xend = intersections$x, y = 0, yend = intersections$y,
            linetype = "dashed", size = 1, color = "black") +
   stat_function(fun = abatement_cost, color = "#638ccc", size = 1.5) +
-  theme_minimal()  +
-  theme(
-    legend.position = "none",
-    title = element_text(size = 24),
-    axis.text.x = element_text(size = 24, color = "black"),
-    axis.text.y = element_text(size = 24, color = "black"),
-    axis.title.x = element_text(size = 24), axis.title.y = element_text(size = 24),
-    panel.grid.minor.x = element_blank(), panel.grid.major.y = element_blank(),
-    panel.grid.minor.y = element_blank(), panel.grid.major.x = element_blank(),
-    panel.background = element_rect(fill = "#eeeeee", colour = NA),
-    plot.background = element_rect(fill = "#eeeeee", colour = NA),
-    axis.line = element_line(colour = "black")
-  ) +
+  theme_empty +
   labs(x = "Emissions",
        y = "Abatement cost",
        title = "The abatement cost function") +
@@ -296,19 +314,7 @@ ggplot() +
   annotate("segment", x = intersections$x, xend = intersections$x, y = 0, yend = intersections$y,
            linetype = "dashed", size = 1, color = "black") +
   stat_function(fun = abatement_cost, color = "#638ccc", size = 1.5) +
-  theme_minimal()  +
-  theme(
-    legend.position = "none",
-    title = element_text(size = 24),
-    axis.text.x = element_text(size = 24, color = "black"),
-    axis.text.y = element_text(size = 24, color = "black"),
-    axis.title.x = element_text(size = 24), axis.title.y = element_text(size = 24),
-    panel.grid.minor.x = element_blank(), panel.grid.major.y = element_blank(),
-    panel.grid.minor.y = element_blank(), panel.grid.major.x = element_blank(),
-    panel.background = element_rect(fill = "#eeeeee", colour = NA),
-    plot.background = element_rect(fill = "#eeeeee", colour = NA),
-    axis.line = element_line(colour = "black")
-  ) +
+  theme_empty +
   labs(x = "Emissions",
        y = "Damages",
        title = "The damage function") +
@@ -349,19 +355,7 @@ ggplot() +
   annotate("text", size = 8, label = "B", x = 1.5, y = 0.5) +
   annotate("text", size = 8, label = "C", x = 1.5, y = 1.75) +
   stat_function(fun = abatement_cost, color = "#638ccc", size = 1.5) +
-  theme_minimal()  +
-  theme(
-    legend.position = "none",
-    title = element_text(size = 24),
-    axis.text.x = element_text(size = 18, color = "black"),
-    axis.text.y = element_text(size = 18, color = "black"),
-    axis.title.x = element_text(size = 24), axis.title.y = element_text(size = 24),
-    panel.grid.minor.x = element_blank(), panel.grid.major.y = element_blank(),
-    panel.grid.minor.y = element_blank(), panel.grid.major.x = element_blank(),
-    panel.background = element_rect(fill = "#eeeeee", colour = NA),
-    plot.background = element_rect(fill = "#eeeeee", colour = NA),
-    axis.line = element_line(colour = "black")
-  ) +
+  theme_empty +
   labs(x = "Emissions",
        y = "Marginal abatement cost",
        title = "The marginal abatement\ncost function") +
@@ -406,19 +400,7 @@ ggplot() +
            linetype = "dashed", size = 1, color = "black") +
   annotate("text", size = 8, label = "F", x = 2, y = 0.25) +
   stat_function(fun = damages, color = "#ca5670", size = 1.5) +
-  theme_minimal()  +
-  theme(
-    legend.position = "none",
-    title = element_text(size = 24),
-    axis.text.x = element_text(size = 18, color = "black"),
-    axis.text.y = element_text(size = 18, color = "black"),
-    axis.title.x = element_text(size = 24), axis.title.y = element_text(size = 24),
-    panel.grid.minor.x = element_blank(), panel.grid.major.y = element_blank(),
-    panel.grid.minor.y = element_blank(), panel.grid.major.x = element_blank(),
-    panel.background = element_rect(fill = "#eeeeee", colour = NA),
-    plot.background = element_rect(fill = "#eeeeee", colour = NA),
-    axis.line = element_line(colour = "black")
-  ) +
+  theme_empty +
   labs(x = "Emissions",
        y = "Marginal damages",
        title = "The marginal damage function") +
@@ -464,18 +446,8 @@ ggplot() +
   annotate("text", size = 8, label = "A", x = 3.25, y = 0.25) +
   stat_function(fun = abatement_cost, color = "#638ccc", size = 1.5) +
   stat_function(fun = damages, color = "#ca5670", size = 1.5) +
-  theme_minimal()  +
-  theme(
-    legend.position = "none",
-    title = element_text(size = 24),
-    axis.text.x = element_text(size = 18, color = "black"),
-    axis.text.y = element_text(size = 18, color = "black", angle = 90, hjust = 0),
-    axis.title.x = element_text(size = 24), axis.title.y = element_text(size = 24),
-    panel.grid.minor.x = element_blank(), panel.grid.major.y = element_blank(),
-    panel.grid.minor.y = element_blank(), panel.grid.major.x = element_blank(),
-    panel.background = element_rect(fill = "#eeeeee", colour = NA),
-    plot.background = element_rect(fill = "#eeeeee", colour = NA),
-    axis.line = element_line(colour = "black")
+  theme_empty +
+  theme(axis.text.y = element_text(angle = 90, hjust = 0)
   ) +
   labs(x = "Emissions",
        y = "",
@@ -579,8 +551,6 @@ It's optimal choice of $E$ (and therefore $\theta$) is given by the first-order 
 --
 
 $$-C'(E) = D'(E)$$
-which matches our condition for efficiency in pollution
-
 Note that this still requires $tr \leq \underbrace{C(0) - [C(E^*) + D(E^*)]}_{\text{total welfare gain}}$
 
 ---
@@ -619,7 +589,7 @@ $$-C'(E) = D'(E)$$
 
 where we again reach the social optimum, as long as:
 $$tr \leq \underbrace{D(\hat{E}) - (D(E^*) + C(E^*))}_{\text{total welfare gain}}$$
-where $\hat{E}$ is the firms initial emission level
+where $\hat{E}$ is the firm's initial emission level
 
 ---
 
@@ -802,19 +772,7 @@ ggplot() +
            linetype = "dashed", size = 1, color = "black") +
   stat_function(fun = abatement_cost_1, color = "#638ccc", size = 1.5) +
   stat_function(fun = abatement_cost_2, color = "#ca5670", size = 1.5) +
-  theme_minimal()  +
-  theme(
-    legend.position = "none",
-    title = element_text(size = 24),
-    axis.text.x = element_text(size = 18, color = "black"),
-    axis.text.y = element_text(size = 18, color = "black"),
-    axis.title.x = element_text(size = 24), axis.title.y = element_text(size = 24),
-    panel.grid.minor.x = element_blank(), panel.grid.major.y = element_blank(),
-    panel.grid.minor.y = element_blank(), panel.grid.major.x = element_blank(),
-    panel.background = element_rect(fill = "#eeeeee", colour = NA),
-    plot.background = element_rect(fill = "#eeeeee", colour = NA),
-    axis.line = element_line(colour = "black")
-  ) +
+  theme_empty +
   labs(x = "Emissions",
        y = "",
        title = "Not efficient if\nMACs aren't equal") +
@@ -870,19 +828,7 @@ ggplot() +
            linetype = "dashed", size = 1, color = "black") +
   stat_function(fun = abatement_cost_1, color = "#638ccc", size = 1.5) +
   stat_function(fun = abatement_cost_2, color = "#ca5670", size = 1.5) +
-  theme_minimal()  +
-  theme(
-    legend.position = "none",
-    title = element_text(size = 24),
-    axis.text.x = element_text(size = 18, color = "black"),
-    axis.text.y = element_text(size = 18, color = "black"),
-    axis.title.x = element_text(size = 24), axis.title.y = element_text(size = 24),
-    panel.grid.minor.x = element_blank(), panel.grid.major.y = element_blank(),
-    panel.grid.minor.y = element_blank(), panel.grid.major.x = element_blank(),
-    panel.background = element_rect(fill = "#eeeeee", colour = NA),
-    plot.background = element_rect(fill = "#eeeeee", colour = NA),
-    axis.line = element_line(colour = "black")
-  ) +
+  theme_empty +
   labs(x = "Emissions",
        y = "",
        title = "Not efficient if\nMACs aren't equal") +
@@ -934,19 +880,7 @@ ggplot() +
            linetype = "dashed", size = 1, color = "black") +
   stat_function(fun = abatement_cost_1, color = "#638ccc", size = 1.5) +
   stat_function(fun = abatement_cost_2, color = "#ca5670", size = 1.5) +
-  theme_minimal()  +
-  theme(
-    legend.position = "none",
-    title = element_text(size = 24),
-    axis.text.x = element_text(size = 18, color = "black"),
-    axis.text.y = element_text(size = 18, color = "black"),
-    axis.title.x = element_text(size = 24), axis.title.y = element_text(size = 24),
-    panel.grid.minor.x = element_blank(), panel.grid.major.y = element_blank(),
-    panel.grid.minor.y = element_blank(), panel.grid.major.x = element_blank(),
-    panel.background = element_rect(fill = "#eeeeee", colour = NA),
-    plot.background = element_rect(fill = "#eeeeee", colour = NA),
-    axis.line = element_line(colour = "black")
-  ) +
+  theme_empty +
   labs(x = "Emissions",
        y = "",
        title = "Gains and losses from\nshifting abatement")  +
@@ -999,19 +933,8 @@ ggplot() +
            linetype = "dashed", size = 1, color = "black") +
   stat_function(fun = abatement_cost_1, color = "#638ccc", size = 1.5) +
   stat_function(fun = abatement_cost_2, color = "#ca5670", size = 1.5) +
-  theme_minimal()  +
-  theme(
-    legend.position = "none",
-    title = element_text(size = 24),
-    axis.text.x = element_text(size = 18, color = "black"),
-    axis.text.y = element_text(size = 18, color = "black", angle = 90, hjust = 1),
-    axis.title.x = element_text(size = 24), axis.title.y = element_text(size = 24),
-    panel.grid.minor.x = element_blank(), panel.grid.major.y = element_blank(),
-    panel.grid.minor.y = element_blank(), panel.grid.major.x = element_blank(),
-    panel.background = element_rect(fill = "#eeeeee", colour = NA),
-    plot.background = element_rect(fill = "#eeeeee", colour = NA),
-    axis.line = element_line(colour = "black")
-  ) +
+  theme_empty +
+  theme(axis.text.y = element_text(size = 18, angle = 90, hjust = 1)) +
   labs(x = "Emissions",
        y = "",
        title = "Gains and losses from\nshifting abatement")  +
@@ -1092,19 +1015,7 @@ ggplot() +
   annotate("text", size = 8, label = "B", x = 2.5, y = 1) +
   annotate("text", size = 8, label = "A", x = 1, y = 1) +
   stat_function(fun = abatement_cost, color = "#638ccc", size = 1.5) +
-  theme_minimal()  +
-  theme(
-    legend.position = "none",
-    title = element_text(size = 24),
-    axis.text.x = element_text(size = 20, color = "black"),
-    axis.text.y = element_text(size = 20, color = "black"),
-    axis.title.x = element_text(size = 24), axis.title.y = element_text(size = 24),
-    panel.grid.minor.x = element_blank(), panel.grid.major.y = element_blank(),
-    panel.grid.minor.y = element_blank(), panel.grid.major.x = element_blank(),
-    panel.background = element_rect(fill = "#eeeeee", colour = NA),
-    plot.background = element_rect(fill = "#eeeeee", colour = NA),
-    axis.line = element_line(colour = "black")
-  ) +
+  theme_empty +
   labs(x = "Emissions",
        y = "",
        title = "Costs under taxation") +
@@ -1220,19 +1131,7 @@ ggplot() +
   annotate("text", size = 8, label = "B", x = 2.5, y = 1) +
   annotate("text", size = 8, label = "A", x = 1, y = 1) +
   stat_function(fun = abatement_cost, color = "#638ccc", size = 1.5) +
-  theme_minimal()  +
-  theme(
-    legend.position = "none",
-    title = element_text(size = 24),
-    axis.text.x = element_text(size = 20, color = "black"),
-    axis.text.y = element_text(size = 20, color = "black"),
-    axis.title.x = element_text(size = 24), axis.title.y = element_text(size = 24),
-    panel.grid.minor.x = element_blank(), panel.grid.major.y = element_blank(),
-    panel.grid.minor.y = element_blank(), panel.grid.major.x = element_blank(),
-    panel.background = element_rect(fill = "#eeeeee", colour = NA),
-    plot.background = element_rect(fill = "#eeeeee", colour = NA),
-    axis.line = element_line(colour = "black")
-  ) +
+  theme_empty +
   labs(x = "Emissions",
        y = "",
        title = "Costs under\nauctioned permits") +
@@ -1375,19 +1274,7 @@ firm1 <- ggplot() +
   annotate("text", size = 8, label = "E", x = 2.4, y = 0.25) +
   annotate("text", size = 8, label = "F", x = 2.6, y = 1.8) +
   stat_function(fun = abatement_cost, color = "#638ccc", size = 1.5) +
-  theme_minimal()  +
-  theme(
-    legend.position = "none",
-    title = element_text(size = 24),
-    axis.text.x = element_text(size = 20, color = "black"),
-    axis.text.y = element_text(size = 20, color = "black"),
-    axis.title.x = element_text(size = 24), axis.title.y = element_text(size = 24),
-    panel.grid.minor.x = element_blank(), panel.grid.major.y = element_blank(),
-    panel.grid.minor.y = element_blank(), panel.grid.major.x = element_blank(),
-    panel.background = element_rect(fill = "#eeeeee", colour = NA),
-    plot.background = element_rect(fill = "#eeeeee", colour = NA),
-    axis.line = element_line(colour = "black")
-  ) +
+  theme_empty +
   labs(x = "Emissions",
        y = "",
        title = "Firm 1") +
@@ -1413,19 +1300,7 @@ firm2 <- ggplot() +
   annotate("text", size = 8, label = "B", x = 1.5, y = 1) +
   annotate("text", size = 8, label = "C", x = 1.5, y = 2.3) +
   stat_function(fun = abatement_cost, color = "#638ccc", size = 1.5) +
-  theme_minimal()  +
-  theme(
-    legend.position = "none",
-    title = element_text(size = 24),
-    axis.text.x = element_text(size = 20, color = "black"),
-    axis.text.y = element_text(size = 20, color = "black"),
-    axis.title.x = element_text(size = 24), axis.title.y = element_text(size = 24),
-    panel.grid.minor.x = element_blank(), panel.grid.major.y = element_blank(),
-    panel.grid.minor.y = element_blank(), panel.grid.major.x = element_blank(),
-    panel.background = element_rect(fill = "#eeeeee", colour = NA),
-    plot.background = element_rect(fill = "#eeeeee", colour = NA),
-    axis.line = element_line(colour = "black")
-  ) +
+  theme_empty +
   labs(x = "Emissions",
        y = "",
        title = "Firm 2") +
@@ -1435,12 +1310,13 @@ firm2 <- ggplot() +
                      breaks = intersections$y[1], labels = expression(sigma))
 
 firm1 + firm2 & theme(
-    plot.background = element_rect(fill = "#eeeeee", colour = NA))
+    plot.background = element_rect(fill = "#ffffff", colour = NA))
 
 ```
 
+.center[
 ![Initial distribution matters for how costs and benefits are spread out](`r knitr::fig_chunk("distribution_permits", "png")`)
-
+]
 Firm 1: Abatement cost (D $\rightarrow$ D+E); Permit revenues (0 $\rightarrow$ E+F)  
 Firm 2: Abatement cost (A+B+C $\rightarrow$ A); Permit costs (0 $\rightarrow$ B)  
 Total cost reductions: .hi-blue[C+F] (A+B+C+D - (A+D+E) = B+C-E = (E+F)+C-E = C+F)
@@ -1502,19 +1378,7 @@ ggplot() +
   annotate("text", size = 8, label = "C", x = 2.7, y = 1.8) +
   annotate("text", size = 8, label = "A", x = 3.25, y = .25) +
   stat_function(fun = abatement_cost, color = "#638ccc", size = 1.5) +
-  theme_minimal()  +
-  theme(
-    legend.position = "none",
-    title = element_text(size = 24),
-    axis.text.x = element_text(size = 20, color = "black"),
-    axis.text.y = element_text(size = 20, color = "black"),
-    axis.title.x = element_text(size = 24), axis.title.y = element_text(size = 24),
-    panel.grid.minor.x = element_blank(), panel.grid.major.y = element_blank(),
-    panel.grid.minor.y = element_blank(), panel.grid.major.x = element_blank(),
-    panel.background = element_rect(fill = "#eeeeee", colour = NA),
-    plot.background = element_rect(fill = "#eeeeee", colour = NA),
-    axis.line = element_line(colour = "black")
-  ) +
+  theme_empty + 
   labs(x = "Emissions",
        y = "",
        title = "Costs and benefits\nunder subsidies") +
@@ -1562,19 +1426,7 @@ ggplot() +
   annotate("text", size = 8, label = "B", x = 3, y = 1.5) +
   annotate("text", size = 8, label = "A", x = 3, y = 0.5) +
   stat_function(fun = abatement_cost, color = "#638ccc", size = 1.5) +
-  theme_minimal()  +
-  theme(
-    legend.position = "none",
-    title = element_text(size = 24),
-    axis.text.x = element_text(size = 20, color = "black"),
-    axis.text.y = element_text(size = 20, color = "black"),
-    axis.title.x = element_text(size = 24), axis.title.y = element_text(size = 24),
-    panel.grid.minor.x = element_blank(), panel.grid.major.y = element_blank(),
-    panel.grid.minor.y = element_blank(), panel.grid.major.x = element_blank(),
-    panel.background = element_rect(fill = "#eeeeee", colour = NA),
-    plot.background = element_rect(fill = "#eeeeee", colour = NA),
-    axis.line = element_line(colour = "black")
-  ) +
+  theme_empty +
   labs(x = "Emissions",
        y = "",
        title = "Costs and benefits\nunder subsidies") +
@@ -1729,19 +1581,7 @@ ggplot() +
   annotate("text", size = 8, label = "Aggregate MAC", x = 4, y = 1.75) +
   annotate("text", size = 8, label = expression(MAC[1]), x = 1, y = 0.5) +
   annotate("text", size = 8, label = expression(MAC[2]), x = 3, y = 0.5) +
-  theme_minimal()  +
-  theme(
-    legend.position = "none",
-    title = element_text(size = 24),
-    axis.text.x = element_text(size = 18),
-    axis.text.y = element_text(size = 18),
-    axis.title.x = element_text(size = 24), axis.title.y = element_text(size = 24),
-    panel.grid.minor.x = element_blank(), panel.grid.major.y = element_blank(),
-    panel.grid.minor.y = element_blank(), panel.grid.major.x = element_blank(),
-    panel.background = element_rect(fill = "#eeeeee", colour = NA),
-    plot.background = element_rect(fill = "#eeeeee", colour = NA),
-    axis.line = element_line(colour = "black")
-  ) +
+  theme_empty +
   labs(x = "Emissions",
        y = "MAC and Aggregate MAC",
        title = "Aggregate MAC is\nthe horizontal sum") +
