@@ -687,7 +687,7 @@ Suppose a firm now has to pay a fee $\tau^*$ per unit of emissions, can we achie
 # Emissions taxation
 
 The firm's problem is now:
-$$\max_{l_x, E} p_xf(l_x, E) - w l_z - \tau^* E$$
+$$\max_{l_x, E} p_xf(l_x, E) - w l_x - \tau^* E$$
 with first-order conditions:
 $$p_x {\partial f \over \partial l_x} = w, \qquad p_x {\partial f \over \partial E} = \tau^*$$
 
