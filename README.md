@@ -84,7 +84,7 @@ Some sections of the course have readings (available on Canvas if not in the boo
 
 **Reading**: None
 
-### [Aug 31: Theory of externalities](https://raw.githack.com/irudik/aem6510/master/lecture-notes/02-theory-of-externalities/2-theory-of-externalities.html) <!-- actually 8,10 -->
+### [Aug 31: Theory of externalities](https://raw.githack.com/irudik/aem6510/master/lecture-notes/02-theory-of-externalities/2-theory-of-externalities.pdf) <!-- actually 8,10 -->
 
 **Reading**: PR Chapter 1
 
