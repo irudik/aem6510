@@ -551,7 +551,7 @@ It's optimal choice of $E$ (and therefore $\theta$) is given by the first-order 
 --
 
 $$-C'(E) = D'(E)$$
-Note that this still requires $tr \leq \underbrace{C(0) - [C(E^*) + D(E^*)]}_{\text{total welfare gain}}$
+Note that this still requires $tr \leq \underbrace{C(\hat{E}) - [C(E^*) + D(E^*)]}_{\text{total welfare gain}}$
 
 ---
 
@@ -739,7 +739,7 @@ And the regulator needs to be able to:
 
 An alternative is to impose a .hi-blue[uniform emission standard] such that $e_j \leq \bar{e}$ for all firms $j$
 
-We could imagine setting $\bar{e} = E^*/J$ where $E^*$ is the socially efficient level of emissions
+We could imagine setting $\bar{e} = E^*/J$ where $E^* = \sum_{j=1}^N e_j^*$ is the socially efficient level of emissions
 
 --
 
@@ -1542,7 +1542,7 @@ What's the last step?
 
 Recall our two MACs are: $MAC_1 = 4-e, MAC_2 = 2-e$
 
-Recognize that firm 2 can't abatement any more than 2 units, so any emission reductions for prices greater than 2 .hi-red[must] come from firm 1
+Recognize that firm 2 can't abate any more than 2 units, so any emission reductions for prices greater than 2 .hi-red[must] come from firm 1
 
 --
 
