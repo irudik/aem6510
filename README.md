@@ -80,15 +80,15 @@ Some sections of the course have readings (available on Canvas if not in the boo
 
 ## Course outline and readings
 
-### [Aug 26: Micro and math recap](https://raw.githack.com/irudik/aem6510/master/lecture-notes/01-micro-and-math/1-micro-math.pdf)
+### [Aug 26: Micro and math recap](https://raw.githack.com/irudik/aem6510/master/lecture-notes/01-micro-and-math/1-micro-math.pdf) <!-- 1 day -->
 
 **Reading**: None
 
-### [Aug 31: Theory of externalities](https://raw.githack.com/irudik/aem6510/master/lecture-notes/02-theory-of-externalities/2-theory-of-externalities.pdf) <!-- actually 8,10 -->
+### [Aug 31: Theory of externalities](https://raw.githack.com/irudik/aem6510/master/lecture-notes/02-theory-of-externalities/2-theory-of-externalities.pdf) <!-- 1.5 days -->
 
 **Reading**: PR Chapter 1
 
-### [Sep 2, 7: Introduction to the theory of environmental policy](https://raw.githack.com/irudik/aem6510/master/lecture-notes/03-theory-of-environmental-policy/3-theory-of-environmental-policy.html) <!-- actually 10, 15, 17 -->
+### [Sep 2, 7: Introduction to the theory of environmental policy](https://raw.githack.com/irudik/aem6510/master/lecture-notes/03-theory-of-environmental-policy/3-theory-of-environmental-policy.pdf) <!-- actually 10, 15, 17 -->
 
 **Reading**: PR Chapter 3
 
