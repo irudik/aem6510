@@ -551,7 +551,7 @@ It's optimal choice of $E$ (and therefore $\theta$) is given by the first-order 
 --
 
 $$-C'(E) = D'(E)$$
-Note that this still requires $tr \leq \underbrace{C(\hat{E}) - [C(E^*) + D(E^*)]}_{\text{total welfare gain}}$
+Note that this still requires $tr \leq \underbrace{C(0) - [C(E^*) + D(E^*)]}_{\text{total welfare gain}}$
 
 ---
 

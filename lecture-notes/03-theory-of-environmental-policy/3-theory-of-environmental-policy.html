@@ -31,6 +31,13 @@ exclude: true
 
 ```r
 if (!require("pacman")) install.packages("pacman")
+```
+
+```
+## Loading required package: pacman
+```
+
+```r
 pacman::p_load(
   tidyverse, tidylog, xaringanExtra, rlang, patchwork
 )
@@ -82,8 +89,8 @@ theme_blank &lt;- theme_minimal() +
 ```
 
 ```
-## Warning in style_panelset_tabs(...): The arguments to `syle_panelset()` changed in xaringanExtra 0.1.0. Please refer
-## to the documentation to update your slides.
+## Warning in style_panelset_tabs(...): The arguments to `syle_panelset()` changed
+## in xaringanExtra 0.1.0. Please refer to the documentation to update your slides.
 ```
 
 ---
@@ -456,7 +463,7 @@ It's optimal choice of `\(E\)` (and therefore `\(\theta\)`) is given by the firs
 --
 
 `$$-C'(E) = D'(E)$$`
-Note that this still requires `\(tr \leq \underbrace{C(\hat{E}) - [C(E^*) + D(E^*)]}_{\text{total welfare gain}}\)`
+Note that this still requires `\(tr \leq \underbrace{C(0) - [C(E^*) + D(E^*)]}_{\text{total welfare gain}}\)`
 
 ---
 
