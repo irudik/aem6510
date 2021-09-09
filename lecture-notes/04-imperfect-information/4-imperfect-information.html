@@ -67,9 +67,10 @@ So we far have assumed perfect information which is unlikely to be true
 
 --
 
-We will continue assuming that firms know their own marginal abatement cost
+We will continue assuming that:
 
-And that regulators observe firm-level emissions
+- Firms know their own marginal abatement cost
+- Regulators observe firm-level emissions
 
 ---
 
@@ -88,6 +89,10 @@ Therefore regulators will have to try to estimate it when designing policy
 --
 
 Estimation will naturally result in some error
+
+--
+
+Does this error matter for policy design?
 
 ---
 
@@ -153,10 +158,15 @@ Does the size of the loss depend on the policy instrument?
 # Damage function uncertainty
 
 Define welfare loss as the difference in total social costs at `\(\tilde{E}\)` versus the efficient level `\(E^*\)`:
+
+--
+
 `\begin{align}
 WL &amp;= [D(\tilde{E}) + C(\tilde{E})] - [D(E^*) + C(E^*)] \notag\\
   &amp;= [D(\tilde{E}) -D(E^*)] + [ C(\tilde{E}) - C(E^*)]
 \end{align}`
+
+--
 
 This is equivalent to the area under the marginal damage and abatement cost curves between the two emission levels:
 `$$WL = \int_{E^*}^{\tilde{E}}D'(E) dE - \int_{E^*}^{\tilde{E}} - C'(E)dE$$`
@@ -393,8 +403,9 @@ What we will do next is try to understand the characteristics of the MAC and MD 
 
 
 
-![Initial distribution matters for how costs and benefits are spread out](4-imperfect-information_files/figure-html/prices_vs_quantities_nodwl-1.png)
-
+.center[
+![steep vs flat md curves](4-imperfect-information_files/figure-html/prices_vs_quantities_nodwl-1.png)
+]
 Solve for the permit and tax DWLs in both of these scenarios where the only difference is the steepness of the marginal damage curve
 
 
@@ -404,19 +415,22 @@ Solve for the permit and tax DWLs in both of these scenarios where the only diff
 
 
 
+.center[
 ![Initial distribution matters for how costs and benefits are spread out](4-imperfect-information_files/figure-html/prices_vs_quantities-1.png)
+]
 
-The only difference between the two plots is how steep the MD is, and subsequently the policy that the regulator sets
+The only difference between the two plots is how steep the MD is relative to the MAC, and subsequently the policy that the regulator sets
 
-Welfare loss for taxes is given by `\(A\)`, welfare loss for permits is given by `\(B\)`
+Welfare loss for taxes is given by .red[A], welfare loss for permits is given by .blue[B]
 
 
 ---
 
 # Steep versus flat MD
 
-
+.center[
 ![Initial distribution matters for how costs and benefits are spread out](4-imperfect-information_files/figure-html/prices_vs_quantities-1.png)
+]
 
 Permits do better with steep MD, taxes do better with flat MD!
 
@@ -431,18 +445,42 @@ With a steep (and known) MD:
 --
 
 - The difference between `\(E^*\)` and `\(\tilde{E}\)` is restricted: steeper curves are more inelastic, errors in estimating MAC lead to small errors in `\(\tilde{E}-E^*\)`
+
+--
+
 - The difference between `\(E^*\)` and `\(E(\tau)\)` can be very large: errors in estimating the MAC lead to bigger errors in `\(\tau(\tilde{E}) - \tau(E^*)\)` because MD is very steep
 
+--
+
+Steep MD: optimal .hi[quantity] of emissions is inelastic with respect to the true MAC
+
+--
+
+Think about the corner case of a vertical MD
 
 ---
 
 # Steep versus flat MD
 
 With a flat (and known) MD:
+
 --
 
 - The difference between `\(E^*\)` and `\(\tilde{E}\)` is can be very large: flatter curves are more elastic, errors in estimating MAC lead to large errors in `\(\tilde{E}-E^*\)`
+
+--
+
 - The difference between `\(E^*\)` and `\(E(\tau)\)` is restricted: errors in estimating the MAC lead to smaller errors in `\(\tau(\tilde{E}) - \tau(E^*)\)` because MD is very flat
+
+
+--
+
+Flat MD: optimal .hi[price] of emissions is inelastic with respect to the true MAC
+
+--
+
+Think about the corner case of constant MD
+
 
 &lt;!-- --- --&gt;
 
