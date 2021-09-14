@@ -92,23 +92,23 @@ Some sections of the course have readings (available on Canvas if not in the boo
 
 **Reading**: PR Chapter 3
 
-### [Sep 7: Imperfect information](https://raw.githack.com/irudik/aem6510/master/lecture-notes/04-imperfect-information/4-imperfect-information.html)  <!-- actually 17 -->
+### [Sep 7: Imperfect information](https://raw.githack.com/irudik/aem6510/master/lecture-notes/04-imperfect-information/4-imperfect-information.pdf)  <!-- actually 17 -->
 
 **Reading**: PR Chapter 4.1.1-4.1.2
 
-### [Sep 9, 14, 16: Competitive output markets](https://raw.githack.com/irudik/aem6510/master/lecture-notes/05-competitive-output-markets/5-competitive-output-markets.html)  <!-- actually half way through 29 -->
+### [Sep 9, 14, 16: Competitive output markets](https://raw.githack.com/irudik/aem6510/master/lecture-notes/05-competitive-output-markets/5-competitive-output-markets.pdf)  <!-- actually half way through 29 -->
 
 **Reading**: PR Chapter 5
 
-### [Sep 21: Non-competitive output markets](https://raw.githack.com/irudik/aem6510/master/lecture-notes/06-non-competitive-output-markets/6-non-competitive-output-markets.html)  <!-- actually oct 1 -->
+### [Sep 21: Non-competitive output markets](https://raw.githack.com/irudik/aem6510/master/lecture-notes/06-non-competitive-output-markets/6-non-competitive-output-markets.pdf)  <!-- actually oct 1 -->
 
 **Reading**: PR Chapter 6
 
-### [Sep 23: Pre-existing distortions](https://raw.githack.com/irudik/aem6510/master/lecture-notes/07-pre-existing-distortions/7-pre-existing-distortions.html)  <!-- either oct 6 or 8 -->
+### [Sep 23: Pre-existing distortions](https://raw.githack.com/irudik/aem6510/master/lecture-notes/07-pre-existing-distortions/7-pre-existing-distortions.pdf)  <!-- either oct 6 or 8 -->
 
 **Reading**: PR Chapter 7
 
-### [Sep 28, 30: Theory of applied welfare economics](https://raw.githack.com/irudik/aem6510/master/lecture-notes/08-theory-of-welfare/08-theory-of-welfare.html) 
+### [Sep 28, 30: Theory of applied welfare economics](https://raw.githack.com/irudik/aem6510/master/lecture-notes/08-theory-of-welfare/08-theory-of-welfare.pdf) 
 
 **Reading**: PR Chapter 14
 
@@ -116,13 +116,13 @@ Some sections of the course have readings (available on Canvas if not in the boo
 
 **Reading**: PR Chapter 15
 
-### [Oct 7: Hedonics](https://raw.githack.com/irudik/aem6510/master/lecture-notes/09-hedonics/09-hedonics.html) 
+### [Oct 7: Hedonics](https://raw.githack.com/irudik/aem6510/master/lecture-notes/09-hedonics/09-hedonics.pdf) 
 
 **Reading**: PR Chapter 18
 
 ### Oct 14: Theory Prelim
 
-### [Oct 19: R and the tidyverse, causal inference](https://raw.githack.com/irudik/aem6510/master/lecture-notes/10-r-and-the-tidyverse/10-r-and-the-tidyverse.html) 
+### [Oct 19: R and the tidyverse, causal inference](https://raw.githack.com/irudik/aem6510/master/lecture-notes/10-r-and-the-tidyverse/10-r-and-the-tidyverse.pdf) 
 
 **Reading**: 
   - Mixtape: properties of regression, directed acyclical graphs, potential outcomes causal model
@@ -130,13 +130,13 @@ Some sections of the course have readings (available on Canvas if not in the boo
 
 We will be using [RStudio Cloud](https://rstudio.cloud/) for computing.
 
-### [Oct 21: R and the tidyverse, causal inference, randomized control trials](https://raw.githack.com/irudik/aem6510/master/lecture-notes/10-r-and-the-tidyverse/10-r-and-the-tidyverse.html)  <!-- finish oct 29 -->
+### [Oct 21: R and the tidyverse, causal inference, randomized control trials](https://raw.githack.com/irudik/aem6510/master/lecture-notes/10-r-and-the-tidyverse/10-r-and-the-tidyverse.pdf)  <!-- finish oct 29 -->
 
 **Reading**: 
   - Mixtape: properties of regression, directed acyclical graphs, potential outcomes causal model
   - Guiteras, Raymond, James Levinsohn, and Ahmed Mushfiq Mobarak. "Encouraging sanitation investment in the developing world: a cluster-randomized trial." Science 348, no. 6237 (2015): 903-906.
   
-### [Oct 26: Deforestation, remote sensing/simple features, regression discontinuity](https://raw.githack.com/irudik/aem6510/master/lecture-notes/11-rdd/11-rdd.html)  <!-- finish nov 3 -->
+### [Oct 26: Deforestation, remote sensing/simple features, regression discontinuity](https://raw.githack.com/irudik/aem6510/master/lecture-notes/11-rdd/11-rdd.pdf)  <!-- finish nov 3 -->
 
 **Reading**: 
   - Mixtape: regression discontinuity
@@ -147,33 +147,33 @@ We will be using [RStudio Cloud](https://rstudio.cloud/) for computing.
 
 **Reading**: Muehlenbachs, Lucija, Elisheba Spiller, and Christopher Timmins. "The housing market impacts of shale gas development." American Economic Review 105, no. 12 (2015): 3633-59.
 
-### [Nov 2, 4: Environmental health, difference-in-differences, and event studies](https://raw.githack.com/irudik/aem6510/master/lecture-notes/13-health-dd/13-health-dd.html) <!-- finish nov 10 -->
+### [Nov 2, 4: Environmental health, difference-in-differences, and event studies](https://raw.githack.com/irudik/aem6510/master/lecture-notes/13-health-dd/13-health-dd.pdf) <!-- finish nov 10 -->
 
 **Reading**: 
   - Mixtape: difference-in-differences
   - [Hollingsworth A. and Rudik, I., 2021. The effect of leaded gasoline on elderly mortality: Evidence from regulatory exemptions. American Economic Journal: Economic Policy.](https://osf.io/preprints/socarxiv/rdy6g/)
   - Graff Zivin, J. and Neidell, M., 2013. Environment, health, and human capital. Journal of Economic Literature, 51(3), pp.689-730.
 
-### [Nov 9: Climate change science](https://raw.githack.com/irudik/aem6510/master/lecture-notes/14-climate/14-climate.html) 
+### [Nov 9: Climate change science](https://raw.githack.com/irudik/aem6510/master/lecture-notes/14-climate/14-climate.pdf) 
 
 **Reading**: 
   - Hsiang, S. and Robert Kopp. 2018. An economist's guide to climate change science, Journal of Economic Perspectives, Vol. 32, No. 4, pp. 3-32.
   - Hsiang, S., 2016. Climate econometrics. Annual Review of Resource Economics, 8, pp.43-75.
   - Good resource on doing climate-econ research: [ClimateEstimate.net](https://climateestimate.net/getting-started)
 
-### [Nov 11: Climate change and the Ricardian model](https://raw.githack.com/irudik/aem6510/master/lecture-notes/14-climate/14-climate.html)
+### [Nov 11: Climate change and the Ricardian model](https://raw.githack.com/irudik/aem6510/master/lecture-notes/14-climate/14-climate.pdf)
 
 **Reading**: 
   - Mendelsohn, R., Nordhaus, W.D. and Shaw, D., 1994. The impact of global warming on agriculture: a Ricardian analysis. The American economic review, pp.753-771.
   - Ortiz‐Bobea, A., 2020. The role of nonfarm influences in Ricardian estimates of climate change impacts on US agriculture. American Journal of Agricultural Economics, 102(3), pp.934-959.
 
-### [Nov 16: Climate change and two way fixed effects, integrated assessment](https://raw.githack.com/irudik/aem6510/master/lecture-notes/14-climate/14-climate.html) 
+### [Nov 16: Climate change and two way fixed effects, integrated assessment](https://raw.githack.com/irudik/aem6510/master/lecture-notes/14-climate/14-climate.pdf) 
 
 **Reading**: 
   - Deschênes, O. and Greenstone, M., 2007. The economic impacts of climate change: evidence from agricultural output and random fluctuations in weather. American Economic Review, 97(1), pp.354-385.
   - Burke, M., Hsiang, S.M. and Miguel, E., 2015. Global non-linear effect of temperature on economic production. Nature, 527(7577), pp.235-239.
   
-### [Nov 18: Climate change in space](https://raw.githack.com/irudik/aem6510/master/lecture-notes/14-climate/14-climate.html)
+### [Nov 18: Climate change in space](https://raw.githack.com/irudik/aem6510/master/lecture-notes/14-climate/14-climate.pdf)
 
 **Reading**: 
   - Desmet, K., Kopp, R.E., Kulp, S.A., Nagy, D.K., Oppenheimer, M., Rossi-Hansberg, E. and Strauss, B.H., 2021. Evaluating the Economic Cost of Coastal Flooding. American Economic Journal: Macroeconomics, 13(2), pp.444-486.
