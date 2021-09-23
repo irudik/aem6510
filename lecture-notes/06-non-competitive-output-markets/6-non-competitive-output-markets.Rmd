@@ -281,8 +281,8 @@ ggplot() +
     axis.title.x = element_text(size = 24), axis.title.y = element_text(size = 24),
     panel.grid.minor.x = element_blank(), panel.grid.major.y = element_blank(),
     panel.grid.minor.y = element_blank(), panel.grid.major.x = element_blank(),
-    panel.background = element_rect(fill = "#eeeeee", colour = NA),
-    plot.background = element_rect(fill = "#eeeeee", colour = NA),
+    panel.background = element_rect(fill = "#ffffff", colour = NA),
+    plot.background = element_rect(fill = "#ffffff", colour = NA),
     axis.line = element_line(colour = "black")
   ) +
   labs(x = "Quantity",
@@ -368,8 +368,8 @@ ggplot() +
     axis.title.x = element_text(size = 24), axis.title.y = element_text(size = 24),
     panel.grid.minor.x = element_blank(), panel.grid.major.y = element_blank(),
     panel.grid.minor.y = element_blank(), panel.grid.major.x = element_blank(),
-    panel.background = element_rect(fill = "#eeeeee", colour = NA),
-    plot.background = element_rect(fill = "#eeeeee", colour = NA),
+    panel.background = element_rect(fill = "#ffffff", colour = NA),
+    plot.background = element_rect(fill = "#ffffff", colour = NA),
     axis.line = element_line(colour = "black")
   ) +
   labs(x = "Quantity",
@@ -509,6 +509,7 @@ We assumed $-C_{XE}> 0$, strict convexity ensures $C_{EE}, C_{XX}C_{EE}-C^2_{XE}
 --
 
 The numerator is positive, the denominator is negative: output declines as the tax increases
+
 ---
 
 # Environmental policy under monopoly
