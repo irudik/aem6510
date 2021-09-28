@@ -8,7 +8,7 @@
 
 **Teaching assistant:** Weiliang Tan
 
-**TA office hours:** Mon 3:00-4:00 Warren 372
+**TA office hours:** Mon 4:00-5:00 Warren B02
 
 **Textbook:** A Course in Environmental Economics by Phaneuf and Requate is required. [Causal Inference: The Mixtape](https://www.scunning.com/mixtape.html) by Cunningham is also required and free. 
 
