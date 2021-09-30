@@ -42,14 +42,14 @@ xaringanExtra::style_panelset(panel_tab_color_active = "red")
 
 # Roadmap
 
-So far we have looked at single sector (partial equilibrium) economies with:
+So far we have looked at single sector economies with:
 - Pollution distortions
 - Competitive markets
 - Market power distortions
 
 --
 
-Now we will learn about multi-sector (general equilibrium) economies
+Now we will learn about multi-sector economies
 
 How does environmental policy spillover into these other sectors?
 
@@ -88,6 +88,9 @@ Define the following:
 
 Utility is then:
 $$U(X,Z,N,E)  = U(X,N) + Z - D(E)$$
+
+--
+
 where $U_{XX}, U_{NN} < 0$ and  $U_{XX}U_{NN}-U_{NX}^2 > 0$ and the person is endowed with some amount of time $T$ to allocate between work and leisure
 
 ---
@@ -109,6 +112,8 @@ Household income is then: $w\cdot(T-N)$
 We can now write the households utility maximization problem as:
 $$\max_{X,N,Z} U(X,Z,N,E)  = U(X,N) + Z - D(E) \\
 \text{ subject to: } \,\,\,\, w\cdot(T-N) = Z + pX$$
+
+Substitute the budget constraint in for $Z$ to get an unconstrained problem
 
 ---
 
@@ -208,7 +213,7 @@ We will also assume:
 
 Now lets solve for the social optimum:
 $$\max_{X} W = \underbrace{U(X,N) + w\cdot(T-N) - pX - D(X)}_{\text{Consumer Utility}} + \underbrace{pX - C(X)}_{\text{Firm profit}}$$
-To focus on interactions with non-regulated industries, we assume the regulator cannot determine leisure
+To focus on interactions with non-regulated industries, we assume the regulator cannot determine the allocation of leisure and labor
 
 --
 
@@ -302,7 +307,7 @@ ggplot() +
            linetype = "dashed", size = 1, color = "black") +
   annotate("segment", x = intersections_1$x[2], xend = intersections_1$x[3],
            y = intersections_1$y[2], yend = intersections_1$y[3],
-           linetype = "dashed", size = 1, color = "black") +
+           linetype = "solid", size = 1, color = "firebrick") +
   annotate("segment", x = intersections_1$x[4], xend = intersections_1$x[5],
            y = intersections_1$y[4], yend = intersections_1$y[5],
            linetype = "dashed", size = 1, color = "black") +
@@ -345,6 +350,8 @@ ggplot() +
 
 .pull-right[
 
+$w$ is the perfectly elastic demand for labor
+
 $N^c$ is how much leisure the consumer chooses, since $(1-m)w < w$ this is too much and induces DWL equal to $b$
 
 This is called .hi-red[excess burden]
@@ -373,7 +380,7 @@ ggplot() +
            linetype = "dashed", size = 1, color = "black") +
   annotate("segment", x = intersections_1$x[2], xend = intersections_1$x[3],
            y = intersections_1$y[2], yend = intersections_1$y[3],
-           linetype = "dashed", size = 1, color = "black") +
+           linetype = "solid", size = 1, color = "firebrick") +
   annotate("segment", x = intersections_1$x[4], xend = intersections_1$x[5],
            y = intersections_1$y[4], yend = intersections_1$y[5],
            linetype = "dashed", size = 1, color = "black") +
@@ -490,7 +497,7 @@ which depends on $N$
 
 --
 
-First we need to learn how the endogenous variables $N$ and $p$ vary with $\bar{X}$?
+First we need to learn how the endogenous variables $N$ and $p$ vary with $\bar{X}$
 
 --
 
@@ -505,7 +512,9 @@ Let's do the comparative statics: differentiate the consumer's two FOCs with res
   u_{NX}\frac{\partial \bar{X}}{\partial \bar{X}} + u_{NN} \frac{\partial N}{\partial \bar{X}} &= 0 \tag{N FOC}
 \end{align}
 
-$\frac{\partial \bar{X}}{\partial \bar{X}} = 1$ so two equations, two unknowns; solving the system gives us:
+$\frac{\partial \bar{X}}{\partial \bar{X}} = 1$ so two equations, two unknowns; 
+--
+solving the system gives us:
 \begin{align}
  \frac{\partial N}{\partial \bar{X}} &= - {u_{XN} \over u_{NN}} \\
  \frac{\partial p}{\partial \bar{X}} &= {u_{XX}u_{NN} - u_{NN}^2 \over u_{NN}} < 0
@@ -517,7 +526,7 @@ $\text{sign}(\frac{\partial N}{\partial \bar{X}})$ depends on whether $X$ and $N
 # Second-best non-revenue raising environmental policy
 
 Now that we know how the firm responds, return to the regulator's problem:
-$$\max_{X,m} u(X,N) + Z - D(X) + pX - C(X) \text{ s.t. } wm(T-N) = G$$
+$$\max_{X,m} u(X,N) + Z - D(X) + pX - C(X) \quad \text{ s.t. } \quad wm(T-N) = G$$
 
 --
 
@@ -535,7 +544,7 @@ Income is unchanged for a given level of $N$ under the tax and transfer
 # Second-best non-revenue raising environmental policy
 
 The regulator's problem is then:
-$$\max_{X,m} u(X,N) +  w(T-N) - D(X) - C(X) + \lambda[ wm(T-N)  -G]$$
+$$\max_{X,m} u(X,N) +  \underbrace{w(T-N)}_{Z} - D(X) - C(X) + \lambda[ wm(T-N)  -G]$$
 $\lambda$ is called the .hi[marginal welfare cost of public funds]
 
 --
@@ -756,7 +765,7 @@ This is $-{\partial N \over \partial p}\frac{\partial p}{\partial X}$
 
 This reduces tax revenue by $e+c$ which is just 
 $$(N^* - N^c)(w - (1-m)w) \\
-= (N^* - N^c)mw$$
+= \underbrace{(N^* - N^c)}_{\approx -{\partial N \over \partial p}\frac{\partial p}{\partial X}}mw$$
 
 ]
 
@@ -764,8 +773,10 @@ $$(N^* - N^c)(w - (1-m)w) \\
 
 # Second-best non-revenue raising environmental policy
 
-The marginal welfare cost of recouping the lost tax revenue by raising $m$ is $\lambda$ giving us a total welfare cost of:
+The marginal welfare cost of recovering the lost tax revenue (in order to maintain gov't revenues $G$) by raising $m$ is $\lambda$ giving us a total welfare cost of:
 $$\lambda (N^* - N^c)mw$$
+
+--
 
 But $(N^* - N^c)mw$ is also the excess burden: its a .hi-red[direct welfare loss!]
 
