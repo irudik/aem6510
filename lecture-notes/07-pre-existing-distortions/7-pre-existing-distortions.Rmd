@@ -614,11 +614,11 @@ The change in tax revenue from higher $m$
 
 --
 
-First term is the increase in marginal revenue
+First term is the increase in revenue on the inframarginal hours worked
 
 --
 
-Second term is the decrease in inframarginal revenue
+Second term is the decrease in revenue from reduced hours worked
   - Similar to $P(X) + P'(X)X$ for a monopolist
 
 ---
@@ -725,6 +725,8 @@ Its more socially costly to reduce $X$ because the household increases $N$ in re
 
 This .hi-red[exacerbates] the distortion caused by the income tax: the household was already undersupplying labor because of the income tax
 
+Now the household undersupplies labor to an even greater extent
+
 
 ---
 
@@ -746,7 +748,7 @@ Its less socially costly to reduce $X$ because the household decreases $N$ in re
 
 --
 
-This .hi-blue[alleviates] the distortion caused by the income tax: the household was undersupplying labor because of the income tax, but now reducing $X$ increases labor supply
+This .hi-blue[alleviates] the distortion caused by the income tax: the household was undersupplying labor because of the income tax, but now reducing $X$ increases labor supply, shrinking the labor market DWL
 
 
 ---
@@ -778,7 +780,7 @@ $$\lambda (N^* - N^c)mw$$
 
 --
 
-But $(N^* - N^c)mw$ is also the excess burden: its a .hi-red[direct welfare loss!]
+But $(N^* - N^c)mw$ also happens to be the increase in excess burden: its a .hi-red[direct welfare loss] in addition to the loss from having to increase $m$
 
 So the total welfare loss is:
 $$(1+\lambda) (N^* - N^c)mw$$
@@ -791,14 +793,14 @@ The discrete version of MIE!
 
 If there's a government revenue constraint, and it can only be met with labor taxes then:
 
-1. The marginal social cost of reducing $X$ is higher than the first-best if $X$ and $N$ are substitutes and lower if they are complements
+1. The marginal social cost of reducing $X$ is higher if $X$ and $N$ are substitutes and lower if they are complements
 --
 
 2. The optimal level of pollution is larger if they are substitutes, lower if they are complements
 --
 
 3. The absolute value of the difference in first and second-best pollution levels is larger if:
-  - Labor supply is more elastic
+  <!-- - Labor supply is more elastic -->
   - Demand for $X$ is more inelastic
   - Elasticity of substitution between $N$ and $X$ is greater
   
@@ -833,86 +835,86 @@ MIE bigger if $|\eta_{XN}|$ is bigger (higher elasticity of substitution)
 
 MIE bigger if $|\varepsilon_X|$ is smaller (more inelastic demand for $X$)
 
---
+<!-- -- -->
 
-Still need to show labor supply part
+<!-- Still need to show labor supply part -->
 
----
+<!-- --- -->
 
-# Second-best non-revenue raising environmental policy
+<!-- # Second-best non-revenue raising environmental policy -->
 
-Define the elasticity of labor supply .hi[at the after-tax wage] as:
-$$\varepsilon_{L} = - {\partial N \over \partial w}{(1-m)w \over L}$$
+<!-- Define the elasticity of labor supply .hi[at the after-tax wage] as: -->
+<!-- $$\varepsilon_{L} = - {\partial N \over \partial w}{(1-m)w \over L}$$ -->
 
---
+<!-- -- -->
 
-And recognize that:
-$${\partial N(p,(1-m)w) \over \partial m} = -w {\partial N(p,w) \over \partial w}$$
+<!-- And recognize that: -->
+<!-- $${\partial N(p,(1-m)w) \over \partial m} = -w {\partial N(p,w) \over \partial w}$$ -->
 
---
+<!-- -- -->
 
-Combining these two gives:
-$${\partial N \over \partial m}m = \varepsilon_{L} L m / (1-m)$$
+<!-- Combining these two gives: -->
+<!-- $${\partial N \over \partial m}m = \varepsilon_{L} L m / (1-m)$$ -->
 
----
+<!-- --- -->
 
-# Second-best non-revenue raising environmental policy
+<!-- # Second-best non-revenue raising environmental policy -->
 
-Finally, put:
-$${\partial N \over \partial m}m = \varepsilon_{L} L m / (1-m)$$
-in
-$$\lambda = \frac{w  m {\partial N \over \partial m}}{w(T-N)-wm{\partial N \over \partial m}}$$
+<!-- Finally, put: -->
+<!-- $${\partial N \over \partial m}m = \varepsilon_{L} L m / (1-m)$$ -->
+<!-- in -->
+<!-- $$\lambda = \frac{w  m {\partial N \over \partial m}}{w(T-N)-wm{\partial N \over \partial m}}$$ -->
 
-To get the welfare cost of public funds in terms of fundamental economic parameters
+<!-- To get the welfare cost of public funds in terms of fundamental economic parameters -->
 
----
+<!-- --- -->
 
-# Second-best non-revenue raising environmental policy
+<!-- # Second-best non-revenue raising environmental policy -->
 
-We get:
-$$\lambda = \frac{\varepsilon_{L}m/(1-m)}{1- \varepsilon_{L}m/(1-m)}$$
+<!-- We get: -->
+<!-- $$\lambda = \frac{\varepsilon_{L}m/(1-m)}{1- \varepsilon_{L}m/(1-m)}$$ -->
 
-Side note: 
-If labor is more elastic $\varepsilon_{L}$ is larger, the numerator is larger, denominator is smaller $\rightarrow$ MIE is bigger
+<!-- Side note:  -->
+<!-- If labor is more elastic $\varepsilon_{L}$ is larger, the numerator is larger, denominator is smaller $\rightarrow$ MIE is bigger -->
 
-If labor supply is perfectly inelastic (vertical), there is no welfare cost of public funds!
+<!-- If labor supply is perfectly inelastic (vertical), there is no welfare cost of public funds! -->
 
----
+<!-- --- -->
 
-# Second-best non-revenue raising environmental policy
+<!-- # Second-best non-revenue raising environmental policy -->
 
-Finally use:
-$$\lambda = \frac{\varepsilon_{L}m/(1-m)}{1- \varepsilon_{L}m/(1-m)}$$
-to get:
-$${m\over(1-m)} = {\lambda \over (1 + \lambda)\varepsilon_L}$$
+<!-- Finally use: -->
+<!-- $$\lambda = \frac{\varepsilon_{L}m/(1-m)}{1- \varepsilon_{L}m/(1-m)}$$ -->
+<!-- to get: -->
+<!-- $${m\over(1-m)} = {\lambda \over (1 + \lambda)\varepsilon_L}$$ -->
 
-and then substitute into our MIE expression:
-$$MIE = (1+\lambda)\left[- {\eta_{XN} \over \varepsilon_X}\right]p {m \over 1-m}$$
+<!-- and then substitute into our MIE expression: -->
+<!-- $$MIE = (1+\lambda)\left[- {\eta_{XN} \over \varepsilon_X}\right]p {m \over 1-m}$$ -->
 
----
+<!-- --- -->
 
-# Second-best non-revenue raising environmental policy
+<!-- # Second-best non-revenue raising environmental policy -->
 
-Finally we will get:
-$$MIE = \lambda {-\eta_{XN} \over \varepsilon_X} {p \over \varepsilon_L}$$
+<!-- Finally we will get: -->
+<!-- $$MIE = \lambda {-\eta_{XN} \over \varepsilon_X} {p \over \varepsilon_L}$$ -->
 
-and substitute in our expression for $\lambda$:
-$$\lambda = \frac{\varepsilon_{L}m/(1-m)}{1- \varepsilon_{L}m/(1-m)}$$
+<!-- and substitute in our expression for $\lambda$: -->
+<!-- $$\lambda = \frac{\varepsilon_{L}m/(1-m)}{1- \varepsilon_{L}m/(1-m)}$$ -->
 
-To get:
-$$MIE = p\frac{m/(1-m)}{1- \varepsilon_{L}m/(1-m)} {-\eta_{XN} \over \varepsilon_X}$$
+<!-- To get: -->
+<!-- $$MIE = p\frac{m/(1-m)}{1- \varepsilon_{L}m/(1-m)} {-\eta_{XN} \over \varepsilon_X}$$ -->
 
----
+<!-- --- -->
 
-# Second-best non-revenue raising environmental policy
+<!-- # Second-best non-revenue raising environmental policy -->
 
-$$MIE = p\frac{m/(1-m)}{1- \varepsilon_{L}m/(1-m)} {-\eta_{XN} \over \varepsilon_X}$$
+<!-- $$MIE = p\frac{m/(1-m)}{1- \varepsilon_{L}m/(1-m)} {-\eta_{XN} \over \varepsilon_X}$$ -->
 
-MIE is bigger and the absolute value of the difference in first and second-best pollution levels is larger if:
+<!-- MIE is bigger and the absolute value of the difference in first and second-best pollution levels is larger if: -->
 
-1. Labor supply is more elastic: $\varepsilon_{L}$ bigger
-2. Demand for $X$ is more inelastic: $\varepsilon_X$ smaller
-3. Elasticity of substitution between $N$ and $X$ is greater: $\eta_{XN}$ bigger in magnitude
+<!-- <!-- 1. Labor supply is more elastic: $\varepsilon_{L}$ bigger --> -->
+<!-- 2. Demand for $X$ is more inelastic: $\varepsilon_X$ smaller -->
+<!-- 3. Elasticity of substitution between $N$ and $X$ is greater: $\eta_{XN}$ bigger in magnitude -->
 
 ---
 
@@ -932,7 +934,7 @@ The regulator's problem is thus to select two tax rates: $m$ and $\tau$
 
 --
 
-For simplicity we still assume tax revenues are returned lump sum to households
+For simplicity we still assume all tax revenues are returned lump sum to households
 
 ---
 
@@ -982,6 +984,8 @@ $$u_{XN} {\partial X \over \partial \tau} + u_{NN}{\partial N \over \partial \ta
 
 $$C''(X) {\partial X \over \partial \tau} = {\partial p \over \partial \tau} - 1 \tag{Firm X FOC}$$
 
+Substitute and solve...
+
 ---
 
 # Revenue raising environmental policy
@@ -1008,7 +1012,7 @@ Now that we know how the endogenous variables change we can solve for the regula
 
 The regulator wants to maximize social welfare given the budget constraint:
 \begin{gather}
-\max_{m,\tau} U(X,N) + Z - D(X) + pX - C(X) - \tau X \\
+\max_{m,\tau} \underbrace{U(X,N) + Z - D(X)}_{\text{household utility}} + \underbrace{pX - C(X) - \tau X}_{\text{firm profit}} \\
 \text{ subject to:      } wm(T-N)+\tau X=G
 \end{gather}
 
@@ -1023,12 +1027,12 @@ And look at the $\tau$ FOC
 
 # Revenue raising environmental policy
 
-$$\left[u_X - C'(X) - D'(X)\right]{\partial X \over \partial \tau} + \lambda\left[X + \tau {\partial X \over \partial \tau} \right] + \left[\underbrace{u_N - w}_{-wm} - \lambda wm\right]{\partial N \over \partial \tau} = 0$$
+$$\left[u_X - C'(X) - D'(X)\right]{\partial X \over \partial \tau} + \left[\underbrace{u_N - w}_{-wm} - \lambda wm\right]{\partial N \over \partial \tau} + \lambda\left[X + \tau {\partial X \over \partial \tau} \right]  = 0$$
 
 --
 
 Just follow the same steps as we did with the non-revenue raising case and divide by ${\partial X \over \partial \tau}$ to get:
-$$\underbrace{u_x - C'(X)}_{MAC} + \underbrace{(1+\lambda)wm\left[-{\partial N \over \partial \tau}\bigg/{\partial X \over \partial \tau}\right]}_{MIE} + \underbrace{\lambda\left[\tau + x/{\partial X \over \partial \tau}\right]}_{MRE} = D'(X)$$
+$$\underbrace{u_x - C'(X)}_{MAC} + \underbrace{(1+\lambda)wm\left[-{\partial N \over \partial \tau}\bigg/{\partial X \over \partial \tau}\right]}_{MIE} + \underbrace{\lambda\left[\tau + X/{\partial X \over \partial \tau}\right]}_{MRE} = D'(X)$$
 
 --
 
@@ -1038,7 +1042,7 @@ Since the tax is per unit, we have that: ${\partial N \over \partial \tau}\big/{
 
 # Revenue raising environmental policy
 
-What is this new term, $MRE$: $\lambda\left[\tau + x/{\partial X \over \partial \tau}\right]$?
+What is this new term, $MRE$: $\lambda\left[\tau + X/{\partial X \over \partial \tau}\right]$?
 
 --
 
@@ -1058,7 +1062,7 @@ What's the sign of $MRE$?
 
 # Revenue raising environmental policy
 
-$MRE(\tau=0)$: $\lambda\left[x/{\partial X \over \partial \tau}\right]$
+$MRE(\tau=0)$: $\quad \lambda\left[x/{\partial X \over \partial \tau}\right]$
 
 --
 
@@ -1078,7 +1082,7 @@ $\rightarrow$ this reduces welfare losses in the labor market
 
 --
 
-$\rightarrow$ this reduction in welfare losses reduces the marginal social cost of reducing $X$
+$\rightarrow$ this reduction in welfare losses reduces the marginal social cost of reducing $X$, decreasing the optimal level of X
 
 ---
 
@@ -1093,10 +1097,11 @@ No
 --
 
 We can get some intuition by making a substitution:
-$$MRE \equiv \lambda\left[\tau + x\Big/{\partial X \over \partial \tau}\right] = \lambda\left[\tau + x\Big/{\partial X \over \partial p}\right] = \lambda\left[\tau + p/\varepsilon_{X}\right]$$
-where $\varepsilon_{X} < 0$ is the elasticity of demand for the dirty good
 
 --
+
+$$MRE \equiv \lambda\left[\tau + X\Big/{\partial X \over \partial \tau}\right] = \lambda\left[\tau + X\Big/{\partial X \over \partial p}\right] = \lambda\left[\tau + p/\varepsilon_{X}\right] = \lambda\tau\left[1 + 1/\varepsilon^\tau_{X}\right]$$
+where $\varepsilon_{X} < 0$ is the elasticity of demand for the dirty good and $\varepsilon^\tau_{X}$ is the elasticity with respect to the tax
 
 ---
 
@@ -1108,7 +1113,7 @@ MRE is negative and increases total abatement if:
 
 --
 
-- demand for dirty good is sufficiently inelastic
+- demand for dirty good is sufficiently inelastic $(\varepsilon_{X}$ small)
 
 --
 
@@ -1171,7 +1176,7 @@ ggplot() +
   ) +
   labs(x = "X",
        y = "$",
-       title = "Inelastic demand -> MRE < 0") +
+       title = "Inelastic demand means MRE < 0") +
   scale_x_continuous(expand = c(0, 0), limits = c(0, 5),
                      breaks = c(7/2, intersections_1$x[4], 8/3, 3), labels = expression(X^C, 0, X^{RE}, X^"*")) +
   scale_y_continuous(expand = c(0, 0), limits = c(-2, 5),
@@ -1367,7 +1372,7 @@ ggplot() +
   ) +
   labs(x = "X",
        y = "$",
-       title = "Inelastic demand -> MRE < 0") +
+       title = "Inelastic demand means MRE < 0") +
   scale_x_continuous(expand = c(0, 0), limits = c(0, 5),
                      breaks = c(4, 7/2, 3, 2), labels = expression(X^C, X^{IE}, X^{GE}, X^"*")) +
   scale_y_continuous(expand = c(0, 0), limits = c(0, 5),
