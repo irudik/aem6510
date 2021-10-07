@@ -131,7 +131,7 @@ Let's start with a generalization of our consumer model
 Utility is $U(x,z,q)$
 --
 
-- $x$ is a vector of private goods
+- $x$ is a vector of private goods $x \equiv \{x_1,\dots,x_J\}$
 --
 
 - $z$ is the numeraire with price = $1
@@ -158,9 +158,9 @@ $q$ can be a bunch of stuff, here we assume it's a good $(U_q > 0)$:
 ---
 
 # The general model
-
+ 
 The consumer maximizes utility given some .hi[fixed] level of $q$, vector of market prices $p = \{p_1,...,p_J\}$, and income $y$:
-$$\max_{z,x_1,\dots,x_J} U(x,z,q) + \lambda[y - z - \sum_{i=1}^J p_i x_i]$$
+$$\max_{z,x_1,\dots,x_J} U(x_1,\dots,x_J,z,q) + \lambda[y - z - \sum_{i=1}^J p_i x_i]$$
 
 --
 
@@ -198,18 +198,18 @@ Note that $\lambda$ can be interpreted as the marginal utility of income
 
 # The general model
 
-We can also represent the consumer's behavior by the dual expenditure minimization problem:<sup>1</sup>
+We can also represent the consumer's behavior by the .hi-red[dual] expenditure minimization problem:<sup>1</sup>
 
 .footnote[
-<sup>1</sup>In economics, by *dual* we mean expenditure min and utility max solutions are the same.
+<sup>1</sup>In economics, by .hi-red[dual] we mean expenditure min and utility max solutions are the same
 ]
 
-$$\min_{x,z} p\cdot x + z + \mu[\bar{u} - U(x,z,q)]$$
+$$\min_{x_1,\dots,x_J,z} \sum_{i=1}^J p_i x_i + z + \mu[\bar{u} - U(x_1,\dots,x_J,z,q)]$$
 where $\bar{u}$ is a reference level of utility
 
 --
 
-We are minimizing costs subject to keeping utility constant at some arbitrary level
+We are minimizing costs subject to keeping utility constant at some level
 
 --
 
@@ -295,7 +295,7 @@ What does this result show us?
 
 --
 
-- The difference between compensated $(h)$ and ordinary $(x)$ demand is an .hi-blue[income gradient]
+- The difference between compensated $(h)$ and ordinary $(x)$ demand is an .hi-blue[income gradient] ${\partial x_j \over \partial y} \times x_j$
   - If there's no income effect ${\partial x_j \over \partial y}$, then they are equivalent
 
 ---
@@ -450,6 +450,9 @@ Once we have CV or EV we have defensible measures for a consumer's value of an e
 # Two additional formulations
 
 Before we continue, let's write down two additional expressions for CV and EV that will help us operationalize our theory:
+
+--
+
 \begin{align}
   CV &= E(p^0,u^0,q) - E(p^1,u^0,q) \\
     &= y - E(p^1, u^0,q)
@@ -460,7 +463,7 @@ Before we continue, let's write down two additional expressions for CV and EV th
     &= E(p^0,u^1,q) - y
 \end{align}
 
-Where the second set of equalities come from the duality of the two problems: $E(\cdot)$ gives the expenditure needs to achieve income $y$ in the utility maximization problem
+Where the second set of equalities come from the duality of the two problems: $E(\cdot)$ gives the expenditure (income) needed to achieve utility $(u^0,u^1)$ given prices $(p^0,p^1)$ in the utility maximization problem
 
 ---
 
@@ -479,7 +482,12 @@ where $p_{-j}$ is the set of prices without $p_j$
 
 Remember that we found:
 $$h_j(p,u,q) = {\partial E(p,u,q) \over \partial p_j}, \,\,\,\, j=1,\dots,J$$
+
+--
+
 using this we can re-write our CV and EV expressions as integrals
+
+--
 
 \begin{align}
   CV = E(p^0,u^0,q) - E(p^1,u^0,q) =  \int_{p^1_j}^{p^0_j} h_j(p_j, p_{-j},u^0,q)dp_j  \\
@@ -583,8 +591,8 @@ ggplot() +
     axis.title.x = element_text(size = 16, color = "#000000"), axis.title.y = element_text(size = 16, color = "#000000"),
     panel.grid.minor.x = element_blank(), panel.grid.major.y = element_blank(),
     panel.grid.minor.y = element_blank(), panel.grid.major.x = element_blank(),
-    panel.background = element_rect(fill = "#eeeeee",colour = NA),
-    plot.background = element_rect(fill = "#eeeeee",colour = NA),
+    panel.background = element_rect(fill = "#ffffff",colour = NA),
+    plot.background = element_rect(fill = "#ffffff",colour = NA),
     axis.line = element_line(colour = "black")
   ) +
   scale_x_continuous(expand = c(0, 0), limits = c(0, 15),
@@ -709,8 +717,8 @@ ggplot() +
     axis.title.x = element_text(size = 16, color = "#000000"), axis.title.y = element_text(size = 16, color = "#000000"),
     panel.grid.minor.x = element_blank(), panel.grid.major.y = element_blank(),
     panel.grid.minor.y = element_blank(), panel.grid.major.x = element_blank(),
-    panel.background = element_rect(fill = "#eeeeee",colour = NA),
-    plot.background = element_rect(fill = "#eeeeee",colour = NA),
+    panel.background = element_rect(fill = "#ffffff",colour = NA),
+    plot.background = element_rect(fill = "#ffffff",colour = NA),
     axis.line = element_line(colour = "black")
   ) +
   labs(x = "X",
@@ -859,8 +867,8 @@ ggplot() +
     axis.title.x = element_text(size = 16, color = "#000000"), axis.title.y = element_text(size = 16, color = "#000000"),
     panel.grid.minor.x = element_blank(), panel.grid.major.y = element_blank(),
     panel.grid.minor.y = element_blank(), panel.grid.major.x = element_blank(),
-    panel.background = element_rect(fill = "#eeeeee",colour = NA),
-    plot.background = element_rect(fill = "#eeeeee",colour = NA),
+    panel.background = element_rect(fill = "#ffffff",colour = NA),
+    plot.background = element_rect(fill = "#ffffff",colour = NA),
     axis.line = element_line(colour = "black")
   ) +
   labs(x = "X",
@@ -934,8 +942,8 @@ ggplot() +
     axis.title.x = element_text(size = 16, color = "#000000"), axis.title.y = element_text(size = 16, color = "#000000"),
     panel.grid.minor.x = element_blank(), panel.grid.major.y = element_blank(),
     panel.grid.minor.y = element_blank(), panel.grid.major.x = element_blank(),
-    panel.background = element_rect(fill = "#eeeeee",colour = NA),
-    plot.background = element_rect(fill = "#eeeeee",colour = NA),
+    panel.background = element_rect(fill = "#ffffff",colour = NA),
+    plot.background = element_rect(fill = "#ffffff",colour = NA),
     axis.line = element_line(colour = "black")
   ) +
   labs(x = "X",
@@ -1035,8 +1043,8 @@ ggplot() +
     axis.title.x = element_text(size = 16, color = "#000000"), axis.title.y = element_text(size = 16, color = "#000000"),
     panel.grid.minor.x = element_blank(), panel.grid.major.y = element_blank(),
     panel.grid.minor.y = element_blank(), panel.grid.major.x = element_blank(),
-    panel.background = element_rect(fill = "#eeeeee",colour = NA),
-    plot.background = element_rect(fill = "#eeeeee",colour = NA),
+    panel.background = element_rect(fill = "#ffffff",colour = NA),
+    plot.background = element_rect(fill = "#ffffff",colour = NA),
     axis.line = element_line(colour = "black")
   ) +
   labs(x = "X",
@@ -1401,8 +1409,8 @@ ggplot() +
     axis.title.x = element_text(size = 16, color = "#000000"), axis.title.y = element_text(size = 16, color = "#000000"),
     panel.grid.minor.x = element_blank(), panel.grid.major.y = element_blank(),
     panel.grid.minor.y = element_blank(), panel.grid.major.x = element_blank(),
-    panel.background = element_rect(fill = "#eeeeee",colour = NA),
-    plot.background = element_rect(fill = "#eeeeee",colour = NA),
+    panel.background = element_rect(fill = "#ffffff",colour = NA),
+    plot.background = element_rect(fill = "#ffffff",colour = NA),
     axis.line = element_line(colour = "black")
   ) +
   scale_x_continuous(expand = c(0, 0), limits = c(0, 15),
@@ -1551,8 +1559,8 @@ ggplot() +
     axis.title.x = element_text(size = 16, color = "#000000"), axis.title.y = element_text(size = 16, color = "#000000"),
     panel.grid.minor.x = element_blank(), panel.grid.major.y = element_blank(),
     panel.grid.minor.y = element_blank(), panel.grid.major.x = element_blank(),
-    panel.background = element_rect(fill = "#eeeeee",colour = NA),
-    plot.background = element_rect(fill = "#eeeeee",colour = NA),
+    panel.background = element_rect(fill = "#ffffff",colour = NA),
+    plot.background = element_rect(fill = "#ffffff",colour = NA),
     axis.line = element_line(colour = "black")
   ) +
   scale_x_continuous(expand = c(0, 0), limits = c(0, 15),
@@ -1658,8 +1666,8 @@ ggplot() +
     axis.title.x = element_text(size = 16, color = "#000000"), axis.title.y = element_text(size = 16, color = "#000000"),
     panel.grid.minor.x = element_blank(), panel.grid.major.y = element_blank(),
     panel.grid.minor.y = element_blank(), panel.grid.major.x = element_blank(),
-    panel.background = element_rect(fill = "#eeeeee",colour = NA),
-    plot.background = element_rect(fill = "#eeeeee",colour = NA),
+    panel.background = element_rect(fill = "#ffffff",colour = NA),
+    plot.background = element_rect(fill = "#ffffff",colour = NA),
     axis.line = element_line(colour = "black")
   ) +
   labs(x = "q",

@@ -31,13 +31,6 @@ exclude: true
 
 ```r
 if (!require("pacman")) install.packages("pacman")
-```
-
-```
-## Loading required package: pacman
-```
-
-```r
 pacman::p_load(
   tidyverse, tidylog, xaringanExtra, rlang, patchwork
 )
@@ -59,8 +52,7 @@ knitr::opts_chunk$set(echo = TRUE, fig.align="center")
 ```
 
 ```
-## Warning in style_panelset_tabs(...): The arguments to `syle_panelset()` changed
-## in xaringanExtra 0.1.0. Please refer to the documentation to update your slides.
+## Warning in style_panelset_tabs(...): The arguments to `syle_panelset()` changed in xaringanExtra 0.1.0. Please refer to the documentation to update your slides.
 ```
 
 ---
@@ -156,7 +148,7 @@ Let's start with a generalization of our consumer model
 Utility is `\(U(x,z,q)\)`
 --
 
-- `\(x\)` is a vector of private goods
+- `\(x\)` is a vector of private goods `\(x \equiv \{x_1,\dots,x_J\}\)`
 --
 
 - `\(z\)` is the numeraire with price = $1
@@ -183,9 +175,9 @@ Utility is `\(U(x,z,q)\)`
 ---
 
 # The general model
-
+ 
 The consumer maximizes utility given some .hi[fixed] level of `\(q\)`, vector of market prices `\(p = \{p_1,...,p_J\}\)`, and income `\(y\)`:
-`$$\max_{z,x_1,\dots,x_J} U(x,z,q) + \lambda[y - z - \sum_{i=1}^J p_i x_i]$$`
+`$$\max_{z,x_1,\dots,x_J} U(x_1,\dots,x_J,z,q) + \lambda[y - z - \sum_{i=1}^J p_i x_i]$$`
 
 --
 
@@ -223,18 +215,18 @@ Note that `\(\lambda\)` can be interpreted as the marginal utility of income
 
 # The general model
 
-We can also represent the consumer's behavior by the dual expenditure minimization problem:&lt;sup&gt;1&lt;/sup&gt;
+We can also represent the consumer's behavior by the .hi-red[dual] expenditure minimization problem:&lt;sup&gt;1&lt;/sup&gt;
 
 .footnote[
-&lt;sup&gt;1&lt;/sup&gt;In economics, by *dual* we mean expenditure min and utility max solutions are the same.
+&lt;sup&gt;1&lt;/sup&gt;In economics, by .hi-red[dual] we mean expenditure min and utility max solutions are the same
 ]
 
-`$$\min_{x,z} p\cdot x + z + \mu[\bar{u} - U(x,z,q)]$$`
+`$$\min_{x_1,\dots,x_J,z} \sum_{i=1}^J p_i x_i + z + \mu[\bar{u} - U(x_1,\dots,x_J,z,q)]$$`
 where `\(\bar{u}\)` is a reference level of utility
 
 --
 
-We are minimizing costs subject to keeping utility constant at some arbitrary level
+We are minimizing costs subject to keeping utility constant at some level
 
 --
 
@@ -320,7 +312,7 @@ What does this result show us?
 
 --
 
-- The difference between compensated `\((h)\)` and ordinary `\((x)\)` demand is an .hi-blue[income gradient]
+- The difference between compensated `\((h)\)` and ordinary `\((x)\)` demand is an .hi-blue[income gradient] `\({\partial x_j \over \partial y} \times x_j\)`
   - If there's no income effect `\({\partial x_j \over \partial y}\)`, then they are equivalent
 
 ---
@@ -475,6 +467,9 @@ Once we have CV or EV we have defensible measures for a consumer's value of an e
 # Two additional formulations
 
 Before we continue, let's write down two additional expressions for CV and EV that will help us operationalize our theory:
+
+--
+
 `\begin{align}
   CV &amp;= E(p^0,u^0,q) - E(p^1,u^0,q) \\
     &amp;= y - E(p^1, u^0,q)
@@ -485,7 +480,7 @@ Before we continue, let's write down two additional expressions for CV and EV th
     &amp;= E(p^0,u^1,q) - y
 \end{align}`
 
-Where the second set of equalities come from the duality of the two problems: `\(E(\cdot)\)` gives the expenditure needs to achieve income `\(y\)` in the utility maximization problem
+Where the second set of equalities come from the duality of the two problems: `\(E(\cdot)\)` gives the expenditure (income) needed to achieve utility `\((u^0,u^1)\)` given prices `\((p^0,p^1)\)` in the utility maximization problem
 
 ---
 
@@ -504,7 +499,12 @@ where `\(p_{-j}\)` is the set of prices without `\(p_j\)`
 
 Remember that we found:
 `$$h_j(p,u,q) = {\partial E(p,u,q) \over \partial p_j}, \,\,\,\, j=1,\dots,J$$`
+
+--
+
 using this we can re-write our CV and EV expressions as integrals
+
+--
 
 `\begin{align}
   CV = E(p^0,u^0,q) - E(p^1,u^0,q) =  \int_{p^1_j}^{p^0_j} h_j(p_j, p_{-j},u^0,q)dp_j  \\

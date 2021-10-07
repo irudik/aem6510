@@ -1310,14 +1310,25 @@ Let's look at this pathway in more detail
 
 Again, assume $C'(X) = c$, this gives us that:
 \begin{align}
-  MIE =& \lambda\left(- {\eta_{XN} \over \varepsilon_X} \right){p \over \varepsilon_L} \\
-  MRE =& \lambda\left({p \over \varepsilon_X} + \tau \right)
+  MIE = \lambda\left(- {\eta_{XN} \over \varepsilon_X} \right){p \over \varepsilon_L} \qquad MRE = \lambda\left({p \over \varepsilon_X} + \tau \right)
 \end{align}
+
+where
+
+$$\eta_{XN} = \overbrace{\frac{\partial X}{\partial w}\frac{(1-m)w}{X}}^{\text{cross-price elasticity}} \qquad \varepsilon_L = \overbrace{-\frac{\partial N}{\partial w} \frac{(1-m)w}{L}}^{\text{labor supply elasticity}} = \frac{\partial L}{\partial w} \frac{(1-m)w}{L}$$
+
+---
+
+# Double dividend
+
+Suppose N and X are *average substitutes* which means the negative cross-price elasticity is equal to the the labor supply elasticity $-\eta_{XN} = \varepsilon_L$
+
+This is true if a 1% wage increase gives a $\eta_{XN}$% $= \varepsilon_L$% spending increase
 
 --
 
-Suppose N and X are *average substitutes* which means $\eta_{XN} = \varepsilon_L$, then:
-$$MIE = \lambda\left(- {p\over \varepsilon_X} \right) < \lambda\left({p \over \varepsilon_X} + \tau \right) = MRE$$
+Then:
+$$MIE = \lambda\left({p\over \varepsilon_X} \right) < \lambda\left({p \over \varepsilon_X} + \tau \right) = MRE$$
 
 $\Rightarrow$ we shouldn't expect a strong double dividend
 
