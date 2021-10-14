@@ -1321,16 +1321,16 @@ $$\eta_{XN} = \overbrace{\frac{\partial X}{\partial w}\frac{(1-m)w}{X}}^{\text{c
 
 # Double dividend
 
-Suppose N and X are *average substitutes* which means the negative cross-price elasticity is equal to the the labor supply elasticity $-\eta_{XN} = \varepsilon_L$
+Suppose N and X are *average substitutes* which means the negative cross-price elasticity is equal to the the labor supply elasticity $\eta_{XN} = \varepsilon_L$
 
 This is true if a 1% wage increase gives a $\eta_{XN}$% $= \varepsilon_L$% spending increase
 
 --
 
 Then:
-$$MIE = \lambda\left({p\over \varepsilon_X} \right) < \lambda\left({p \over \varepsilon_X} + \tau \right) = MRE$$
+$$MIE = \lambda\left(-{p\over \varepsilon_X} \right) < \lambda\left({p \over \varepsilon_X} + \tau \right) = MRE$$
 
-$\Rightarrow$ we shouldn't expect a strong double dividend
+$\Rightarrow$ we shouldn't expect a strong double dividend because MIE + MRE = $\lambda \tau > 0$
 
 
 

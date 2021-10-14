@@ -1,7 +1,7 @@
 # Makes pdf slides for all lectures
 oldwd <- getwd()
 setwd("~/Desktop/git/aem6510/lecture-notes/")
-lapply(list.files(pattern = "*.html", recursive = T)[8], 
+lapply(list.files(pattern = "*.html", recursive = T)[7], 
        function(file) {
          xaringan::decktape(
            file, 
