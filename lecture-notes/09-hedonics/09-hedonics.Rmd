@@ -347,7 +347,7 @@ Now we have everything we need to derive a marginal WTP function for $q$
 $$U(x,q,y -b(x,q,y,s,\bar{u}) ;s) = \bar{u}$$
 
 Differentiate with respect to $q$ to get:
-$${\partial U \over \partial q} + {\partial U \over \partial z} {\partial b \over \partial q} = 0$$
+$${\partial U \over \partial q} - {\partial U \over \partial z} {\partial b \over \partial q} = 0$$
 
 --
 
@@ -437,7 +437,7 @@ The red line is the hedonic price function
 
 The blue lines are a single household's bid functions at different reference utility levels where $u_1 > u_0 > u_2$
 
-Higher utility $\rightarrow$ lower bids because same level of $q$ can be achieved with higher $z$
+Lower bids imply higher utility because same level of $q$ can be achieved with higher $z$
 
 ]
 
