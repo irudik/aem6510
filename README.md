@@ -186,7 +186,7 @@ We will be using [RStudio Cloud](https://rstudio.cloud/) for computing.
 
 ### Nov 30: Final project presentations
 
-### Dec 2: Final project presentations
+### Dec 2: Dr. Ewa Zawojska Guest Lecture: Stated Preferences
 
 ### Dec 7: Final project presentations
 

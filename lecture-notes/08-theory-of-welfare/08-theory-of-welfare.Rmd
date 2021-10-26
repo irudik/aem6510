@@ -1300,7 +1300,7 @@ $$V(p,y,q^1) = V(p,y+CV,q^0)$$
 
 CV is the WTP to have the environmental improvement $q^0 \rightarrow q^1$
 
-EV is the WTA to forgo the environmental improvement $q^0 \rightarrow q^1$
+EV is the WTA to forgo the environmental improvement $q^1 \rightarrow q^0$
 
 ---
 

@@ -347,7 +347,7 @@ Now we have everything we need to derive a marginal WTP function for $q$
 $$U(x,q,y -b(x,q,y,s,\bar{u}) ;s) = \bar{u}$$
 
 Differentiate with respect to $q$ to get:
-$${\partial U \over \partial q} + {\partial U \over \partial z} {\partial b \over \partial q} = 0$$
+$${\partial U \over \partial q} - {\partial U \over \partial z} {\partial b \over \partial q} = 0$$
 
 --
 
@@ -419,8 +419,8 @@ ggplot() +
     axis.title.x = element_text(size = 16, color = "#000000"), axis.title.y = element_text(size = 16, color = "#000000"),
     panel.grid.minor.x = element_blank(), panel.grid.major.y = element_blank(),
     panel.grid.minor.y = element_blank(), panel.grid.major.x = element_blank(),
-    panel.background = element_rect(fill = "#ffffff",colour = NA),
-    plot.background = element_rect(fill = "#ffffff",colour = NA),
+    panel.background = element_rect(fill = "#eeeeee",colour = NA),
+    plot.background = element_rect(fill = "#eeeeee",colour = NA),
     axis.line = element_line(colour = "black")
   ) +
   scale_x_continuous(expand = c(0, 0), limits = c(0, 4), breaks = c(2.75), labels = expression(q[0])) +
@@ -437,7 +437,7 @@ The red line is the hedonic price function
 
 The blue lines are a single household's bid functions at different reference utility levels where $u_1 > u_0 > u_2$
 
-Higher utility $\rightarrow$ lower bids because same level of $q$ can be achieved with higher $z$
+Lower bids imply higher utility because same level of $q$ can be achieved with higher $z$
 
 ]
 
@@ -491,8 +491,8 @@ ggplot() +
     axis.title.x = element_text(size = 16, color = "#000000"), axis.title.y = element_text(size = 16, color = "#000000"),
     panel.grid.minor.x = element_blank(), panel.grid.major.y = element_blank(),
     panel.grid.minor.y = element_blank(), panel.grid.major.x = element_blank(),
-    panel.background = element_rect(fill = "#ffffff",colour = NA),
-    plot.background = element_rect(fill = "#ffffff",colour = NA),
+    panel.background = element_rect(fill = "#eeeeee",colour = NA),
+    plot.background = element_rect(fill = "#eeeeee",colour = NA),
     axis.line = element_line(colour = "black")
   ) +
   scale_x_continuous(expand = c(0, 0), limits = c(0, 4), breaks = c(0.5, 1.3), labels = expression(q[1], q[0])) +
@@ -540,4 +540,5 @@ $${\partial P(x,q_0) \over \partial q} = \pi^q(x,q_0,s,u^0)$$
 
 ![bid function is tangent to hedonic price function](`r knitr::fig_chunk("bid_functions_2", "png")`)
 
+>>>>>>> 3ad52f245ee6caca852d1a145a1ebea34eecb728
 ]
