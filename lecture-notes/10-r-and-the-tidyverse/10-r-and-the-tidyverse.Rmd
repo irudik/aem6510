@@ -89,28 +89,15 @@ Let's get everything going...
 
 ---
 
-# Getting started: new project from github 
+# Getting started: new RStudio project 
 
 ![](files/project.png)
-
----
-
-# Getting started: new project from github 
-
-![](files/github_url.png)
-
 
 ---
 
 # Getting started: wait for deployment
 
 ![](files/deploying.png)
-
----
-
-# Click on class-code in bottom-right
-
-![](files/workspace.png)
 
 ---
 
@@ -124,23 +111,6 @@ Let's get everything going...
 
 ```{r, echo = FALSE, fig.align = "center"}
 knitr::include_graphics("files/open_project.png")
-```
-
-
----
-
-# Check package status (not required)
-
-```{r, echo = FALSE, out.width = "80%", fig.align = "center"}
-knitr::include_graphics("files/package_status.png")
-```
-
----
-
-# Install packages (then press 'y')
-
-```{r, echo = FALSE, out.width = "60%", fig.align = "center"}
-knitr::include_graphics("files/install_packages.png")
 ```
 
 ---
@@ -205,19 +175,6 @@ This is kind of like an `any` command in other languages
 
 ---
 
-# Logical operators
-
-Turns out there's no %notin%, but we can make one using `Negate`
-
---
-
-```{r}
-`%notin%` <- Negate(`%in%`) ## The backticks (`) help to specify functions.
-4 %notin% 5:10
-```
-
----
-
 # Logical operators 
 
 To evaluate whether two expressions are equal, we need to use .hi-red[two] equal signs
@@ -241,8 +198,6 @@ In R, we can use either `=` or `<-` to handle assignment.<sup>1</sup>
 
 --
 
-`<-` is normally read aloud as "gets"
-
 You can think of it as a (left-facing) arrow saying .hi[assign in this direction]
 
 ---
@@ -254,19 +209,11 @@ a <- 10 + 5
 a
 ```
 
---
-
-An arrow can point in the other direction too (i.e. `->`), this is used less frequently though
-```{r}
-10 + 5 -> a
-a
-```
-
 ---
 
 # Assignment
 
-You can also use `=` for assignment, but the object must be on the left
+You can also use `=` for assignment
 
 ```{r}
 b = 10 + 10 
@@ -283,7 +230,7 @@ Most R folks prefer `<-` for assignment
 
 --
 
-`=` has a specific role for evaluation *within* functions, we don't want to mix them up
+`=` has a specific role for evaluation *within* functions too
 
 --
 
@@ -317,13 +264,6 @@ vignette("dplyr")
 --
 
 Vignettes are a very easy way to learn how and when to use a package
-
----
-
-# Object-oriented programming
-
-In R:
-> "Everything is an object and everything has a name."
 
 ---
 
@@ -449,130 +389,6 @@ df2
 
 ---
 
-# Reserved words
-
-R has a bunch of key/reserved words that serve specific functions
-
-See [here](http://stat.ethz.ch/R-manual/R-devel/library/base/html/Reserved.html) for a full list, including (but not limited to):
-
-```R
-if
-else 
-while # looping
-function 
-for # looping
-TRUE 
-FALSE 
-NULL # null/undefined
-Inf # infinity
-NaN # Not a number
-NA # Not available / missing
-```
-
----
-
-# Semi-reserved words
-
-There are other words that are sort of reserved, in that they have a particular meaning
-
-The most important one is `c()` which binds and concatenates objects together
-
-```{r}
-my_vector <- c(1, 2, 5)
-my_vector
-```
-
-Other ones are `pi`, `e`, etc
-
----
-
-# Namespace conflicts
-
-Try loading up `dplyr` in RStudio
-```{r, warning = T, tidy = T}
-library(dplyr)
-```
-
-What warning gets reported?
-
---
-
-The warning *masked from 'package:X'* is about a .hi-red[namespace conflict]
-
---
-
-`dplyr` and the `stats` package (which gets loaded automatically when you start R) have functions named `filter` and `lag`
-
----
-
-# Namespace conflicts 
-
-Whenever a namespace conflict arises, the most recently loaded package will gain preference
-
---
-
-The `filter()` function now refers specifically to the `dplyr` variant
-
---
-
-But what if we want the `stats` variant?
-
---
-
-1. Temporarily use `stats::filter()`
-2. Permanently assign `filter <- stats::filter`
-
----
-
-# Solving namespace conflicts
-
-Use `package::function()`
-
---
-
-Explicitly call a conflicted function from a package using the `package::function()` syntax:
-```{r}
-stats::filter(1:10, rep(1, 2))
-```
-
----
-
-# Solving namespace conflicts
-
-We can also use `::` for more than just conflicted cases.
-
---
-
-It can clarify where a function or dataset comes from and make the code clearer:
-```r
-dplyr::starwars ## Print the starwars data frame from the dplyr package
-scales::comma(c(1000, 1000000)) ## Use the comma function, which comes from the scales package
-```
-
---
-
-The `::` syntax also means that we can call functions without loading package first. E.g. As long as `dplyr` is installed on our system, then `dplyr::filter(iris, Species=="virginica")` will work.
-  
----
-
-# Solving namespace conflicts 
-
-Assign `function <- package::function`
-  
---
-
-You can permanently assign a conflicted function name to a particular package
-
---
-
-This will hold for the remainder of your current R session, or until you change it back:
-```{r, eval = F}
-filter <- stats::filter ## Note the lack of parentheses.
-filter <- dplyr::filter ## Change it back again.
-```
-
----
-
 # Indexing
 
 How do we index in R?
@@ -630,7 +446,7 @@ What does `starwars[1:3, 1]` give you?
 
 # Indexing: []
 
-We haven't covered them properly yet (patience), but .hi-blue[lists] are a more complex type of array object in R
+We haven't covered them properly yet, but .hi-blue[lists] are a more complex type of array object in R
 
 --
 
