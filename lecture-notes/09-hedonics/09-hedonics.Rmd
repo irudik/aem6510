@@ -419,8 +419,8 @@ ggplot() +
     axis.title.x = element_text(size = 16, color = "#000000"), axis.title.y = element_text(size = 16, color = "#000000"),
     panel.grid.minor.x = element_blank(), panel.grid.major.y = element_blank(),
     panel.grid.minor.y = element_blank(), panel.grid.major.x = element_blank(),
-    panel.background = element_rect(fill = "#eeeeee",colour = NA),
-    plot.background = element_rect(fill = "#eeeeee",colour = NA),
+    panel.background = element_rect(fill = "#ffffff",colour = NA),
+    plot.background = element_rect(fill = "#ffffff",colour = NA),
     axis.line = element_line(colour = "black")
   ) +
   scale_x_continuous(expand = c(0, 0), limits = c(0, 4), breaks = c(2.75), labels = expression(q[0])) +
@@ -491,8 +491,8 @@ ggplot() +
     axis.title.x = element_text(size = 16, color = "#000000"), axis.title.y = element_text(size = 16, color = "#000000"),
     panel.grid.minor.x = element_blank(), panel.grid.major.y = element_blank(),
     panel.grid.minor.y = element_blank(), panel.grid.major.x = element_blank(),
-    panel.background = element_rect(fill = "#eeeeee",colour = NA),
-    plot.background = element_rect(fill = "#eeeeee",colour = NA),
+    panel.background = element_rect(fill = "#ffffff",colour = NA),
+    plot.background = element_rect(fill = "#ffffff",colour = NA),
     axis.line = element_line(colour = "black")
   ) +
   scale_x_continuous(expand = c(0, 0), limits = c(0, 4), breaks = c(0.5, 1.3), labels = expression(q[1], q[0])) +
