@@ -507,8 +507,7 @@ mortality_df$year <- relevel(mortality_df$year, 9)
 # Estimate event study
 event_study <- fixest::feols(
   age_adjusted_rate ~ as.factor(race)*year + 
-    as.factor(state)*year + 
-    unemp_rate + median_income + percent_non_white + lead_emitted + ap | state_county + year, 
+    unemp_rate + median_income + percent_non_white + lead_emitted + ap | state_county + state^year, 
   weights = ~weight,
   data = mortality_df) %>% 
   broom::tidy(cluster = "state") %>% 

@@ -499,8 +499,8 @@ ggplot(bio_df, group = interaction(state, period)) +
     axis.title.x = element_text(size = 24), axis.title.y = element_text(size = 24),
     panel.grid.minor.x = element_blank(), panel.grid.minor.y = element_blank(),
     panel.grid.major.x = element_blank(),
-    panel.background = element_rect(fill = "#eeeeee", colour = NA),
-    plot.background = element_rect(fill = "#eeeeee", colour = NA),
+    panel.background = element_rect(fill = "#ffffff", colour = NA),
+    plot.background = element_rect(fill = "#ffffff", colour = NA),
     axis.line = element_line(colour = "black")
   )
 
@@ -530,8 +530,8 @@ ggplot(dffull, group = interaction(state, period)) +
     axis.text.x = element_text(size = 24), axis.text.y = element_text(size = 24),
     axis.title.x = element_text(size = 24), axis.title.y = element_text(size = 24),
     panel.grid.minor.x = element_blank(), panel.grid.minor.y = element_blank(),
-    panel.background = element_rect(fill = "#eeeeee", colour = NA),
-    plot.background = element_rect(fill = "#eeeeee", colour = NA),
+    panel.background = element_rect(fill = "#ffffff", colour = NA),
+    plot.background = element_rect(fill = "#ffffff", colour = NA),
     panel.grid.major.x = element_blank(),
     axis.line = element_line(colour = "black")
   )
@@ -568,8 +568,8 @@ ggplot(dffull %>% filter(msg_idx == 4), group = interaction(state, period)) +
     axis.text.x = element_text(size = 24), axis.text.y = element_text(size = 24),
     axis.title.x = element_text(size = 24), axis.title.y = element_text(size = 24),
     panel.grid.minor.x = element_blank(), panel.grid.minor.y = element_blank(),
-    panel.background = element_rect(fill = "#eeeeee", colour = NA),
-    plot.background = element_rect(fill = "#eeeeee", colour = NA),
+    panel.background = element_rect(fill = "#ffffff", colour = NA),
+    plot.background = element_rect(fill = "#ffffff", colour = NA),
     panel.grid.major.x = element_blank(),
     axis.line = element_line(colour = "black")
   )
@@ -599,8 +599,8 @@ ggplot(dffull %>% filter(msg_idx == 5), group = interaction(state, period)) +
     axis.text.x = element_text(size = 24), axis.text.y = element_text(size = 24),
     axis.title.x = element_text(size = 24), axis.title.y = element_text(size = 24),
     panel.grid.minor.x = element_blank(), panel.grid.minor.y = element_blank(),
-    panel.background = element_rect(fill = "#eeeeee", colour = NA),
-    plot.background = element_rect(fill = "#eeeeee", colour = NA),
+    panel.background = element_rect(fill = "#ffffff", colour = NA),
+    plot.background = element_rect(fill = "#ffffff", colour = NA),
     panel.grid.major.x = element_blank(),
     axis.line = element_line(colour = "black")
   )
@@ -630,8 +630,8 @@ ggplot(dffull %>% filter(msg_idx == 5), group = interaction(state, period)) +
     axis.text.x = element_text(size = 24), axis.text.y = element_text(size = 24),
     axis.title.x = element_text(size = 24), axis.title.y = element_text(size = 24),
     panel.grid.minor.x = element_blank(), panel.grid.minor.y = element_blank(),
-    panel.background = element_rect(fill = "#eeeeee", colour = NA),
-    plot.background = element_rect(fill = "#eeeeee", colour = NA),
+    panel.background = element_rect(fill = "#ffffff", colour = NA),
+    plot.background = element_rect(fill = "#ffffff", colour = NA),
     panel.grid.major.x = element_blank(),
     axis.line = element_line(colour = "black")
   )
@@ -664,8 +664,8 @@ ggplot(dffull %>% filter(msg_idx == 6), group = interaction(state, period)) +
     axis.text.x = element_text(size = 24), axis.text.y = element_text(size = 24),
     axis.title.x = element_text(size = 24), axis.title.y = element_text(size = 24),
     panel.grid.minor.x = element_blank(), panel.grid.minor.y = element_blank(),
-    panel.background = element_rect(fill = "#eeeeee", colour = NA),
-    plot.background = element_rect(fill = "#eeeeee", colour = NA),
+    panel.background = element_rect(fill = "#ffffff", colour = NA),
+    plot.background = element_rect(fill = "#ffffff", colour = NA),
     panel.grid.major.x = element_blank(),
     axis.line = element_line(colour = "black")
   )
