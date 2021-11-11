@@ -132,7 +132,7 @@ The ocean is cold and can absorb a lot of heat, it takes centuries to warm and s
 
 <div style= "float:right;position: relative;">
 ```{r, out.width = "575px", echo = FALSE}
-knitr::include_graphics("figures/paleoclimate.png")
+knitr::include_graphics("figures/14-paleoclimate.png")
 ```
 </div>
 
@@ -144,7 +144,7 @@ The spike in $CO_2$ is large, we can see seasonal variation in $CO_2$ in the sho
 
 <div style= "float:right;position: relative;">
 ```{r, out.width = "575px", echo = FALSE}
-knitr::include_graphics("figures/paleoclimate.png")
+knitr::include_graphics("figures/14-paleoclimate.png")
 ```
 </div>
 
@@ -204,7 +204,7 @@ These are computationally very expensive: it can take several hours on a super c
 
 <div style= "float:right;position: relative;">
 ```{r, out.width = "575px", echo = FALSE}
-knitr::include_graphics("figures/detection.png")
+knitr::include_graphics("figures/14-detection.png")
 ```
 </div>
 
@@ -221,7 +221,7 @@ Detection is where we need to determine if there has been a change in climate, a
 
 <div style= "float:right;position: relative;">
 ```{r, out.width = "575px", echo = FALSE}
-knitr::include_graphics("figures/detection.png")
+knitr::include_graphics("figures/14-detection.png")
 ```
 </div>
 
@@ -238,7 +238,7 @@ The intergovernmental panel on climate change (IPCC) has reported the current co
 
 <div style= "float:right;position: relative;">
 ```{r, out.width = "575px", echo = FALSE}
-knitr::include_graphics("figures/model_vs_obs.png")
+knitr::include_graphics("figures/14-model_vs_obs.png")
 ```
 </div>
 
@@ -262,7 +262,7 @@ We are projected to have about triple the current warming by end of century if w
 
 <div style= "float:right;position: relative;">
 ```{r, out.width = "575px", echo = FALSE}
-knitr::include_graphics("figures/projected_temp.png")
+knitr::include_graphics("figures/14-projected_temp.png")
 ```
 </div>
 
@@ -279,7 +279,7 @@ The arctic is predicted to warm substantially more than the rest of the planet, 
 
 <div style= "float:right;position: relative;">
 ```{r, out.width = "575px", echo = FALSE}
-knitr::include_graphics("figures/projected_temp.png")
+knitr::include_graphics("figures/14-projected_temp.png")
 ```
 </div>
 
@@ -301,7 +301,7 @@ South America and western Europe will see decreases in rainfall
 
 <div style= "float:right;position: relative;">
 ```{r, out.width = "575px", echo = FALSE}
-knitr::include_graphics("figures/us_rcp85.png")
+knitr::include_graphics("figures/14-us_rcp85.png")
 ```
 </div>
 
@@ -318,7 +318,7 @@ If we follow a business as usual emissions path (RCP 8.5), New York at the end o
 
 <div style= "float:right;position: relative;">
 ```{r, out.width = "575px", echo = FALSE}
-knitr::include_graphics("figures/us_rcp85.png")
+knitr::include_graphics("figures/14-us_rcp85.png")
 ```
 </div>
 
@@ -331,7 +331,7 @@ On average, temperatures in the USA will be more likely South Africa or Mexico!
 
 <div style= "float:right;position: relative;">
 ```{r, out.width = "575px", echo = FALSE}
-knitr::include_graphics("figures/flooding.png")
+knitr::include_graphics("figures/14-flooding.png")
 ```
 </div>
 
@@ -489,8 +489,8 @@ p1 <- ggplot(data = jan_temps, aes(x = x)) +
         axis.title.x = element_text(size = 24), axis.title.y = element_text(size = 24),
         panel.grid.minor.x = element_blank(), panel.grid.major.y = element_blank(),
         panel.grid.minor.y = element_blank(), panel.grid.major.x = element_blank(),
-    panel.background = element_rect(fill = "#eeeeee",colour = NA),
-    plot.background = element_rect(fill = "#eeeeee",colour = NA),
+    panel.background = element_rect(fill = "#ffffff",colour = NA),
+    plot.background = element_rect(fill = "#ffffff",colour = NA),
         axis.line = element_line(colour = 'black'))
 p1
 ```
@@ -628,7 +628,7 @@ Mendelsohn, Nordhaus, Shaw (1994) do this for agriculture
 
 <div style= "float:right;position: relative;">
 ```{r, out.width = "575px", echo = FALSE}
-knitr::include_graphics("figures/value_of_farmland.png")
+knitr::include_graphics("figures/14-value_of_farmland.png")
 ```
 </div>
 
@@ -704,7 +704,7 @@ Climate must be uncorrelated with omitted variables conditional on controls
 
 <center>
 ```{r, out.width = "500px", echo = FALSE}
-knitr::include_graphics("figures/ricardian_table_1.png")
+knitr::include_graphics("figures/14-ricardian_table_1.png")
 ```
 </center>
 
@@ -718,7 +718,7 @@ Results are pretty sensitive to this choice: cropland weights
 
 <center>
 ```{r, out.width = "575px", echo = FALSE}
-knitr::include_graphics("figures/ricardian_figure_1.png")
+knitr::include_graphics("figures/14-ricardian_figure_1.png")
 ```
 </center>
 
@@ -730,7 +730,7 @@ The value of current climate for farmland across the US
 
 <center>
 ```{r, out.width = "575px", echo = FALSE}
-knitr::include_graphics("figures/ricardian_figure_2.png")
+knitr::include_graphics("figures/14-ricardian_figure_2.png")
 ```
 </center>
 
@@ -742,7 +742,7 @@ The value of $5^\circ$C of warming and 8% increase in precipitation under farmla
 
 <div style= "float:right;position: relative;">
 ```{r, out.width = "575px", echo = FALSE}
-knitr::include_graphics("figures/ricardian_figure_3.png")
+knitr::include_graphics("figures/14-ricardian_figure_3.png")
 ```
 </div>
 
@@ -756,7 +756,7 @@ This shows a very different story because crop-revenue weights put more emphasis
 
 <center>
 ```{r, out.width = "700px", echo = FALSE}
-knitr::include_graphics("figures/ricardian_table_2.png")
+knitr::include_graphics("figures/14-ricardian_table_2.png")
 ```
 </center>
 
@@ -793,7 +793,7 @@ Ozone, wealth, other productive uses of land besides agriculture, lots of things
 
 <div style= "float:right;position: relative;">
 ```{r, out.width = "705px", echo = FALSE}
-knitr::include_graphics("figures/ariel_1.png")
+knitr::include_graphics("figures/14-ariel_1.png")
 ```
 </div>
 
@@ -815,7 +815,7 @@ What could be driving this?
 
 <div style= "float:right;position: relative;">
 ```{r, out.width = "600px", echo = FALSE}
-knitr::include_graphics("figures/ariel_2.png")
+knitr::include_graphics("figures/14-ariel_2.png")
 ```
 </div>
 
@@ -1278,7 +1278,7 @@ Because farmland values shouldn't change in response to random annual weather sh
 DG shows why the cross-sectional approach doesn't cut it, the estimated effects are very sensitive to controls, sample
 <center>
 ```{r, out.width = "700px", echo = FALSE}
-knitr::include_graphics("figures/dg_1.png")
+knitr::include_graphics("figures/14-dg_1.png")
 ```
 </center>
 
@@ -1290,7 +1290,7 @@ DG use .hi-blue[degree days] to capture climate: the sum of daily average temper
 
 <center>
 ```{r, out.width = "600px", echo = FALSE}
-knitr::include_graphics("figures/dg_2.png")
+knitr::include_graphics("figures/14-dg_2.png")
 ```
 </center>
 
@@ -1302,7 +1302,7 @@ Main takeaway: little effect of climate change!
 
 <div style= "float:right;position: relative;">
 ```{r, out.width = "575px", echo = FALSE}
-knitr::include_graphics("figures/dg_3.png")
+knitr::include_graphics("figures/14-dg_3.png")
 ```
 </div>
 
@@ -1326,7 +1326,7 @@ We'd expect farmers have little ability to adapt to (randomly) hot weather durin
 
 <div style= "float:right;position: relative;">
 ```{r, out.width = "575px", echo = FALSE}
-knitr::include_graphics("figures/dg_3.png")
+knitr::include_graphics("figures/14-dg_3.png")
 ```
 </div>
 
@@ -1486,7 +1486,7 @@ This helps us better pin down the effects of climate change on a subset of inter
 
 <div style= "float:right;position: relative;">
 ```{r, out.width = "575px", echo = FALSE}
-knitr::include_graphics("figures/dh_1.png")
+knitr::include_graphics("figures/14-dh_1.png")
 ```
 </div>
 
@@ -1506,7 +1506,7 @@ The left hand side shows the variation that allows us to estimate the marginal e
 
 <div style= "float:right;position: relative;">
 ```{r, out.width = "575px", echo = FALSE}
-knitr::include_graphics("figures/dh_1.png")
+knitr::include_graphics("figures/14-dh_1.png")
 ```
 </div>
 
@@ -1528,7 +1528,7 @@ The most famous integrated assessment model (IAM) is Bill Nordhaus' Dynamic Inte
 
 <center>
 ```{r, out.width = "900px", echo = FALSE}
-knitr::include_graphics("figures/iam_1.png")
+knitr::include_graphics("figures/14-iam_1.png")
 ```
 </center>
 
