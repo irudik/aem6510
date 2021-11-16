@@ -1,6 +1,6 @@
 ---
 title: "Lecture 14"
-subtitle: "Climate // Ricardian Model, Two Way FEs, Integrated Assessment"
+subtitle: "Climate // Identification, Ricardian, Two Way FEs, Integrated Assessment"
 author: Ivan Rudik
 date: AEM 6510
 output:
@@ -225,7 +225,7 @@ knitr::include_graphics("figures/14-detection.png")
 ```
 </div>
 
-When trying to human causes, we need to simulate counterfactual climates without human influence
+When trying to determine human causes, we need to simulate counterfactual climates without human influence
 
 --
 
