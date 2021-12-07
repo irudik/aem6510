@@ -188,6 +188,6 @@ We will be using [RStudio Cloud](https://rstudio.cloud/) for computing.
 
 ### Dec 2: Dr. Ewa Zawojska Guest Lecture: Stated Preferences
 
-### Dec 7: Final project presentations
+### Dec 7: Travel Cost / Recreation Demand
 
 
