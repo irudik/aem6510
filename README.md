@@ -188,6 +188,6 @@ We will be using [RStudio Cloud](https://rstudio.cloud/) for computing.
 
 ### Dec 2: Dr. Ewa Zawojska Guest Lecture: Stated Preferences
 
-### Dec 7: Travel Cost / Recreation Demand
+### [Dec 7: Travel Cost / Recreation Demand](https://raw.githack.com/irudik/aem6510/master/lecture-notes/15-travel-cost/15-travel-cost.pdf)
 
 
