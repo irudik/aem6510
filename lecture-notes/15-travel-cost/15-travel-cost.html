@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Lecture 15</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Ivan Rudik" />
+    <script src="15-travel-cost_files/header-attrs/header-attrs.js"></script>
+    <link href="15-travel-cost_files/remark-css/default.css" rel="stylesheet" />
+    <link href="15-travel-cost_files/remark-css/metropolis.css" rel="stylesheet" />
+    <link href="15-travel-cost_files/remark-css/metropolis-fonts.css" rel="stylesheet" />
+    <link href="15-travel-cost_files/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="15-travel-cost_files/tile-view/tile-view.js"></script>
+    <link href="15-travel-cost_files/panelset/panelset.css" rel="stylesheet" />
+    <script src="15-travel-cost_files/panelset/panelset.js"></script>
+    <script src="15-travel-cost_files/xaringanExtra-webcam/webcam.js"></script>
+    <script id="xaringanExtra-webcam-options" type="application/json">{"width":"200","height":"200","margin":"1em"}</script>
+    <link rel="stylesheet" href="my-css.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Lecture 15
+## Travel cost and recreation demand
+### Ivan Rudik
+### AEM 4510
+
+---
+
+exclude: true
+
+```r
+if (!require("pacman")) install.packages("pacman")
+```
+
+```
+## Loading required package: pacman
+```
+
+```r
+pacman::p_load(
+  tidyverse, magrittr, xaringanExtra, rlang, patchwork, nycflights13, broom, viridis, vembedr
+)
+set.seed(1)
+options(htmltools.dir.version = FALSE)
+knitr::opts_hooks$set(fig.callout = function(options) {
+  if (options$fig.callout) {
+    options$echo &lt;- FALSE
+  }
+knitr::opts_chunk$set(echo = TRUE, fig.align="center")
+  options
+})
+red_pink &lt;- "#e64173"
+blue &lt;- "#3C93DC"
+red &lt;- "#ff0000"
+```
+
+```
+## Warning: 'xaringanExtra::style_panelset' is deprecated.
+## Use 'style_panelset_tabs' instead.
+## See help("Deprecated")
+```
+
+```
+## Warning in style_panelset_tabs(...): The arguments to `syle_panelset()` changed
+## in xaringanExtra 0.1.0. Please refer to the documentation to update your slides.
+```
+
+```r
+red_pink &lt;- "#e64173"
+# A blank theme for ggplot
+theme_empty &lt;- theme_minimal() +
+  theme(
+    legend.position = "none",
+    title = element_text(size = 24),
+    axis.text.x = element_text(size = 24), axis.text.y = element_text(size = 24, color = "#ffffff"),
+    axis.title.x = element_text(size = 24), axis.title.y = element_text(size = 24),
+    panel.grid.minor.x = element_blank(), panel.grid.major.y = element_blank(),
+    panel.grid.minor.y = element_blank(), panel.grid.major.x = element_blank(),
+    panel.background = element_rect(fill = "#ffffff", colour = NA),
+    plot.background = element_rect(fill = "#ffffff", colour = NA),
+    axis.line = element_line(colour = "black"), axis.ticks = element_line(),
+  )
+theme_blank &lt;- theme_minimal() +
+  theme(
+    legend.position = "none",
+    title = element_text(size = 24),
+    axis.text.x = element_blank(), axis.text.y = element_blank(),
+    axis.title.x = element_blank(), axis.title.y = element_blank(),
+    panel.grid.minor.x = element_blank(), panel.grid.major.y = element_blank(),
+    panel.grid.minor.y = element_blank(), panel.grid.major.x = element_blank(),
+    panel.background = element_rect(fill = "#ffffff", colour = NA),
+    plot.background = element_rect(fill = "#ffffff", colour = NA),
+    axis.line = element_blank(), axis.ticks = element_blank(),
+  ) 
+theme_regular &lt;- 
+  theme_minimal() +
+  theme(
+    legend.position = "none",
+    title = element_text(size = 14),
+    axis.text.x = element_text(size = 24), axis.text.y = element_text(size = 24),
+    axis.title.x = element_text(size = 24), axis.title.y = element_text(size = 24),
+    panel.grid.minor.x = element_blank(), panel.grid.minor.y = element_blank(),
+    panel.grid.major.x = element_blank(), axis.ticks = element_line(),  axis.line = element_line(),
+    panel.background = element_rect(fill = "#ffffff", colour = NA),
+    plot.background = element_rect(fill = "#ffffff", colour = NA)
+  ) 
+```
+
+```r
+# initialize seed and data
+set.seed(1000)
+num_trips &lt;- 100
+trip_data &lt;- expand.grid(
+  house_num = seq(from = 1, to = num_trips),
+  site = 1:26
+)
+
+# make fake dataset
+trip_data &lt;- trip_data %&gt;%
+  as_tibble() %&gt;%
+  mutate(
+    trips = sample(0:8, num_trips * 26, replace = TRUE),
+    income = exp(rnorm(num_trips * 26)) * 3000 + 50000 + rnorm(num_trips * 2) * 15000,
+    income = ifelse(income &lt; 10000, 10000, income),
+    travel_cost = exp(rnorm(num_trips * 26)) * 30,
+    travel_cost_other = exp(rnorm(num_trips * 26)) * 35,
+    trips = round(-.01 * travel_cost + .01 * travel_cost_other + 3 / 100000 * income),
+    water_clarity = runif(num_trips * 26)
+  ) %&gt;%
+  group_by(site) %&gt;%
+  mutate(water_clarity = mean(water_clarity)) %&gt;%
+  ungroup() %&gt;%
+  mutate(trips = case_when(
+    trips &lt;= 0 ~ 0,
+    TRUE ~ trips + 3 * round(water_clarity)
+  ))
+write_csv(trip_data, "data/trip_data.csv")
+```
+
+---
+
+# Roadmap
+
+- How do we estimate the value of recreational goods?
+
+---
+
+class: inverse, center, middle
+name: background
+
+# Background
+
+&lt;html&gt;&lt;div style='float:left'&gt;&lt;/div&gt;&lt;hr color='#EB811B' size=1px width=796px&gt;&lt;/html&gt;
+
+---
+
+# Should we separate the Great Lakes and Mississippi?
+
+&lt;div class="vembedr" align="center"&gt;
+  &lt;div&gt;
+    &lt;iframe src="https://www.youtube.com/embed/lIRXDDG6yB8" width="800" height="450" frameborder="0" allowfullscreen=""&gt;&lt;/iframe&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+---
+
+# Should we separate the Great Lakes and Mississippi?
+
+.center[
+&lt;img src="figures/12-carp1.png" width="70%" /&gt;
+]
+
+---
+
+# Should we separate the Great Lakes and Mississippi?
+
+.center[
+&lt;img src="figures/12-carp2.png" width="50%" /&gt;
+]
+
+---
+
+# Should we separate the Great Lakes and Mississippi?
+
+Benefits from barriers accrue to anglers in the Great Lakes, both commercial and recreational 
+
+Costs come from cost of building the barriers plus cost of maintaining them,  plus costs of reduced shipping (if any), plus any other costs associated with the barriers
+
+How do we figure out the benefits from recreational anglers? 
+
+---
+
+# Why do we need travel cost?
+
+Recreational areas .hi[have value]
+
+--
+
+Their quality also has value
+
+--
+
+Not placing a value on recreation is essentially giving it a value of .hi-purple[zero]
+
+--
+
+This is likely inappropriate
+
+--
+
+If someone dumped toxic waste in Taughannock does that have zero cost?
+
+---
+
+# What is the travel cost method?
+
+The travel cost method uses observable data on recreation visitation to infer the recreational value of environmental amenities
+
+--
+
+The central idea is that the time and travel cost expenses that people incur to visit a site represent the .hi[price] of access to the site
+
+--
+
+This means that people's WTP to visit can be estimated based on the number of visits they make to sites of different prices
+
+--
+
+This gives us a demand curve for sites/amenities, so we can value changes in these environmental amenities
+
+---
+
+# Hotelling
+
+After WWII, the U.S. national park service solicited advice from economists on methods for quantifying the value of specific park properties
+
+--
+
+Would total entrance fee that people pay measure the value?
+
+--
+
+.hi-red[No!]
+
+--
+
+Harold Hotelling proposed the first indirect method for measuring the demand of a non-market good in 1947
+
+---
+
+# Hotelling
+
+&gt; Let concentric zones be defined around each park so that the cost of travel to the park from all points in one of these zones is approximately constant. The persons entering the park in a year, or a suitable chosen sample of them, are to be listed according to the zone from which they came. The fact that they come means that the service of the park is at least worth the cost, and this cost can probably be estimated with fair accuracy. 
+
+---
+
+# Hotelling
+
+&gt; A comparison of the cost of coming from a zone with the number of people who do come from it, together with a count of the population of the zone, enables us to plot one point for each zone on a demand curve for the service of the park. By a judicious process of fitting, it should be possible to get a good enough approximation to this demand curve to provide, through integration, a measure of consumers’ surplus.. 
+
+--
+
+About twelve years after, Trice and Wood (1958) and Clawson (1959) independently implemented the methodology 
+
+---
+
+# Theoretical foundation
+
+Here's the theory for how we can use observed data to tell us something about willingness to pay
+
+--
+
+Consider a single consumer and a single recreation site
+
+--
+
+The consumer has:
+
+- Total number of recreation trips: x, to site of quality: q
+- Total budget of time: T
+- Working time: H
+- Non-recreation, non-work time: l
+- Hourly wage: w
+- Money cost of reaching the site: c
+- Expenditures on other market goods: z
+
+
+---
+
+# Theoretical foundation
+
+This lets us write down the consumer's utility maximization problem:
+`$$\max_{x,z,l} U(x,z,l,q) \,\,\,\, \text{subject to: }\,\,\, \underbrace{wH = cx + z}_{\text{money budget}}, \,\, \underbrace{T = H + l + tx}_{\text{time budget}}$$`
+--
+
+Combine the two constraints to get:
+
+--
+
+`$$\max_{x,z,l} U(x,z,l,q) \,\,\,\, \text{subject to: }\,\,\, \underbrace{wT = z + (c+wt)x + wl}_{\text{combined money/time budget}}$$`
+
+---
+
+# Theoretical foundation
+
+Let `\(Y = wT\)` be the consumer's *full income*, their money value of total time budget
+
+--
+
+Let `\(p = c+wt\)` be the consumer's *full price*, their total cost to reach the site
+
+Then we can write the problem as:
+
+--
+`$$\max_{x,z,l} U(x,z,l,q) \,\,\,\, \text{subject to: }\,\,\, \underbrace{Y = z + px + wl}_{\text{combined budget}}$$`
+
+--
+
+Solve the constraint for `\(z\)` and substitute into the utility function...
+
+---
+
+# Theoretical foundation
+
+`$$\max_{x,l} U\left(x,Y-px-wl,l,q\right)$$`
+
+--
+
+This has first-order conditions:
+`$$[x] \,\,\, U_x - pU_z = 0 \rightarrow \frac{U_x}{U_z} = p$$`
+
+and
+`$$[l] \,\,\, -wU_z + U_l = 0 \rightarrow \frac{U_l}{U_z} = w$$`
+
+---
+
+# Theoretical foundation
+
+`\(\frac{U_x}{U_z} = p\)` tells us the consumer equates the marginal rate of substitution between recreational trips and consumption to be the full price of the recreational trip
+
+--
+
+What does this mean?
+
+--
+
+.hi[The value of the recreational trip to the consumer, in dollar terms, is revealed by the full price p]
+
+---
+
+# Theoretical foundation
+
+`\(U_x - pU_z = 0 \qquad -wU_z + U_l = 0\)`
+
+The above FOCs are two equations, the consumer had two choices (x,l) so we had two unknowns
+
+We can thus solve for x (and l) as a function of the parameters (p,Y,q):
+
+`$$x = f(p,Y,q)$$`
+
+This is simply the consumer's .hi-blue[demand curves] for recreation as a function of the full price p, full budget Y, and quality q
+
+---
+
+# Theoretical foundation
+
+`$$x = f(p,Y,q)$$`
+
+If we observe consumers going to sites of different full prices `\(p_1,p_2,\dots,p_n\)`, we are moving up and down their recreation demand curve
+
+--
+
+This lets us trace out the demand curve
+
+--
+
+Changing Y or q shifts the demand curve in or out: these are income and quasi-price effects
+
+--
+
+Once we have it, we can compute surplus!
+
+---
+
+# Zonal (single-site) model
+
+Here's the most basic travel cost model to start
+
+--
+
+- Construct distance zones (i) as concentric circles emanating from the recreation site
+  - Travel costs from all points within each zone to the site are sufficiently close in magnitude to justify neglecting the differences
+--
+
+- From a sample of visitors `\((v_i)\)` at the recreation site, determine zones of origin and their populations `\((n_i)\)`
+--
+
+- Calculate the per capita visitation rates for each zone of origin `\((t_i = (v_i/n_i))\)`
+
+
+---
+
+# Zonal (single-site) model
+
+- Construct a travel cost measure `\((tc_i)\)` that reflects the round-trip costs of travel from the zone of origin to the recreation site (time and gas), + an entry fee `\((fee)\)` which may be zero and does not vary across zones
+
+--
+
+- Collect relevant socioeconomic data `\((x_i)\)` such as income and education for each distance zone
+
+--
+
+- Use statistical methods to estimate the trip demand curve: the relationship between per-capita visitation rates, cost per visit, [and travel costs to other sites `\((tc_{si})\)`] controlling for socioeconomic differences
+
+--
+
+- `\(t_i = g(tc_i + fee; tc_{si}, x_i) + \varepsilon_i\)` where `\(g\)` can be linear
+
+---
+
+# Zonal (single-site) model
+
+Here's a simple example of a set of zones 1-5:
+&lt;img src="15-travel-cost_files/figure-html/sample2 scatter-1.svg" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Zonal (single-site) model
+
+Suppose we have the following data:
+
+
+```
+## # A tibble: 5 × 5
+##   zone   dist   pop  cost   vpp
+##   &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 A         2 10000    20    15
+## 2 B        30 10000    30    13
+## 3 C        90 20000    65     6
+## 4 D       140 10000    80     3
+## 5 E       150 10000    90     1
+```
+
+If we plot cost by visits per person, we have a measure of the demand curve...
+
+---
+
+# Zonal (single-site) model
+
+.pull-left[
+This is a very simple example where it happens to be an exactly straight line, most likely the data won't be this perfect
+
+The line is simply from estimating: `$$t_i = \beta_0 + \beta_1 tc_i + \varepsilon_i$$`
+]
+
+.pull-right[
+&lt;img src="15-travel-cost_files/figure-html/zonal example-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+# Zonal (single-site) model
+
+.pull-left[
+The data will most likely look like this, but even this is probably too clean
+
+It ignores things like income, other sites, other household characteristics
+]
+
+.pull-right[
+&lt;img src="15-travel-cost_files/figure-html/zonal example 2-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+# Zonal (single-site) model
+
+Based on the estimate model coefficients, construct the (inverse) demand curve
+
+--
+
+.hi[For each zone:] predict total visitation given various fees
+
+--
+
+Entry fee on the y-axis (price), and the number of predicted total visits on the x-axis (quantity)
+
+--
+
+The demand curve is different for different zone because different social economic variables
+
+--
+
+The (use) value of the park/site to each zone is given by the area underneath the corresponding demand curve
+
+---
+
+# Issues with the single-site model
+
+What are some potential issues and concerns with this approach?
+
+--
+
+It ignores non-use value (automatically zero for non-users)
+
+--
+
+What are the right zones to choose?
+
+--
+
+What is the right functional form for demand?
+
+--
+
+How do we measure the opportunity cost of time?
+
+--
+
+How do we treat multi-purpose trips?
+
+--
+
+How do we value particular site attributes? Can't disentangle them at a single site
+
+
+---
+
+# Multi-site model
+
+To value particular site attributes we need to have multiple sites (with different attributes!)
+
+--
+
+We can answer questions like:
+
+--
+
+What is the benefit of a fish restocking program?
+  - Need to know the value of fish catch rate for visitors
+
+--
+
+What is the benefit of water clarity?
+
+--
+
+What is the benefit of tree replanting?
+
+
+---
+
+# Multi-site model
+
+Suppose we have a dataset with a large number of individuals and sites
+
+--
+
+Individuals are given by `\(i=1,\dots,N\)` and sites are given by `\(j=1,\dots,J\)`
+
+--
+
+We observe the number of times each individual visited each site
+
+--
+
+The multi-site model works as follows
+
+
+---
+
+# Multi-site model
+
+.hi[Step 1:] Do the single-site estimation for each site:
+`$$T_{ij} = \beta_{0j} + \beta_{1j} tc_{ij} + \beta_{2j} tc_{sij} + \beta_{3j} x_i + \varepsilon_{ij}$$`
+
+--
+
+.hi[Step 2:] Recover all the `\(\beta\)`s from each step 1 regression so that we have a set of J `\(\beta_{0j}\)`s for `\(j=1\dots,J\)`, `\(\beta_{1j}\)`s for `\(j=1\dots,J\)`, etc
+
+--
+
+These `\(\beta\)`s tell us the slope `\((\beta_{1j})\)` and intercept `\((\beta_{0j}, \beta_{2j}, \beta_{3j})\)`
+
+--
+
+`\(\beta_{2j}, \beta_{3j}\)` capture how the cost of substitute sites and household characteristics shift demand up and down
+
+---
+
+# Multi-site model
+
+.hi[Step 3:] Take each set of `\(J\)` coefficient estimates and use them as the dependent variable in a regression on site attributes `\(z\)`:
+`$$\hat{\beta}_{0j} = \alpha_{00} + \alpha_{01}z_j + \epsilon_{0j}$$`
+`$$\hat{\beta}_{1j} = \alpha_{10} + \alpha_{11}z_j + \epsilon_{1j}$$`
+`$$\hat{\beta}_{2j} = \alpha_{20} + \alpha_{21}z_j + \epsilon_{2j}$$`
+`$$\hat{\beta}_{3j} = \alpha_{30} + \alpha_{31}z_j + \epsilon_{3j}$$`
+
+The `\(\alpha_{\times1}\)` coefficients tell us how the demand curve shifts `\((\alpha_{00}, \alpha_{02}, \alpha_{03})\)` or rotates `\((\alpha_{01})\)` as we change `\(z\)`
+
+---
+
+# Valuing attributes with a multi-site model
+
+.pull-left[
+If we improve the quality of a site from z&lt;sub&gt;1&lt;/sub&gt; to z&lt;sub&gt;2&lt;/sub&gt;, demand for that site shifts up
+
+The gain in CS, holding the cost fixed, is given by the blue area
+
+Once we estimate demand curves, we can see how welfare changes when we alter quality characteristics!
+
+]
+
+.pull-right[
+&lt;img src="15-travel-cost_files/figure-html/multi site example-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+# Multi-site example
+
+
+```r
+trip_data &lt;- read_csv("data/trip_data.csv")
+```
+
+```
+## Rows: 2600 Columns: 7
+```
+
+```
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: ","
+## dbl (7): house_num, site, trips, income, travel_cost, travel_cost_other, wat...
+```
+
+```
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+```
+
+```r
+trip_data
+```
+
+```
+## # A tibble: 2,600 × 7
+##    house_num  site trips income travel_cost travel_cost_other water_clarity
+##        &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;       &lt;dbl&gt;             &lt;dbl&gt;         &lt;dbl&gt;
+##  1         1     1     4 40450.       38.9              16.4          0.506
+##  2         2     1     5 60304.       29.8              37.5          0.506
+##  3         3     1     5 66681.       42.2              67.2          0.506
+##  4         4     1     5 52886.       11.0              51.3          0.506
+##  5         5     1     5 69282.       15.7               7.72         0.506
+##  6         6     1     5 36948.        4.30             48.0          0.506
+##  7         7     1     6 60866.        5.31             91.0          0.506
+##  8         8     1     5 35557.       65.0             161.           0.506
+##  9         9     1     5 64880.       14.5              24.3          0.506
+## 10        10     1     4 38491.       13.6              26.5          0.506
+## # … with 2,590 more rows
+```
+
+---
+
+# First stage estimation
+
+
+```r
+# first stage of multi-site
+site_estimates &lt;- map_dfr(unique(trip_data$site), function(site_in){
+  lm(trips ~ travel_cost + travel_cost_other + income, 
+     trip_data %&gt;% filter(site == site_in)) %&gt;% 
+    broom::tidy() %&gt;% 
+    select(estimate) %&gt;% 
+    mutate(site = site_in) %&gt;% 
+    list() %&gt;% 
+    tibble_row() %&gt;% 
+    unlist() 
+}) %&gt;% 
+  select(1:5) %&gt;% 
+  magrittr::set_colnames(c("intercept", "own_price", "cross_price", "income", "site"))
+```
+
+---
+
+# First stage estimation
+
+
+```r
+site_estimates
+```
+
+```
+## # A tibble: 26 × 5
+##    intercept own_price cross_price    income  site
+##        &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;
+##  1     2.99   -0.0161      0.0106  0.0000321     1
+##  2     2.45   -0.0117      0.0101  0.0000397     2
+##  3     2.37   -0.0197      0.0111  0.0000450     3
+##  4     2.33   -0.0187      0.0119  0.0000438     4
+##  5     2.05   -0.0143      0.0139  0.0000450     5
+##  6    -0.236  -0.00668     0.00972 0.0000321     6
+##  7     2.67   -0.0210      0.0118  0.0000395     7
+##  8    -0.346  -0.00395     0.00987 0.0000324     8
+##  9     2.98   -0.0133      0.0107  0.0000315     9
+## 10    -0.103  -0.00943     0.0105  0.0000302    10
+## # … with 16 more rows
+```
+
+---
+
+# Take estimates, join with water clarity
+
+
+```r
+# merge in water clarity
+estimation_df &lt;- site_estimates %&gt;% 
+  left_join(trip_data %&gt;% distinct(site, water_clarity))
+```
+
+```
+## Joining, by = "site"
+```
+
+```r
+estimation_df
+```
+
+```
+## # A tibble: 26 × 6
+##    intercept own_price cross_price    income  site water_clarity
+##        &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;         &lt;dbl&gt;
+##  1     2.99   -0.0161      0.0106  0.0000321     1         0.506
+##  2     2.45   -0.0117      0.0101  0.0000397     2         0.503
+##  3     2.37   -0.0197      0.0111  0.0000450     3         0.515
+##  4     2.33   -0.0187      0.0119  0.0000438     4         0.515
+##  5     2.05   -0.0143      0.0139  0.0000450     5         0.515
+##  6    -0.236  -0.00668     0.00972 0.0000321     6         0.481
+##  7     2.67   -0.0210      0.0118  0.0000395     7         0.539
+##  8    -0.346  -0.00395     0.00987 0.0000324     8         0.482
+##  9     2.98   -0.0133      0.0107  0.0000315     9         0.530
+## 10    -0.103  -0.00943     0.0105  0.0000302    10         0.467
+## # … with 16 more rows
+```
+
+---
+
+# Second stage
+
+
+```r
+# second stage of multi-site
+demand_shifts &lt;- map_dfr(names(estimation_df)[1:4],
+        function(coefficient) {
+          reg_formula &lt;- as.formula(paste0(coefficient, " ~ water_clarity"))
+          lm(reg_formula, estimation_df) %&gt;% 
+            broom::tidy() %&gt;% 
+            mutate(coeff = coefficient) %&gt;% 
+            slice(2)
+        }
+)
+```
+
+---
+
+# Second stage
+
+
+```r
+demand_shifts
+```
+
+```
+## # A tibble: 4 × 6
+##   term           estimate std.error statistic      p.value coeff      
+##   &lt;chr&gt;             &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;        &lt;dbl&gt; &lt;chr&gt;      
+## 1 water_clarity 48.0      6.29           7.62 0.0000000733 intercept  
+## 2 water_clarity -0.171    0.0302        -5.67 0.00000770   own_price  
+## 3 water_clarity  0.0241   0.00867        2.78 0.0104       cross_price
+## 4 water_clarity  0.000165 0.0000394      4.18 0.000330     income
+```
+The estimates column tells us how a change in water clarity (from 0 to 100%), shifts or rotates our demand curve
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
